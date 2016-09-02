@@ -3,10 +3,10 @@ package com.spikes2212.genericsubsystems;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public abstract class DoubleLimitedSubsystem extends Subsystem {
+public abstract class LimitedSubsystem extends Subsystem {
 	private SpeedController motor;
 
-	public DoubleLimitedSubsystem(SpeedController motor) {
+	public LimitedSubsystem(SpeedController motor) {
 		this.motor = motor;
 	}
 
