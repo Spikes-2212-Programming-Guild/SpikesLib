@@ -13,7 +13,8 @@ public class DoubleSpeedcontroller implements SpeedController {
 
 	@Override
 	public void pidWrite(double output) {
-		// TODO Auto-generated method stub
+		this.speedcontrollerLeft.pidWrite(output);
+		this.speedcontrollerRight.pidWrite(output);
 
 	}
 
