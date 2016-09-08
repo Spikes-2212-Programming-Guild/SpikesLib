@@ -1,12 +1,12 @@
 
-package com.spikes2212;
+package com.spikes2212.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import com.spikes2212.commands.ExampleCommand;
-import com.spikes2212.subsystems.ExampleSubsystem;
+import com.spikes2212.robot.commands.ExampleCommand;
+import com.spikes2212.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 

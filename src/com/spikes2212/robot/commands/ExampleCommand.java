@@ -1,9 +1,9 @@
 
-package com.spikes2212.commands;
+package com.spikes2212.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import com.spikes2212.Robot;
+import com.spikes2212.robot.Robot;
 
 /**
  *
