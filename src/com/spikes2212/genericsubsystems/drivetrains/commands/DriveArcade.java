@@ -1,13 +1,18 @@
 package com.spikes2212.genericsubsystems.drivetrains.commands;
 
+import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveArcade extends Command {
 	double moveValue, rotateValue;
+	TankDrivetrain tankDrivetrain;
 
-	public void driveArcade(double moveValue, double rotateValue) {
+	public void driveArcade(TankDrivetrain drivetrain, double moveValue, double rotateValue) {
+		requires(drivetrain);
 		this.moveValue = moveValue;
 		this.rotateValue = rotateValue;
+		this.tankDrivetrain = drivetrain;
 	}
 
 	@Override
@@ -37,7 +42,7 @@ public class DriveArcade extends Command {
 				rightSpeed = -Math.max(-moveValue, -rotateValue);
 			}
 		}
-
+		tankDrivetrain.tankDrive(leftSpeed, rightSpeed);
 	}
 
 	@Override
@@ -48,8 +53,7 @@ public class DriveArcade extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		rotateValue = 0;
-		moveValue = 0;
+		tankDrivetrain.tankDrive(0, 0);
 	}
 
 	// Called when another command which requires one or more of the same
