@@ -7,18 +7,18 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveStraight extends Command {
+public class DriveTank extends Command {
 
 	private TankDrivetrain tankDrivetrain;
-	private double speed;
+	private double leftSpeed, rightSpeed;
 
-	public DriveStraight(TankDrivetrain drivetrain, double speed) {
+	public DriveTank(TankDrivetrain drivetrain, double leftSpeed, double rightSpeed) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(drivetrain);
 		this.tankDrivetrain = drivetrain;
-		this.speed = speed;
-
+		this.leftSpeed = leftSpeed;
+		this.rightSpeed = rightSpeed;
 	}
 
 	// Called just before this Command runs the first time
@@ -27,7 +27,7 @@ public class DriveStraight extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		tankDrivetrain.straight(speed);
+		tankDrivetrain.tankDrive(leftSpeed, rightSpeed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
