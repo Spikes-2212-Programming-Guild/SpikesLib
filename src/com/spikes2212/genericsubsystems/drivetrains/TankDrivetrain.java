@@ -4,10 +4,5 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public abstract class TankDrivetrain extends Subsystem {
 	public abstract void tankDrive(double spLeft, double spRight);
-	
-	
-	public void straight(double speed){
-		tankDrive(speed, speed);
-	}
-	
+
 }
