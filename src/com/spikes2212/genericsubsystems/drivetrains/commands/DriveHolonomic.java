@@ -1,5 +1,7 @@
 package com.spikes2212.genericsubsystems.drivetrains.commands;
 
+import java.util.function.Supplier;
+
 import com.spikes2212.genericsubsystems.drivetrains.HolonomicDrivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,15 +12,25 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveHolonomic extends Command {
 	private HolonomicDrivetrain holonomicDrivetrain;
-	private double speedY, speedX;
+	private Supplier<Double> speedYSup, speedXSup;
 
 	public DriveHolonomic(HolonomicDrivetrain drivetrain, double speedY, double speedX) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(drivetrain);
 		this.holonomicDrivetrain = drivetrain;
-		this.speedX = speedX;
-		this.speedY = speedY;
+		this.speedXSup = () -> speedX;
+		this.speedYSup = () -> speedY;
+
+	}
+
+	public DriveHolonomic(HolonomicDrivetrain drivetrain, Supplier<Double> speedYSup, Supplier<Double> speedXSup) {
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+		requires(drivetrain);
+		this.holonomicDrivetrain = drivetrain;
+		this.speedXSup = speedXSup;
+		this.speedYSup = speedYSup;
 
 	}
 
@@ -28,7 +40,7 @@ public class DriveHolonomic extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		holonomicDrivetrain.holonomicDrive(speedY, speedX);
+		holonomicDrivetrain.holonomicDrive(speedYSup.get(), speedXSup.get());
 
 	}
 
