@@ -1,5 +1,7 @@
 package com.spikes2212.genericsubsystems.drivetrains.commands;
 
+import java.util.function.Supplier;
+
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,15 +12,25 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveTank extends Command {
 
 	private TankDrivetrain tankDrivetrain;
-	private double leftSpeed, rightSpeed;
-
+	private Supplier<Double> leftSpeedSup;
+	private Supplier<Double> rightSpeedSup;
+	
 	public DriveTank(TankDrivetrain drivetrain, double leftSpeed, double rightSpeed) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(drivetrain);
 		this.tankDrivetrain = drivetrain;
-		this.leftSpeed = leftSpeed;
-		this.rightSpeed = rightSpeed;
+		this.leftSpeedSup =()-> leftSpeed;
+		this.rightSpeedSup =()-> rightSpeed;
+	}
+	
+	public DriveTank(TankDrivetrain drivetrain, Supplier<Double> leftSpeedSup, Supplier<Double> rightSpeedSup) {
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+		requires(drivetrain);
+		this.tankDrivetrain = drivetrain;
+		this.leftSpeedSup = leftSpeedSup;
+		this.rightSpeedSup = rightSpeedSup;
 	}
 
 	// Called just before this Command runs the first time
@@ -27,7 +39,7 @@ public class DriveTank extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		tankDrivetrain.tankDrive(leftSpeed, rightSpeed);
+		tankDrivetrain.tankDrive(leftSpeedSup.get(), rightSpeedSup.get());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
