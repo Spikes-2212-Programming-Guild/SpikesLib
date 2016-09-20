@@ -12,25 +12,25 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveTank extends Command {
 
 	private TankDrivetrain tankDrivetrain;
-	private Supplier<Double> leftSpeedSup;
-	private Supplier<Double> rightSpeedSup;
+	private Supplier<Double> leftSpeedSuplier;
+	private Supplier<Double> rightSpeedSuplier;
 	
 	public DriveTank(TankDrivetrain drivetrain, double leftSpeed, double rightSpeed) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(drivetrain);
 		this.tankDrivetrain = drivetrain;
-		this.leftSpeedSup =()-> leftSpeed;
-		this.rightSpeedSup =()-> rightSpeed;
+		this.leftSpeedSuplier =()-> leftSpeed;
+		this.rightSpeedSuplier =()-> rightSpeed;
 	}
 	
-	public DriveTank(TankDrivetrain drivetrain, Supplier<Double> leftSpeedSup, Supplier<Double> rightSpeedSup) {
+	public DriveTank(TankDrivetrain drivetrain, Supplier<Double> leftSpeedSuplier, Supplier<Double> rightSpeedSuplier) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(drivetrain);
 		this.tankDrivetrain = drivetrain;
-		this.leftSpeedSup = leftSpeedSup;
-		this.rightSpeedSup = rightSpeedSup;
+		this.leftSpeedSuplier = leftSpeedSuplier;
+		this.rightSpeedSuplier = rightSpeedSuplier;
 	}
 
 	// Called just before this Command runs the first time
@@ -39,7 +39,7 @@ public class DriveTank extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		tankDrivetrain.tankDrive(leftSpeedSup.get(), rightSpeedSup.get());
+		tankDrivetrain.tankDrive(leftSpeedSuplier.get(), rightSpeedSuplier.get());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

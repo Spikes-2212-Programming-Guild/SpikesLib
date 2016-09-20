@@ -10,21 +10,21 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveArcade extends Command {
 	TankDrivetrain tankDrivetrain;
-	private Supplier<Double> moveValueSup;
-	private Supplier<Double> rotateValueSup;
+	private Supplier<Double> moveValueSupplier;
+	private Supplier<Double> rotateValueSupplier;
 
-	public void driveArcade(TankDrivetrain drivetrain, Supplier<Double> moveValueSup, Supplier<Double> rotateValueSup) {
+	public void driveArcade(TankDrivetrain drivetrain, Supplier<Double> moveValueSupplier, Supplier<Double> rotateValueSupplier) {
 		requires(drivetrain);
 		this.tankDrivetrain = drivetrain;
-		this.moveValueSup = moveValueSup;
-		this.rotateValueSup = rotateValueSup;
+		this.moveValueSupplier = moveValueSupplier;
+		this.rotateValueSupplier = rotateValueSupplier;
 	}
 
 	public void driveArcade(TankDrivetrain drivetrain, double moveValue, double rotateValue) {
 		requires(drivetrain);
 		this.tankDrivetrain = drivetrain;
-		this.moveValueSup = () -> moveValue;
-		this.rotateValueSup = () -> rotateValue;
+		this.moveValueSupplier = () -> moveValue;
+		this.rotateValueSupplier = () -> rotateValue;
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class DriveArcade extends Command {
 	protected void execute() {
 		// TODO Auto-generated method stub
 		double leftSpeed, rightSpeed;
-		double moveValue = moveValueSup.get();
-		double rotateValue = rotateValueSup.get();
+		double moveValue = moveValueSupplier.get();
+		double rotateValue = rotateValueSupplier.get();
 		if (moveValue > 0.0) {
 			if (rotateValue > 0.0) {
 				leftSpeed = moveValue - rotateValue;
