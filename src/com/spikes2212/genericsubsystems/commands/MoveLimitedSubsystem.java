@@ -13,7 +13,7 @@ public class MoveLimitedSubsystem extends Command {
 	private Supplier<Double> speedSupplier;
 
 	public MoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, double speed) {
-		this(limitedSubsystem, ()-> speed);
+		this(limitedSubsystem, () -> speed);
 	}
 
 	public MoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, Supplier<Double> speedSupplier) {
