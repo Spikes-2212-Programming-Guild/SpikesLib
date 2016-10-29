@@ -11,19 +11,15 @@ public class DriveArcade extends Command {
 	private Supplier<Double> moveValueSupplier;
 	private Supplier<Double> rotateValueSupplier;
 
-	public void driveArcade(TankDrivetrain drivetrain, Supplier<Double> moveValueSupplier,
-			Supplier<Double> rotateValueSupplier) {
+	public DriveArcade(TankDrivetrain drivetrain, double moveValue, double rotateValue) {
+		this(drivetrain, () -> moveValue, () -> rotateValue);
+	}
+
+	public DriveArcade(TankDrivetrain drivetrain, Supplier<Double> moveValueSupplier, Supplier<Double> rotateValueSupplier) {
 		requires(drivetrain);
 		this.tankDrivetrain = drivetrain;
 		this.moveValueSupplier = moveValueSupplier;
 		this.rotateValueSupplier = rotateValueSupplier;
-	}
-
-	public void driveArcade(TankDrivetrain drivetrain, double moveValue, double rotateValue) {
-		requires(drivetrain);
-		this.tankDrivetrain = drivetrain;
-		this.moveValueSupplier = () -> moveValue;
-		this.rotateValueSupplier = () -> rotateValue;
 	}
 
 	@Override
