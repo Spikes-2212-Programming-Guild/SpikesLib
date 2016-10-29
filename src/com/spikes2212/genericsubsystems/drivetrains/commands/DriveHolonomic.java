@@ -12,25 +12,26 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveHolonomic extends Command {
 	private HolonomicDrivetrain holonomicDrivetrain;
-	private Supplier<Double> speedYSuplier, speedXSuplier;
+	private Supplier<Double> speedYSupplier, speedXSupplier;
 
 	public DriveHolonomic(HolonomicDrivetrain drivetrain, double speedY, double speedX) {
 		// Use requires() here to declare subsystem dependencieslier
 		// eg. requires(chassis);
 		requires(drivetrain);
 		this.holonomicDrivetrain = drivetrain;
-		this.speedXSuplier = () -> speedX;
-		this.speedYSuplier = () -> speedY;
+		this.speedXSupplier = () -> speedX;
+		this.speedYSupplier = () -> speedY;
 
 	}
 
-	public DriveHolonomic(HolonomicDrivetrain drivetrain, Supplier<Double> speedYSuplier, Supplier<Double> speedXSuplier) {
+	public DriveHolonomic(HolonomicDrivetrain drivetrain, Supplier<Double> speedYSupplier,
+			Supplier<Double> speedXSupplier) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(drivetrain);
 		this.holonomicDrivetrain = drivetrain;
-		this.speedXSuplier = speedXSuplier;
-		this.speedYSuplier = speedYSuplier;
+		this.speedXSupplier = speedXSupplier;
+		this.speedYSupplier = speedYSupplier;
 
 	}
 
@@ -40,7 +41,7 @@ public class DriveHolonomic extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		holonomicDrivetrain.holonomicDrive(speedYSuplier.get(), speedXSuplier.get());
+		holonomicDrivetrain.holonomicDrive(speedYSupplier.get(), speedXSupplier.get());
 
 	}
 
