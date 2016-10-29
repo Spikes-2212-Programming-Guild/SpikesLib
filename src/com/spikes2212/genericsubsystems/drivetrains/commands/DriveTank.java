@@ -18,10 +18,7 @@ public class DriveTank extends Command {
 	public DriveTank(TankDrivetrain drivetrain, double leftSpeed, double rightSpeed) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		requires(drivetrain);
-		this.tankDrivetrain = drivetrain;
-		this.leftSpeedSuplier = () -> leftSpeed;
-		this.rightSpeedSuplier = () -> rightSpeed;
+		this(drivetrain, () -> leftSpeed, () -> rightSpeed);
 	}
 
 	public DriveTank(TankDrivetrain drivetrain, Supplier<Double> leftSpeedSuplier, Supplier<Double> rightSpeedSuplier) {
