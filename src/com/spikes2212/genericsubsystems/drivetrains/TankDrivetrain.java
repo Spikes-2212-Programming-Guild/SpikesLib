@@ -29,4 +29,13 @@ public abstract class TankDrivetrain extends Subsystem {
 	public void setLeftDistancePerPulse(double newDistance) {
 		encoderLeft.setDistancePerPulse(newDistance);
 	}
+
+	public double getDistance() {
+		return (encoderRight.getDistance() + encoderLeft.getDistance()) / 2;
+	}
+
+	public void setDistancePerPulse(double newDistance) {
+		encoderLeft.setDistancePerPulse(newDistance);
+		encoderRight.setDistancePerPulse(newDistance);
+	}
 }
