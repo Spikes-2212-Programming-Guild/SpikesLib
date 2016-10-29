@@ -4,23 +4,23 @@ import java.util.function.Supplier;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
-public class Monitor {
+public class VoltageMonitor {
 	private static PowerDistributionPanel pdp;
 	private static double highVoltage = 10;
 	private static double lowVoltage = 7;
 
-	public Monitor() {
+	public VoltageMonitor() {
 		pdp = new PowerDistributionPanel();
 	}
 
 	public static void setHigh_voltage(double highVoltage) {
 		if (highVoltage > lowVoltage)
-			Monitor.highVoltage = highVoltage;
+			VoltageMonitor.highVoltage = highVoltage;
 	}
 
 	public static void setLow_voltage(double lowVoltage) {
 		if (highVoltage > lowVoltage)
-			Monitor.lowVoltage = lowVoltage;
+			VoltageMonitor.lowVoltage = lowVoltage;
 	}
 
 	public Supplier<Double> monitorSupplier(Supplier<Double> supplier) {
