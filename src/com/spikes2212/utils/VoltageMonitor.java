@@ -23,7 +23,7 @@ public class VoltageMonitor {
 			VoltageMonitor.lowVoltage = lowVoltage;
 	}
 
-	public Supplier<Double> monitorSupplier(Supplier<Double> supplier) {
+	public static Supplier<Double> monitorSupplier(Supplier<Double> supplier) {
 		double voltage = pdp.getVoltage();
 		if (voltage < lowVoltage)
 			return () -> supplier.get() * 0;
