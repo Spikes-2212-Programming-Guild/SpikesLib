@@ -2,8 +2,6 @@ package com.spikes2212.genericsubsystems.drivetrains.commands;
 
 import java.util.function.Supplier;
 
-import javax.swing.plaf.multi.MultiViewportUI;
-
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -13,7 +11,8 @@ public class DriveArcade extends Command {
 	private Supplier<Double> moveValueSupplier;
 	private Supplier<Double> rotateValueSupplier;
 
-	public void driveArcade(TankDrivetrain drivetrain, Supplier<Double> moveValueSupplier, Supplier<Double> rotateValueSupplier) {
+	public void driveArcade(TankDrivetrain drivetrain, Supplier<Double> moveValueSupplier,
+			Supplier<Double> rotateValueSupplier) {
 		requires(drivetrain);
 		this.tankDrivetrain = drivetrain;
 		this.moveValueSupplier = moveValueSupplier;
