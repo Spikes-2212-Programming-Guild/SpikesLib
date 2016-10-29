@@ -3,6 +3,7 @@ package com.spikes2212.genericsubsystems.commands;
 import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
+import com.spikes2212.utils.VoltageMonitor;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -17,7 +18,7 @@ public class MonitoredMoveLimitedSubsystem extends Command {
 	public MonitoredMoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, Supplier<Double> speedSupplier) {
 		requires(limitedSubsystem);
 		this.limitedSubsystem = limitedSubsystem;
-		this.speedSupplier = speedSupplier;
+		this.speedSupplier = VoltageMonitor.monitorSupplier(speedSupplier);
 	}
 
 	@Override
