@@ -1,5 +1,7 @@
 package com.spikes2212.genericsubsystems.commands;
 
+import java.util.function.Supplier;
+
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
 import edu.wpi.first.wpilibj.SpeedController;
@@ -8,12 +10,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class MoveLimitedSubsystem extends Command {
 	private LimitedSubsystem limitedSubsystem;
-	private double speed;
+	private Supplier<Double> speedSupplier;
 
 	public MoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, double speed) {
 		requires(limitedSubsystem);
 		this.limitedSubsystem = limitedSubsystem;
-		this.speed = speed;
+		this.speedSupplier = () -> speed;
+	}
+
+	public MoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, Supplier<Double> speedSupplier) {
+		requires(limitedSubsystem);
+		this.limitedSubsystem = limitedSubsystem;
+		this.speedSupplier = speedSupplier;
 	}
 
 	@Override
@@ -23,13 +31,13 @@ public class MoveLimitedSubsystem extends Command {
 
 	@Override
 	protected void execute() {
-		limitedSubsystem.tryMove(this.speed);
+		limitedSubsystem.tryMove(speedSupplier.get());
 
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return limitedSubsystem.canMove(speed);
+		return limitedSubsystem.canMove(speedSupplier.get());
 	}
 
 	@Override
