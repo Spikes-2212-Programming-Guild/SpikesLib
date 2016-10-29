@@ -17,10 +17,7 @@ public class DriveHolonomic extends Command {
 	public DriveHolonomic(HolonomicDrivetrain drivetrain, double speedY, double speedX) {
 		// Use requires() here to declare subsystem dependencieslier
 		// eg. requires(chassis);
-		requires(drivetrain);
-		this.holonomicDrivetrain = drivetrain;
-		this.speedXSupplier = () -> speedX;
-		this.speedYSupplier = () -> speedY;
+		this(drivetrain, () -> speedY, () -> speedX);
 
 	}
 
