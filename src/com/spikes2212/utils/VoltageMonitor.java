@@ -40,14 +40,26 @@ public class VoltageMonitor {
 						/ (highVoltage - lowVoltage);
 		};
 	}
+	
+	public static Supplier<Double> monitorSupplier(Supplier<Double> supplier, Priority priority) {
+		//return monitorSupplier(supplier, defaultHighVoltage + priority.volageDifference, defaultLowVoltage + priority.volageDifference);
+		return () -> {
+			double voltage = pdp.getVoltage();
+			if (voltage < defaultLowVoltage + priority.volageDifference)
+				return supplier.get() * 0;
+			else if (voltage > defaultHighVoltage + priority.volageDifference)
+				return supplier.get() * 1;
+			else
+				return supplier.get() * (voltage - defaultLowVoltage + priority.volageDifference)
+						/ (defaultHighVoltage + priority.volageDifference - defaultLowVoltage + priority.volageDifference);
+		};
+	}
 
 	public static Supplier<Double> monitorSupplier(Supplier<Double> supplier) {
 		return monitorSupplier(supplier, defaultHighVoltage, defaultLowVoltage);
 	}
 	
-	public static Supplier<Double> monitorSupplier(Supplier<Double> supplier, Priority priority) {
-		return monitorSupplier(supplier, defaultHighVoltage + priority.volageDifference, defaultLowVoltage + priority.volageDifference);
-	}
+	
 
 
 }
