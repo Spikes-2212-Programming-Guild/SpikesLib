@@ -56,7 +56,7 @@ public class VoltageMonitor {
 	}
 
 	public static Supplier<Double> monitorSupplier(Supplier<Double> supplier) {
-		return monitorSupplier(supplier, defaultHighVoltage, defaultLowVoltage);
+		return monitorSupplier(supplier, Priority.DEFAULT);
 	}
 	
 	
