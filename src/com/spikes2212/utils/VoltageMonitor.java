@@ -17,14 +17,20 @@ public class VoltageMonitor {
 		}
 	}
 
-	public static void setHigh_voltage(double highVoltage) {
+	public static void setHighVoltage(double highVoltage) {
 		if (highVoltage > defaultLowVoltage)
 			VoltageMonitor.defaultHighVoltage = highVoltage;
 	}
 
-	public static void setLow_voltage(double lowVoltage) {
+	public static void setLowVoltage(double lowVoltage) {
 		if (defaultHighVoltage > lowVoltage)
 			VoltageMonitor.defaultLowVoltage = lowVoltage;
+	}
+	public static double getHighVoltage(){
+		return defaultHighVoltage;
+	}
+	public static double getLowVoltage(){
+		return defaultLowVoltage;
 	}
 
 	public static Supplier<Double> monitorSupplier(Supplier<Double> supplier,
