@@ -5,10 +5,10 @@ import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveTankByDistance extends Command {
+public class DriveTankWithPID extends Command {
 	// TODO Auto-generated constructor stub
 
-	public DriveTankByDistance() {
+	public DriveTankWithPID() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -48,10 +48,10 @@ public class DriveTankByDistance extends Command {
 	}
 
 	public static void setTolarance(double tolarance) {
-		DriveTankByDistance.tolerance = tolarance;
+		DriveTankWithPID.tolerance = tolarance;
 	}
 
-	public DriveTankByDistance(double setPoint) {
+	public DriveTankWithPID(double setPoint) {
 		leftMovmentControl = new PIDController(KP, KI, KD, tankDrivetrain.getLeftPIDSource(), tankDrivetrain::setLeft);
 		leftMovmentControl.setAbsoluteTolerance(tolerance);
 		leftMovmentControl.setSetpoint(setPoint);
