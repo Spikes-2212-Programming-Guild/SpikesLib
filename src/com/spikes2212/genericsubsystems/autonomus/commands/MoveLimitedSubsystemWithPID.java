@@ -17,6 +17,7 @@ public class MoveLimitedSubsystemWithPID extends Command {
 	private PIDController MovmentControl;
 	
 	public static void setP(double P) {
+		KP = P;
 	}
 
 	public static double getP() {

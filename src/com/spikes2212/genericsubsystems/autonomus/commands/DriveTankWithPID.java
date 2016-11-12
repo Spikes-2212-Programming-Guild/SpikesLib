@@ -21,6 +21,7 @@ public class DriveTankWithPID extends Command {
 	private PIDController rightMovmentControl;
 
 	public static void setP(double P) {
+		KP=P;
 	}
 
 	public static double getP() {
