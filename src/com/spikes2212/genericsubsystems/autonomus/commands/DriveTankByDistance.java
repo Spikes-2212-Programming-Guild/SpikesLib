@@ -1,14 +1,9 @@
 package com.spikes2212.genericsubsystems.autonomus.commands;
 
-import java.util.function.Supplier;
-
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.PIDCommand;
 
 public class DriveTankByDistance extends Command {
 	// TODO Auto-generated constructor stub
@@ -57,13 +52,11 @@ public class DriveTankByDistance extends Command {
 	}
 
 	public DriveTankByDistance(double setPoint) {
-		leftMovmentControl = new PIDController(KP, KI, KD, tankDrivetrain.getLeftPIDSource(),
-				tankDrivetrain.PIDOutputLeft);
+		leftMovmentControl = new PIDController(KP, KI, KD, tankDrivetrain.getLeftPIDSource(), tankDrivetrain::setLeft);
 		leftMovmentControl.setAbsoluteTolerance(tolerance);
 		leftMovmentControl.setSetpoint(setPoint);
 		leftMovmentControl.setOutputRange(-1, 1);
-		rightMovmentControl = new PIDController(KP, KI, KD, tankDrivetrain.getRightPIDSource(),
-				tankDrivetrain.PIDOutputRight);
+		rightMovmentControl = new PIDController(KP, KI, KD, tankDrivetrain.getRightPIDSource(), tankDrivetrain::setRight);
 		rightMovmentControl.setAbsoluteTolerance(tolerance);
 		rightMovmentControl.setSetpoint(setPoint);
 		rightMovmentControl.setOutputRange(-1, 1);

@@ -14,10 +14,8 @@ public abstract class TankDrivetrain extends Subsystem {
 
 	public abstract void setRight(double speedRight);
 
-	public final PIDOutput PIDOutputLeft = this::setLeft;
-	public final PIDOutput PIDOutputRight = this::setRight;
-
 	public abstract PIDSource getLeftPIDSource();
+
 	public abstract PIDSource getRightPIDSource();
 
 }
