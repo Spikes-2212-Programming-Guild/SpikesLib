@@ -1,5 +1,6 @@
 package com.spikes2212.genericsubsystems;
 
+import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -13,6 +14,8 @@ public abstract class LimitedSubsystem extends Subsystem {
 	public abstract boolean isMin();
 
 	public abstract boolean isMax();
+	
+	public abstract PIDSource getPIDSource();
 
 	public boolean canMove(double speed) {
 		return !(speed < 0 && isMin() || speed > 0 && isMax());
