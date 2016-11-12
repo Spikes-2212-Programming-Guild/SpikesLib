@@ -15,7 +15,10 @@ public abstract class LimitedSubsystem extends Subsystem {
 
 	public abstract boolean isMax();
 	
-	public abstract PIDSource getPIDSource();
+	public PIDSource getPIDSource() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	public boolean canMove(double speed) {
 		return !(speed < 0 && isMin() || speed > 0 && isMax());
