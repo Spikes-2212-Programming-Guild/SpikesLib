@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DashBoardController {
-	Map<String, Supplier<String>> stringFields;
-	Map<String, Supplier<Double>> doubleFields;
-	Map<String, Supplier<Boolean>> booleanFields;
-	Map<String, Supplier<Sendable>> sendableFields;
+	private Map<String, Supplier<String>> stringFields;
+	private Map<String, Supplier<Double>> doubleFields;
+	private Map<String, Supplier<Boolean>> booleanFields;
+	private Map<String, Supplier<Sendable>> sendableFields;
 
 	public DashBoardController() {
 		stringFields = new HashMap<String, Supplier<String>>();
