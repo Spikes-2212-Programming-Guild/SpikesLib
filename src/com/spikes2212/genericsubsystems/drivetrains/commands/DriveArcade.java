@@ -15,7 +15,19 @@ public class DriveArcade extends Command {
 		this(drivetrain, () -> moveValue, () -> rotateValue);
 	}
 
-	public DriveArcade(TankDrivetrain drivetrain, Supplier<Double> moveValueSupplier, Supplier<Double> rotateValueSupplier) {
+	/**
+	 * creates a new command which makes a drivetrain move with changing rotate
+	 * speed and move speed
+	 * 
+	 * @param drivetrain-
+	 *            the drivetrain on which the command activates
+	 * @param moveValueSupplier-
+	 *            the speed which the drivetrain should move forward with
+	 * @param rotateValueSupplier-
+	 *            the speed which the drivetrain should move rotatively with
+	 */
+	public DriveArcade(TankDrivetrain drivetrain, Supplier<Double> moveValueSupplier,
+			Supplier<Double> rotateValueSupplier) {
 		requires(drivetrain);
 		this.tankDrivetrain = drivetrain;
 		this.moveValueSupplier = moveValueSupplier;

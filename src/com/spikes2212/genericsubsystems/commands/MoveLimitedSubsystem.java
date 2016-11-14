@@ -10,10 +10,28 @@ public class MoveLimitedSubsystem extends Command {
 	private LimitedSubsystem limitedSubsystem;
 	private Supplier<Double> speedSupplier;
 
+	/**
+	 * build a command that moves a certain limited subsystem in a certain speed
+	 * 
+	 * @param limitedSubsystem
+	 *            -the limited subsystem on which the command activates
+	 * @param speed-
+	 *            the speed which the subsystem should move in
+	 */
 	public MoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, double speed) {
 		this(limitedSubsystem, () -> speed);
 	}
 
+	/**
+	 * build a command that moves a certain limited subsystem in changing speed
+	 * from a supplier
+	 * 
+	 * @param limitedSubsystem
+	 *            -the limited subsystem on which the command activates
+	 * @param speedSupplier-
+	 *            the supplier which supplies the speed while the command is
+	 *            activated
+	 */
 	public MoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, Supplier<Double> speedSupplier) {
 		requires(limitedSubsystem);
 		this.limitedSubsystem = limitedSubsystem;
