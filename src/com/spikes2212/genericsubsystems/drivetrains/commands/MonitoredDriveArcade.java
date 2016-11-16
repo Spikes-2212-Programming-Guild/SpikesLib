@@ -12,10 +12,24 @@ public class MonitoredDriveArcade extends Command {
 	private Supplier<Double> moveValueSupplier;
 	private Supplier<Double> rotateValueSupplier;
 
+	/**
+	 * Constructs a command which moves the drive system according to constant speed values for its straight and angular movements.
+	 * 
+	 * @param drivetrain the drive system meant to move
+	 * @param moveValue the constant speed value by which the drive system will move straight.
+	 * @param rotateValue the constant speed value by which the drive system will turn to any side.
+	 */
 	public MonitoredDriveArcade(TankDrivetrain drivetrain, double moveValue, double rotateValue) {
 		this(drivetrain, () -> moveValue, () -> rotateValue);
 	}
 
+	/**
+	 * Constructs a command which moves the drive system according to speed suppliers for its straight and angular movements.
+	 * 
+	 * @param drivetrain the drive system meant to move
+	 * @param moveValueSupplier the speed supplier which will supply speed values to the drive system's straight movement
+	 * @param rotateValueSupplier the speed supplier which will supply speed values to the drive system's turning movement
+	 */
 	public MonitoredDriveArcade(TankDrivetrain drivetrain, Supplier<Double> moveValueSupplier,
 			Supplier<Double> rotateValueSupplier) {
 		requires(drivetrain);
@@ -58,7 +72,6 @@ public class MonitoredDriveArcade extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return isTimedOut();
 	}
 

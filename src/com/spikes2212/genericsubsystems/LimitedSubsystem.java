@@ -5,7 +5,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public abstract class LimitedSubsystem extends Subsystem {
 	private SpeedController motor;
-
+	
+	/**
+	 * Constructs a subsystem using a single SpeedController
+	 * 
+	 * @param motor the SpeedController that will be used in order to create movement within the subsystem.
+	 */
 	public LimitedSubsystem(SpeedController motor) {
 		this.motor = motor;
 	}
@@ -28,7 +33,7 @@ public abstract class LimitedSubsystem extends Subsystem {
 	 * Checks whether the subsystem can move at a certain speed
 	 * 
 	 * @param speed
-	 *            represents the speed which is checked
+	 * 				represents the speed which is checked
 	 * @return true if the subsystem can move at the chosen speed
 	 */
 	public boolean canMove(double speed) {

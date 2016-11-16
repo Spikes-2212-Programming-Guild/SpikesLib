@@ -10,7 +10,14 @@ public class DriveArcade extends Command {
 	TankDrivetrain tankDrivetrain;
 	private Supplier<Double> moveValueSupplier;
 	private Supplier<Double> rotateValueSupplier;
-
+	
+	/**
+	 * Constructs a command which moves the drive system according to constant speed values for its straight and angular movements.
+	 * 
+	 * @param drivetrain the drive system meant to move
+	 * @param moveValue the constant speed value by which the drive system will move straight.
+	 * @param rotateValue the constant speed value by which the drive system will turn to any side.
+	 */
 	public DriveArcade(TankDrivetrain drivetrain, double moveValue, double rotateValue) {
 		this(drivetrain, () -> moveValue, () -> rotateValue);
 	}

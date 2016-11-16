@@ -16,12 +16,27 @@ public class MonitoredDriveTank extends Command {
 	private Supplier<Double> leftSpeedSuplier;
 	private Supplier<Double> rightSpeedSuplier;
 
+	/**
+	 * Constructs a command which moves the tank according to a constant left speed and a constant right speed.
+	 * 
+	 * @param drivetrain the drive system subsystem meant to move
+	 * @param leftSpeed the permanent speed by which the left side of the drive system will move until the command is over
+	 * @param rightSpeed the permanent speed by which the right side of the drive system will move until the command is over
+	 */
 	public MonitoredDriveTank(TankDrivetrain drivetrain, double leftSpeed, double rightSpeed) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		this(drivetrain, () -> leftSpeed, () -> rightSpeed);
 	}
-
+	
+	
+	/**
+	 * Constructs a command which moves the tank according to suppliers for its left and right sides.
+	 * 
+	 * @param drivetrain the drivetrain subsystem meant to move
+	 * @param leftSpeedSupplier the speed supplier which will supply values to the drivetrain's left side.
+	 * @param rightSpeedSupplier the speed supplier which will supply values to the drivetrain's right side.
+	 */
 	public MonitoredDriveTank(TankDrivetrain drivetrain, Supplier<Double> leftSpeedSupplier,
 			Supplier<Double> rightSpeedSupplier) {
 		// Use requires() here to declare subsystem dependencies

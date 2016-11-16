@@ -10,14 +10,20 @@ public class DoubleSpeedcontroller implements SpeedController {
 		this.speedcontrollerLeft = speedcontrollerLeft;
 		this.speedcontrollerRight = speedcontrollerRight;
 	}
-
+	
+	/**
+	 * Sets the speed of the speedControllers using PID output.
+	 */
 	@Override
 	public void pidWrite(double output) {
 		this.speedcontrollerLeft.pidWrite(output);
 		this.speedcontrollerRight.pidWrite(output);
 
 	}
-
+	
+	/**
+	 * Get the speed of the right hand SpeedController
+	 */
 	@Override
 	public double get() {
 		return this.speedcontrollerRight.get();
@@ -29,20 +35,29 @@ public class DoubleSpeedcontroller implements SpeedController {
 		speedcontrollerRight.set(speed, syncGroup);
 
 	}
-
+	
+	/**
+	 * Set the speed of this DoubleSpeedController
+	 */
 	@Override
 	public void set(double speed) {
 		speedcontrollerLeft.set(speed);
 		speedcontrollerRight.set(speed);
 	}
-
+	
+	/**
+	 * Inverts the speedControllers' positive speed direction
+	 */
 	@Override
 	public void setInverted(boolean isInverted) {
 		speedcontrollerLeft.setInverted(isInverted);
 		speedcontrollerRight.setInverted(isInverted);
 
 	}
-
+	
+	/**
+	 * @return whether the speedController is inverted.
+	 */
 	@Override
 	public boolean getInverted() {
 

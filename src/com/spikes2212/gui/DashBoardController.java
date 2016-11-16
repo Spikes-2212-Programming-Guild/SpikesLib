@@ -7,6 +7,10 @@ import java.util.function.Supplier;
 import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/**
+ * @author Roeei
+ *
+ */
 public class DashBoardController {
 	private Map<String, Supplier<String>> stringFields;
 	private Map<String, Supplier<Double>> doubleFields;
@@ -19,23 +23,39 @@ public class DashBoardController {
 		booleanFields = new HashMap<String, Supplier<Boolean>>();
 		sendableFields = new HashMap<String, Supplier<Sendable>>();
 	}
-
+	
+	/**
+	 * @param name the name given to the String value meant to enter the DashBoard.
+	 * @param value the String value meant to enter the DashBoard
+	 */
 	public void addString(String name, Supplier<String> value) {
 		stringFields.put(name, value);
 	}
-
+	
+	/**
+	 * @param name the name given to the Sendable value meant to enter the DashBoard.
+	 * @param value the Sendable value meant to enter the DashBoard
+	 */
 	public void addSendable(String name, Supplier<Sendable> value) {
 		sendableFields.put(name, value);
 	}
-
+	
+	/**
+	 * @param name the name given to the Double value meant to enter the DashBoard.
+	 * @param value the Double value meant to enter the DashBoard
+	 */
 	public void addDouble(String name, Supplier<Double> value) {
 		doubleFields.put(name, value);
 	}
-
+	
+	/**
+	 * @param name the name given to the Boolean value meant to enter the DashBoard.
+	 * @param value the Booleanvalue meant to enter the DashBoard
+	 */
 	public void addBoolean(String name, Supplier<Boolean> value) {
 		booleanFields.put(name, value);
 	}
-
+	
 	private void updateBooleans() {
 		for (Map.Entry<String, Supplier<Boolean>> entry : booleanFields.entrySet()) {
 			SmartDashboard.putBoolean(entry.getKey(), entry.getValue().get());
@@ -59,7 +79,10 @@ public class DashBoardController {
 			SmartDashboard.putString(entry.getKey(), entry.getValue().get());
 		}
 	}
-
+	
+	/**
+	 * Updates the tables.
+	 */
 	public void update() {
 		updateBooleans();
 		updateDoubles();
