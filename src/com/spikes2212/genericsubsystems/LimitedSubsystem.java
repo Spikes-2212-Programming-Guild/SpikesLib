@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public abstract class LimitedSubsystem extends Subsystem {
-	private SpeedController motor;
+	protected SpeedController motor;
 
 	public LimitedSubsystem(SpeedController motor) {
 		this.motor = motor;
