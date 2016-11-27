@@ -1,4 +1,4 @@
-package com.spikes2212.genericsubsystems.autonomus.commands;
+package com.spikes2212.genericsubsystems.drivetrains.commands;
 
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 

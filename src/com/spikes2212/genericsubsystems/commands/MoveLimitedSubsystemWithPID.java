@@ -1,4 +1,4 @@
-package com.spikes2212.genericsubsystems.autonomus.commands;
+package com.spikes2212.genericsubsystems.commands;
 
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
