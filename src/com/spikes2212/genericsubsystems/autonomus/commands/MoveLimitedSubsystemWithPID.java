@@ -14,7 +14,7 @@ public class MoveLimitedSubsystemWithPID extends Command {
 	private static double KI = 1;
 	private static double KD = 1;
 	private static double tolerance = 1;
-	private PIDController MovmentControl;
+	private PIDController movmentControl;
 	
 	public static void setP(double P) {
 		KP = P;
@@ -49,15 +49,15 @@ public class MoveLimitedSubsystemWithPID extends Command {
 	}
 	
 	public MoveLimitedSubsystemWithPID(double setPoint) {
-		MovmentControl = new PIDController(KP, KI, KD, limitedSubsystem.getPIDSource(), limitedSubsystem::tryMove);
-		MovmentControl.setAbsoluteTolerance(tolerance);
-		MovmentControl.setSetpoint(setPoint);
-		MovmentControl.setOutputRange(-1, 1);
+		movmentControl = new PIDController(KP, KI, KD, limitedSubsystem.getPIDSource(), limitedSubsystem::tryMove);
+		movmentControl.setAbsoluteTolerance(tolerance);
+		movmentControl.setSetpoint(setPoint);
+		movmentControl.setOutputRange(-1, 1);
 	}
 	
     // Called just before this Command runs the first time
     protected void initialize() {
-    	MovmentControl.enable();
+    	movmentControl.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -66,12 +66,12 @@ public class MoveLimitedSubsystemWithPID extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return MovmentControl.onTarget();
+        return movmentControl.onTarget();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	MovmentControl.disable();
+    	movmentControl.disable();
     }
 
     // Called when another command which requires one or more of the same
