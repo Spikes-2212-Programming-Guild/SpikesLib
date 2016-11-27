@@ -8,10 +8,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveTankWithPID extends Command {
 	// TODO Auto-generated constructor stub
 
-	public DriveTankWithPID() {
-		// TODO Auto-generated constructor stub
-	}
-
 	private TankDrivetrain tankDrivetrain;
 	private static double KP = 1;
 	private static double KI = 1;
