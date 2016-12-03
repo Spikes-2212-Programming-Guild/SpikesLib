@@ -5,13 +5,17 @@ import java.util.function.Supplier;
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 import com.spikes2212.utils.VoltageMonitor;
 
-
 public class MonitoredDriveArcade extends DriveArcade {
-
 
 	public MonitoredDriveArcade(TankDrivetrain drivetrain, Supplier<Double> moveValueSupplier,
 			Supplier<Double> rotateValueSupplier) {
-		super(drivetrain,VoltageMonitor.monitorSupplier(moveValueSupplier),VoltageMonitor.monitorSupplier(rotateValueSupplier));
+		super(drivetrain, VoltageMonitor.monitorSupplier(moveValueSupplier),
+				VoltageMonitor.monitorSupplier(rotateValueSupplier));
+	}
+
+	public MonitoredDriveArcade(TankDrivetrain drivetrain, double moveValue, double rotateValue) {
+		super(drivetrain, VoltageMonitor.monitorSupplier(() -> moveValue),
+				VoltageMonitor.monitorSupplier(() -> rotateValue));
 	}
 
 }
