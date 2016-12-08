@@ -1,22 +1,24 @@
-package com.spikes2212.utils;
+package com.spikes2212.Cameras;
+
+import com.spikes2212.utils.RunnableCommand;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
-public class RunnableCommand extends Command {
-	
-	private Runnable runnable;
-	
-	public RunnableCommand(Runnable runnable) {
-		this.runnable = runnable;
+public class ChangeCamera extends RunnableCommand {
+
+
+	public ChangeCamera(CamerasHandler handler, int index) {
+    	
+		super(() -> handler.start(index));
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	new Thread(runnable).start();
     }
 
     // Called repeatedly when this Command is scheduled to run
