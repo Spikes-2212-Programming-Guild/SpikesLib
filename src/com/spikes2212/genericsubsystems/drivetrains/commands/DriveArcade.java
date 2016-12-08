@@ -36,19 +36,19 @@ public class DriveArcade extends Command {
 		double rotateValue = rotateValueSupplier.get();
 		if (moveValue > 0.0) {
 			if (rotateValue > 0.0) {
-				leftSpeed = moveValue - rotateValue;
-				rightSpeed = Math.max(moveValue, rotateValue);
+				leftSpeed = Math.max(moveValue, rotateValue);
+				rightSpeed =  moveValue - rotateValue;
 			} else {
-				leftSpeed = Math.max(moveValue, -rotateValue);
-				rightSpeed = moveValue + rotateValue;
+				leftSpeed = moveValue + rotateValue; 
+				rightSpeed =  Math.max(moveValue, -rotateValue);
 			}
 		} else {
 			if (rotateValue > 0.0) {
-				leftSpeed = -Math.max(-moveValue, rotateValue);
+				leftSpeed = Math.min(moveValue, -rotateValue);
 				rightSpeed = moveValue + rotateValue;
 			} else {
 				leftSpeed = moveValue - rotateValue;
-				rightSpeed = -Math.max(-moveValue, -rotateValue);
+				rightSpeed = Math.min(moveValue, rotateValue);
 			}
 		}
 		tankDrivetrain.tankDrive(leftSpeed, rightSpeed);
