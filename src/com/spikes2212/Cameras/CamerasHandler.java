@@ -1,4 +1,4 @@
-package com.spikes2212.utils;
+package com.spikes2212.Cameras;
 
 import java.util.ArrayList;
 
@@ -23,12 +23,12 @@ public class CamerasHandler {
 		cameras.add(new CameraController(port, fps));
 	}
 
-	public void stop() {
+	public synchronized void stop() {
 		cameras.forEach(c -> c.stop());
 		currentCamera = null;
 	}
 
-	public void start(int index) {
+	public synchronized void start(int index) {
 		if (currentCamera != cameras.get(index)) {
 			stop();
 			cameras.get(index).start();
@@ -40,7 +40,7 @@ public class CamerasHandler {
 		currentCamera.getImage(image);
 	}
 
-	public synchronized void tryStream() {
+	public synchronized void stream() {
 		getImage(image);
 		CameraServer.getInstance().setImage(image);
 	}
