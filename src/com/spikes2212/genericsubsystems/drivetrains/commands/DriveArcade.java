@@ -51,7 +51,7 @@ public class DriveArcade extends Command {
 				rightSpeed = Math.min(moveValue, rotateValue);
 			}
 		}
-		tankDrivetrain.tankDrive(leftSpeed, rightSpeed);
+		tankDrivetrain.tankDrive(-leftSpeed, rightSpeed);
 	}
 
 	@Override
