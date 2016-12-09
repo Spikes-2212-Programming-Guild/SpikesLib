@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class MonitoredMoveLimitedSubsystem extends MoveLimitedSubsystem {
 
-	public MonitoredMoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, Supplier<Double> speedSupplier) {
-		super(limitedSubsystem, VoltageMonitor.monitorSupplier(speedSupplier));
-	}
+    public MonitoredMoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, Supplier<Double> speedSupplier) {
+        super(limitedSubsystem, VoltageMonitor.monitorSupplier(speedSupplier));
+    }
 
-	public MonitoredMoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, double speed) {
-		super(limitedSubsystem, VoltageMonitor.monitorSupplier(() -> speed));
-	}
+    public MonitoredMoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, double speed) {
+        super(limitedSubsystem, VoltageMonitor.monitorSupplier(() -> speed));
+    }
 }
