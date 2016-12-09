@@ -35,7 +35,7 @@ public class MoveLimitedSubsystem extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return !limitedSubsystem.canMove(speedSupplier.get());
+		return (!limitedSubsystem.canMove(speedSupplier.get())) || isTimedOut();
 	}
 
 	@Override
