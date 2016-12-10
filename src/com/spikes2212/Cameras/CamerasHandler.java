@@ -12,6 +12,7 @@ public class CamerasHandler {
 	private ArrayList<CameraController> cameras;
 	private CameraController currentCamera = null;
 	private Image image;
+	private int currentIndex;
 	public static int fps = 30;
 
 	public CamerasHandler() {
@@ -19,8 +20,9 @@ public class CamerasHandler {
 		this.image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 	}
 
-	public void addCamera(String port) {
-		cameras.add(new CameraController(port, fps));
+	public void addCamera(String port,int index) {
+		this.currentIndex=index;
+		cameras.add(index, new CameraController(port, fps));
 	}
 
 	public synchronized void stop() {
@@ -29,7 +31,7 @@ public class CamerasHandler {
 	}
 
 	public synchronized void start(int index) {
-		if (currentCamera != cameras.get(index)) {
+		if (currentIndex != index) {
 			stop();
 			cameras.get(index).start();
 			currentCamera = cameras.get(index);
