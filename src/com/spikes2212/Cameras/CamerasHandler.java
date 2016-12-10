@@ -19,13 +19,14 @@ public class CamerasHandler {
 		cameras = new ArrayList<CameraController>();
 		this.image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 	}
-	public CamerasHandler(int fps){
+
+	public CamerasHandler(int fps) {
 		this();
-		CamerasHandler.fps=fps;
+		CamerasHandler.fps = fps;
 	}
 
-	public void addCamera(String port,int index) {
-		this.currentIndex=index;
+	public void addCamera(String port, int index) {
+		this.currentIndex = index;
 		cameras.add(index, new CameraController(port, fps));
 	}
 
