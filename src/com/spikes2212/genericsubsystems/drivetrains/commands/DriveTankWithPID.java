@@ -55,6 +55,7 @@ public class DriveTankWithPID extends Command {
 	public DriveTankWithPID(double leftSetPoint, double rightSetPoint, double KP, double KI, double KD,
 			TankDrivetrain drivetrain) {
 		requires(drivetrain);
+		this.tankDrivetrain=drivetrain;
 		this.KD = KD;
 		this.KI = KI;
 		this.KP = KP;
