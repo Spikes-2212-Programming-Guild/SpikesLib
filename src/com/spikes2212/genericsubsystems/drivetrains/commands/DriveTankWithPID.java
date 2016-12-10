@@ -4,11 +4,10 @@ import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class DriveTankWithPID extends Command {
-	// TODO Auto-generated constructor stub
-		
+public class DriveTankWithPID extends PIDCommand {
 
 	private TankDrivetrain tankDrivetrain;
 	private static double KP = 1;
@@ -19,7 +18,7 @@ public class DriveTankWithPID extends Command {
 	private PIDController rightMovmentControl;
 
 	public static void setP(double P) {
-		KP=P;
+		KP = P;
 	}
 
 	public static double getP() {
@@ -50,17 +49,22 @@ public class DriveTankWithPID extends Command {
 		DriveTankWithPID.tolerance = tolarance;
 	}
 
-	public DriveTankWithPID(double setPoint,TankDrivetrain drivetrain) {
+	public DriveTankWithPID(double leftSetPoint, double rightSetPoint, TankDrivetrain drivetrain) {
+		super(KP, KI, KD);
 		requires(drivetrain);
 		leftMovmentControl = new PIDController(KP, KI, KD, tankDrivetrain.getLeftPIDSource(), tankDrivetrain::setLeft);
 		leftMovmentControl.setAbsoluteTolerance(tolerance);
-		leftMovmentControl.setSetpoint(setPoint);
+		leftMovmentControl.setSetpoint(leftSetPoint);
 		leftMovmentControl.setOutputRange(-1, 1);
-		rightMovmentControl = new PIDController(KP, KI, KD, tankDrivetrain.getRightPIDSource(), tankDrivetrain::setRight);
+		rightMovmentControl = new PIDController(KP, KI, KD, tankDrivetrain.getRightPIDSource(),
+				tankDrivetrain::setRight);
 		rightMovmentControl.setAbsoluteTolerance(tolerance);
-		rightMovmentControl.setSetpoint(setPoint);
+		rightMovmentControl.setSetpoint(rightSetPoint);
 		rightMovmentControl.setOutputRange(-1, 1);
+	}
 
+	public DriveTankWithPID(double setPoint, TankDrivetrain drivetrain) {
+		this(setPoint, setPoint, drivetrain);
 	}
 
 	// requires(drivetrain);
@@ -94,6 +98,18 @@ public class DriveTankWithPID extends Command {
 	// subsystems is scheduled to run
 	protected void interrupted() {
 		end();
+	}
+
+	@Override
+	protected double returnPIDInput() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
