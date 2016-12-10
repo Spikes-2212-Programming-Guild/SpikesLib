@@ -7,7 +7,7 @@ import com.ni.vision.NIVision.Image;
 import edu.wpi.first.wpilibj.vision.USBCamera;
 
 public class CameraController {
-	public static int resolutionWidth = 100, resolutionHeight = 100;
+	public final static int resolutionWidth = 100, resolutionHeight = 100;
 	private Optional<USBCamera> camera;
 	private boolean on;
 
@@ -36,9 +36,7 @@ public class CameraController {
 	}
 
 	public void getImage(Image image) {
-
 		camera.ifPresent(c -> c.getImage(image));
-
 	}
 
 	public boolean hasCamera() {
