@@ -26,31 +26,19 @@ public class CameraController {
 	}
 
 	public void start() {
-		if (camera.isPresent()) {
-			try {
-				camera.get().startCapture();
-				on = true;
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		camera.ifPresent(USBCamera::startCapture);
+		on = true;
 	}
 
 	public void stop() {
-		try {
-			camera.ifPresent(USBCamera::stopCapture);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		camera.ifPresent(USBCamera::stopCapture);
 		on = false;
 	}
 
 	public void getImage(Image image) {
-		try {
-			camera.ifPresent(c -> c.getImage(image));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
+		camera.ifPresent(c -> c.getImage(image));
+
 	}
 
 	public boolean hasCamera() {
