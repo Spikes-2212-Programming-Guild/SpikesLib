@@ -3,53 +3,61 @@ package com.spikes2212.genericsubsystems.drivetrains.commands;
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
-public class DriveTankWithPID extends PIDCommand {
+public class DriveTankWithPID extends Command {
 
 	private TankDrivetrain tankDrivetrain;
-	private static double KP = 1;
-	private static double KI = 1;
-	private static double KD = 1;
-	private static double tolerance = 1;
+	private double KP;
+	private double KI;
+	private double KD;
+	private double tolerance = 1;
 	private PIDController leftMovmentControl;
 	private PIDController rightMovmentControl;
 
-	public static void setP(double P) {
+	public void setTolerance(double tolerance){
+		this.tolerance=tolerance;
+	}
+	
+	public void setP(double P) {
 		KP = P;
 	}
 
-	public static double getP() {
+	public double getP() {
 		return KP;
 	}
 
-	public static void setI(double I) {
+	public void setI(double I) {
 		KI = I;
 	}
 
-	public static double getI() {
+	public double getI() {
 		return KI;
 	}
 
-	public static void setD(double D) {
+	public void setD(double D) {
 		KD = D;
 	}
 
-	public static double getD() {
+	public double getD() {
 		return KD;
 	}
 
-	public static double getTolarance() {
+	public double getTolarance() {
 		return tolerance;
 	}
 
-	public static void setTolarance(double tolarance) {
-		DriveTankWithPID.tolerance = tolarance;
+	public void setTolarance(double tolarance) {
+		this.tolerance = tolarance;
 	}
 
-	public DriveTankWithPID(double leftSetPoint, double rightSetPoint, TankDrivetrain drivetrain) {
-		super(KP, KI, KD);
+	public DriveTankWithPID(double leftSetPoint, double rightSetPoint, double KP, double KI, double KD,
+			TankDrivetrain drivetrain) {
 		requires(drivetrain);
+		this.KD = KD;
+		this.KI = KI;
+		this.KP = KP;
 		leftMovmentControl = new PIDController(KP, KI, KD, tankDrivetrain.getLeftPIDSource(), tankDrivetrain::setLeft);
 		leftMovmentControl.setAbsoluteTolerance(tolerance);
 		leftMovmentControl.setSetpoint(leftSetPoint);
@@ -61,8 +69,8 @@ public class DriveTankWithPID extends PIDCommand {
 		rightMovmentControl.setOutputRange(-1, 1);
 	}
 
-	public DriveTankWithPID(double setPoint, TankDrivetrain drivetrain) {
-		this(setPoint, setPoint, drivetrain);
+	public DriveTankWithPID(double setPoint, double KP, double KI, double KD, TankDrivetrain drivetrain) {
+		this(setPoint, setPoint, KP, KI, KD, drivetrain);
 	}
 
 	// requires(drivetrain);
@@ -96,18 +104,6 @@ public class DriveTankWithPID extends PIDCommand {
 	// subsystems is scheduled to run
 	protected void interrupted() {
 		end();
-	}
-
-	@Override
-	protected double returnPIDInput() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	protected void usePIDOutput(double output) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
