@@ -12,7 +12,6 @@ public class CamerasHandler {
 	private ArrayList<CameraController> cameras;
 	private CameraController currentCamera = null;
 	private Image image;
-	private int currentIndex;
 	public static int fps = 30;
 
 	public CamerasHandler() {
@@ -26,7 +25,6 @@ public class CamerasHandler {
 	}
 
 	public void addCamera(String port, int index) {
-		this.currentIndex = index;
 		cameras.add(index, new CameraController(port, fps));
 	}
 
@@ -35,16 +33,24 @@ public class CamerasHandler {
 		currentCamera = null;
 	}
 
-	
-	public synchronized void start(String port){
-		if(!currentCamera.getPort().equals(port)){
-			stop();
-			for (CameraController c:cameras){
-				if( c.getPort().equals(port)){
-					currentCamera=c;
-					c.start();
-				}
+	public CameraController findCamera(String port) throws Exception {
+		for (CameraController c : cameras) {
+			if (c.getPort().equals(port)) {
+				return c;
 			}
+		}
+		throw new Exception("No camera with port: " + port);
+	}
+
+	public synchronized void start(String port) {
+		try{
+			if (currentCamera != findCamera(port)){
+				stop();
+				findCamera(port).start();
+				currentCamera = findCamera(port);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
