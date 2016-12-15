@@ -7,45 +7,13 @@ import com.spikes2212.utils.VoltageMonitor;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class MonitoredMoveLimitedSubsystem extends Command {
-	private LimitedSubsystem limitedSubsystem;
-	private Supplier<Double> speedSupplier;
+public class MonitoredMoveLimitedSubsystem extends MoveLimitedSubsystem {
 
-	public MonitoredMoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, double speed) {
-		this(limitedSubsystem, () -> speed);
-	}
+    public MonitoredMoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, Supplier<Double> speedSupplier) {
+        super(limitedSubsystem, VoltageMonitor.monitorSupplier(speedSupplier));
+    }
 
-	public MonitoredMoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, Supplier<Double> speedSupplier) {
-		requires(limitedSubsystem);
-		this.limitedSubsystem = limitedSubsystem;
-		this.speedSupplier = VoltageMonitor.monitorSupplier(speedSupplier);
-	}
-
-	@Override
-	protected void initialize() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	protected void execute() {
-		limitedSubsystem.tryMove(speedSupplier.get());
-
-	}
-
-	@Override
-	protected boolean isFinished() {
-		return (!limitedSubsystem.canMove(speedSupplier.get()))|| isTimedOut();
-	}
-
-	@Override
-	protected void end() {
-		limitedSubsystem.stop();
-	}
-
-	@Override
-	protected void interrupted() {
-		end();
-
-	}
-
+    public MonitoredMoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, double speed) {
+        super(limitedSubsystem, VoltageMonitor.monitorSupplier(() -> speed));
+    }
 }
