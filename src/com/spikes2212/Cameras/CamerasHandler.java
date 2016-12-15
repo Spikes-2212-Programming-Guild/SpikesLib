@@ -35,13 +35,7 @@ public class CamerasHandler {
 		currentCamera = null;
 	}
 
-	public synchronized void start(int index) {
-		if (currentIndex != index) {
-			stop();
-			cameras.get(index).start();
-			currentCamera = cameras.get(index);
-		}
-	}
+	
 	public synchronized void start(String port){
 		if(!currentCamera.getPort().equals(port)){
 			stop();
