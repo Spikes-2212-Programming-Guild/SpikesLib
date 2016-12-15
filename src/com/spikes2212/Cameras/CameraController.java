@@ -10,9 +10,11 @@ public class CameraController {
 	public final static int resolutionWidth = 100, resolutionHeight = 100;
 	private Optional<USBCamera> camera;
 	private boolean on;
+	private String port;
 
 	public CameraController(String port, int fps) {
 		try {
+			this.port=port;
 			USBCamera camera = new USBCamera(port);
 			camera.setFPS(fps);
 			camera.setSize(resolutionWidth, resolutionHeight);
@@ -45,5 +47,8 @@ public class CameraController {
 
 	public boolean isOn() {
 		return on;
+	}
+	public String getPort(){
+		return this.port;
 	}
 }
