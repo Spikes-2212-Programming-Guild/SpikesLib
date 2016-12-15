@@ -8,18 +8,23 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class XboXUID extends Joystick {
 
-	static final int X_RIGHT = 2;
-	static final int X_LEFT = 0;
-	static final int Y_RIGHT = 3;
-	static final int Y_LEFT = 1;
+	static final int X_RIGHT = 0;
+	static final int X_LEFT = 1;
+	static final int Y_RIGHT = 2;
+	static final int Y_LEFT = 3;
 
 	public XboXUID(int port) {
 		super(port);
+
 	}
 
-	public Button getGreenButton() { return new JoystickButton(this, 2); }
+	public Button getGreenButton() {
+		return new JoystickButton(this, 2);
+	}
 
-	public Button getBlueButton() { return new JoystickButton(this, 1); }
+	public Button getBlueButton() {
+		return new JoystickButton(this, 1);
+	}
 
 	public Button getRedButton() {
 		return new JoystickButton(this, 3);
@@ -28,7 +33,7 @@ public class XboXUID extends Joystick {
 	public Button getYellowButton() {
 		return new JoystickButton(this, 4);
 	}
-1
+
 	public Button getRtButton() {
 		return new JoystickButton(this, 8);
 	}
@@ -53,21 +58,23 @@ public class XboXUID extends Joystick {
 		return getRawAxis(Y_RIGHT);
 	}
 
-	public double getLeftX() {
+	public double getLefttX() {
 		return getRawAxis(X_LEFT);
 	}
 
 	public double getLeftY() {
-		return getY(); // Do not edit this to "getRawAxis(Y_LEFT)", it somehow works this way
+		return getRawAxis(Y_RIGHT);
 	}
 	public Button getUpButton() {
 		return new JoystickButton(this, 14);
 }
 	public Button getDownButton() {
-		return new JoystickButton(this,15);
+		return new JoystickButton(this,15 );
 }
 	public Button getLeftButton() {
 		return new JoystickButton(this, 16);
 }
-	public Button getRightButton() { return new JoystickButton(this, 17); }
+	public Button getRightButton() {
+		return new JoystickButton(this,17 );
+}
 }
