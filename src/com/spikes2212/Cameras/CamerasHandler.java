@@ -42,6 +42,17 @@ public class CamerasHandler {
 			currentCamera = cameras.get(index);
 		}
 	}
+	public synchronized void start(String port){
+		if(!currentCamera.getPort().equals(port)){
+			stop();
+			for (CameraController c:cameras){
+				if( c.getPort().equals(port)){
+					currentCamera=c;
+					c.start();
+				}
+			}
+		}
+	}
 
 	public void getImage(Image image) {
 		currentCamera.getImage(image);
