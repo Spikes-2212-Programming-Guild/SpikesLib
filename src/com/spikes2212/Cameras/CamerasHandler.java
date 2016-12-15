@@ -12,7 +12,7 @@ public class CamerasHandler {
 	private ArrayList<CameraController> cameras;
 	private CameraController currentCamera = null;
 	private Image image;
-	public static int fps = 30;
+	public int fps = 30;
 
 	public CamerasHandler() {
 		cameras = new ArrayList<CameraController>();
@@ -21,7 +21,7 @@ public class CamerasHandler {
 
 	public CamerasHandler(int fps) {
 		this();
-		CamerasHandler.fps = fps;
+		this.fps = fps;
 	}
 
 	public void addCamera(String port, int index) {
