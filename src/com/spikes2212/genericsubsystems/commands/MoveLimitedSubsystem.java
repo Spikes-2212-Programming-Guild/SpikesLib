@@ -4,9 +4,7 @@ import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class MoveLimitedSubsystem extends Command {
     private LimitedSubsystem limitedSubsystem;

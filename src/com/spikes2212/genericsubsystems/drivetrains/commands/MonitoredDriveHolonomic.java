@@ -7,7 +7,6 @@ import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 import com.spikes2212.utils.VoltageMonitor;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
