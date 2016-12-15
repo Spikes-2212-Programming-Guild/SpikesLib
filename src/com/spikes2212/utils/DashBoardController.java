@@ -19,37 +19,37 @@ public class DashBoardController {
 		booleanFields = new HashMap<String, Supplier<Boolean>>();
 		sendableFields = new HashMap<String, Supplier<Sendable>>();
 	}
-	
-	public void removeString(String name,Supplier<String> value){
-		stringFields.remove(name, value);
+
+	public void removeString(String key) {
+		stringFields.remove(key);
 		updateString();
 	}
-	
+
 	public void addString(String name, Supplier<String> value) {
 		stringFields.put(name, value);
-		stringFields.remove(stringFields,name);
+		stringFields.remove(stringFields, name);
 	}
-	
-	public void removeSendable(String name,Supplier<Sendable> value){
-		sendableFields.remove(name, value);
+
+	public void removeSendable(String key) {
+		sendableFields.remove(key);
 		updateSendables();
 	}
-	
+
 	public void addSendable(String name, Supplier<Sendable> value) {
 		sendableFields.put(name, value);
 	}
 
-	public void removeDouble(String name, Supplier<Double> value) {
-		doubleFields.remove(name, value);
+	public void removeDouble(String key) {
+		doubleFields.remove(key);
 		updateDoubles();
 	}
-	
+
 	public void addDouble(String name, Supplier<Double> value) {
 		doubleFields.put(name, value);
 	}
 
-	public void removeBoolean(String name, Supplier<Boolean> value) {
-		booleanFields.remove(name, value);
+	public void removeBoolean(String key) {
+		booleanFields.remove(key);
 		updateBooleans();
 	}
 
