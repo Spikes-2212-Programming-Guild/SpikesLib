@@ -1,4 +1,4 @@
-package com.spikes2212.gui;
+package com.spikes2212.utils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,17 +19,38 @@ public class DashBoardController {
 		booleanFields = new HashMap<String, Supplier<Boolean>>();
 		sendableFields = new HashMap<String, Supplier<Sendable>>();
 	}
-
+	
+	public void removeString(String name,Supplier<String> value){
+		stringFields.remove(name, value);
+		updateString();
+	}
+	
 	public void addString(String name, Supplier<String> value) {
 		stringFields.put(name, value);
+		stringFields.remove(stringFields,name);
 	}
-
+	
+	public void removeSendable(String name,Supplier<Sendable> value){
+		sendableFields.remove(name, value);
+		updateSendables();
+	}
+	
 	public void addSendable(String name, Supplier<Sendable> value) {
 		sendableFields.put(name, value);
 	}
 
+	public void removeDouble(String name, Supplier<Double> value) {
+		doubleFields.remove(name, value);
+		updateDoubles();
+	}
+	
 	public void addDouble(String name, Supplier<Double> value) {
 		doubleFields.put(name, value);
+	}
+
+	public void removeBoolean(String name, Supplier<Boolean> value) {
+		booleanFields.remove(name, value);
+		updateBooleans();
 	}
 
 	public void addBoolean(String name, Supplier<Boolean> value) {
