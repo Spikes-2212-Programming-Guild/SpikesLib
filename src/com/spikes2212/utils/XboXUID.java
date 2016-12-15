@@ -1,8 +1,6 @@
 package com.spikes2212.utils;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -15,7 +13,6 @@ public class XboXUID extends Joystick {
 
 	public XboXUID(int port) {
 		super(port);
-
 	}
 
 	public Button getGreenButton() {
@@ -58,23 +55,26 @@ public class XboXUID extends Joystick {
 		return getRawAxis(Y_RIGHT);
 	}
 
-	public double getLefttX() {
+	public double getLeftX() {
 		return getRawAxis(X_LEFT);
 	}
 
 	public double getLeftY() {
-		return getRawAxis(Y_RIGHT);
+		return getY(); // Don't change this, for some reason it works
 	}
 	public Button getUpButton() {
 		return new JoystickButton(this, 14);
-}
+	}
+	
 	public Button getDownButton() {
 		return new JoystickButton(this,15 );
-}
+	}
+	
 	public Button getLeftButton() {
 		return new JoystickButton(this, 16);
-}
+	}
+	
 	public Button getRightButton() {
 		return new JoystickButton(this,17 );
-}
+	}
 }
