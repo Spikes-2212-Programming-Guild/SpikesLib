@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ChangeCamera extends RunnableCommand {
 
-	public ChangeCamera(CamerasHandler handler, int index) {
+	public ChangeCamera(CamerasHandler handler, String port) {
 
-		super(() -> handler.start(index));
+		super(() -> handler.start(port));
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis); 
 	}
