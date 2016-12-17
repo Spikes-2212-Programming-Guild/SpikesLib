@@ -1,6 +1,8 @@
 package com.spikes2212.Cameras;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
@@ -9,13 +11,13 @@ import com.ni.vision.NIVision.ImageType;
 import edu.wpi.first.wpilibj.CameraServer;
 
 public class CamerasHandler {
-	private ArrayList<CameraController> cameras;
+	private Map<String,CameraController> cameras;
 	private CameraController currentCamera = null;
 	private Image image;
 	public int fps = 30;
 
 	public CamerasHandler() {
-		cameras = new ArrayList<CameraController>();
+		cameras = new HashMap<>();
 		this.image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 	}
 
@@ -24,30 +26,22 @@ public class CamerasHandler {
 		this.fps = fps;
 	}
 
-	public void addCamera(String port, int index) {
-		cameras.add(index, new CameraController(port, fps));
+	public void addCamera(String port) {
+		cameras.put(port, new CameraController(port, fps));
 	}
 
 	public synchronized void stop() {
-		cameras.forEach(c -> c.stop());
+		cameras.values().forEach(CameraController::stop);
 		currentCamera = null;
 	}
 
-	public CameraController findCamera(String port) throws Exception {
-		for (CameraController c : cameras) {
-			if (c.getPort().equals(port)) {
-				return c;
-			}
-		}
-		throw new Exception("No camera with port: " + port);
-	}
 
 	public synchronized void start(String port) {
 		try{
-			if (currentCamera != findCamera(port)){
+			if (currentCamera != cameras.get(port)){
 				stop();
-				findCamera(port).start();
-				currentCamera = findCamera(port);
+				cameras.get(port).start();
+				currentCamera = cameras.get(port);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
