@@ -9,6 +9,7 @@ public class StopCameras extends RunnableCommand {
 
     public StopCameras(CamerasHandler handler) {
         super(() -> handler.stop());
+        setRunWhenDisabled(true);
         requires(handler);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
