@@ -57,6 +57,7 @@ public class CamerasHandler extends Subsystem {
 	}
 
 	public void getImage(Image image) {
+		if(currentCamera!=null)
 		currentCamera.getImage(image);
 	}
 
