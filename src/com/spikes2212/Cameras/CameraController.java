@@ -7,7 +7,7 @@ import com.ni.vision.NIVision.Image;
 import edu.wpi.first.wpilibj.vision.USBCamera;
 
 public class CameraController {
-	public final static int resolutionWidth = 100, resolutionHeight = 100;
+	public final static int resolutionWidth = 320, resolutionHeight = 240;
 	private Optional<USBCamera> camera;
 	private boolean on;
 	private String port;
