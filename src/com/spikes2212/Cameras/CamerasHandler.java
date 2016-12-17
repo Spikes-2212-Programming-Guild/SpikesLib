@@ -21,6 +21,13 @@ public class CamerasHandler extends Subsystem {
 		cameras = new HashMap<>();
 		this.image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 	}
+	
+	public CamerasHandler(String... ports){
+		this();
+		for(String p : ports){
+			addCamera(p);
+		}
+	}
 
 	public CamerasHandler(int fps) {
 		this();
