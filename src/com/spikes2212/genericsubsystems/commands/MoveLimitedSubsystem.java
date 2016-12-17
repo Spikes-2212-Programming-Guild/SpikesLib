@@ -30,7 +30,7 @@ public class MoveLimitedSubsystem extends Command {
         limitedSubsystem.tryMove(speedSupplier.get());
 
     }
-
+    
     @Override
     protected boolean isFinished() {
         return !limitedSubsystem.canMove(speedSupplier.get()) || isTimedOut();
