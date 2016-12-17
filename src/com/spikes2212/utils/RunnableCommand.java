@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class RunnableCommand extends Command {
 
 	private Runnable runnable;
+	private Thread t;
 
 	public RunnableCommand(Runnable runnable) {
 		this.runnable = runnable;
@@ -16,7 +17,8 @@ public class RunnableCommand extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		new Thread(runnable).start();
+		t = new Thread(runnable);
+		t.start();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -25,7 +27,7 @@ public class RunnableCommand extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return true;
+		return !t.isAlive();
 	}
 
 	// Called once after isFinished returns true
