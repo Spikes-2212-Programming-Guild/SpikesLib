@@ -9,8 +9,9 @@ import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ImageType;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class CamerasHandler {
+public class CamerasHandler extends Subsystem {
 	private Map<String,CameraController> cameras;
 	private CameraController currentCamera = null;
 	private Image image;
@@ -59,5 +60,11 @@ public class CamerasHandler {
 
 	public boolean isOn() {
 		return currentCamera != null;
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
+		
 	}
 }
