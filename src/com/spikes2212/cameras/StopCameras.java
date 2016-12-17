@@ -1,8 +1,6 @@
-package com.spikes2212.Cameras;
+package com.spikes2212.cameras;
 
 import com.spikes2212.utils.RunnableCommand;
-
-import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
