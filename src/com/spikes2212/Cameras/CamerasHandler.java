@@ -20,7 +20,7 @@ public class CamerasHandler extends Subsystem {
 	public CamerasHandler() {
 		cameras = new HashMap<>();
 		this.image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
-		new Thread(new VisionRunnable(this));
+		new Thread(new VisionRunnable(this)).start();;
 		
 	}
 	
