@@ -58,10 +58,10 @@ public class CamerasHandler extends Subsystem {
     }
 
     public synchronized void stream() {
-    	if (currentCamera != null){
-    		currentCamera.getImage(image);
-        CameraServer.getInstance().setImage(image);
-    	}
+        if (currentCamera != null) {
+            currentCamera.getImage(image);
+            CameraServer.getInstance().setImage(image);
+        }
     }
 
     public boolean isOn() {
