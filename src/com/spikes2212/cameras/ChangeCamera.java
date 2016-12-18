@@ -11,6 +11,7 @@ public class ChangeCamera extends RunnableCommand {
     public ChangeCamera(CamerasHandler handler, String port) {
 
         super(() -> handler.start(port));
+        setRunWhenDisabled(true);
         requires(handler);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
