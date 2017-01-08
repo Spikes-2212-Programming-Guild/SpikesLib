@@ -11,7 +11,7 @@ public class MoveLimitedSubsystem extends Command {
 	private Supplier<Double> speedSupplier;
 
 	/**
-	 * build a command that moves a certain limited subsystem in a certain speed
+	 * builds a command that moves a certain limited subsystem in a certain speed. the command works by monitoring the voltage
 	 * 
 	 * @param limitedSubsystem
 	 *            is the limited subsystem on which the command activates
