@@ -16,7 +16,7 @@ public class VoltageMonitor {
 	/**
 	 * Sets the highest voltage which will be considered acceptable in order to operate the robot.
 	 * 
-	 * @param highVoltage the new highest voltage reachable
+	 * @param highVoltage is the new highest voltage reachable
 	 */
 	public static void setHigh_voltage(double highVoltage) {
 		if (highVoltage > lowVoltage)
@@ -26,7 +26,7 @@ public class VoltageMonitor {
 	/**
 	 * Sets the lowest voltage which will be considered acceptable in order to operate the robot.
 	 * 
-	 * @param highVoltage the new highest voltage reachable
+	 * @param highVoltage is the new highest voltage reachable
 	 */
 	public static void setLow_voltage(double lowVoltage) {
 		if (highVoltage > lowVoltage)
@@ -34,10 +34,10 @@ public class VoltageMonitor {
 	}
 	
 	/**
-	 * Calculates the speed allowed to be used by the caller of this method, according to the pdp's voltage extreme points.
+	 * returns a supplier which returns the scaled speed, according to the pdp's voltage extreme points.
 	 * 
-	 * @param supplier the speed supplier meant to be checked by 
-	 * @return a supplier that supplies speed according to the robot's voltage levels
+	 * @param supplier is the speed supplier meant to be checked by 
+	 * @return a supplier is that supplies speed according to the robot's voltage levels
 	 */
 	public static Supplier<Double> monitorSupplier(Supplier<Double> supplier) {
 		double voltage = pdp.getVoltage();
