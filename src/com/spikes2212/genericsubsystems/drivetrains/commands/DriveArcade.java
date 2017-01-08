@@ -14,9 +14,9 @@ public class DriveArcade extends Command {
 	/**
 	 * Constructs a command which moves the drive system according to constant speed values for its straight and angular movements.
 	 * 
-	 * @param drivetrain the drive system meant to move
-	 * @param moveValue the constant speed value by which the drive system will move straight.
-	 * @param rotateValue the constant speed value by which the drive system will turn to any side.
+	 * @param drivetrain is the drive system meant to move
+	 * @param moveValue is the constant speed value by which the drive system will move straight.
+	 * @param rotateValue is the constant speed value by which the drive system will turn to any side.
 	 */
 	public DriveArcade(TankDrivetrain drivetrain, double moveValue, double rotateValue) {
 		this(drivetrain, () -> moveValue, () -> rotateValue);
@@ -26,12 +26,9 @@ public class DriveArcade extends Command {
 	 * creates a new command which makes a drivetrain move with changing rotate
 	 * speed and move speed
 	 * 
-	 * @param drivetrain-
-	 *            the drivetrain on which the command activates
-	 * @param moveValueSupplier-
-	 *            the speed which the drivetrain should move forward with
-	 * @param rotateValueSupplier-
-	 *            the speed which the drivetrain should move rotatively with
+	 * @param drivetrain is the drivetrain on which the command activates
+	 * @param moveValueSupplier is the speed which the drivetrain should move forward with
+	 * @param rotateValueSupplier is the speed which the drivetrain should move rotatively with
 	 */
 	public DriveArcade(TankDrivetrain drivetrain, Supplier<Double> moveValueSupplier,
 			Supplier<Double> rotateValueSupplier) {

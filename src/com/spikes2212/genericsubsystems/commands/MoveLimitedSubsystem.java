@@ -14,9 +14,9 @@ public class MoveLimitedSubsystem extends Command {
 	 * build a command that moves a certain limited subsystem in a certain speed
 	 * 
 	 * @param limitedSubsystem
-	 *            -the limited subsystem on which the command activates
-	 * @param speed-
-	 *            the speed which the subsystem should move in
+	 *            is the limited subsystem on which the command activates
+	 * @param speed
+	 *            is the speed which the subsystem should move in
 	 */
 	public MoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, double speed) {
 		this(limitedSubsystem, () -> speed);
@@ -27,9 +27,9 @@ public class MoveLimitedSubsystem extends Command {
 	 * from a supplier
 	 * 
 	 * @param limitedSubsystem
-	 *            -the limited subsystem on which the command activates
-	 * @param speedSupplier-
-	 *            the supplier which supplies the speed while the command is
+	 *            is the limited subsystem on which the command activates
+	 * @param speedSupplier
+	 *            is the supplier which supplies the speed while the command is
 	 *            activated
 	 */
 	public MoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, Supplier<Double> speedSupplier) {

@@ -7,6 +7,58 @@ import com.spikes2212.utils.VoltageMonitor;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * @author AtidSpikes
+ *
+ */
+/**
+ * @author AtidSpikes
+ *
+ */
+/**
+ * @author AtidSpikes
+ *
+ */
+/**
+ * @author AtidSpikes
+ *
+ */
+/**
+ * @author AtidSpikes
+ *
+ */
+/**
+ * @author AtidSpikes
+ *
+ */
+/**
+ * @author AtidSpikes
+ *
+ */
+/**
+ * @author AtidSpikes
+ *
+ */
+/**
+ * @author AtidSpikes
+ *
+ */
+/**
+ * @author AtidSpikes
+ *
+ */
+/**
+ * @author AtidSpikes
+ *
+ */
+/**
+ * @author AtidSpikes
+ *
+ */
+/**
+ * @author AtidSpikes
+ *
+ */
 public class MonitoredMoveLimitedSubsystem extends Command {
 	private LimitedSubsystem limitedSubsystem;
 	private Supplier<Double> speedSupplier;
@@ -15,9 +67,9 @@ public class MonitoredMoveLimitedSubsystem extends Command {
 	 * build a command that moves a certain limited subsystem in a certain speed
 	 * 
 	 * @param limitedSubsystem
-	 *            -the limited subsystem on which the command activates
-	 * @param speed-
-	 *            the speed which the subsystem should move in
+	 *            is the limited subsystem on which the command activates
+	 * @param speed
+	 *            is the speed which the subsystem should move in
 	 */
 	public MonitoredMoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, double speed) {
 		this(limitedSubsystem, () -> speed);
@@ -28,9 +80,9 @@ public class MonitoredMoveLimitedSubsystem extends Command {
 	 * from a supplier
 	 * 
 	 * @param limitedSubsystem
-	 *            -the limited subsystem on which the command activates
-	 * @param speedSupplier-
-	 *            the supplier which supplies the speed while the command is
+	 *            is the limited subsystem on which the command activates
+	 * @param speedSupplier
+	 *            is the supplier which supplies the speed while the command is
 	 *            activated
 	 */
 	public MonitoredMoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, Supplier<Double> speedSupplier) {
@@ -39,6 +91,7 @@ public class MonitoredMoveLimitedSubsystem extends Command {
 		this.speedSupplier = VoltageMonitor.monitorSupplier(speedSupplier);
 	}
 
+	
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub

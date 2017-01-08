@@ -18,9 +18,9 @@ public class DriveTank extends Command {
 	/**
 	 * Constructs a command which moves the tank according to a constant left speed and a constant right speed.
 	 * 
-	 * @param drivetrain the drive system subsystem meant to move
-	 * @param leftSpeed the permanent speed by which the left side of the drive system will move until the command is over
-	 * @param rightSpeed the permanent speed by which the right side of the drive system will move until the command is over
+	 * @param drivetrain is the drive system subsystem meant to move
+	 * @param leftSpeed is the permanent speed by which the left side of the drive system will move until the command is over
+	 * @param rightSpeed is the permanent speed by which the right side of the drive system will move until the command is over
 	 */
 	public DriveTank(TankDrivetrain drivetrain, double leftSpeed, double rightSpeed) {
 		// Use requires() here to declare subsystem dependencies
@@ -31,9 +31,9 @@ public class DriveTank extends Command {
 	/**
 	 * Constructs a command which moves the tank according to suppliers for its left and right sides.
 	 * 
-	 * @param drivetrain the drivetrain subsystem meant to move
-	 * @param leftSpeedSupplier the speed supplier which will supply values to the drivetrain's left side.
-	 * @param rightSpeedSupplier the speed supplier which will supply values to the drivetrain's right side.
+	 * @param drivetrain is the drivetrain subsystem meant to move
+	 * @param leftSpeedSupplier is the speed supplier which will supply values to the drivetrain's left side.
+	 * @param rightSpeedSupplier is the speed supplier which will supply values to the drivetrain's right side.
 	 */
 	public DriveTank(TankDrivetrain drivetrain, Supplier<Double> leftSpeedSuplier, Supplier<Double> rightSpeedSuplier) {
 		// Use requires() here to declare subsystem dependencies

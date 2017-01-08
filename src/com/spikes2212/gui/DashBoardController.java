@@ -25,55 +25,67 @@ public class DashBoardController {
 	}
 	
 	/**
-	 * @param name the name given to the String value meant to enter the DashBoard.
-	 * @param value the String value meant to enter the DashBoard
+	 * @param name is the name given to the String value meant to enter the DashBoard.
+	 * @param value is the String value meant to enter the DashBoard
 	 */
 	public void addString(String name, Supplier<String> value) {
 		stringFields.put(name, value);
 	}
 	
 	/**
-	 * @param name the name given to the Sendable value meant to enter the DashBoard.
-	 * @param value the Sendable value meant to enter the DashBoard
+	 * @param name is the name given to the Sendable value meant to enter the DashBoard.
+	 * @param value is the Sendable value meant to enter the DashBoard
 	 */
 	public void addSendable(String name, Supplier<Sendable> value) {
 		sendableFields.put(name, value);
 	}
 	
 	/**
-	 * @param name the name given to the Double value meant to enter the DashBoard.
-	 * @param value the Double value meant to enter the DashBoard
+	 * @param name is the name given to the Double value meant to enter the DashBoard.
+	 * @param value is the Double value meant to enter the DashBoard
 	 */
 	public void addDouble(String name, Supplier<Double> value) {
 		doubleFields.put(name, value);
 	}
 	
 	/**
-	 * @param name the name given to the Boolean value meant to enter the DashBoard.
-	 * @param value the Booleanvalue meant to enter the DashBoard
+	 * @param name is the name given to the Boolean value meant to enter the DashBoard.
+	 * @param value is the Booleanvalue meant to enter the DashBoard
 	 */
 	public void addBoolean(String name, Supplier<Boolean> value) {
 		booleanFields.put(name, value);
 	}
 	
+	/**
+	 *update booleans values
+	 */
 	private void updateBooleans() {
 		for (Map.Entry<String, Supplier<Boolean>> entry : booleanFields.entrySet()) {
 			SmartDashboard.putBoolean(entry.getKey(), entry.getValue().get());
 		}
 	}
 
+	/**
+	 * update Sendables 
+	 */
 	private void updateSendables() {
 		for (Map.Entry<String, Supplier<Sendable>> entry : sendableFields.entrySet()) {
 			SmartDashboard.putData(entry.getKey(), entry.getValue().get());
 		}
 	}
 
+	/**
+	 * update double values
+	 */
 	private void updateDoubles() {
 		for (Map.Entry<String, Supplier<Double>> entry : doubleFields.entrySet()) {
 			SmartDashboard.putNumber(entry.getKey(), entry.getValue().get());
 		}
 	}
 
+	/**
+	 * update strings
+	 */
 	private void updateString() {
 		for (Map.Entry<String, Supplier<String>> entry : stringFields.entrySet()) {
 			SmartDashboard.putString(entry.getKey(), entry.getValue().get());
