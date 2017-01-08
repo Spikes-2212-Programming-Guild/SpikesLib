@@ -30,7 +30,7 @@ public class MonitoredDriveHolonomic extends Command {
 
 	/**
 	 * Constructs a command which moves the tank according to values from suppliers for its X and Y axises.
-	 * 
+	 * this system monitors the electricity in the robot according to the Electrical voltage.
 	 * @param drivetrain is the drive system meant to move
 	 * @param speedYSupplier is the supplier meant to supply speed to the Y axis of the drive system (forward and backward)
 	 * @param speedXSupplier is the supplier meant to supply speed to the X axis of the drive system (right and left)
