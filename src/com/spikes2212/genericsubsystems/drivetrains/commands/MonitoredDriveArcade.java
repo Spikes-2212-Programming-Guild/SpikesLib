@@ -13,8 +13,8 @@ public class MonitoredDriveArcade extends Command {
 	private Supplier<Double> rotateValueSupplier;
 
 	/**
-	 * Constructs a command which moves the drive system according to constant speed values for its straight and angular movements.this system is monitored.
-	 * 
+	 * Constructs a command which moves the drive system according to constant speed values for its straight and angular movements.
+	 * this system monitors the electricity in the robot according to the Electrical voltage. 
 	 * @param drivetrain is the drive system meant to move
 	 * @param moveValue is the constant speed value by which the drive system will move straight.
 	 * @param rotateValue is the constant speed value by which the drive system will turn to any side.
