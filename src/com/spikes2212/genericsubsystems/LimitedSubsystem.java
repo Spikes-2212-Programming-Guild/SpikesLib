@@ -52,7 +52,7 @@ public abstract class LimitedSubsystem extends Subsystem {
 	}
 
 	/**
-	 * stops the subsystem
+	 * sets the speed to 0
 	 */
 	public void stop() {
 		motor.set(0);
