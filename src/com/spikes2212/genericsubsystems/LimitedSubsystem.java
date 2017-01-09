@@ -33,7 +33,8 @@ public abstract class LimitedSubsystem extends Subsystem {
 	/**
 	 * Checks whether the subsystem can move at a certain speed
 	 * 
-	 * @param speed represents the speed which is checked
+	 * @param speed
+	 *            represents the speed which is checked
 	 * @return true if the subsystem can move at the chosen speed
 	 */
 	public boolean canMove(double speed) {
@@ -43,7 +44,8 @@ public abstract class LimitedSubsystem extends Subsystem {
 	/**
 	 * Try to move this subsystem at a certain speed
 	 * 
-	 * @param speed represents the speed at which we should try and turn the motor
+	 * @param speed
+	 *            represents the speed at which we should try and turn the motor
 	 */
 	public void tryMove(double speed) {
 		if (canMove(speed)) {
