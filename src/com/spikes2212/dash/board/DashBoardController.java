@@ -1,4 +1,4 @@
-package com.spikes2212.utils;
+package com.spikes2212.dash.board;
 
 import java.util.HashMap;
 import java.util.Map;
