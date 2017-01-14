@@ -3,6 +3,7 @@ package com.spikes2212.genericsubsystems.drivetrains.commands;
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
@@ -16,10 +17,10 @@ public class DriveTankWithPID extends Command {
 	private PIDController leftMovmentControl;
 	private PIDController rightMovmentControl;
 
-	public void setTolerance(double tolerance){
-		this.tolerance=tolerance;
+	public void setTolerance(double tolerance) {
+		this.tolerance = tolerance;
 	}
-	
+
 	public void setP(double P) {
 		KP = P;
 	}
@@ -53,21 +54,26 @@ public class DriveTankWithPID extends Command {
 	}
 
 	public DriveTankWithPID(double leftSetPoint, double rightSetPoint, double KP, double KI, double KD,
-			TankDrivetrain drivetrain) {
+			TankDrivetrain drivetrain, PIDSource rightSource, PIDSource leftSource) {
 		requires(drivetrain);
-		this.tankDrivetrain=drivetrain;
+		this.tankDrivetrain = drivetrain;
 		this.KD = KD;
 		this.KI = KI;
 		this.KP = KP;
-		leftMovmentControl = new PIDController(KP, KI, KD, tankDrivetrain.getLeftPIDSource(), tankDrivetrain::setLeft);
+		leftMovmentControl = new PIDController(KP, KI, KD, leftSource, tankDrivetrain::setLeft);
 		leftMovmentControl.setAbsoluteTolerance(tolerance);
 		leftMovmentControl.setSetpoint(leftSetPoint);
 		leftMovmentControl.setOutputRange(-1, 1);
-		rightMovmentControl = new PIDController(KP, KI, KD, tankDrivetrain.getRightPIDSource(),
-				tankDrivetrain::setRight);
+		rightMovmentControl = new PIDController(KP, KI, KD, rightSource, tankDrivetrain::setRight);
 		rightMovmentControl.setAbsoluteTolerance(tolerance);
 		rightMovmentControl.setSetpoint(rightSetPoint);
 		rightMovmentControl.setOutputRange(-1, 1);
+	}
+
+	public DriveTankWithPID(double leftSetPoint, double rightSetPoint, double KP, double KI, double KD,
+			TankDrivetrain drivetrain) {
+		this(leftSetPoint, rightSetPoint, KP, KI, KD, drivetrain, drivetrain.getRightPIDSource(),
+				drivetrain.getLeftPIDSource());
 	}
 
 	public DriveTankWithPID(double setPoint, double KP, double KI, double KD, TankDrivetrain drivetrain) {
