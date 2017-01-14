@@ -13,7 +13,7 @@ public class DriveTankWithPID extends Command {
 	private double KP;
 	private double KI;
 	private double KD;
-	private double tolerance = 1;
+	private double tolerance;
 	private PIDController leftMovmentControl;
 	private PIDController rightMovmentControl;
 
@@ -54,12 +54,13 @@ public class DriveTankWithPID extends Command {
 	}
 
 	public DriveTankWithPID(double leftSetPoint, double rightSetPoint, double KP, double KI, double KD,
-			TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource) {
+			TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource, double tolerance) {
 		requires(drivetrain);
 		this.tankDrivetrain = drivetrain;
 		this.KD = KD;
 		this.KI = KI;
 		this.KP = KP;
+		this.tolerance = tolerance;
 		leftMovmentControl = new PIDController(KP, KI, KD, leftSource, tankDrivetrain::setLeft);
 		leftMovmentControl.setAbsoluteTolerance(tolerance);
 		leftMovmentControl.setSetpoint(leftSetPoint);
@@ -71,13 +72,14 @@ public class DriveTankWithPID extends Command {
 	}
 
 	public DriveTankWithPID(double leftSetPoint, double rightSetPoint, double KP, double KI, double KD,
-			TankDrivetrain drivetrain) {
+			TankDrivetrain drivetrain, double tolerance) {
 		this(leftSetPoint, rightSetPoint, KP, KI, KD, drivetrain, drivetrain.getLeftPIDSource(),
-				drivetrain.getRightPIDSource());
+				drivetrain.getRightPIDSource(), tolerance);
 	}
 
-	public DriveTankWithPID(double setPoint, double KP, double KI, double KD, TankDrivetrain drivetrain) {
-		this(setPoint, setPoint, KP, KI, KD, drivetrain);
+	public DriveTankWithPID(double setPoint, double KP, double KI, double KD, TankDrivetrain drivetrain,
+			double tolerance) {
+		this(setPoint, setPoint, KP, KI, KD, drivetrain, tolerance);
 	}
 
 	// requires(drivetrain);
