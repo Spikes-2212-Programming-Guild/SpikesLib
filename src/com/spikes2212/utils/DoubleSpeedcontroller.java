@@ -23,12 +23,12 @@ public class DoubleSpeedcontroller implements SpeedController {
 		return this.speedcontrollerRight.get();
 	}
 
-	@Override
-	public void set(double speed, byte syncGroup) {
-		speedcontrollerLeft.set(speed, syncGroup);
-		speedcontrollerRight.set(speed, syncGroup);
-
-	}
+//	@Override
+//	public void set(double speed, byte syncGroup) {
+//		speedcontrollerLeft.set(speed, syncGroup);
+//		speedcontrollerRight.set(speed, syncGroup);
+//
+//	}
 
 	@Override
 	public void set(double speed) {
