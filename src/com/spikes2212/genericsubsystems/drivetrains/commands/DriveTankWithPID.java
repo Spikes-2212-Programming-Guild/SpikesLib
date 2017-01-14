@@ -54,7 +54,7 @@ public class DriveTankWithPID extends Command {
 	}
 
 	public DriveTankWithPID(double leftSetPoint, double rightSetPoint, double KP, double KI, double KD,
-			TankDrivetrain drivetrain, PIDSource rightSource, PIDSource leftSource) {
+			TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource) {
 		requires(drivetrain);
 		this.tankDrivetrain = drivetrain;
 		this.KD = KD;
@@ -72,8 +72,8 @@ public class DriveTankWithPID extends Command {
 
 	public DriveTankWithPID(double leftSetPoint, double rightSetPoint, double KP, double KI, double KD,
 			TankDrivetrain drivetrain) {
-		this(leftSetPoint, rightSetPoint, KP, KI, KD, drivetrain, drivetrain.getRightPIDSource(),
-				drivetrain.getLeftPIDSource());
+		this(leftSetPoint, rightSetPoint, KP, KI, KD, drivetrain, drivetrain.getLeftPIDSource(),
+				drivetrain.getRightPIDSource());
 	}
 
 	public DriveTankWithPID(double setPoint, double KP, double KI, double KD, TankDrivetrain drivetrain) {
