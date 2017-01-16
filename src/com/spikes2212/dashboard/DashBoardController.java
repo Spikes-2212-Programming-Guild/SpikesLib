@@ -13,9 +13,9 @@ public class DashBoardController {
 	private Map<String, Supplier<Boolean>> booleanFields;
 
 	public DashBoardController() {
-		stringFields = new HashMap<String, Supplier<String>>();
-		doubleFields = new HashMap<String, Supplier<Double>>();
-		booleanFields = new HashMap<String, Supplier<Boolean>>();
+		stringFields = new HashMap<>();
+		doubleFields = new HashMap<>();
+		booleanFields = new HashMap<>();
 	}
 
 	public void removeString(String key) {
