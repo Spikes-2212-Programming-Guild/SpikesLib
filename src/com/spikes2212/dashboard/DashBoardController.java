@@ -19,15 +19,17 @@ public class DashBoardController {
     }
 
     public void addString(String name, Supplier<String> value) {
+        remove(name);
         stringFields.put(name, value);
-        updateString();
     }
 
     public void addDouble(String name, Supplier<Double> value) {
+        remove(name);
         doubleFields.put(name, value);
     }
 
     public void addBoolean(String name, Supplier<Boolean> value) {
+        remove(name);
         booleanFields.put(name, value);
     }
 
