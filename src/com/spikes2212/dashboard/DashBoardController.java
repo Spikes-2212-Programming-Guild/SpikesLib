@@ -11,13 +11,11 @@ public class DashBoardController {
 	private Map<String, Supplier<String>> stringFields;
 	private Map<String, Supplier<Double>> doubleFields;
 	private Map<String, Supplier<Boolean>> booleanFields;
-	private Map<String, Supplier<Sendable>> sendableFields;
 
 	public DashBoardController() {
 		stringFields = new HashMap<String, Supplier<String>>();
 		doubleFields = new HashMap<String, Supplier<Double>>();
 		booleanFields = new HashMap<String, Supplier<Boolean>>();
-		sendableFields = new HashMap<String, Supplier<Sendable>>();
 	}
 
 	public void removeString(String key) {
@@ -28,15 +26,6 @@ public class DashBoardController {
 	public void addString(String name, Supplier<String> value) {
 		stringFields.put(name, value);
 		stringFields.remove(stringFields, name);
-	}
-
-	public void removeSendable(String key) {
-		sendableFields.remove(key);
-		updateSendables();
-	}
-
-	public void addSendable(String name, Supplier<Sendable> value) {
-		sendableFields.put(name, value);
 	}
 
 	public void removeDouble(String key) {
@@ -63,12 +52,6 @@ public class DashBoardController {
 		}
 	}
 
-	private void updateSendables() {
-		for (Map.Entry<String, Supplier<Sendable>> entry : sendableFields.entrySet()) {
-			SmartDashboard.putData(entry.getKey(), entry.getValue().get());
-		}
-	}
-
 	private void updateDoubles() {
 		for (Map.Entry<String, Supplier<Double>> entry : doubleFields.entrySet()) {
 			SmartDashboard.putNumber(entry.getKey(), entry.getValue().get());
@@ -85,6 +68,5 @@ public class DashBoardController {
 		updateBooleans();
 		updateDoubles();
 		updateString();
-		updateSendables();
 	}
 }
