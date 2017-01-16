@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * This class allows for {@link Supplier}s to be "written" to the {@link SmartDashboard},
  * allowing for changing values to be easily written to the {@link SmartDashboard}.
  *
- * @author Noam "Muntin" Muntin
+ * @author Noam "Mantin" Mantin
  * @see SmartDashboard
  * @see Supplier
  */
