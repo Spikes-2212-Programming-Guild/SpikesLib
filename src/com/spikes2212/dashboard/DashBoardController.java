@@ -25,7 +25,7 @@ public class DashBoardController {
 
 	public void addString(String name, Supplier<String> value) {
 		stringFields.put(name, value);
-		stringFields.remove(stringFields, name);
+		updateString();
 	}
 
 	public void removeDouble(String key) {
