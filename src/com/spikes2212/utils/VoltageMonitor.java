@@ -19,7 +19,7 @@ public class VoltageMonitor {
 
 	/**
 	 *setting the value of the voltage to be considered "high" if higher than current low voltage
-	 * @param highVoltage the high voltage value to be setted
+	 * @param highVoltage the high voltage value to be set
 	 */
 	public static void setHighVoltage(double highVoltage) {
 		if (highVoltage > defaultLowVoltage)
@@ -28,7 +28,7 @@ public class VoltageMonitor {
 
 	/**
 	 *setting the value of the voltage to be considered "low"
-	 * @param lowVoltage the low voltage value to be setted
+	 * @param lowVoltage the low voltage value to be set
 	 */
 	public static void setLowVoltage(double lowVoltage) {
 		if (defaultHighVoltage > lowVoltage)
@@ -52,7 +52,7 @@ public class VoltageMonitor {
 	}
 
 	/**
-	 *
+	 *@see Supplier
 	 * @param supplier the original target supplier
 	 * @param highVoltage the voltage considered HIGH
 	 * @param lowVoltage the Voltage considered LOW
