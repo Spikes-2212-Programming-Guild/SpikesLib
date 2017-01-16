@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * This class allows for {@link Supplier}s to be "written" to the {@link SmartDashboard},
  * allowing for changing values to be easily written to the {@link SmartDashboard}.
  *
- * @see SmartDashboard
  * @author Noam "Muntin" Muntin
+ * @see SmartDashboard
  */
 public class DashBoardController {
     private Map<String, Supplier<String>> stringFields;
@@ -21,10 +21,10 @@ public class DashBoardController {
 
     /**
      * Constructs a new {@link DashBoardController}.
-     *
      * <p>
-     *     More than one {@link DashBoardController} can exist at a time,
-     *     however if a key name is used twice they'll override each other.
+     * <p>
+     * More than one {@link DashBoardController} can exist at a time,
+     * however if a key name is used twice they'll override each other.
      * </p>
      */
     public DashBoardController() {
