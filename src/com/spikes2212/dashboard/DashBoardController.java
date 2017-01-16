@@ -33,19 +33,19 @@ public class DashBoardController {
         booleanFields = new HashMap<>();
     }
 
-    public void addString(String name, Supplier<String> value) {
+    public void addString(String name, Supplier<String> stringSupplier) {
         remove(name);
-        stringFields.put(name, value);
+        stringFields.put(name, stringSupplier);
     }
 
-    public void addDouble(String name, Supplier<Double> value) {
+    public void addDouble(String name, Supplier<Double> doubleSupplier) {
         remove(name);
-        doubleFields.put(name, value);
+        doubleFields.put(name, doubleSupplier);
     }
 
-    public void addBoolean(String name, Supplier<Boolean> value) {
+    public void addBoolean(String name, Supplier<Boolean> booleanSupplier) {
         remove(name);
-        booleanFields.put(name, value);
+        booleanFields.put(name, booleanSupplier);
     }
 
     public void remove(String name) {
