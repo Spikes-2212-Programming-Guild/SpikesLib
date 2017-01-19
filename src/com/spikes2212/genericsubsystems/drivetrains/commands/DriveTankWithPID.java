@@ -4,6 +4,7 @@ import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
@@ -20,7 +21,9 @@ public class DriveTankWithPID extends Command {
 	private PIDSource rightSource;
 	private PIDController leftMovmentControl;
 	private PIDController rightMovmentControl;
-
+	private double lastTimeNotOnTarget;
+	private static final double WAIT_TIME=5;
+		
 	public void setTolerance(double tolerance) {
 		this.tolerance = tolerance;
 	}
@@ -108,7 +111,10 @@ public class DriveTankWithPID extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return leftMovmentControl.onTarget() && rightMovmentControl.onTarget();
+		if(!leftMovmentControl.onTarget()&&!rightMovmentControl.onTarget()){
+			lastTimeNotOnTarget=Timer.getFPGATimestamp();
+		}
+		return Timer.getFPGATimestamp()-lastTimeNotOnTarget==WAIT_TIME;
 	}
 
 	// Called once after isFinished returns true
