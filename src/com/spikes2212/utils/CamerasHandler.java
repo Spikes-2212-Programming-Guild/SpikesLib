@@ -16,21 +16,26 @@ public class CamerasHandler {
 	private UsbCamera[] cameras;
 	private CvSink[] cvSinks;
 	private Supplier<Integer> width = ConstantHandler.addConstantInt("width", 420);
-	private Supplier<Integer> height = ConstantHandler.addConstantInt("width", 340);
-	private Supplier<Integer> port = ConstantHandler.addConstantInt("port", 0);
+	private Supplier<Integer> height = ConstantHandler.addConstantInt("height", 340);
+	private int port = 0;
 
 	public CamerasHandler(int[] ports) {
-		new Thread(()->{
+		new Thread(() -> {
 			for (int i = 0; i < ports.length; i++) {
-				cameras[i] = CameraServer.getInstance().startAutomaticCapture(i);
+				cameras[i] = CameraServer.getInstance().startAutomaticCapture(ports[i]);
 				cvSinks[i] = CameraServer.getInstance().getVideo(cameras[i]);
 			}
 			CvSource outputStream = CameraServer.getInstance().putVideo("CamerasHandler", width.get(), height.get());
 			Mat frame = new Mat();
-			while (!Thread.interrupted()){
-				cvSinks[port.get()].grabFrame(frame);
+			while (!Thread.interrupted()) {
+				cvSinks[port].grabFrame(frame);
 				outputStream.putFrame(frame);
 			}
 		}).start();
 	}
+
+	public void switchCamera(int port) {
+		this.port = port;
+	}
+
 }
