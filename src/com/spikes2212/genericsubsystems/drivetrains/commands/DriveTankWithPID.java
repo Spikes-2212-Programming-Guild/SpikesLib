@@ -112,9 +112,9 @@ public class DriveTankWithPID extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		if(!leftMovmentControl.onTarget()&&!rightMovmentControl.onTarget()){
-			lastTimeNotOnTarget=Timer.getFPGATimestamp();
+			lastTimeNotOnTarget=((double)System.currentTimeMillis())/1000;
 		}
-		return Timer.getFPGATimestamp()-lastTimeNotOnTarget==WAIT_TIME;
+		return ((double)System.currentTimeMillis())/1000-lastTimeNotOnTarget>=WAIT_TIME;
 	}
 
 	// Called once after isFinished returns true
