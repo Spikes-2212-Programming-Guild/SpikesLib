@@ -1,5 +1,6 @@
 package com.spikes2212.utils;
 
+import java.util.ArrayList;
 import java.util.function.Supplier;
 
 import org.opencv.core.Mat;
@@ -13,29 +14,45 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 
 public class CamerasHandler {
-	private UsbCamera[] cameras;
-	private CvSink[] cvSinks;
-	private Supplier<Integer> width = ConstantHandler.addConstantInt("width", 420);
-	private Supplier<Integer> height = ConstantHandler.addConstantInt("height", 340);
-	private int port = 0;
+	private int port;
+	private ArrayList<UsbCamera> cameras = new ArrayList<>();
+	private ArrayList<CvSink> cvSinks = new ArrayList<>();
+	private ArrayList<Integer> ports = new ArrayList<>();
 
-	public CamerasHandler(int[] ports) {
+	public CamerasHandler(int[] ports, int width, int height) {
+		port = ports[0];
 		new Thread(() -> {
 			for (int i = 0; i < ports.length; i++) {
-				cameras[i] = CameraServer.getInstance().startAutomaticCapture(ports[i]);
-				cvSinks[i] = CameraServer.getInstance().getVideo(cameras[i]);
+				addCamera(ports[i]);
 			}
-			CvSource outputStream = CameraServer.getInstance().putVideo("CamerasHandler", width.get(), height.get());
+			CvSource outputStream = CameraServer.getInstance().putVideo("CamerasHandler", width, height);
 			Mat frame = new Mat();
 			while (!Thread.interrupted()) {
-				cvSinks[port].grabFrame(frame);
+				cvSinks.get(port).grabFrame(frame);
 				outputStream.putFrame(frame);
 			}
 		}).start();
 	}
 
 	public void switchCamera(int port) {
-		this.port = port;
+		if(isThePortInUse(port))
+			this.port = port;
+	}
+
+	public void addCamera(int port) {
+		if (!isThePortInUse(port)) {
+			ports.add(port);
+			cameras.add(CameraServer.getInstance().startAutomaticCapture(port));
+			cvSinks.add(CameraServer.getInstance().getVideo(cameras.get(port)));
+		}
+	}
+
+	public boolean isThePortInUse(int port) {
+		for (int i = 0; i < ports.size(); i++) {
+			if (port == ports.get(i))
+				return true;
+		}
+		return false;
 	}
 
 }
