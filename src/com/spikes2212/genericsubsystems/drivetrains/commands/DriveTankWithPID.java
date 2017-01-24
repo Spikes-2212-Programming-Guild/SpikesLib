@@ -3,54 +3,65 @@ package com.spikes2212.genericsubsystems.drivetrains.commands;
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DriveTankWithPID extends Command {
 	// TODO Auto-generated constructor stub
-		
 
 	private TankDrivetrain tankDrivetrain;
-	private static double KP = 1;
-	private static double KI = 1;
-	private static double KD = 1;
-	private static double tolerance = 1;
+	private double KP = 1;
+	private double KI = 1;
+	private double KD = 1;
+	private double waitingTime = 1;
+	private double tolerance = 1;
 	private PIDController leftMovmentControl;
 	private PIDController rightMovmentControl;
+	private double lastFalseTimeLeft = 0;
+	private double lastFalseTimeRight = 0;
 
-	public static void setP(double P) {
-		KP=P;
+	public void setP(double P) {
+		KP = P;
 	}
 
-	public static double getP() {
+	public double getP() {
 		return KP;
 	}
 
-	public static void setI(double I) {
+	public void setI(double I) {
 		KI = I;
 	}
 
-	public static double getI() {
+	public double getI() {
 		return KI;
 	}
 
-	public static void setD(double D) {
+	public void setD(double D) {
 		KD = D;
 	}
 
-	public static double getD() {
+	public double getD() {
 		return KD;
 	}
 
-	public static double getTolarance() {
+	public double getTolarance() {
 		return tolerance;
 	}
 
-	public static void setTolarance(double tolarance) {
-		DriveTankWithPID.tolerance = tolarance;
+	public void setWaitingTime(double waitingTime) {
+		this.waitingTime = waitingTime;
 	}
 
-	public DriveTankWithPID(double setPoint,TankDrivetrain drivetrain) {
+	public double getWaitingTime() {
+		return waitingTime;
+	}
+
+	public void setTolarance(double tolarance) {
+		this.tolerance = tolarance;
+	}
+
+	public DriveTankWithPID(double setPoint, TankDrivetrain drivetrain) {
 		requires(drivetrain);
 		leftMovmentControl = new PIDController(KP, KI, KD, tankDrivetrain.getLeftPIDSource(), tankDrivetrain::setLeft);
 		leftMovmentControl.setAbsoluteTolerance(tolerance);
@@ -81,7 +92,17 @@ public class DriveTankWithPID extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return leftMovmentControl.onTarget() && rightMovmentControl.onTarget();
+		double currentTime = Timer.getFPGATimestamp();
+		if (!leftMovmentControl.onTarget()) {
+			lastFalseTimeLeft = currentTime;
+		}
+		if (!rightMovmentControl.onTarget()) {
+			lastFalseTimeRight = currentTime;
+		}
+		if (currentTime - lastFalseTimeLeft > waitingTime && currentTime - lastFalseTimeRight > waitingTime) {
+			return true;
+		}
+		return false;
 	}
 
 	// Called once after isFinished returns true
