@@ -22,13 +22,13 @@ public class CamerasHandler {
 	public CamerasHandler(int width, int height, int... ports) {
 		port = ports[0];
 		new Thread(() -> {
-			for (int i = 0; i < ports.length; i++) {
-				addCamera(ports[i]);
+			for (int i : ports) {
+				addCamera(i);
 			}
 			CvSource outputStream = CameraServer.getInstance().putVideo("CamerasHandler", width, height);
 			Mat frame = new Mat();
 			while (!Thread.interrupted()) {
-				((CvSink) cvSinks.get(port)).grabFrame(frame);
+				((CvSink) cvSinks.get(port)).grabFrame(frame); 
 				outputStream.putFrame(frame);
 			}
 		}).start();
