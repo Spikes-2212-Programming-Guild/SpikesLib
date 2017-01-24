@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class MoveLimitedSubsystemWithPID extends Command {
-	private LimitedSubsystem limitedSubsystem;
 	private static double KP = 1;
 	private static double KI = 1;
 	private static double KD = 1;
@@ -48,7 +47,7 @@ public class MoveLimitedSubsystemWithPID extends Command {
 		tolerance = tolarance;
 	}
 	
-	public MoveLimitedSubsystemWithPID(double setPoint) {
+	public MoveLimitedSubsystemWithPID(LimitedSubsystem limitedSubsystem, double setPoint) {
 		movmentControl = new PIDController(KP, KI, KD, limitedSubsystem.getPIDSource(), limitedSubsystem::tryMove);
 		movmentControl.setAbsoluteTolerance(tolerance);
 		movmentControl.setSetpoint(setPoint);
