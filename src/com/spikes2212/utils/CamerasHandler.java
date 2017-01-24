@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.CameraServer;
 
 public class CamerasHandler {
 	private int port;
-	private ArrayList<UsbCamera> cameras = new ArrayList<>();
 	private ArrayList<CvSink> cvSinks = new ArrayList<>();
 	private ArrayList<Integer> ports = new ArrayList<>();
 
@@ -42,8 +41,8 @@ public class CamerasHandler {
 	public void addCamera(int port) {
 		if (!isThePortInUse(port)) {
 			ports.add(port);
-			cameras.add(CameraServer.getInstance().startAutomaticCapture(port));
-			cvSinks.add(CameraServer.getInstance().getVideo(cameras.get(port)));
+			UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(port);
+			cvSinks.add(CameraServer.getInstance().getVideo(camera));
 		}
 	}
 
