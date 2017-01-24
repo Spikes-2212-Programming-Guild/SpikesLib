@@ -18,7 +18,7 @@ public class CamerasHandler {
 	private ArrayList<CvSink> cvSinks = new ArrayList<>();
 	private ArrayList<Integer> ports = new ArrayList<>();
 
-	public CamerasHandler(int[] ports, int width, int height) {
+	public CamerasHandler(int width, int height, int... ports) {
 		port = ports[0];
 		new Thread(() -> {
 			for (int i = 0; i < ports.length; i++) {
