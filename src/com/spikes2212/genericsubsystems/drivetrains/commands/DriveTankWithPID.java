@@ -67,8 +67,7 @@ public class DriveTankWithPID extends Command {
 		leftMovmentControl.setAbsoluteTolerance(tolerance);
 		leftMovmentControl.setSetpoint(setPoint);
 		leftMovmentControl.setOutputRange(-1, 1);
-		rightMovmentControl = new PIDController(KP, KI, KD, tankDrivetrain.getRightPIDSource(),
-				tankDrivetrain::setRight);
+		rightMovmentControl = new PIDController(KP, KI, KD, tankDrivetrain.getRightPIDSource(), tankDrivetrain::setRight);
 		rightMovmentControl.setAbsoluteTolerance(tolerance);
 		rightMovmentControl.setSetpoint(setPoint);
 		rightMovmentControl.setOutputRange(-1, 1);
