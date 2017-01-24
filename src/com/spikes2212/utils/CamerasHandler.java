@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 
 public class CamerasHandler {
 	private int port;
-	private Map cvSinks = new HashMap<Integer, CvSink>();
+	private Map<Integer, CvSink> cvSinks = new HashMap<>();
 
 	public CamerasHandler(int width, int height, int... ports) {
 		port = ports[0];
@@ -28,7 +28,7 @@ public class CamerasHandler {
 			CvSource outputStream = CameraServer.getInstance().putVideo("CamerasHandler", width, height);
 			Mat frame = new Mat();
 			while (!Thread.interrupted()) {
-				((CvSink) cvSinks.get(port)).grabFrame(frame); 
+				cvSinks.get(port).grabFrame(frame); 
 				outputStream.putFrame(frame);
 			}
 		}).start();
