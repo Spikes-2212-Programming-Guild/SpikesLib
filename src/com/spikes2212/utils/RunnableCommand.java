@@ -12,9 +12,14 @@ public class RunnableCommand extends Command {
 	private Thread t;
 
 	public RunnableCommand(Runnable runnable) {
-		this.runnable = runnable;
+		this(runnable, true);
 	}
-
+	
+	public RunnableCommand(Runnable runnable, boolean runInDisabled) {
+		this.runnable = runnable;
+		setRunWhenDisabled(runInDisabled);
+	}
+	
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		t = new Thread(runnable);
@@ -32,10 +37,12 @@ public class RunnableCommand extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+		t.interrupt();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		end();
 	}
 }

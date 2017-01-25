@@ -7,84 +7,117 @@ import java.util.function.Supplier;
 import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/**
+ * This class allows for {@link Supplier}s to be "written" to the {@link SmartDashboard},
+ * allowing for changing values to be easily written to the {@link SmartDashboard}.
+ *
+ * @author Noam "Mantin" Mantin
+ * @see SmartDashboard
+ * @see Supplier
+ */
 public class DashBoardController {
-	private Map<String, Supplier<String>> stringFields;
-	private Map<String, Supplier<Double>> doubleFields;
-	private Map<String, Supplier<Boolean>> booleanFields;
-	private Map<String, Supplier<Sendable>> sendableFields;
+    private Map<String, Supplier<String>> stringFields;
+    private Map<String, Supplier<Double>> doubleFields;
+    private Map<String, Supplier<Boolean>> booleanFields;
 
-	public DashBoardController() {
-		stringFields = new HashMap<String, Supplier<String>>();
-		doubleFields = new HashMap<String, Supplier<Double>>();
-		booleanFields = new HashMap<String, Supplier<Boolean>>();
-		sendableFields = new HashMap<String, Supplier<Sendable>>();
-	}
+    /**
+     * Constructs a new {@link DashBoardController}.
+     * <p>
+     * <p>
+     * More than one {@link DashBoardController} can exist at a time,
+     * however if a key name is used twice they'll override each other.
+     * </p>
+     */
+    public DashBoardController() {
+        stringFields = new HashMap<>();
+        doubleFields = new HashMap<>();
+        booleanFields = new HashMap<>();
+    }
 
-	public void removeString(String key) {
-		stringFields.remove(key);
-		updateString();
-	}
+    /**
+     * Add a String {@link Supplier} to this {@link DashBoardController}.
+     *
+     * @param name           The name values from stringSupplier are written under on the {@link SmartDashboard}.
+     *                       If another supplier in this object already uses this name, it is removed, leaving only stringSupplier using that name.
+     * @param stringSupplier The {@link Supplier} supplying the values that should be written to the {@link SmartDashboard}.
+     *                       Values are read from it every time {@link #update()} is run. Cannot be null.
+     */
+    public void addString(String name, Supplier<String> stringSupplier) {
+        remove(name);
+        stringFields.put(name, stringSupplier);
+    }
 
-	public void addString(String name, Supplier<String> value) {
-		stringFields.put(name, value);
-		stringFields.remove(stringFields, name);
-	}
+    /**
+     * Add a Double {@link Supplier} to this {@link DashBoardController}.
+     *
+     * @param name           The name values from stringSupplier are written under on the {@link SmartDashboard}.
+     *                       If another supplier in this object already uses this name, it is removed, leaving only doubleSupplier using that name.
+     * @param doubleSupplier The {@link Supplier} supplying the values that should be written to the {@link SmartDashboard}.
+     *                       Values are read from it every time {@link #update()} is run. Cannot be null.
+     */
+    public void addDouble(String name, Supplier<Double> doubleSupplier) {
+        remove(name);
+        doubleFields.put(name, doubleSupplier);
+    }
 
-	public void removeSendable(String key) {
-		sendableFields.remove(key);
-		updateSendables();
-	}
+    /**
+     * Add a Boolean {@link Supplier} to this {@link DashBoardController}.
+     *
+     * @param name            The name values from stringSupplier are written under on the {@link SmartDashboard}.
+     *                        If another supplier in this object already uses this name, it is removed, leaving only booleanSupplier using that name.
+     * @param booleanSupplier The {@link Supplier} supplying the values that should be written to the {@link SmartDashboard}.
+     *                        Values are read from it every time {@link #update()} is run. Cannot be null.
+     */
+    public void addBoolean(String name, Supplier<Boolean> booleanSupplier) {
+        remove(name);
+        booleanFields.put(name, booleanSupplier);
+    }
 
-	public void addSendable(String name, Supplier<Sendable> value) {
-		sendableFields.put(name, value);
-	}
+    /**
+     * Remove the supplier using the given name from this object.
+     *
+     * @param name The name that supplier is using, e.g. the name under which the values read
+     *             from that supplier are written on the {@link SmartDashboard}.
+     */
+    public void remove(String name) {
+        stringFields.remove(name);
+        doubleFields.remove(name);
+        booleanFields.remove(name);
+    }
 
-	public void removeDouble(String key) {
-		doubleFields.remove(key);
-		updateDoubles();
-	}
+    private void updateBooleans() {
+        for (Map.Entry<String, Supplier<Boolean>> entry : booleanFields.entrySet()) {
+            SmartDashboard.putBoolean(entry.getKey(), entry.getValue().get());
+        }
+    }
 
-	public void addDouble(String name, Supplier<Double> value) {
-		doubleFields.put(name, value);
-	}
+    private void updateDoubles() {
+        for (Map.Entry<String, Supplier<Double>> entry : doubleFields.entrySet()) {
+            SmartDashboard.putNumber(entry.getKey(), entry.getValue().get());
+        }
+    }
 
-	public void removeBoolean(String key) {
-		booleanFields.remove(key);
-		updateBooleans();
-	}
+    private void updateString() {
+        for (Map.Entry<String, Supplier<String>> entry : stringFields.entrySet()) {
+            SmartDashboard.putString(entry.getKey(), entry.getValue().get());
+        }
+    }
 
-	public void addBoolean(String name, Supplier<Boolean> value) {
-		booleanFields.put(name, value);
-	}
-
-	private void updateBooleans() {
-		for (Map.Entry<String, Supplier<Boolean>> entry : booleanFields.entrySet()) {
-			SmartDashboard.putBoolean(entry.getKey(), entry.getValue().get());
-		}
-	}
-
-	private void updateSendables() {
-		for (Map.Entry<String, Supplier<Sendable>> entry : sendableFields.entrySet()) {
-			SmartDashboard.putData(entry.getKey(), entry.getValue().get());
-		}
-	}
-
-	private void updateDoubles() {
-		for (Map.Entry<String, Supplier<Double>> entry : doubleFields.entrySet()) {
-			SmartDashboard.putNumber(entry.getKey(), entry.getValue().get());
-		}
-	}
-
-	private void updateString() {
-		for (Map.Entry<String, Supplier<String>> entry : stringFields.entrySet()) {
-			SmartDashboard.putString(entry.getKey(), entry.getValue().get());
-		}
-	}
-
-	public void update() {
-		updateBooleans();
-		updateDoubles();
-		updateString();
-		updateSendables();
-	}
+    /**
+     * Read from each supplier, and update the {@link SmartDashboard} according to the read values.
+     * <p>
+     * <p>
+     * This method evokes the {@link Supplier#get()} method for each supplier added to this object,
+     * and than writes that value to the {@link SmartDashboard} under the name given when that supplier was added.
+     * </p>
+     *
+     * @see #addBoolean(String, Supplier)
+     * @see #addDouble(String, Supplier)
+     * @see #addString(String, Supplier)
+     */
+    public void update() {
+        updateBooleans();
+        updateDoubles();
+        updateString();
+    }
 }

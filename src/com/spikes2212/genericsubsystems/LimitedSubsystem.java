@@ -5,17 +5,14 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public abstract class LimitedSubsystem extends Subsystem {
-	protected SpeedController motor;
-
-	public LimitedSubsystem(SpeedController motor) {
-		this.motor = motor;
-	}
 
 	public abstract boolean isMin();
 
 	public abstract boolean isMax();
 	
 	public abstract PIDSource getPIDSource();
+	
+	protected abstract void move(double speed);
 
 	public boolean canMove(double speed) {
 		return !(speed < 0 && isMin() || speed > 0 && isMax());
@@ -23,12 +20,12 @@ public abstract class LimitedSubsystem extends Subsystem {
 
 	public void tryMove(double speed) {
 		if (canMove(speed)) {
-			motor.set(speed);
+			move(speed);
 		}
 	}
 
 	public void stop() {
-		motor.set(0);
+		move(0);
 	}
 
 	@Override
