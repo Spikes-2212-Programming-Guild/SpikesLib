@@ -22,8 +22,8 @@ public class DriveTankWithPID extends Command {
 	private PIDController leftMovmentControl;
 	private PIDController rightMovmentControl;
 	private double lastTimeNotOnTarget;
-	private static final double WAIT_TIME=5;
-		
+	private static final double WAIT_TIME = 0.5;
+
 	public void setTolerance(double tolerance) {
 		this.tolerance = tolerance;
 	}
@@ -82,7 +82,7 @@ public class DriveTankWithPID extends Command {
 
 	public DriveTankWithPID(double setPoint, double KP, double KI, double KD, TankDrivetrain drivetrain,
 			double tolerance) {
-		this(drivetrain, setPoint, setPoint, KP, KI, KD,  tolerance);
+		this(drivetrain, setPoint, setPoint, KP, KI, KD, tolerance);
 	}
 
 	// requires(drivetrain);
@@ -111,10 +111,10 @@ public class DriveTankWithPID extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if(!leftMovmentControl.onTarget()&&!rightMovmentControl.onTarget()){
-			lastTimeNotOnTarget=((double)System.currentTimeMillis())/1000;
+		if (!leftMovmentControl.onTarget() || !rightMovmentControl.onTarget()) {
+			lastTimeNotOnTarget = Timer.getFPGATimestamp();
 		}
-		return ((double)System.currentTimeMillis())/1000-lastTimeNotOnTarget>=WAIT_TIME;
+		return Timer.getFPGATimestamp() - lastTimeNotOnTarget >= WAIT_TIME;
 	}
 
 	// Called once after isFinished returns true
