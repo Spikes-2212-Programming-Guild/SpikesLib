@@ -31,7 +31,7 @@ public abstract class TankDrivetrain extends Subsystem {
     public abstract void setRight(double speedRight);
 
     /**
-     * Configures and returns the {@link PIDSource} for the left side of this drivetrain.
+     * Configures and returns the default {@link PIDSource} for the left side of this drivetrain.
      *
      * @return the {@link PIDSource} for the left side.
      */
@@ -39,7 +39,7 @@ public abstract class TankDrivetrain extends Subsystem {
 
 
     /**
-     * Configures and returns the {@link PIDSource} for the right side of this drivetrain.
+     * Configures and returns the default {@link PIDSource} for the right side of this drivetrain.
      *
      * @return the {@link PIDSource} for the right side.
      */
