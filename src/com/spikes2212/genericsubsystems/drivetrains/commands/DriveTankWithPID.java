@@ -207,7 +207,7 @@ public class DriveTankWithPID extends Command {
 
     /**
      * This constructs a new {@link DriveTankWithPID} using {@link PIDSource}s given by {@link DriveTankWithPID},
-     * the setpoints for each side, the PID coefficients this command's PID loop should have, and the tolerance for error.
+     * the same setpoint for both sides, the PID coefficients this command's PID loop should have, and the tolerance for error.
      *
      * @param drivetrain the {@link edu.wpi.first.wpilibj.command.Subsystem} this command requires and moves.
      * @param setPoint   the target point of this command. <p>
