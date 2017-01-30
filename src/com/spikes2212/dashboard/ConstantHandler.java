@@ -1,7 +1,10 @@
 package com.spikes2212.dashboard;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -15,7 +18,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @see SmartDashboard
  */
 public class ConstantHandler {
-
+	
+	private static Map<String, Double> doubleMap = new HashMap<String, Double>();
+	private static Map<String, Integer> intMap = new HashMap<String, Integer>();
+	private static Map<String, String> stringMap = new HashMap<String, String>();;
+	
     /**
      * This function writes a constant to the {@link SmartDashboard}, allowing to user to change it without redeploying the code.
      *
@@ -28,11 +35,16 @@ public class ConstantHandler {
      * This will be either the value got in the function call, or the value given by the user on the {@link SmartDashboard}.
      * If it cannot communicate a value from the {@link SmartDashboard}, it will return a 0.
      */
+	
     public static Supplier<Double> addConstantDouble(String name, double value) {
-        SmartDashboard.putNumber(name, value);
-        return () -> SmartDashboard.getNumber(name, value);
+        if (!Preferences.getInstance().containsKey(name)) {
+        	Preferences.getInstance().putDouble(name, value);
+        	doubleMap.put(name, value);
+            return () -> Preferences.getInstance().getDouble(name, value);
+        }
+        return () -> Preferences.getInstance().getDouble(name, value);
     }
-
+    
     /**
      * This function writes a constant to the {@link SmartDashboard}, allowing to user to change it without redeploying the code.
      *
@@ -46,8 +58,12 @@ public class ConstantHandler {
      * If it cannot communicate a value from the {@link SmartDashboard}, it will return a 0.
      */
     public static Supplier<Integer> addConstantInt(String name, int value) {
-        SmartDashboard.putNumber(name, value);
-        return () -> (int) SmartDashboard.getNumber(name, value);
+    	if (!Preferences.getInstance().containsKey(name)) {
+    		Preferences.getInstance().putInt(name, value);
+    		intMap.put(name, value);
+            return () -> (int) Preferences.getInstance().getInt(name, value);
+    	}
+    	return () -> (int) Preferences.getInstance().getInt(name, value);
     }
 
     /**
@@ -63,8 +79,24 @@ public class ConstantHandler {
      * If it cannot communicate a value from the {@link SmartDashboard}, it will return an empty string.
      */
     public static Supplier<String> addConstantString(String name, String value) {
-        SmartDashboard.putString(name, value);
-        return () -> SmartDashboard.getString(name, value);
+    	if (!Preferences.getInstance().containsKey(name)) {
+    		Preferences.getInstance().getString(name, value);
+    		stringMap.put(name, value);
+            return () -> Preferences.getInstance().getString(name, value);
+    	}
+    	return () -> Preferences.getInstance().getString(name, value);
+    }
+    
+    public static void reset() {
+    	for (String key : doubleMap.keySet()) {
+    		Preferences.getInstance().putDouble(key, doubleMap.get(key));
+    	}
+    	for (String key : intMap.keySet()) {
+    		Preferences.getInstance().putInt(key, intMap.get(key));
+    	}
+    	for (String key : stringMap.keySet()) {
+    		Preferences.getInstance().putString(key, stringMap.get(key));
+    	}
     }
 
 }
