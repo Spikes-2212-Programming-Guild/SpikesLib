@@ -24,9 +24,6 @@ public class DriveTankWithPID extends Command {
 	private double lastTimeNotOnTarget;
 	private double waitTime = 0.5;
 
-	public void setTolerance(double tolerance) {
-		this.tolerance = tolerance;
-	}
 
 	public void setP(double P) {
 		KP = P;
@@ -52,11 +49,11 @@ public class DriveTankWithPID extends Command {
 		return KD;
 	}
 
-	public double getTolarance() {
+	public double getTolerance() {
 		return tolerance;
 	}
 
-	public void setTolarance(double tolarance) {
+	public void setTolerance(double tolarance) {
 		this.tolerance = tolarance;
 	}
 
