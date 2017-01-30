@@ -164,6 +164,7 @@ public class MoveLimitedSubsystemWithPID extends Command {
      * @param KI               the Integral coefficient of the PID loop of this command.
      * @param KD               the Differential coefficient of the PID loop of this command.
      * @param tolerance        the tolerance for error of this command. See {@link #setTolerance(double)}.
+     * @see PIDController
      */
     public MoveLimitedSubsystemWithPID(LimitedSubsystem limitedSubsystem, PIDSource source, double setpoint, double KP,
                                        double KI, double KD, double tolerance) {
@@ -190,6 +191,7 @@ public class MoveLimitedSubsystemWithPID extends Command {
      * @param KI               the Integral coefficient of the PID loop of this command.
      * @param KD               the Differential coefficient of the PID loop of this command.
      * @param tolerance        the tolerance for error of this command. See {@link #setTolerance(double)}.
+     * @see PIDController
      */
     public MoveLimitedSubsystemWithPID(LimitedSubsystem limitedSubsystem, double setpoint, double KP, double KI,
                                        double KD, double tolerance) {
