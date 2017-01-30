@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import edu.wpi.first.wpilibj.Preferences;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class enables writing constants to the {@link SmartDashboard}, allowing them to be changed.
@@ -24,16 +23,16 @@ public class ConstantHandler {
 	private static Map<String, String> stringMap = new HashMap<String, String>();;
 	
     /**
-     * This function writes a constant to the {@link SmartDashboard}, allowing to user to change it without redeploying the code.
+     * This function writes a constant to the {@link Preferences}, allowing to user to change it without redeploying the code.
      *
-     *  @param name  The name to give the constant on the {@link SmartDashboard}.
-     *              Names must be unique as they cannot be shared by two or more fields on the {@link SmartDashboard}.
+     *  @param name  The name to give the constant on the {@link Preferences}.
+     *              Names must be unique as they cannot be shared by two or more fields on the {@link Preferences}.
      *              For example, if you gave a constant the name "distance", but also gave the distance as calculated by the robot the name "distance",
      *              those two would override each other.
-     * @param value The default value the constant starts with. The constant will always have this value, unless it is manually changed on the {@link SmartDashboard}.
+     * @param value The default value the constant starts with. The constant will always have this value, unless it is manually changed on the {@link Preferences}.
      * @return a {@link Supplier} which supplies the current value of the constant.
-     * This will be either the value got in the function call, or the value given by the user on the {@link SmartDashboard}.
-     * If it cannot communicate a value from the {@link SmartDashboard}, it will return a 0.
+     * This will be either the value got in the function call, or the value given by the user on the {@link Preferences}.
+     * If it cannot communicate a value from the {@link Preferences}, it will return a 0.
      */
 	
     public static Supplier<Double> addConstantDouble(String name, double value) {
@@ -46,16 +45,16 @@ public class ConstantHandler {
     }
     
     /**
-     * This function writes a constant to the {@link SmartDashboard}, allowing to user to change it without redeploying the code.
+     * This function writes a constant to the {@link Preferences}, allowing to user to change it without redeploying the code.
      *
-     *  @param name  The name to give the constant on the {@link SmartDashboard}.
-     *              Names must be unique as they cannot be shared by two or more fields on the {@link SmartDashboard}.
+     *  @param name  The name to give the constant on the {@link Preferences}.
+     *              Names must be unique as they cannot be shared by two or more fields on the {@link Preferences}.
      *              For example, if you gave a constant the name "distance", but also gave the distance as calculated by the robot the name "distance",
      *              those two would override each other.
-     * @param value The default value the constant starts with. The constant will always have this value, unless it is manually changed on the {@link SmartDashboard}.
+     * @param value The default value the constant starts with. The constant will always have this value, unless it is manually changed on the {@link Preferences}.
      * @return a {@link Supplier} which supplies the current value of the constant.
-     * This will be either the value got in the function call, or the value given by the user on the {@link SmartDashboard}.
-     * If it cannot communicate a value from the {@link SmartDashboard}, it will return a 0.
+     * This will be either the value got in the function call, or the value given by the user on the {@link Preferences}.
+     * If it cannot communicate a value from the {@link Preferences}, it will return a 0.
      */
     public static Supplier<Integer> addConstantInt(String name, int value) {
     	if (!Preferences.getInstance().containsKey(name)) {
@@ -67,16 +66,16 @@ public class ConstantHandler {
     }
 
     /**
-     * This function writes a constant to the {@link SmartDashboard}, allowing to user to change it without redeploying the code.
+     * This function writes a constant to the {@link Preferences}, allowing to user to change it without redeploying the code.
      *
-     *  @param name  The name to give the constant on the {@link SmartDashboard}.
-     *              Names must be unique as they cannot be shared by two or more fields on the {@link SmartDashboard}.
+     *  @param name  The name to give the constant on the {@link Preferences}.
+     *              Names must be unique as they cannot be shared by two or more fields on the {@link Preferences}.
      *              For example, if you gave a constant the name "distance", but also gave the distance as calculated by the robot the name "distance",
      *              those two would override each other.
-     * @param value The default value the constant starts with. The constant will always have this value, unless it is manually changed on the {@link SmartDashboard}.
+     * @param value The default value the constant starts with. The constant will always have this value, unless it is manually changed on the {@link Preferences}.
      * @return a {@link Supplier} which supplies the current value of the constant.
-     * This will be either the value got in the function call, or the value given by the user on the {@link SmartDashboard}.
-     * If it cannot communicate a value from the {@link SmartDashboard}, it will return an empty string.
+     * This will be either the value got in the function call, or the value given by the user on the {@link Preferences}.
+     * If it cannot communicate a value from the {@link Preferences}, it will return an empty string.
      */
     public static Supplier<String> addConstantString(String name, String value) {
     	if (!Preferences.getInstance().containsKey(name)) {
@@ -87,6 +86,9 @@ public class ConstantHandler {
     	return () -> Preferences.getInstance().getString(name, value);
     }
     
+    /**
+     * This function updates the Preferences' values with the ones on local Maps.
+     */
     public static void reset() {
     	for (String key : doubleMap.keySet()) {
     		Preferences.getInstance().putDouble(key, doubleMap.get(key));
