@@ -25,7 +25,7 @@ public class MonitoredMoveLimitedSubsystem extends MoveLimitedSubsystem {
      * {@inheritDoc}
      *
      * @param limitedSubsystem {@inheritDoc}
-     * @param speedSupplier    {@inheritDoc} Values from this supplier are scaled using {@link VoltageMonitor#monitorSupplier(Supplier)}
+     * @param speedSupplier    {@inheritDoc} Values from this supplier are scaled using {@link VoltageMonitor#monitorSupplier(Supplier)}.
      */
     public MonitoredMoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, Supplier<Double> speedSupplier) {
         super(limitedSubsystem, VoltageMonitor.monitorSupplier(speedSupplier));
@@ -35,7 +35,7 @@ public class MonitoredMoveLimitedSubsystem extends MoveLimitedSubsystem {
      * {@inheritDoc}
      *
      * @param limitedSubsystem {@inheritDoc}
-     * @param speed            {@inheritDoc} This speed is dynamically scaled down according to {@link VoltageMonitor#monitorSupplier(Supplier)}
+     * @param speed            {@inheritDoc} This speed is dynamically scaled down according to {@link VoltageMonitor#monitorSupplier(Supplier)}.
      */
     public MonitoredMoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, double speed) {
         super(limitedSubsystem, VoltageMonitor.monitorSupplier(() -> speed));
