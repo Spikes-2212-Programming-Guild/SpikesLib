@@ -156,7 +156,7 @@ public class MoveLimitedSubsystemWithPID extends Command {
      *
      * @param limitedSubsystem the {@link edu.wpi.first.wpilibj.command.Subsystem} this command requires and moves.
      * @param source           the {@link PIDSource} this command uses to get feedback for the PID Loop.
-     * @param setpoint         the target of this command. <p>
+     * @param setpoint         the target point of this command. <p>
      *                         This command will try to move limitedSubsystem until it reaches the setpoint.
      *                         setpoint should be using the same units as source.
      *                         </p>
@@ -182,7 +182,7 @@ public class MoveLimitedSubsystemWithPID extends Command {
      * a setpoint, the PID coefficients this command's PID loop should have, and the tolerance for error.
      *
      * @param limitedSubsystem the {@link edu.wpi.first.wpilibj.command.Subsystem} this command requires and moves.
-     * @param setpoint         the target of this command. <p>
+     * @param setpoint         the target point of this command. <p>
      *                         This command will try to move limitedSubsystem until it reaches the setpoint.
      *                         setpoint should be using the same units as source.
      *                         </p>
