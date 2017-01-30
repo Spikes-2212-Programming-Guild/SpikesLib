@@ -30,7 +30,7 @@ public class ConstantHandler {
      */
     public static Supplier<Double> addConstantDouble(String name, double value) {
         SmartDashboard.putNumber(name, value);
-        return () -> SmartDashboard.getNumber(name, 0);
+        return () -> SmartDashboard.getNumber(name, value);
     }
 
     /**
@@ -47,7 +47,7 @@ public class ConstantHandler {
      */
     public static Supplier<Integer> addConstantInt(String name, int value) {
         SmartDashboard.putNumber(name, value);
-        return () -> (int) SmartDashboard.getNumber(name, 0);
+        return () -> (int) SmartDashboard.getNumber(name, value);
     }
 
     /**
@@ -64,7 +64,7 @@ public class ConstantHandler {
      */
     public static Supplier<String> addConstantString(String name, String value) {
         SmartDashboard.putString(name, value);
-        return () -> SmartDashboard.getString(name, "");
+        return () -> SmartDashboard.getString(name, value);
     }
 
 }

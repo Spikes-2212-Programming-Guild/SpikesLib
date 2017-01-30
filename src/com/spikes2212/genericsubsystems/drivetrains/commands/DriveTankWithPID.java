@@ -3,64 +3,94 @@ package com.spikes2212.genericsubsystems.drivetrains.commands;
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.command.PIDCommand;
 
 public class DriveTankWithPID extends Command {
-	// TODO Auto-generated constructor stub
-		
 
 	private TankDrivetrain tankDrivetrain;
-	private static double KP = 1;
-	private static double KI = 1;
-	private static double KD = 1;
-	private static double tolerance = 1;
+	private double KP;
+	private double KI;
+	private double KD;
+	private double tolerance;
+	private double leftSetpoint;
+	private double rightSetpoint;
+	private PIDSource leftSource;
+	private PIDSource rightSource;
 	private PIDController leftMovmentControl;
 	private PIDController rightMovmentControl;
+	private double lastTimeNotOnTarget;
+	private double waitTime = 0.5;
 
-	public static void setP(double P) {
-		KP=P;
+	public void setTolerance(double tolerance) {
+		this.tolerance = tolerance;
 	}
 
-	public static double getP() {
+	public void setP(double P) {
+		KP = P;
+	}
+
+	public double getP() {
 		return KP;
 	}
 
-	public static void setI(double I) {
+	public void setI(double I) {
 		KI = I;
 	}
 
-	public static double getI() {
+	public double getI() {
 		return KI;
 	}
 
-	public static void setD(double D) {
+	public void setD(double D) {
 		KD = D;
 	}
 
-	public static double getD() {
+	public double getD() {
 		return KD;
 	}
 
-	public static double getTolarance() {
+	public double getTolarance() {
 		return tolerance;
 	}
 
-	public static void setTolarance(double tolarance) {
-		DriveTankWithPID.tolerance = tolarance;
+	public void setTolarance(double tolarance) {
+		this.tolerance = tolarance;
 	}
 
-	public DriveTankWithPID(double setPoint,TankDrivetrain drivetrain) {
-		requires(drivetrain);
-		leftMovmentControl = new PIDController(KP, KI, KD, tankDrivetrain.getLeftPIDSource(), tankDrivetrain::setLeft);
-		leftMovmentControl.setAbsoluteTolerance(tolerance);
-		leftMovmentControl.setSetpoint(setPoint);
-		leftMovmentControl.setOutputRange(-1, 1);
-		rightMovmentControl = new PIDController(KP, KI, KD, tankDrivetrain.getRightPIDSource(), tankDrivetrain::setRight);
-		rightMovmentControl.setAbsoluteTolerance(tolerance);
-		rightMovmentControl.setSetpoint(setPoint);
-		rightMovmentControl.setOutputRange(-1, 1);
+	public double getWaitTime() {
+		return waitTime;
+	}
 
+	public void setWaitTime(double wait_time) {
+		this.waitTime = wait_time;
+	}
+
+	public DriveTankWithPID(TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource, double leftSetpoint,
+			double rightSetpoint, double KP, double KI, double KD, double tolerance) {
+		requires(drivetrain);
+		this.tankDrivetrain = drivetrain;
+		this.leftSource = leftSource;
+		this.rightSource = rightSource;
+		this.leftSetpoint = leftSetpoint;
+		this.rightSetpoint = rightSetpoint;
+		this.KD = KD;
+		this.KI = KI;
+		this.KP = KP;
+		this.tolerance = tolerance;
+	}
+
+	public DriveTankWithPID(TankDrivetrain drivetrain, double leftSetPoint, double rightSetPoint, double KP, double KI,
+			double KD, double tolerance) {
+		this(drivetrain, drivetrain.getLeftPIDSource(), drivetrain.getRightPIDSource(), leftSetPoint, rightSetPoint, KP,
+				KI, KD, tolerance);
+	}
+
+	public DriveTankWithPID(double setPoint, double KP, double KI, double KD, TankDrivetrain drivetrain,
+			double tolerance) {
+		this(drivetrain, setPoint, setPoint, KP, KI, KD, tolerance);
 	}
 
 	// requires(drivetrain);
@@ -70,6 +100,14 @@ public class DriveTankWithPID extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		leftMovmentControl = new PIDController(KP, KI, KD, leftSource, tankDrivetrain::setLeft);
+		leftMovmentControl.setAbsoluteTolerance(tolerance);
+		leftMovmentControl.setSetpoint(this.leftSetpoint);
+		leftMovmentControl.setOutputRange(-1, 1);
+		rightMovmentControl = new PIDController(KP, KI, KD, rightSource, tankDrivetrain::setRight);
+		rightMovmentControl.setAbsoluteTolerance(tolerance);
+		rightMovmentControl.setSetpoint(this.rightSetpoint);
+		rightMovmentControl.setOutputRange(-1, 1);
 		leftMovmentControl.enable();
 		rightMovmentControl.enable();
 	}
@@ -81,7 +119,10 @@ public class DriveTankWithPID extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return leftMovmentControl.onTarget() && rightMovmentControl.onTarget();
+		if (!leftMovmentControl.onTarget() || !rightMovmentControl.onTarget()) {
+			lastTimeNotOnTarget = Timer.getFPGATimestamp();
+		}
+		return Timer.getFPGATimestamp() - lastTimeNotOnTarget >= waitTime;
 	}
 
 	// Called once after isFinished returns true
