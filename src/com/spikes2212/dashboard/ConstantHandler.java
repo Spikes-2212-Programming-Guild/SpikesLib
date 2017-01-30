@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * This class enables writing constants to the {@link SmartDashboard}, allowing the to be changed.
+ * This class enables writing constants to the {@link SmartDashboard}, allowing them to be changed.
  * <p>
- * This class is meant to be used instead of writing final and static constant into the code;
- * those are problematic because they require you to re-deploy every time you want to change a constant.
+ * This class is meant to be used instead of writing final and static constants into the code;
+ * which are problematic because they require you to re-deploy every time you want to change a constant.
  * </p>
  *
  * @author Omri "Riki" Cohen
@@ -38,10 +38,10 @@ public class ConstantHandler {
 	
     public static Supplier<Double> addConstantDouble(String name, double value) {
         if (!Preferences.getInstance().containsKey(name)) {
+        	//FIXME putDouble might throw an exception when there is already a value under the name 'name'.
         	Preferences.getInstance().putDouble(name, value);
-        	doubleMap.put(name, value);
-            return () -> Preferences.getInstance().getDouble(name, value);
         }
+        doubleMap.put(name, value);
         return () -> Preferences.getInstance().getDouble(name, value);
     }
     
@@ -59,10 +59,10 @@ public class ConstantHandler {
      */
     public static Supplier<Integer> addConstantInt(String name, int value) {
     	if (!Preferences.getInstance().containsKey(name)) {
+    		//FIXME putInt might throw an exception when there is already a value under the name 'name'.
     		Preferences.getInstance().putInt(name, value);
-    		intMap.put(name, value);
-            return () -> (int) Preferences.getInstance().getInt(name, value);
     	}
+    	intMap.put(name, value);
     	return () -> (int) Preferences.getInstance().getInt(name, value);
     }
 
@@ -80,10 +80,10 @@ public class ConstantHandler {
      */
     public static Supplier<String> addConstantString(String name, String value) {
     	if (!Preferences.getInstance().containsKey(name)) {
-    		Preferences.getInstance().getString(name, value);
-    		stringMap.put(name, value);
-            return () -> Preferences.getInstance().getString(name, value);
+    		//FIXME putString might throw an exception when there is already a value under the name 'name'.
+    		Preferences.getInstance().putString(name, value);
     	}
+    	stringMap.put(name, value);
     	return () -> Preferences.getInstance().getString(name, value);
     }
     
