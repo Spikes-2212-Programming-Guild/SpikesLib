@@ -32,7 +32,7 @@ public class ConstantHandler {
      * @param value The default value the constant starts with. The constant will always have this value, unless it is manually changed on the {@link Preferences}.
      * @return a {@link Supplier} which supplies the current value of the constant.
      * This will be either the value got in the function call, or the value given by the user on the {@link Preferences}.
-     * If it cannot communicate a value from the {@link Preferences}, it will return a 0.
+     * If it cannot communicate a value from the {@link Preferences}, it will return value.
      */
 	
     public static Supplier<Double> addConstantDouble(String name, double value) {
@@ -54,7 +54,7 @@ public class ConstantHandler {
      * @param value The default value the constant starts with. The constant will always have this value, unless it is manually changed on the {@link Preferences}.
      * @return a {@link Supplier} which supplies the current value of the constant.
      * This will be either the value got in the function call, or the value given by the user on the {@link Preferences}.
-     * If it cannot communicate a value from the {@link Preferences}, it will return a 0.
+     * If it cannot communicate a value from the {@link Preferences}, it will return value.
      */
     public static Supplier<Integer> addConstantInt(String name, int value) {
     	if (!Preferences.getInstance().containsKey(name)) {
@@ -75,7 +75,7 @@ public class ConstantHandler {
      * @param value The default value the constant starts with. The constant will always have this value, unless it is manually changed on the {@link Preferences}.
      * @return a {@link Supplier} which supplies the current value of the constant.
      * This will be either the value got in the function call, or the value given by the user on the {@link Preferences}.
-     * If it cannot communicate a value from the {@link Preferences}, it will return an empty string.
+     * If it cannot communicate a value from the {@link Preferences}, it will return value.
      */
     public static Supplier<String> addConstantString(String name, String value) {
     	if (!Preferences.getInstance().containsKey(name)) {
