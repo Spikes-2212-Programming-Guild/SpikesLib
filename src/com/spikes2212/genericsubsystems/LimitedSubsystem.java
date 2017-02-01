@@ -30,7 +30,7 @@ public abstract class LimitedSubsystem extends Subsystem {
     /**
      * Configures and returns the default {@link PIDSource} for this subsystem.
      *
-     * @return the {@link PIDSource} for the left side.
+     * @return the default {@link PIDSource} for this subsystem. This can be null if the subsystem supplies no default PID source.
      */
     public abstract PIDSource getPIDSource();
 

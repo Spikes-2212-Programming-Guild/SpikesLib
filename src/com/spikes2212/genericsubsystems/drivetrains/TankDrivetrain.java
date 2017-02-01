@@ -33,7 +33,7 @@ public abstract class TankDrivetrain extends Subsystem {
     /**
      * Configures and returns the default {@link PIDSource} for the left side of this drivetrain.
      *
-     * @return the {@link PIDSource} for the left side.
+     * @return the default {@link PIDSource} for the left side. This can be null if the subsystem supplies no default PID source.
      */
     public abstract PIDSource getLeftPIDSource();
 
@@ -41,7 +41,7 @@ public abstract class TankDrivetrain extends Subsystem {
     /**
      * Configures and returns the default {@link PIDSource} for the right side of this drivetrain.
      *
-     * @return the {@link PIDSource} for the right side.
+     * @return the default {@link PIDSource} for right side. This can be null if the subsystem supplies no default PID source.
      */
     public abstract PIDSource getRightPIDSource();
 
