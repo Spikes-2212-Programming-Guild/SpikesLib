@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * It also waits a specified amount of time after the error is within the given tolerance
  * before stopping the PID Loop to make sure the subsystem doesn't go past and remain beyond the setpoint.
  *
- * @author Tomer "Siton" Siton
+ * @author Omri "Riki" Cohen
  * @see LimitedSubsystem
  * @see PIDController
  * @see #setWaitTime(double)
