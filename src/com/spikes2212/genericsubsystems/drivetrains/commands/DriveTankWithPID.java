@@ -261,6 +261,7 @@ public class DriveTankWithPID extends Command {
     protected void end() {
         leftMovmentControl.disable();
         rightMovmentControl.disable();
+        tankDrivetrain.stop();
     }
 
     // Called when another command which requires one or more of the same
