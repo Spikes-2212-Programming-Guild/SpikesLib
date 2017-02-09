@@ -44,5 +44,15 @@ public abstract class TankDrivetrain extends Subsystem {
      * @return the default {@link PIDSource} for right side. This can be null if the subsystem supplies no default PID source.
      */
     public abstract PIDSource getRightPIDSource();
-
+    
+    
+    /**
+     * stops the drivetrain
+     */
+    public void stop(){
+    	setRight(0);
+    	setLeft(0);
+    }
+    
+     
 }
