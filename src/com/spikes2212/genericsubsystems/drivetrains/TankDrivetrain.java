@@ -47,7 +47,12 @@ public abstract class TankDrivetrain extends Subsystem {
     
     
     /**
-     * stops the drivetrain
+     * stops this drivetrain
+     * 
+     * <p> 
+     * it set the speed for both sides to 0.
+     * if your drivetrain doesn't stop this way Override this
+     * </p>
      */
     public void stop(){
     	setRight(0);
