@@ -1,5 +1,7 @@
 package com.spikes2212.genericsubsystems.commands;
 
+import java.util.function.Supplier;
+
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
 import edu.wpi.first.wpilibj.PIDController;
@@ -24,7 +26,7 @@ public class MoveLimitedSubsystemWithPID extends Command {
     private double KI;
     private double KD;
     private double tolerance;
-    private double setpoint;
+    private Supplier<Double> setpoint;
     private PIDSource source;
     private PIDController movmentControl;
     private double lastTimeNotOnTarget;
@@ -166,7 +168,7 @@ public class MoveLimitedSubsystemWithPID extends Command {
      * @param tolerance        the tolerance for error of this command. See {@link #setTolerance(double)}.
      * @see PIDController
      */
-    public MoveLimitedSubsystemWithPID(LimitedSubsystem limitedSubsystem, PIDSource source, double setpoint, double KP,
+    public MoveLimitedSubsystemWithPID(LimitedSubsystem limitedSubsystem, PIDSource source, Supplier<Double> setpoint, double KP,
                                        double KI, double KD, double tolerance) {
         requires(limitedSubsystem);
         this.limitedSubsystem = limitedSubsystem;
@@ -176,6 +178,10 @@ public class MoveLimitedSubsystemWithPID extends Command {
         this.KI = KI;
         this.KP = KP;
         this.tolerance = tolerance;
+    }
+    public MoveLimitedSubsystemWithPID(LimitedSubsystem limitedSubsystem, PIDSource source, double setpoint, double KP,
+            double KI, double KD, double tolerance) {
+    	this(limitedSubsystem, source, () -> setpoint, KP, KI, KD, tolerance);
     }
 
     /**
@@ -197,6 +203,11 @@ public class MoveLimitedSubsystemWithPID extends Command {
                                        double KD, double tolerance) {
         this(limitedSubsystem, limitedSubsystem.getPIDSource(), setpoint, KP, KI, KD, tolerance);
     }
+    
+    public MoveLimitedSubsystemWithPID(LimitedSubsystem limitedSubsystem, Supplier<Double> setpoint, double KP, double KI,
+            double KD, double tolerance) {
+    	this(limitedSubsystem, limitedSubsystem.getPIDSource(), setpoint, KP, KI, KD, tolerance);
+    }
 
     @Deprecated
     public MoveLimitedSubsystemWithPID(double setPoint, double KP, double KI, double KD, LimitedSubsystem drivetrain,
@@ -213,14 +224,14 @@ public class MoveLimitedSubsystemWithPID extends Command {
     protected void initialize() {
         movmentControl = new PIDController(KP, KI, KD, source, limitedSubsystem::tryMove);
         movmentControl.setAbsoluteTolerance(tolerance);
-        movmentControl.setSetpoint(this.setpoint);
+        movmentControl.setSetpoint(this.setpoint.get());
         movmentControl.setOutputRange(-1, 1);
         movmentControl.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-
+    	movmentControl.setSetpoint(setpoint.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()
