@@ -1,5 +1,7 @@
 package com.spikes2212.genericsubsystems.commands;
 
+import java.util.function.Supplier;
+
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
 import edu.wpi.first.wpilibj.PIDController;
@@ -24,7 +26,7 @@ public class MoveLimitedSubsystemWithPID extends Command {
     private double KI;
     private double KD;
     private double tolerance;
-    private double setpoint;
+    private Supplier<Double> setpoint;
     private PIDSource source;
     private PIDController movmentControl;
     private double lastTimeNotOnTarget;
@@ -156,6 +158,34 @@ public class MoveLimitedSubsystemWithPID extends Command {
      *
      * @param limitedSubsystem the {@link edu.wpi.first.wpilibj.command.Subsystem} this command requires and moves.
      * @param source           the {@link PIDSource} this command uses to get feedback for the PID Loop.
+     * @param setpoint         a supplier supplying the target point of this command. <p>
+     *                         This command will try to move limitedSubsystem until it reaches the latest value supplied by setpoint.
+     *                         setpoint should supply values using the same units as source.
+     *                         </p>
+     * @param KP               the Proportional coefficient of the PID loop of this command.
+     * @param KI               the Integral coefficient of the PID loop of this command.
+     * @param KD               the Differential coefficient of the PID loop of this command.
+     * @param tolerance        the tolerance for error of this command. See {@link #setTolerance(double)}.
+     * @see PIDController
+     */
+    public MoveLimitedSubsystemWithPID(LimitedSubsystem limitedSubsystem, PIDSource source, Supplier<Double> setpoint, double KP,
+                                       double KI, double KD, double tolerance) {
+        requires(limitedSubsystem);
+        this.limitedSubsystem = limitedSubsystem;
+        this.source = source;
+        this.setpoint = setpoint;
+        this.KD = KD;
+        this.KI = KI;
+        this.KP = KP;
+        this.tolerance = tolerance;
+    }
+
+    /**
+     * This constructs a new {@link MoveLimitedSubsystemWithPID} using a {@link PIDSource} given by {@link LimitedSubsystem#getPIDSource()},
+     * a setpoint, the PID coefficients this command's PID loop should have, and the tolerance for error.
+     *
+     * @param limitedSubsystem the {@link edu.wpi.first.wpilibj.command.Subsystem} this command requires and moves.
+     * @param source           the {@link PIDSource} this command uses to get feedback for the PID Loop.
      * @param setpoint         the target point of this command. <p>
      *                         This command will try to move limitedSubsystem until it reaches the setpoint.
      *                         setpoint should be using the same units as source.
@@ -168,14 +198,7 @@ public class MoveLimitedSubsystemWithPID extends Command {
      */
     public MoveLimitedSubsystemWithPID(LimitedSubsystem limitedSubsystem, PIDSource source, double setpoint, double KP,
                                        double KI, double KD, double tolerance) {
-        requires(limitedSubsystem);
-        this.limitedSubsystem = limitedSubsystem;
-        this.source = source;
-        this.setpoint = setpoint;
-        this.KD = KD;
-        this.KI = KI;
-        this.KP = KP;
-        this.tolerance = tolerance;
+        this(limitedSubsystem, source, () -> setpoint, KP, KI, KD, tolerance);
     }
 
     /**
@@ -198,6 +221,26 @@ public class MoveLimitedSubsystemWithPID extends Command {
         this(limitedSubsystem, limitedSubsystem.getPIDSource(), setpoint, KP, KI, KD, tolerance);
     }
 
+    /**
+     * This constructs a new {@link MoveLimitedSubsystemWithPID} using a {@link PIDSource} given by {@link LimitedSubsystem#getPIDSource()},
+     * a setpoint, the PID coefficients this command's PID loop should have, and the tolerance for error.
+     *
+     * @param limitedSubsystem the {@link edu.wpi.first.wpilibj.command.Subsystem} this command requires and moves.
+     * @param setpoint         a supplier supplying the target point of this command. <p>
+     *                         This command will try to move limitedSubsystem until it reaches the latest value supplied by setpoint.
+     *                         setpoint should supply values using the same units as source.
+     *                         </p>
+     * @param KP               the Proportional coefficient of the PID loop of this command.
+     * @param KI               the Integral coefficient of the PID loop of this command.
+     * @param KD               the Differential coefficient of the PID loop of this command.
+     * @param tolerance        the tolerance for error of this command. See {@link #setTolerance(double)}.
+     * @see PIDController
+     */
+    public MoveLimitedSubsystemWithPID(LimitedSubsystem limitedSubsystem, Supplier<Double> setpoint, double KP, double KI,
+                                       double KD, double tolerance) {
+        this(limitedSubsystem, limitedSubsystem.getPIDSource(), setpoint, KP, KI, KD, tolerance);
+    }
+
     @Deprecated
     public MoveLimitedSubsystemWithPID(double setPoint, double KP, double KI, double KD, LimitedSubsystem drivetrain,
                                        double tolerance) {
@@ -213,14 +256,16 @@ public class MoveLimitedSubsystemWithPID extends Command {
     protected void initialize() {
         movmentControl = new PIDController(KP, KI, KD, source, limitedSubsystem::tryMove);
         movmentControl.setAbsoluteTolerance(tolerance);
-        movmentControl.setSetpoint(this.setpoint);
+        movmentControl.setSetpoint(this.setpoint.get());
         movmentControl.setOutputRange(-1, 1);
         movmentControl.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-
+        double newSetPoint = setpoint.get();
+        if (movmentControl.getSetpoint() != newSetPoint)
+            movmentControl.setSetpoint(newSetPoint);
     }
 
     // Make this return true when this Command no longer needs to run execute()
