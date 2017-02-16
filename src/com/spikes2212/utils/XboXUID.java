@@ -22,6 +22,7 @@ public class XboXUID extends Joystick {
 	public Button getBlueButton() {
 		return new JoystickButton(this, 1);
 	}
+	
 
 	public Button getRedButton() {
 		return new JoystickButton(this, 3);
@@ -62,19 +63,40 @@ public class XboXUID extends Joystick {
 	public double getLeftY() {
 		return getY(); // Don't change this, for some reason it works
 	}
+
 	public Button getUpButton() {
-		return new JoystickButton(this, 14);
+		return new Button() {
+			@Override
+			public boolean get() {
+				return getPOV() == 0;
+			}
+		};
 	}
-	
+
 	public Button getDownButton() {
-		return new JoystickButton(this,15 );
+		return new Button() {
+			@Override
+			public boolean get() {
+				return getPOV() == 180;
+			}
+		};
 	}
-	
+
 	public Button getLeftButton() {
-		return new JoystickButton(this, 16);
+		return new Button() {
+			@Override
+			public boolean get() {
+				return getPOV() == 270;
+			}
+		};
 	}
-	
+
 	public Button getRightButton() {
-		return new JoystickButton(this,17 );
+		return new Button() {
+			@Override
+			public boolean get() {
+				return getPOV() == 90;
+			}
+		};
 	}
 }
