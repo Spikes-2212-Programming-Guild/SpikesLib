@@ -259,8 +259,12 @@ public class DriveTankWithPID extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	leftMovmentControl.setSetpoint(leftSetpoint.get());
-    	rightMovmentControl.setSetpoint(rightSetpoint.get());
+    	double newSetPointLeft = leftSetpoint.get();
+    	double newSetPointRight = rightSetpoint.get();
+    	if(newSetPointLeft != leftMovmentControl.getSetpoint())
+    		leftMovmentControl.setSetpoint(newSetPointLeft);
+    	if(newSetPointRight != rightMovmentControl.getSetpoint())
+    		rightMovmentControl.setSetpoint(newSetPointRight);
     }
 
     // Make this return true when this Command no longer needs to run execute()
