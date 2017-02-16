@@ -232,7 +232,7 @@ public class MoveLimitedSubsystemWithPID extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double newSetPoint = setpoint.get();
-    	if(movmentControl.getSetpoint() == newSetPoint)
+    	if(movmentControl.getSetpoint() != newSetPoint)
     		movmentControl.setSetpoint(newSetPoint);
     }
 
