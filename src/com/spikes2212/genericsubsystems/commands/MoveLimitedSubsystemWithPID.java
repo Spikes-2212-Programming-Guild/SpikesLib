@@ -158,9 +158,9 @@ public class MoveLimitedSubsystemWithPID extends Command {
      *
      * @param limitedSubsystem the {@link edu.wpi.first.wpilibj.command.Subsystem} this command requires and moves.
      * @param source           the {@link PIDSource} this command uses to get feedback for the PID Loop.
-     * @param setpoint         the target point of this command. <p>
-     *                         This command will try to move limitedSubsystem until it reaches the setpoint.
-     *                         setpoint should be using the same units as source.
+     * @param setpoint         a supplier supplying the target point of this command. <p>
+     *                         This command will try to move limitedSubsystem until it reaches the latest value supplied by setpoint.
+     *                         setpoint should supply values using the same units as source.
      *                         </p>
      * @param KP               the Proportional coefficient of the PID loop of this command.
      * @param KI               the Integral coefficient of the PID loop of this command.
@@ -179,9 +179,26 @@ public class MoveLimitedSubsystemWithPID extends Command {
         this.KP = KP;
         this.tolerance = tolerance;
     }
+
+    /**
+     * This constructs a new {@link MoveLimitedSubsystemWithPID} using a {@link PIDSource} given by {@link LimitedSubsystem#getPIDSource()},
+     * a setpoint, the PID coefficients this command's PID loop should have, and the tolerance for error.
+     *
+     * @param limitedSubsystem the {@link edu.wpi.first.wpilibj.command.Subsystem} this command requires and moves.
+     * @param source           the {@link PIDSource} this command uses to get feedback for the PID Loop.
+     * @param setpoint         the target point of this command. <p>
+     *                         This command will try to move limitedSubsystem until it reaches the setpoint.
+     *                         setpoint should be using the same units as source.
+     *                         </p>
+     * @param KP               the Proportional coefficient of the PID loop of this command.
+     * @param KI               the Integral coefficient of the PID loop of this command.
+     * @param KD               the Differential coefficient of the PID loop of this command.
+     * @param tolerance        the tolerance for error of this command. See {@link #setTolerance(double)}.
+     * @see PIDController
+     */
     public MoveLimitedSubsystemWithPID(LimitedSubsystem limitedSubsystem, PIDSource source, double setpoint, double KP,
-            double KI, double KD, double tolerance) {
-    	this(limitedSubsystem, source, () -> setpoint, KP, KI, KD, tolerance);
+                                       double KI, double KD, double tolerance) {
+        this(limitedSubsystem, source, () -> setpoint, KP, KI, KD, tolerance);
     }
 
     /**
@@ -203,10 +220,25 @@ public class MoveLimitedSubsystemWithPID extends Command {
                                        double KD, double tolerance) {
         this(limitedSubsystem, limitedSubsystem.getPIDSource(), setpoint, KP, KI, KD, tolerance);
     }
-    
+
+    /**
+     * This constructs a new {@link MoveLimitedSubsystemWithPID} using a {@link PIDSource} given by {@link LimitedSubsystem#getPIDSource()},
+     * a setpoint, the PID coefficients this command's PID loop should have, and the tolerance for error.
+     *
+     * @param limitedSubsystem the {@link edu.wpi.first.wpilibj.command.Subsystem} this command requires and moves.
+     * @param setpoint         a supplier supplying the target point of this command. <p>
+     *                         This command will try to move limitedSubsystem until it reaches the latest value supplied by setpoint.
+     *                         setpoint should supply values using the same units as source.
+     *                         </p>
+     * @param KP               the Proportional coefficient of the PID loop of this command.
+     * @param KI               the Integral coefficient of the PID loop of this command.
+     * @param KD               the Differential coefficient of the PID loop of this command.
+     * @param tolerance        the tolerance for error of this command. See {@link #setTolerance(double)}.
+     * @see PIDController
+     */
     public MoveLimitedSubsystemWithPID(LimitedSubsystem limitedSubsystem, Supplier<Double> setpoint, double KP, double KI,
-            double KD, double tolerance) {
-    	this(limitedSubsystem, limitedSubsystem.getPIDSource(), setpoint, KP, KI, KD, tolerance);
+                                       double KD, double tolerance) {
+        this(limitedSubsystem, limitedSubsystem.getPIDSource(), setpoint, KP, KI, KD, tolerance);
     }
 
     @Deprecated
@@ -231,9 +263,9 @@ public class MoveLimitedSubsystemWithPID extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double newSetPoint = setpoint.get();
-    	if(movmentControl.getSetpoint() != newSetPoint)
-    		movmentControl.setSetpoint(newSetPoint);
+        double newSetPoint = setpoint.get();
+        if (movmentControl.getSetpoint() != newSetPoint)
+            movmentControl.setSetpoint(newSetPoint);
     }
 
     // Make this return true when this Command no longer needs to run execute()
