@@ -41,7 +41,7 @@ public class CamerasHandler {
 			throw new IllegalArgumentException("Cannot construct CamerasHandler without cameras");
 		}
 		for (int i : ports) {
-			addCamera(i);
+			addCamera(i, width, height);
 		}
 		switchCamera(ports[0]);
 		new Thread(() -> {
