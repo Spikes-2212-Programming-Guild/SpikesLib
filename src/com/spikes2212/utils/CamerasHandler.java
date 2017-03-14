@@ -81,12 +81,25 @@ public class CamerasHandler {
 	 * @param port
 	 *            The port of the camera to switch the stream to.
 	 * @param exposure
-	 * 			  The exposure the camera should have, in percentage.         
+	 *            The exposure the camera should have, in percentage.
 	 */
-	
-	public void setExposure(int port, int exposure){
+
+	public void setExposure(int exposure, int port) {
 		if (cameras.containsKey(port)) {
 			cameras.get(port).setExposureManual(exposure);
+		}
+	}
+
+	/**
+	 * Sets the exposure of all of the cameras.
+	 * 
+	 * @param exposure
+	 *            The exposure the camera should have, in percentage.
+	 */
+
+	public void setExposure(int exposure) {
+		for (UsbCamera c : cameras.values()) {
+			c.setExposureManual(exposure);
 		}
 	}
 
