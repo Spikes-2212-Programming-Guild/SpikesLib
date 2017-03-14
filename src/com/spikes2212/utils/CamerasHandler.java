@@ -74,6 +74,23 @@ public class CamerasHandler {
 	}
 
 	/**
+	 * Sets the exposure of the camera in the given port, if that camera has
+	 * been added to this handler. If no camera was added with that port, does
+	 * nothing.
+	 * 
+	 * @param port
+	 *            The port of the camera to switch the stream to.
+	 * @param exposure
+	 * 			  The exposure the camera should have, in percentage.         
+	 */
+	
+	public void setExposure(int port, int exposure){
+		if (cameras.containsKey(port)) {
+			cameras.get(port).setExposureManual(exposure);
+		}
+	}
+
+	/**
 	 * Adds a camera to this handler using the camera's port. If this handler
 	 * already has a camera with that port, does nothing.
 	 *
