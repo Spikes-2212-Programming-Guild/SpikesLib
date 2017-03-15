@@ -96,7 +96,6 @@ public class CamerasHandler {
      * @param exposure The exposure the cameras should have, in percentage.
      * @see UsbCamera#setExposureManual(int)
      */
-
     public void setExposure(int exposure) {
         for (UsbCamera c : cameras.values()) {
             c.setExposureManual(exposure);
