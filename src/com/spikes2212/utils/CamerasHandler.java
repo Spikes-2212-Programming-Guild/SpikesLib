@@ -78,7 +78,6 @@ public class CamerasHandler {
      * @param exposure The exposure the camera should have, in percentage.
      * @see UsbCamera#setExposureManual(int)
      */
-
     public void setExposure(int exposure, int port) {
         if (cameras.containsKey(port)) {
             cameras.get(port).setExposureManual(exposure);
