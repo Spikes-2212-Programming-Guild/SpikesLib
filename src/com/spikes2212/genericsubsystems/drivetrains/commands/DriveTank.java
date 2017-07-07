@@ -18,7 +18,7 @@ public class DriveTank extends Command {
     private Supplier<Double> rightSpeedSuplier;
 
     /**
-     * This constructs a new {@link DriveArcade} command
+     * This constructs a new {@link DriveTank} command
      * that moves each of the given {@link TankDrivetrain}'s sides using a given speed.
      *
      * @param drivetrain the drivetrain this command requires and moves.
@@ -33,7 +33,7 @@ public class DriveTank extends Command {
 
 
     /**
-     * This constructs a new {@link DriveArcade} command
+     * This constructs a new {@link DriveTank} command
      * that moves each of the given {@link TankDrivetrain}'s sides using a supplier supplying a changing speed.
      *
      * @param drivetrain         the drivetrain this command requires and moves.
