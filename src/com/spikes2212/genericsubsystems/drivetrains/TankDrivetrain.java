@@ -24,7 +24,7 @@ public abstract class TankDrivetrain extends Subsystem {
 
 
     /**
-     * Moves the right side of this drivetrain using speedLeft
+     * Moves the right side of this drivetrain using speedRight
      *
      * @param speedRight The speed to set to the right side. Positive values move this side forward.
      */
