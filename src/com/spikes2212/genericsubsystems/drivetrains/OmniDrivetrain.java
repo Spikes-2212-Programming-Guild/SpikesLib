@@ -21,5 +21,11 @@ public abstract class OmniDrivetrain extends HolonomicDrivetrain {
 		tankDrive(speedY, speedY);
 		driveSideways(speedX, speedX);
 	}
+	
+	@Override
+	public void stop(){
+		super.stop();
+		driveSideways(0, 0);
+	}
 }
 
