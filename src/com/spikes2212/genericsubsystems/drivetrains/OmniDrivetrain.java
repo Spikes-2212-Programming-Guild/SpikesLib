@@ -7,13 +7,20 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public abstract class OmniDrivetrain extends HolonomicDrivetrain {
 	
-	public abstract void setForwards(double speedForwards);
-	
-	public abstract void setRear(double speedRear);
+	public abstract void setForwards(double speedForwards); //right is positive
+	 
+	public abstract void setRear(double speedRear); //right is positive
 	
 	public void driveSideways(double speedForwards, double speedRear){
 		setForwards(speedForwards);
 		setRear(speedRear);
+	}
+	
+	public void turn(double speed){ //right is positive
+		setRight(speed);
+		setForwards(-speed);
+		setLeft(-speed);
+		setRear(speed);
 	}
     
 	@Override
