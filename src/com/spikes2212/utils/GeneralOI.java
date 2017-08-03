@@ -8,5 +8,8 @@ public abstract class GeneralOI {
 	public abstract double getRotation();
 	public abstract double getForwardRight();
 	public abstract double getForwardLeft();
-
+	
+	private double adjustInput(double input) {
+		return input * Math.abs(input);
+	}
 }
