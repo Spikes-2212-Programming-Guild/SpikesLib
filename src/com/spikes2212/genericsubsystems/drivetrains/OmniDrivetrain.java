@@ -11,9 +11,9 @@ public abstract class OmniDrivetrain extends HolonomicDrivetrain {
 	 
 	public abstract void setRear(double speedRear); //right is positive
 	
-	public void driveSideways(double speedFront, double speedRear){
-		setFront(speedFront);
-		setRear(speedRear);
+	public void driveSideways(double speedSideways){
+		setFront(speedSideways);
+		setRear(speedSideways);
 	}
 	
 	public void turn(double speed){ //right is positive
@@ -26,13 +26,13 @@ public abstract class OmniDrivetrain extends HolonomicDrivetrain {
 	@Override
 	public void holonomicDrive(double speedY, double speedX){
 		tankDrive(speedY, speedY);
-		driveSideways(speedX, speedX);
+		driveSideways(speedX);
 	}
 	
 	@Override
 	public void stop(){
 		super.stop();
-		driveSideways(0, 0);
+		driveSideways(0);
 	}
 }
 
