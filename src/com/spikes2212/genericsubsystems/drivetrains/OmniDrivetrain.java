@@ -22,17 +22,5 @@ public abstract class OmniDrivetrain extends HolonomicDrivetrain {
 		setLeft(-speed);
 		setRear(speed);
 	}
-    
-	@Override
-	public void holonomicDrive(double speedY, double speedX){
-		tankDrive(speedY, speedY);
-		driveSideways(speedX);
-	}
-	
-	@Override
-	public void stop(){
-		super.stop();
-		driveSideways(0);
-	}
 }
 
