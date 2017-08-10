@@ -1,6 +1,5 @@
 package com.spikes2212.genericsubsystems.drivetrains;
 
-import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -13,6 +12,28 @@ public abstract class TankDrivetrain extends Subsystem {
     public void tankDrive(double speedLeft, double speedRight) {
         setLeft(speedLeft);
         setRight(speedRight);
+    }
+    
+    public void driveArcade(double moveValue, double rotateValue){
+    	double leftSpeed, rightSpeed;
+        if (moveValue > 0.0) {
+            if (rotateValue > 0.0) {
+                leftSpeed = moveValue - rotateValue;
+                rightSpeed = Math.max(moveValue, rotateValue);
+            } else {
+                leftSpeed = Math.max(moveValue, -rotateValue);
+                rightSpeed = moveValue + rotateValue;
+            }
+        } else {
+            if (rotateValue > 0.0) {
+                leftSpeed = -Math.max(-moveValue, rotateValue);
+                rightSpeed = moveValue + rotateValue;
+            } else {
+                leftSpeed = moveValue - rotateValue;
+                rightSpeed = -Math.max(-moveValue, -rotateValue);
+            }
+        }
+        tankDrive(leftSpeed, rightSpeed);
     }
 
     /**
