@@ -23,8 +23,8 @@ public class DriveTankWithPID extends Command {
 	private Supplier<Double> rightSetpoint;
 	private PIDSource leftSource;
 	private PIDSource rightSource;
-	private PIDController leftmovementControl;
-	private PIDController rightmovementControl;
+	private PIDController leftMovementControl;
+	private PIDController rightMovementControl;
 	private double lastTimeNotOnTarget;
 	private double waitTime = 0.5;
 
@@ -375,31 +375,31 @@ public class DriveTankWithPID extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		leftmovementControl = new PIDController(KP, KI, KD, leftSource, tankDrivetrain::setLeft);
-		leftmovementControl.setAbsoluteTolerance(tolerance);
-		leftmovementControl.setSetpoint(this.leftSetpoint.get());
-		leftmovementControl.setOutputRange(-1, 1);
-		rightmovementControl = new PIDController(KP, KI, KD, rightSource, tankDrivetrain::setRight);
-		rightmovementControl.setAbsoluteTolerance(tolerance);
-		rightmovementControl.setSetpoint(this.rightSetpoint.get());
-		rightmovementControl.setOutputRange(-1, 1);
-		leftmovementControl.enable();
-		rightmovementControl.enable();
+		leftMovementControl = new PIDController(KP, KI, KD, leftSource, tankDrivetrain::setLeft);
+		leftMovementControl.setAbsoluteTolerance(tolerance);
+		leftMovementControl.setSetpoint(this.leftSetpoint.get());
+		leftMovementControl.setOutputRange(-1, 1);
+		rightMovementControl = new PIDController(KP, KI, KD, rightSource, tankDrivetrain::setRight);
+		rightMovementControl.setAbsoluteTolerance(tolerance);
+		rightMovementControl.setSetpoint(this.rightSetpoint.get());
+		rightMovementControl.setOutputRange(-1, 1);
+		leftMovementControl.enable();
+		rightMovementControl.enable();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		double newSetPointLeft = leftSetpoint.get();
 		double newSetPointRight = rightSetpoint.get();
-		if (newSetPointLeft != leftmovementControl.getSetpoint())
-			leftmovementControl.setSetpoint(newSetPointLeft);
-		if (newSetPointRight != rightmovementControl.getSetpoint())
-			rightmovementControl.setSetpoint(newSetPointRight);
+		if (newSetPointLeft != leftMovementControl.getSetpoint())
+			leftMovementControl.setSetpoint(newSetPointLeft);
+		if (newSetPointRight != rightMovementControl.getSetpoint())
+			rightMovementControl.setSetpoint(newSetPointRight);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (!leftmovementControl.onTarget() || !rightmovementControl.onTarget()) {
+		if (!leftMovementControl.onTarget() || !rightMovementControl.onTarget()) {
 			lastTimeNotOnTarget = Timer.getFPGATimestamp();
 		}
 		return Timer.getFPGATimestamp() - lastTimeNotOnTarget >= waitTime;
@@ -407,8 +407,8 @@ public class DriveTankWithPID extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		leftmovementControl.disable();
-		rightmovementControl.disable();
+		leftMovementControl.disable();
+		rightMovementControl.disable();
 		tankDrivetrain.stop();
 	}
 
