@@ -2,19 +2,16 @@ package com.spikes2212.genericsubsystems.drivetrains.commands;
 
 import java.util.function.Supplier;
 
-import com.spikes2212.genericsubsystems.LimitedSubsystem;
-import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystemWithPID;
-import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
+import com.spikes2212.genericsubsystems.drivetrains.PIDUsingTankDrivedrain;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.PIDCommand;
 
 public class DriveTankWithPID extends Command {
 
-    private TankDrivetrain tankDrivetrain;
+    private PIDUsingTankDrivedrain PIDUsingTankDrivedrain;
     private double KP;
     private double KI;
     private double KD;
@@ -168,10 +165,10 @@ public class DriveTankWithPID extends Command {
      * @param tolerance     the tolerance for error of this command. See {@link #setTolerance(double)}.
      * @see PIDController
      */
-    public DriveTankWithPID(TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource, Supplier<Double> leftSetpoint,
+    public DriveTankWithPID(PIDUsingTankDrivedrain drivetrain, PIDSource leftSource, PIDSource rightSource, Supplier<Double> leftSetpoint,
                             Supplier<Double> rightSetpoint, double KP, double KI, double KD, double tolerance) {
         requires(drivetrain);
-        this.tankDrivetrain = drivetrain;
+        this.PIDUsingTankDrivedrain = drivetrain;
         this.leftSource = leftSource;
         this.rightSource = rightSource;
         this.leftSetpoint = leftSetpoint;
@@ -204,7 +201,7 @@ public class DriveTankWithPID extends Command {
      * @param tolerance     the tolerance for error of this command. See {@link #setTolerance(double)}.
      * @see PIDController
      */
-    public DriveTankWithPID(TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource, double leftSetpoint,
+    public DriveTankWithPID(PIDUsingTankDrivedrain drivetrain, PIDSource leftSource, PIDSource rightSource, double leftSetpoint,
                             double rightSetpoint, double KP, double KI, double KD, double tolerance) {
         this(drivetrain, leftSource, rightSource, () -> leftSetpoint, () -> rightSetpoint, KP, KI, KD, tolerance);
     }
@@ -228,7 +225,7 @@ public class DriveTankWithPID extends Command {
      * @param tolerance     the tolerance for error of this command. See {@link #setTolerance(double)}.
      * @see PIDController
      */
-    public DriveTankWithPID(TankDrivetrain drivetrain, double leftSetPoint, double rightSetPoint, double KP, double KI,
+    public DriveTankWithPID(PIDUsingTankDrivedrain drivetrain, double leftSetPoint, double rightSetPoint, double KP, double KI,
                             double KD, double tolerance) {
         this(drivetrain, drivetrain.getLeftPIDSource(), drivetrain.getRightPIDSource(), leftSetPoint, rightSetPoint, KP,
                 KI, KD, tolerance);
@@ -254,7 +251,7 @@ public class DriveTankWithPID extends Command {
      * @param tolerance     the tolerance for error of this command. See {@link #setTolerance(double)}.
      * @see PIDController
      */
-    public DriveTankWithPID(TankDrivetrain drivetrain, Supplier<Double> leftSetPoint, Supplier<Double> rightSetPoint, double KP, double KI,
+    public DriveTankWithPID(PIDUsingTankDrivedrain drivetrain, Supplier<Double> leftSetPoint, Supplier<Double> rightSetPoint, double KP, double KI,
                             double KD, double tolerance) {
         this(drivetrain, drivetrain.getLeftPIDSource(), drivetrain.getRightPIDSource(), leftSetPoint, rightSetPoint, KP,
                 KI, KD, tolerance);
@@ -275,23 +272,23 @@ public class DriveTankWithPID extends Command {
      * @param tolerance  the tolerance for error of this command. See {@link #setTolerance(double)}.
      * @see PIDController
      */
-    public DriveTankWithPID(TankDrivetrain drivetrain, double setPoint, double KP, double KI, double KD,
+    public DriveTankWithPID(PIDUsingTankDrivedrain drivetrain, double setPoint, double KP, double KI, double KD,
                             double tolerance) {
         this(drivetrain, setPoint, setPoint, KP, KI, KD, tolerance);
     }
 
     // requires(drivetrain);
-    // this.tankDrivetrain = drivetrain;
+    // this.PIDUsingTankDrivedrain = drivetrain;
     // this.setpoint = setpoint;
     // movmentControl = new PIDController(KP, KI, KD, PIDSource, PIDOutput);
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        leftMovmentControl = new PIDController(KP, KI, KD, leftSource, tankDrivetrain::setLeft);
+        leftMovmentControl = new PIDController(KP, KI, KD, leftSource, PIDUsingTankDrivedrain::setLeft);
         leftMovmentControl.setAbsoluteTolerance(tolerance);
         leftMovmentControl.setSetpoint(this.leftSetpoint.get());
         leftMovmentControl.setOutputRange(-1, 1);
-        rightMovmentControl = new PIDController(KP, KI, KD, rightSource, tankDrivetrain::setRight);
+        rightMovmentControl = new PIDController(KP, KI, KD, rightSource, PIDUsingTankDrivedrain::setRight);
         rightMovmentControl.setAbsoluteTolerance(tolerance);
         rightMovmentControl.setSetpoint(this.rightSetpoint.get());
         rightMovmentControl.setOutputRange(-1, 1);
@@ -321,7 +318,7 @@ public class DriveTankWithPID extends Command {
     protected void end() {
         leftMovmentControl.disable();
         rightMovmentControl.disable();
-        tankDrivetrain.stop();
+        PIDUsingTankDrivedrain.stop();
     }
 
     // Called when another command which requires one or more of the same
