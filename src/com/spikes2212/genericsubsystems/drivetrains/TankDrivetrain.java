@@ -61,6 +61,12 @@ public class TankDrivetrain extends Subsystem {
 		setLeft(0);
 	}
 
+	/**
+	 *  Sets the default command. If this is not called or is called with null, then there will be no
+     *  default command for the subsystem.
+	 * 
+	 * @see edu.wpi.first.wpilibj.command.Subsystem#setDefaultCommand(edu.wpi.first.wpilibj.command.Command)
+	 */
 	public void setDefaultCommand(Command defaultCommand){
 		super.setDefaultCommand(defaultCommand);
 	}
