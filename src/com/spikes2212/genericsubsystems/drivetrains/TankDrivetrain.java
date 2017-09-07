@@ -15,16 +15,10 @@ public class TankDrivetrain extends Subsystem {
 
 	Consumer<Double> controlLeft;
 	Consumer<Double> controlRight;
-	Command defaultCommand;
-
-	public TankDrivetrain(Consumer<Double> controlLeft, Consumer<Double> controlRight, Command defaultCommand) {
-		this.controlLeft = controlLeft;
-		this.controlRight = controlRight;
-		this.defaultCommand = defaultCommand;
-	}
 	
 	public TankDrivetrain(Consumer<Double> controlLeft, Consumer<Double> controlRight) {
-		this(controlLeft, controlRight, null);
+		this.controlLeft = controlLeft;
+		this.controlRight = controlRight;
 	}
 
 	public void tankDrive(double speedLeft, double speedRight) {
@@ -67,12 +61,12 @@ public class TankDrivetrain extends Subsystem {
 		setLeft(0);
 	}
 
+	public void setDefaultCommand(Command defaultCommand){
+		super.setDefaultCommand(defaultCommand);
+	}
+	
 	@Override
 	protected void initDefaultCommand() {
-		if(defaultCommand != null){
-			setDefaultCommand(defaultCommand);
-		}
-
 	}
 
 }

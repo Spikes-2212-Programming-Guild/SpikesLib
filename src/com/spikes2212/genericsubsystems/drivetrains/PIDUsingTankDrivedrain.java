@@ -13,14 +13,6 @@ public class PIDUsingTankDrivedrain extends TankDrivetrain {
 	PIDSource leftPIDSource;
 	PIDSource rightPIDSource;
 
-	public PIDUsingTankDrivedrain(Consumer<Double> controlLeft, Consumer<Double> controlRight, Command defaultCommand,
-			PIDSource leftPIDSource, PIDSource rightPIDSource) {
-		super(controlLeft, controlRight, defaultCommand);
-		this.leftPIDSource = leftPIDSource;
-		this.rightPIDSource = rightPIDSource;
-
-	}
-
 	public PIDUsingTankDrivedrain(Consumer<Double> controlLeft, Consumer<Double> controlRight, PIDSource leftPIDSource,
 			PIDSource rightPIDSource) {
 		super(controlLeft, controlRight);
