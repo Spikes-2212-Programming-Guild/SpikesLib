@@ -3,5 +3,5 @@
 *.jar
 
 .idea/
-SLSystemSuit.iml
+*.iml
 /classes/
