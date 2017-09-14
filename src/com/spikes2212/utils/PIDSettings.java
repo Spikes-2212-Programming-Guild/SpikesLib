@@ -1,0 +1,155 @@
+package com.spikes2212.utils;
+
+import edu.wpi.first.wpilibj.PIDController;
+
+public class PIDSettings {
+
+	private double KP, KI, KD, tolerance, waitTime;
+
+	public PIDSettings(double KP, double KI, double KD, double tolerance, double waitTime) {
+		this.setKP(KP);
+		this.setKI(KI);
+		this.setKD(KD);
+		this.setTolerance(tolerance);
+		this.setWaitTime(waitTime);
+	}
+
+	public PIDSettings(double KP, double KI, double KD, double tolerance) {
+		this(KP, KI, KD, tolerance, 0.5);
+	}
+
+	/**
+	 * Gets the tolerance for error for the PID loop using this settings.
+	 * <p>
+	 * This tolerance defines when PID loop ends: This PID loop will end after
+	 * the difference between the setpoint and the current position is within
+	 * the tolerance for the amount of time specified by
+	 * {@link #setWaitTime(double)} straight.
+	 * </p>
+	 *
+	 * @return The current tolerance. If 0, this PID loop will never end.
+	 * @see PIDController#setAbsoluteTolerance(double)
+	 */
+
+	public double getTolerance() {
+		return tolerance;
+	}
+
+	/**
+	 * Sets the tolerance for error of this PID loop.
+	 * <p>
+	 * This tolerance defines when this PID loop ends: This command will end
+	 * after the difference between the setpoint and the current position is
+	 * within the tolerance for the amount of time specified by
+	 * {@link #setWaitTime(double)} straight.
+	 * </p>
+	 *
+	 * @param tolerance
+	 *            The new tolerance to set. If 0, this PID loop will never end.
+	 * @see PIDController#setAbsoluteTolerance(double)
+	 */
+
+	public void setTolerance(double tolerance) {
+		this.tolerance = tolerance;
+	}
+
+	/**
+	 * Gets the Proportional coefficient of the PID loop using this settings.
+	 *
+	 * @return the current Proportional coefficient.
+	 * @see PIDController#getP()
+	 */
+
+	public double getKP() {
+		return KP;
+	}
+
+	/**
+	 * Sets the Proportional coefficient of the PID loop using this settings.
+	 *
+	 * @param P
+	 *            the new Proportional coefficient.
+	 * @see PIDController#setPID(double, double, double)
+	 */
+
+	public void setKP(double kP) {
+		KP = kP;
+	}
+
+	/**
+	 * Gets the Integral coefficient of the PID loop using this settings.
+	 *
+	 * @return the current Integral coefficient.
+	 * @see PIDController#getI()
+	 */
+
+	public double getKI() {
+		return KI;
+	}
+
+	/**
+	 * Sets the Integral coefficients of the PID loop using this settings.
+	 *
+	 * @param I
+	 *            the new Integral coefficient.
+	 * @see PIDController#setPID(double, double, double)
+	 */
+
+	public void setKI(double kI) {
+		KI = kI;
+	}
+
+	/**
+	 * Gets the Differential coefficient of the PID loop using this settings.
+	 *
+	 * @return the current Differential coefficient.
+	 * @see PIDController#getD()
+	 */
+
+	public double getKD() {
+		return KD;
+	}
+
+	/**
+	 * Sets the Differential coefficient of the PID loop using this settings.
+	 *
+	 * @param D
+	 *            the new Differential coefficient.
+	 * @see PIDController#setPID(double, double, double)
+	 */
+
+	public void setKD(double kD) {
+		KD = kD;
+	}
+
+	/**
+	 * Gets the time this PID loop will wait while within tolerance of the
+	 * setpoint before ending.
+	 * <p>
+	 * The PID control of the subsystem continues while waiting
+	 * </p>
+	 *
+	 * @return the wait time, in seconds. Default is 0.5 seconds.
+	 */
+
+	public double getWaitTime() {
+		return waitTime;
+	}
+
+	/**
+	 * Sets the time this PID loop will wait while within tolerance of the
+	 * setpoint before ending.
+	 * <p>
+	 * The PID control of the subsystem continues while waiting. <br/>
+	 * If wait time is set to 0, the command won't wait.
+	 * </p>
+	 *
+	 * @param waitTime
+	 *            the new wait time, in seconds.
+	 */
+
+	public void setWaitTime(double waitTime) {
+		this.waitTime = waitTime;
+	}
+
+}

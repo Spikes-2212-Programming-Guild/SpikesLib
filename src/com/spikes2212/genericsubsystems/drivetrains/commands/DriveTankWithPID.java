@@ -3,6 +3,7 @@ package com.spikes2212.genericsubsystems.drivetrains.commands;
 import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
+import com.spikes2212.utils.PIDSettings;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -12,49 +13,25 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveTankWithPID extends Command {
 
 	private TankDrivetrain TankDrivetrain;
-	private double KP;
-	private double KI;
-	private double KD;
-	private double tolerance;
 	private Supplier<Double> leftSetpoint;
 	private Supplier<Double> rightSetpoint;
+	private PIDSettings PIDSettings;
 	private PIDSource leftSource;
 	private PIDSource rightSource;
 	private PIDController leftMovmentControl;
 	private PIDController rightMovmentControl;
 	private double lastTimeNotOnTarget;
-	private double waitTime = 0.5;
-
-	/**
-	 * Sets the Proportional coefficient of the PID loop of this command.
-	 *
-	 * @param P
-	 *            the new Proportional coefficient.
-	 * @see PIDController#setPID(double, double, double)
-	 */
-	public void setP(double P) {
-		KP = P;
-	}
 
 	/**
 	 * Gets the Proportional coefficient of the PID loop of this command.
 	 *
 	 * @return the current Proportional coefficient.
 	 * @see PIDController#getP()
+	 * @see PIDSettings#getKP()
 	 */
-	public double getP() {
-		return KP;
-	}
 
-	/**
-	 * Sets the Integral coefficients of the PID loop of this command.
-	 *
-	 * @param I
-	 *            the new Integral coefficient.
-	 * @see PIDController#setPID(double, double, double)
-	 */
-	public void setI(double I) {
-		KI = I;
+	public double getP() {
+		return PIDSettings.getKP();
 	}
 
 	/**
@@ -62,20 +39,11 @@ public class DriveTankWithPID extends Command {
 	 *
 	 * @return the current Integral coefficient.
 	 * @see PIDController#getI()
+	 * @see PIDSettings#getKI()
 	 */
-	public double getI() {
-		return KI;
-	}
 
-	/**
-	 * Sets the Differential coefficient of the PID loop of this command.
-	 *
-	 * @param D
-	 *            the new Differential coefficient.
-	 * @see PIDController#setPID(double, double, double)
-	 */
-	public void setD(double D) {
-		KD = D;
+	public double getI() {
+		return PIDSettings.getKI();
 	}
 
 	/**
@@ -83,9 +51,11 @@ public class DriveTankWithPID extends Command {
 	 *
 	 * @return the current Differential coefficient.
 	 * @see PIDController#getD()
+	 * @see PIDSettings#getKD()
 	 */
+
 	public double getD() {
-		return KD;
+		return PIDSettings.getKD();
 	}
 
 	/**
@@ -99,26 +69,11 @@ public class DriveTankWithPID extends Command {
 	 *
 	 * @return The current tolerance. If 0, this command will never end.
 	 * @see PIDController#setAbsoluteTolerance(double)
+	 * @see PIDSettings#getTolerance()
 	 */
-	public double getTolerance() {
-		return tolerance;
-	}
 
-	/**
-	 * Sets the tolerance for error of this command.
-	 * <p>
-	 * This tolerance defines when this command ends: This command will end
-	 * after the difference between the setpoint and the current position is
-	 * within the tolerance for the amount of time specified by
-	 * {@link #setWaitTime(double)} straight.
-	 * </p>
-	 *
-	 * @param tolerance
-	 *            The new tolerance to set. If 0, this command will never end.
-	 * @see PIDController#setAbsoluteTolerance(double)
-	 */
-	public void setTolerance(double tolerance) {
-		this.tolerance = tolerance;
+	public double getTolerance() {
+		return PIDSettings.getTolerance();
 	}
 
 	/**
@@ -128,10 +83,13 @@ public class DriveTankWithPID extends Command {
 	 * The PID control of the subsystem continues while waiting
 	 * </p>
 	 *
+	 * @see PIDSettings#getWaitTime()
+	 *
 	 * @return the wait time, in seconds. Default is 0.5 seconds.
 	 */
+
 	public double getWaitTime() {
-		return waitTime;
+		return PIDSettings.getWaitTime();
 	}
 
 	/**
@@ -141,12 +99,15 @@ public class DriveTankWithPID extends Command {
 	 * The PID control of the subsystem continues while waiting. <br/>
 	 * If wait time is set to 0, the command won't wait.
 	 * </p>
+	 * 
+	 * @see PIDSettings#setWaitTime(double)
 	 *
 	 * @param waitTime
 	 *            the new wait time, in seconds.
 	 */
+
 	public void setWaitTime(double waitTime) {
-		this.waitTime = waitTime;
+		PIDSettings.setWaitTime(waitTime);
 	}
 
 	/**
@@ -179,30 +140,20 @@ public class DriveTankWithPID extends Command {
 	 *            reaches the latest value supplied by setpoint. setpoint should
 	 *            be using the same units as rightSource.
 	 *            </p>
-	 * @param KP
-	 *            the Proportional coefficient of the PID loop of this command.
-	 * @param KI
-	 *            the Integral coefficient of the PID loop of this command.
-	 * @param KD
-	 *            the Differential coefficient of the PID loop of this command.
-	 * @param tolerance
-	 *            the tolerance for error of this command. See
-	 *            {@link #setTolerance(double)}.
+	 * @param PIDSettings
+	 *            the {@link PIDSettings} this command's PIDController needs.
+	 * 
 	 * @see PIDController
 	 */
 	public DriveTankWithPID(TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource,
-			Supplier<Double> leftSetpoint, Supplier<Double> rightSetpoint, double KP, double KI, double KD,
-			double tolerance) {
+			Supplier<Double> leftSetpoint, Supplier<Double> rightSetpoint, PIDSettings PIDSettings) {
 		requires(drivetrain);
 		this.TankDrivetrain = drivetrain;
 		this.leftSource = leftSource;
 		this.rightSource = rightSource;
 		this.leftSetpoint = leftSetpoint;
 		this.rightSetpoint = rightSetpoint;
-		this.KD = KD;
-		this.KI = KI;
-		this.KP = KP;
-		this.tolerance = tolerance;
+		this.PIDSettings = PIDSettings;
 	}
 
 	/**
@@ -233,20 +184,14 @@ public class DriveTankWithPID extends Command {
 	 *            reaches the setpoint. setpoint should be using the same units
 	 *            as rightSource.
 	 *            </p>
-	 * @param KP
-	 *            the Proportional coefficient of the PID loop of this command.
-	 * @param KI
-	 *            the Integral coefficient of the PID loop of this command.
-	 * @param KD
-	 *            the Differential coefficient of the PID loop of this command.
-	 * @param tolerance
-	 *            the tolerance for error of this command. See
-	 *            {@link #setTolerance(double)}.
+	 * @param PIDSettings
+	 *            the {@link PIDSettings} this command's PIDController needs.
+	 * 
 	 * @see PIDController
 	 */
 	public DriveTankWithPID(TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource, double leftSetpoint,
-			double rightSetpoint, double KP, double KI, double KD, double tolerance) {
-		this(drivetrain, leftSource, rightSource, () -> leftSetpoint, () -> rightSetpoint, KP, KI, KD, tolerance);
+			double rightSetpoint, PIDSettings PIDSettings) {
+		this(drivetrain, leftSource, rightSource, () -> leftSetpoint, () -> rightSetpoint, PIDSettings);
 	}
 
 	/**
@@ -270,20 +215,14 @@ public class DriveTankWithPID extends Command {
 	 *            reache the setpoint. setpoint should be using the same units
 	 *            as drivetrain's {@link PIDSource}s.
 	 *            </p>
-	 * @param KP
-	 *            the Proportional coefficient of the PID loop of this command.
-	 * @param KI
-	 *            the Integral coefficient of the PID loop of this command.
-	 * @param KD
-	 *            the Differential coefficient of the PID loop of this command.
-	 * @param tolerance
-	 *            the tolerance for error of this command. See
-	 *            {@link #setTolerance(double)}.
+	 * @param PIDSettings
+	 *            the {@link PIDSettings} this command's PIDController needs.
+	 * 
 	 * @see PIDController
 	 */
 	public DriveTankWithPID(TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource, double setpoint,
-			double KP, double KI, double KD, double tolerance) {
-		this(drivetrain, leftSource, rightSource, setpoint, setpoint, KP, KI, KD, tolerance);
+			PIDSettings PIDSettings) {
+		this(drivetrain, leftSource, rightSource, setpoint, setpoint, PIDSettings);
 	}
 
 	/**
@@ -307,31 +246,27 @@ public class DriveTankWithPID extends Command {
 	 *            reache the setpoint. setpoint should be using the same units
 	 *            as drivetrain's {@link PIDSource}s.
 	 *            </p>
-	 * @param KP
-	 *            the Proportional coefficient of the PID loop of this command.
-	 * @param KI
-	 *            the Integral coefficient of the PID loop of this command.
-	 * @param KD
-	 *            the Differential coefficient of the PID loop of this command.
-	 * @param tolerance
-	 *            the tolerance for error of this command. See
-	 *            {@link #setTolerance(double)}.
+	 * @param PIDSettings
+	 *            the {@link PIDSettings} this command's PIDController needs.
+	 * 
 	 * @see PIDController
 	 */
 
 	public DriveTankWithPID(TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource,
-			Supplier<Double> setpoint, double KP, double KI, double KD, double tolerance) {
-		this(drivetrain, leftSource, rightSource, setpoint, setpoint, KP, KI, KD, tolerance);
+			Supplier<Double> setpoint, PIDSettings PIDSettings) {
+		this(drivetrain, leftSource, rightSource, setpoint, setpoint, PIDSettings);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		leftMovmentControl = new PIDController(KP, KI, KD, leftSource, TankDrivetrain::setLeft);
-		leftMovmentControl.setAbsoluteTolerance(tolerance);
+		leftMovmentControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
+				leftSource, TankDrivetrain::setLeft);
+		leftMovmentControl.setAbsoluteTolerance(PIDSettings.getTolerance());
 		leftMovmentControl.setSetpoint(this.leftSetpoint.get());
 		leftMovmentControl.setOutputRange(-1, 1);
-		rightMovmentControl = new PIDController(KP, KI, KD, rightSource, TankDrivetrain::setRight);
-		rightMovmentControl.setAbsoluteTolerance(tolerance);
+		rightMovmentControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
+				rightSource, TankDrivetrain::setRight);
+		rightMovmentControl.setAbsoluteTolerance(PIDSettings.getTolerance());
 		rightMovmentControl.setSetpoint(this.rightSetpoint.get());
 		rightMovmentControl.setOutputRange(-1, 1);
 		leftMovmentControl.enable();
@@ -353,7 +288,7 @@ public class DriveTankWithPID extends Command {
 		if (!leftMovmentControl.onTarget() || !rightMovmentControl.onTarget()) {
 			lastTimeNotOnTarget = Timer.getFPGATimestamp();
 		}
-		return Timer.getFPGATimestamp() - lastTimeNotOnTarget >= waitTime;
+		return Timer.getFPGATimestamp() - lastTimeNotOnTarget >= PIDSettings.getWaitTime();
 	}
 
 	// Called once after isFinished returns true
