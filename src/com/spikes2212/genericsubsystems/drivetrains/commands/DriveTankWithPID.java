@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveTankWithPID extends Command {
 
-	private TankDrivetrain TankDrivetrain;
+	private TankDrivetrain tankDrivetrain;
 	private Supplier<Double> leftSetpoint;
 	private Supplier<Double> rightSetpoint;
 	private PIDSettings PIDSettings;
@@ -148,7 +148,7 @@ public class DriveTankWithPID extends Command {
 	public DriveTankWithPID(TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource,
 			Supplier<Double> leftSetpoint, Supplier<Double> rightSetpoint, PIDSettings PIDSettings) {
 		requires(drivetrain);
-		this.TankDrivetrain = drivetrain;
+		this.tankDrivetrain = drivetrain;
 		this.leftSource = leftSource;
 		this.rightSource = rightSource;
 		this.leftSetpoint = leftSetpoint;
@@ -260,12 +260,12 @@ public class DriveTankWithPID extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		leftMovmentControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
-				leftSource, TankDrivetrain::setLeft);
+				leftSource, tankDrivetrain::setLeft);
 		leftMovmentControl.setAbsoluteTolerance(PIDSettings.getTolerance());
 		leftMovmentControl.setSetpoint(this.leftSetpoint.get());
 		leftMovmentControl.setOutputRange(-1, 1);
 		rightMovmentControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
-				rightSource, TankDrivetrain::setRight);
+				rightSource, tankDrivetrain::setRight);
 		rightMovmentControl.setAbsoluteTolerance(PIDSettings.getTolerance());
 		rightMovmentControl.setSetpoint(this.rightSetpoint.get());
 		rightMovmentControl.setOutputRange(-1, 1);
@@ -295,7 +295,7 @@ public class DriveTankWithPID extends Command {
 	protected void end() {
 		leftMovmentControl.disable();
 		rightMovmentControl.disable();
-		TankDrivetrain.stop();
+		tankDrivetrain.stop();
 	}
 
 	// Called when another command which requires one or more of the same

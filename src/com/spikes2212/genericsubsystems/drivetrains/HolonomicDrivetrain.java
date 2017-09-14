@@ -15,11 +15,18 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 		this.controlX = controlX;
 		this.controlY = controlY;
 	}
-
-	public void holonomicDrive(double speedY, double speedX) { // y-forward/backward
-																// x-left/right
+	
+	public void setX (double speedX){
 		controlX.accept(speedX);
+	}
+	
+	public void setY (double speedY){
 		controlY.accept(speedY);
+	}
+
+	public void holonomicDrive(double speedY, double speedX) { // y-forward/backward														// x-left/right
+		setX(speedX);
+		setY(speedY);
 	}
 
 }
