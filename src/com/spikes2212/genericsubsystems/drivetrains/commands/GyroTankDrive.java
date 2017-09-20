@@ -19,6 +19,9 @@ import java.util.function.Supplier;
  *     when it will be used to make the robot drive as strait as possible.
  * </p>
  * @author Simon "C" Kharmatsky
+ * @see edu.wpi.first.wpilibj.interfaces.Gyro
+ * @see RobotDrive
+ * @see TankDrivetrain
  */
 public class GyroTankDrive extends Command {
     private Supplier<Double> sensetivitySupplier =
