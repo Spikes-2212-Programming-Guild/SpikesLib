@@ -30,7 +30,11 @@ public class GyroTurn extends Command {
 
     @Override
     protected void execute() {
-
+        if (currentDegreeSupplier.get() > targetDegreeSupplier.get()) {
+            drivetrain.tankDrive(absoluteLeftSpeedSupplier.get(), -1 * absoluteRightSpeedSupplier.get());
+        } else {
+            drivetrain.tankDrive(-1 * absoluteLeftSpeedSupplier.get(), absoluteRightSpeedSupplier.get());
+        }
     }
 
     @Override
