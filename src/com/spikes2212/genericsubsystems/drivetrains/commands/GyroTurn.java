@@ -3,6 +3,7 @@ package com.spikes2212.genericsubsystems.drivetrains.commands;
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 import edu.wpi.first.wpilibj.command.Command;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 
 public class GyroTurn extends Command {
@@ -26,8 +27,24 @@ public class GyroTurn extends Command {
                     double targetDegree, Supplier<Double> currentDegreeSupplier ) {
         this(drivetrain, ()->absoluteLeftSpeed, ()->absoluteRightSpeed, ()->targetDegree, currentDegreeSupplier);
     }
+
+    @Override
+    protected void execute() {
+
+    }
+
+    @Override
+    protected void end() {
+        drivetrain.stop();
+    }
+
+    @Override
+    protected void interrupted() {
+        end();
+    }
+
     @Override
     protected boolean isFinished() {
-        return isTimedOut();
+        return Objects.equals(currentDegreeSupplier.get(), targetDegreeSupplier.get());
     }
 }
