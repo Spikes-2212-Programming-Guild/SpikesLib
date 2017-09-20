@@ -26,6 +26,22 @@ public class GyroDrive extends Command {
 
     @Override
     protected void execute() {
+        double logValue, ratio, leftSpeed, rightSpeed;
+        if (rateSupplier.get() < 0) {
+            logValue = Math.log(-rateSupplier.get());
+            ratio = (logValue - sensetivitySupplier.get()) / (logValue + sensetivitySupplier.get());
+            leftSpeed = speedSupplier.get() / ratio;
+            rightSpeed = speedSupplier.get();
+        } else if (rateSupplier.get() > 0) {
+            logValue = Math.log(rateSupplier.get());
+            ratio = (logValue - sensetivitySupplier.get()) / (logValue + sensetivitySupplier.get());
+            leftSpeed = speedSupplier.get();
+            rightSpeed = speedSupplier.get() / ratio;
+        } else {
+            rightSpeed = speedSupplier.get();
+            leftSpeed = speedSupplier.get();
+        }
+        drivetrain.tankDrive(leftSpeed, rightSpeed);
     }
 
     @Override
