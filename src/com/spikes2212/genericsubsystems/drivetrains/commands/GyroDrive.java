@@ -24,6 +24,21 @@ public class GyroDrive extends Command {
     }
 
     @Override
+    protected void execute() {
+
+    }
+
+    @Override
+    protected void end() {
+        drivetrain.stop();
+    }
+
+    @Override
+    protected void interrupted() {
+        end();
+    }
+
+    @Override
     protected boolean isFinished() {
         return isTimedOut();
     }
