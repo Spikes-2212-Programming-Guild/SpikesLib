@@ -24,7 +24,7 @@ public class GyroTurn extends Command {
     private TankDrivetrain drivetrain;
 
     /**
-     * This constructs a new {@link GyroTurn} instance using {@link Supplier<Double>} for left, and right speeds.
+     * This constructs a new {@link GyroTurn} command using {@link Supplier<Double>} for left, and right speeds.
      * as well as the current and target angles.
      * @param drivetrain the drivetrain this command has to move
      * @param absoluteLeftSpeedSupplier {@link Supplier<Double>} of the left speed.
@@ -44,7 +44,7 @@ public class GyroTurn extends Command {
     }
 
     /**
-     * This constructs a new {@link GyroTurn} instance using static {@link Double} values for left and right speeds.
+     * This constructs a new {@link GyroTurn} command using static {@link Double} values for left and right speeds.
      * as well as target angle. and an {@link Supplier<Double>} instance that returns the current angle
      * @param drivetrain the drivetrain the command has to drive
      * @param absoluteLeftSpeed static value for {@link GyroTurn#absoluteLeftSpeedSupplier}
