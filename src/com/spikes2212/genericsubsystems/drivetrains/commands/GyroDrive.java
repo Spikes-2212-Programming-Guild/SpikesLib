@@ -13,6 +13,11 @@ import java.util.function.Supplier;
  *     This method implements an algorithm that was used in {@link RobotDrive#drive}
  *     to make the robot drive in arcade style by the given rate of the gyro.
  * </p>
+ *
+ * <p>
+ *     The main usage of this command will be in autonomous mode,
+ *     when it will be used to make the robot drive as strait as possible.
+ * </p>
  * @author Simon "C" Kharmatsky
  */
 public class GyroDrive extends Command {
