@@ -17,7 +17,7 @@ import java.util.function.Supplier;
  * @see Gyro
  * @see DriveTank
  */
-public class GyroTurn extends Command {
+public class GyroTankTurn extends Command {
 
     private Supplier<Double> absoluteLeftSpeedSupplier;
     private Supplier<Double> absoluteRightSpeedSupplier;
@@ -28,7 +28,7 @@ public class GyroTurn extends Command {
     private TankDrivetrain drivetrain;
 
     /**
-     * This constructs a new {@link GyroTurn} command using {@link Supplier<Double>} for left, and right speeds.
+     * This constructs a new {@link GyroTankTurn} command using {@link Supplier<Double>} for left, and right speeds.
      * as well as the current and target angles.
      * @param drivetrain the drivetrain this command has to move
      * @param absoluteLeftSpeedSupplier {@link Supplier<Double>} of the left speed.
@@ -38,8 +38,8 @@ public class GyroTurn extends Command {
      * @param targetAngleSupplier {@link Supplier<Double>} of the angle the robot has to end at after the command executes
      * @param currentAngleSupplier {@link Supplier<Double>} of the current angle of the robot
      */
-    public GyroTurn(TankDrivetrain drivetrain,Supplier<Double> absoluteLeftSpeedSupplier, Supplier<Double> absoluteRightSpeedSupplier,
-                    Supplier<Double> targetAngleSupplier, Supplier<Double> currentAngleSupplier) {
+    public GyroTankTurn(TankDrivetrain drivetrain, Supplier<Double> absoluteLeftSpeedSupplier, Supplier<Double> absoluteRightSpeedSupplier,
+                        Supplier<Double> targetAngleSupplier, Supplier<Double> currentAngleSupplier) {
         this.drivetrain = drivetrain;
         this.absoluteLeftSpeedSupplier = absoluteLeftSpeedSupplier;
         this.absoluteRightSpeedSupplier = absoluteRightSpeedSupplier;
@@ -48,16 +48,16 @@ public class GyroTurn extends Command {
     }
 
     /**
-     * This constructs a new {@link GyroTurn} command using static {@link Double} values for left and right speeds.
+     * This constructs a new {@link GyroTankTurn} command using static {@link Double} values for left and right speeds.
      * as well as target angle. and an {@link Supplier<Double>} instance that returns the current angle
      * @param drivetrain the drivetrain the command has to drive
-     * @param absoluteLeftSpeed static value for {@link GyroTurn#absoluteLeftSpeedSupplier}
-     * @param absoluteRightSpeed static value for {@link GyroTurn#absoluteRightSpeedSupplier}
-     * @param targetAngle static value for {@link GyroTurn#targetAngleSupplier}
+     * @param absoluteLeftSpeed static value for {@link GyroTankTurn#absoluteLeftSpeedSupplier}
+     * @param absoluteRightSpeed static value for {@link GyroTankTurn#absoluteRightSpeedSupplier}
+     * @param targetAngle static value for {@link GyroTankTurn#targetAngleSupplier}
      * @param currentAngleSupplier {@link Supplier<Double>} of the current angle of the robot
      */
-    public GyroTurn(TankDrivetrain drivetrain, double absoluteLeftSpeed, double absoluteRightSpeed,
-                    double targetAngle, Supplier<Double> currentAngleSupplier) {
+    public GyroTankTurn(TankDrivetrain drivetrain, double absoluteLeftSpeed, double absoluteRightSpeed,
+                        double targetAngle, Supplier<Double> currentAngleSupplier) {
         this(drivetrain, ()->absoluteLeftSpeed, ()->absoluteRightSpeed, ()->targetAngle, currentAngleSupplier);
     }
 
