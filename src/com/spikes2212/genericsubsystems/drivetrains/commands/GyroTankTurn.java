@@ -15,7 +15,7 @@ import java.util.function.Supplier;
  * </p>
  * @author Simon "C" Kharmatsky
  * @see Gyro
- * @see DriveTank
+ * @see TankDrivetrain
  */
 public class GyroTankTurn extends Command {
 
