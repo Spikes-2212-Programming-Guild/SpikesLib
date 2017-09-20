@@ -9,6 +9,19 @@ import java.util.function.Supplier;
  * @author Simon "C" Kharmatsky
  */
 public class GyroDrive extends Command {
+    private Supplier<Double> sensetivitySupplier =
+            ConstantHandler.addConstantDouble("GyroDrive-Sensetivity", 0.5);
+
+    private Supplier<Double> speedSupplier;
+    private TankDrivetrain drivetrain;
+    public GyroDrive(TankDrivetrain drivetrain, Supplier<Double> speedSupplier) {
+        this.drivetrain = drivetrain;
+        this.speedSupplier = speedSupplier;
+    }
+
+    public GyroDrive(TankDrivetrain drivetrain, double speed) {
+        this(drivetrain, ()->speed);
+    }
 
     @Override
     protected boolean isFinished() {
