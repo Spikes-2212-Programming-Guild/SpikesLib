@@ -9,6 +9,10 @@ import java.util.function.Supplier;
 
 /**
  * This command is used to turn the robot to a target angle using {@link Gyro#getAngle()}.
+ * <p>
+ *     The main usage of this command will be in autonomous mode,
+ *     in situations when the team will decide to turn their robot to a specific angle.
+ * </p>
  * @author Simon "C" Kharmatsky
  * @see Gyro
  * @see DriveTank
