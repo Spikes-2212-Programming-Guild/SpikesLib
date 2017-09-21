@@ -14,11 +14,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class MonitoredDriveHolonomic extends DriveHolonomic {
 
 	public MonitoredDriveHolonomic(HolonomicDrivetrain drivetrain, Supplier<Double> speedYSupplier,
-			Supplier<Double> speedXSupplier) {
-		super(drivetrain,VoltageMonitor.monitorSupplier(speedYSupplier),VoltageMonitor.monitorSupplier(speedXSupplier));
+			Supplier<Double> speedXSupplier, Supplier<Double> turningSpeedSuppier) {
+		super(drivetrain, VoltageMonitor.monitorSupplier(speedYSupplier),
+				VoltageMonitor.monitorSupplier(speedXSupplier), VoltageMonitor.monitorSupplier(turningSpeedSuppier));
 	}
-	public MonitoredDriveHolonomic(HolonomicDrivetrain drivetrain, double speedY, double speedX) {
-		super(drivetrain, VoltageMonitor.monitorSupplier(() -> speedY),
-				VoltageMonitor.monitorSupplier(() -> speedX));
+
+	public MonitoredDriveHolonomic(HolonomicDrivetrain drivetrain, double speedY, double speedX, double turningSpeed) {
+		super(drivetrain, VoltageMonitor.monitorSupplier(() -> speedY), VoltageMonitor.monitorSupplier(() -> speedX),
+				VoltageMonitor.monitorSupplier(() -> turningSpeed));
 	}
 }

@@ -11,23 +11,24 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveHolonomic extends Command {
 	private HolonomicDrivetrain holonomicDrivetrain;
-	private Supplier<Double> speedYSupplier, speedXSupplier;
+	private Supplier<Double> speedYSupplier, speedXSupplier, turningSpeedSuppier;
 
-	public DriveHolonomic(HolonomicDrivetrain drivetrain, double speedY, double speedX) {
+	public DriveHolonomic(HolonomicDrivetrain drivetrain, double speedY, double speedX, double turningSpeed) {
 		// Use requires() here to declare subsystem dependencieslier
 		// eg. requires(chassis);
-		this(drivetrain, () -> speedY, () -> speedX);
+		this(drivetrain, () -> speedY, () -> speedX, () -> turningSpeed);
 
 	}
 
 	public DriveHolonomic(HolonomicDrivetrain drivetrain, Supplier<Double> speedYSupplier,
-			Supplier<Double> speedXSupplier) {
+			Supplier<Double> speedXSupplier, Supplier<Double> turningSpeedSuppier) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(drivetrain);
 		this.holonomicDrivetrain = drivetrain;
 		this.speedXSupplier = speedXSupplier;
 		this.speedYSupplier = speedYSupplier;
+		this.turningSpeedSuppier = turningSpeedSuppier;
 
 	}
 
@@ -37,7 +38,7 @@ public class DriveHolonomic extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		holonomicDrivetrain.holonomicDrive(speedYSupplier.get(), speedXSupplier.get());
+		holonomicDrivetrain.holonomicDrive(speedYSupplier.get(), speedXSupplier.get(), turningSpeedSuppier.get());
 
 	}
 
@@ -48,7 +49,7 @@ public class DriveHolonomic extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		holonomicDrivetrain.holonomicDrive(0, 0);
+		holonomicDrivetrain.stop();
 	}
 
 	// Called when another command which requires one or more of the same
