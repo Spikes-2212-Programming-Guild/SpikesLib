@@ -24,8 +24,8 @@ import java.util.function.Supplier;
  * @see TankDrivetrain
  */
 public class GyroTankDrive extends Command {
-    private Supplier<Double> sensetivitySupplier =
-            ConstantHandler.addConstantDouble("GyroTankDrive-Sensetivity", 0.5);
+    private Supplier<Double> sensitivitySupplier =
+            ConstantHandler.addConstantDouble("GyroTankDrive-Sensitivity", 0.5);
 
     private Supplier<Double> speedSupplier, rateSupplier;
     private TankDrivetrain drivetrain;
@@ -63,12 +63,12 @@ public class GyroTankDrive extends Command {
         double logValue, ratio, leftSpeed, rightSpeed;
         if (rateSupplier.get() < 0) {
             logValue = Math.log(-rateSupplier.get());
-            ratio = (logValue - sensetivitySupplier.get()) / (logValue + sensetivitySupplier.get());
+            ratio = (logValue - sensitivitySupplier.get()) / (logValue + sensitivitySupplier.get());
             leftSpeed = speedSupplier.get() / ratio;
             rightSpeed = speedSupplier.get();
         } else if (rateSupplier.get() > 0) {
             logValue = Math.log(rateSupplier.get());
-            ratio = (logValue - sensetivitySupplier.get()) / (logValue + sensetivitySupplier.get());
+            ratio = (logValue - sensitivitySupplier.get()) / (logValue + sensitivitySupplier.get());
             leftSpeed = speedSupplier.get();
             rightSpeed = speedSupplier.get() / ratio;
         } else {
