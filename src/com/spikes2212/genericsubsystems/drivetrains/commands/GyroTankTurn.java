@@ -45,6 +45,7 @@ public class GyroTankTurn extends Command {
         this.absoluteRightSpeedSupplier = absoluteRightSpeedSupplier;
         this.currentAngleSupplier = currentAngleSupplier;
         this.targetAngleSupplier = targetAngleSupplier;
+        requires(drivetrain);
     }
 
     /**

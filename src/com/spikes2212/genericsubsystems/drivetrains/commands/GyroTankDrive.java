@@ -43,6 +43,7 @@ public class GyroTankDrive extends Command {
         this.drivetrain = drivetrain;
         this.speedSupplier = speedSupplier;
         this.rateSupplier = rateSupplier;
+        requires(drivetrain);
     }
 
     /**
