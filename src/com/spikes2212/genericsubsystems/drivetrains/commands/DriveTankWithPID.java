@@ -10,6 +10,18 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * This command moves a {@link TankDrivetrain} using wpilib's
+ * {@link PIDController}. It also waits a specified amount of time after the
+ * error is within the given tolerance before stopping the PID Loop to make sure
+ * the drivetrain doesn't go past and remain beyond the setpoint.
+ *
+ * @author Omri "Riki" Cohen
+ * @see TankDrivetrain
+ * @see PIDController
+ * @see PIDSettings
+ */
+
 public class DriveTankWithPID extends Command {
 
 	private TankDrivetrain tankDrivetrain;

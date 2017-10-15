@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author Omri "Riki" Cohen
  * @see BasicSubsystem
  * @see PIDController
- * @see #setWaitTime(double)
+ * @see PIDSettings
  */
 public class MoveBasicSubsystemWithPID extends Command {
 

@@ -3,13 +3,24 @@ package com.spikes2212.genericsubsystems.drivetrains.commands;
 import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.drivetrains.HolonomicDrivetrain;
-import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 import com.spikes2212.utils.PIDSettings;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+
+/**
+ * This command moves a {@link HolonomicDrivetrain} using wpilib's
+ * {@link PIDController}. It also waits a specified amount of time after the
+ * error is within the given tolerance before stopping the PID Loop to make sure
+ * the drivetrain doesn't go past and remain beyond the setpoint.
+ *
+ * @author Omri "Riki" Cohen
+ * @see HolonomicDrivetrain
+ * @see PIDController
+ * @see PIDSettings
+ */
 
 public class DriveHolonomicWithPID extends Command {
 	private HolonomicDrivetrain holonomicDrivetrain;
