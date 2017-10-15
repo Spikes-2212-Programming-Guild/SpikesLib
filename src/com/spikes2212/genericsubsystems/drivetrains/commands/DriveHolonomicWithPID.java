@@ -289,7 +289,7 @@ public class DriveHolonomicWithPID extends Command {
 
 	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XSource, PIDSource YSource, double setpoint,
 			PIDSettings XPIDSettings, PIDSettings YPIDSettings) {
-		this(drivetrain, XSource, YSource, setpoint, setpoint, XPIDSettings, YPIDSettings);
+		this(drivetrain, XSource, YSource, () -> setpoint, () -> setpoint, XPIDSettings, YPIDSettings);
 	}
 
 	/**

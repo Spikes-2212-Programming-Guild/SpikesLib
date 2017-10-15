@@ -222,7 +222,7 @@ public class DriveTankWithPID extends Command {
 	 */
 	public DriveTankWithPID(TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource, double setpoint,
 			PIDSettings PIDSettings) {
-		this(drivetrain, leftSource, rightSource, setpoint, setpoint, PIDSettings);
+		this(drivetrain, leftSource, rightSource, () -> setpoint, () -> setpoint, PIDSettings);
 	}
 
 	/**
