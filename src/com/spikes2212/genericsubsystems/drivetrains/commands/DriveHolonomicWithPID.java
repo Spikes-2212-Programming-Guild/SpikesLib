@@ -11,20 +11,21 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveHolonomicWithPID extends Command{
+public class DriveHolonomicWithPID extends Command {
 	private HolonomicDrivetrain holonomicDrivetrain;
-	private Supplier<Double> XAxisSetpoint;
-	private Supplier<Double> YAxisSetpoint;
-	private PIDSettings XAxisPIDSettings;
-	private PIDSettings YAxisPIDSettings;
-	private PIDSource XAxisSource;
-	private PIDSource YAxisSource;
-	private PIDController XAxisMovmentControl;
-	private PIDController YAxisMovmentControl;
+	private Supplier<Double> XSetpoint;
+	private Supplier<Double> YSetpoint;
+	private PIDSettings XPIDSettings;
+	private PIDSettings YPIDSettings;
+	private PIDSource XSource;
+	private PIDSource YSource;
+	private PIDController XMovmentControl;
+	private PIDController YMovmentControl;
 	private double lastTimeNotOnTarget;
 
 	/**
-	 * Gets the Proportional coefficient of the PID loop for the x axis of this command.
+	 * Gets the Proportional coefficient of the PID loop for the x axis of this
+	 * command.
 	 *
 	 * @return the current Proportional coefficient.
 	 * @see PIDController#getP()
@@ -32,11 +33,12 @@ public class DriveHolonomicWithPID extends Command{
 	 */
 
 	public double getXAxisP() {
-		return XAxisPIDSettings.getKP();
+		return XPIDSettings.getKP();
 	}
 
 	/**
-	 * Gets the Integral coefficient of the PID loop for the x axis of this command.
+	 * Gets the Integral coefficient of the PID loop for the x axis of this
+	 * command.
 	 *
 	 * @return the current Integral coefficient.
 	 * @see PIDController#getI()
@@ -44,11 +46,12 @@ public class DriveHolonomicWithPID extends Command{
 	 */
 
 	public double getXAxisI() {
-		return XAxisPIDSettings.getKI();
+		return XPIDSettings.getKI();
 	}
 
 	/**
-	 * Gets the Differential coefficient of the PID loop for the x axis of this command.
+	 * Gets the Differential coefficient of the PID loop for the x axis of this
+	 * command.
 	 *
 	 * @return the current Differential coefficient.
 	 * @see PIDController#getD()
@@ -56,7 +59,7 @@ public class DriveHolonomicWithPID extends Command{
 	 */
 
 	public double getXAxisD() {
-		return XAxisPIDSettings.getKD();
+		return XPIDSettings.getKD();
 	}
 
 	/**
@@ -74,27 +77,12 @@ public class DriveHolonomicWithPID extends Command{
 	 */
 
 	public double getXAxisTolerance() {
-		return XAxisPIDSettings.getTolerance();
+		return XPIDSettings.getTolerance();
 	}
 
 	/**
-	 * Gets the time this command will wait while within tolerance of the x axis
-	 * setpoint before ending.
-	 * <p>
-	 * The PID control of the subsystem continues while waiting
-	 * </p>
-	 *
-	 * @see PIDSettings#getWaitTime()
-	 *
-	 * @return the wait time, in seconds. Default is 0.5 seconds.
-	 */
-
-	public double getXAxisWaitTime() {
-		return XAxisPIDSettings.getWaitTime();
-	}
-
-	/**
-	 * Gets the Proportional coefficient of the PID loop for the y axis of this command.
+	 * Gets the Proportional coefficient of the PID loop for the y axis of this
+	 * command.
 	 *
 	 * @return the current Proportional coefficient.
 	 * @see PIDController#getP()
@@ -102,11 +90,12 @@ public class DriveHolonomicWithPID extends Command{
 	 */
 
 	public double getYAxisP() {
-		return YAxisPIDSettings.getKP();
+		return YPIDSettings.getKP();
 	}
 
 	/**
-	 * Gets the Integral coefficient of the PID loop for the y axis of this command.
+	 * Gets the Integral coefficient of the PID loop for the y axis of this
+	 * command.
 	 *
 	 * @return the current Integral coefficient.
 	 * @see PIDController#getI()
@@ -114,11 +103,12 @@ public class DriveHolonomicWithPID extends Command{
 	 */
 
 	public double getYAxisI() {
-		return YAxisPIDSettings.getKI();
+		return YPIDSettings.getKI();
 	}
 
 	/**
-	 * Gets the Differential coefficient of the PID loop for the y axis of this command.
+	 * Gets the Differential coefficient of the PID loop for the y axis of this
+	 * command.
 	 *
 	 * @return the current Differential coefficient.
 	 * @see PIDController#getD()
@@ -126,7 +116,7 @@ public class DriveHolonomicWithPID extends Command{
 	 */
 
 	public double getYAxisD() {
-		return YAxisPIDSettings.getKD();
+		return YPIDSettings.getKD();
 	}
 
 	/**
@@ -144,11 +134,11 @@ public class DriveHolonomicWithPID extends Command{
 	 */
 
 	public double getYAxisTolerance() {
-		return YAxisPIDSettings.getTolerance();
+		return YPIDSettings.getTolerance();
 	}
 
 	/**
-	 * Gets the time this command will wait while within tolerance of the y axis
+	 * Gets the time this command will wait while within tolerance of the
 	 * setpoint before ending.
 	 * <p>
 	 * The PID control of the subsystem continues while waiting
@@ -156,15 +146,15 @@ public class DriveHolonomicWithPID extends Command{
 	 *
 	 * @see PIDSettings#getWaitTime()
 	 *
-	 * @return the wait time, in seconds. Default is 0.5 seconds.
+	 * @return the wait time, in seconds.
 	 */
 
-	public double getYAxisWaitTime() {
-		return YAxisPIDSettings.getWaitTime();
+	public double getWaitTime() {
+		return Math.max(YPIDSettings.getWaitTime(), XPIDSettings.getWaitTime());
 	}
 
 	/**
-	 * Sets the time this command will wait while within tolerance of the y axis
+	 * Sets the time this command will wait while within tolerance of the
 	 * setpoint before ending.
 	 * <p>
 	 * The PID control of the subsystem continues while waiting. <br/>
@@ -177,208 +167,209 @@ public class DriveHolonomicWithPID extends Command{
 	 *            the new wait time, in seconds.
 	 */
 
-	public void setYAxisWaitTime(double waitTime) {
-		YAxisPIDSettings.setWaitTime(waitTime);
-		XAxisPIDSettings.setWaitTime(waitTime);
+	public void setWaitTime(double waitTime) {
+		YPIDSettings.setWaitTime(waitTime);
+		XPIDSettings.setWaitTime(waitTime);
 	}
-	
+
 	/**
-	 * This constructs a new {@link DrivetrainHolonomicWithPID} using {@link PIDSource}s
-	 * the setpoints for each side, the PID coefficients this command's PID loop
-	 * should have, and the tolerance for error.
+	 * This constructs a new {@link DrivetrainHolonomicWithPID} using
+	 * {@link PIDSource}s the setpoints for each side, the PID coefficients this
+	 * command's PID loop should have, and the tolerance for error.
 	 *
 	 * @param drivetrain
 	 *            the {@link edu.wpi.first.wpilibj.command.Subsystem} this
 	 *            command requires and moves.
-	 * @param XAxisSource
+	 * @param XSource
 	 *            the {@link PIDSource} this command uses to get feedback for
 	 *            the PID Loop for the x axis.
-	 * @param YAxisSource
+	 * @param YSource
 	 *            the {@link PIDSource} this command uses to get feedback for
 	 *            the PID Loop for the y axis.
-	 * @param XAxisSetpoint
+	 * @param XSetpoint
 	 *            a supplier supplying the the target point for the x axis of
 	 *            the drivetrain.
 	 *            <p>
 	 *            This command will try to move drivetrain's x axis until it
 	 *            reaches the latest value supplied by setpoint. setpoint should
-	 *            be using the same units as XAxisSource.
+	 *            be using the same units as XSource.
 	 *            </p>
-	 * @param YAxisSetpoint
-	 *            a supplier supplying the the target point for the y axis
-	 *            of the drivetrain.
+	 * @param YSetpoint
+	 *            a supplier supplying the the target point for the y axis of
+	 *            the drivetrain.
 	 *            <p>
 	 *            This command will try to move drivetrain's y axis until it
 	 *            reaches the latest value supplied by setpoint. setpoint should
-	 *            be using the same units as YAxisSource.
+	 *            be using the same units as YSource.
 	 *            </p>
 	 * @param PIDSettings
 	 *            the {@link PIDSettings} this command's PIDController needs.
 	 * 
 	 * @see PIDController
 	 */
-	
-	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XAxisSource, PIDSource YAxisSource,
-			Supplier<Double> XAxisSetpoint, Supplier<Double> YAxisSetpoint, PIDSettings XPIDSettings, PIDSettings YPIDSettings) {
+
+	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XSource, PIDSource YSource,
+			Supplier<Double> XSetpoint, Supplier<Double> YSetpoint, PIDSettings XPIDSettings,
+			PIDSettings YPIDSettings) {
 		requires(drivetrain);
 		this.holonomicDrivetrain = drivetrain;
-		this.XAxisSource = XAxisSource;
-		this.YAxisSource = YAxisSource;
-		this.XAxisSetpoint = XAxisSetpoint;
-		this.YAxisSetpoint = YAxisSetpoint;
-		this.XAxisPIDSettings = XPIDSettings;
-		this.YAxisPIDSettings = YPIDSettings;
+		this.XSource = XSource;
+		this.YSource = YSource;
+		this.XSetpoint = XSetpoint;
+		this.YSetpoint = YSetpoint;
+		this.XPIDSettings = XPIDSettings;
+		this.YPIDSettings = YPIDSettings;
 	}
-	
+
 	/**
-	 * This constructs a new {@link DriveHolonomicWithPID} using {@link PIDSource}s
-	 * the setpoints for each side, the PID coefficients this command's PID loop
-	 * should have, and the tolerance for error.
+	 * This constructs a new {@link DriveHolonomicWithPID} using
+	 * {@link PIDSource}s the setpoints for each side, the PID coefficients this
+	 * command's PID loop should have, and the tolerance for error.
 	 *
 	 * @param drivetrain
 	 *            the {@link edu.wpi.first.wpilibj.command.Subsystem} this
 	 *            command requires and moves.
-	 * @param XAxisSource
+	 * @param XSource
 	 *            the {@link PIDSource} this command uses to get feedback for
 	 *            the PID Loop for the X axis.
-	 * @param YAxisSource
+	 * @param YSource
 	 *            the {@link PIDSource} this command uses to get feedback for
 	 *            the PID Loop for the Y axis.
-	 * @param XAxisSetpoint
+	 * @param XSetpoint
 	 *            the target point for the X axis of the drivetrain.
 	 *            <p>
 	 *            This command will try to move drivetrain's X axis until it
 	 *            reaches the setpoint. setpoint should be using the same units
-	 *            as XAxisSource.
+	 *            as XSource.
 	 *            </p>
-	 * @param YAxisSetpoint
+	 * @param YSetpoint
 	 *            the target point for the Y axis of the drivetrain.
 	 *            <p>
 	 *            This command will try to move drivetrain's Y axis until it
 	 *            reaches the setpoint. setpoint should be using the same units
-	 *            as YAxisSource.
+	 *            as YSource.
 	 *            </p>
 	 * @param PIDSettings
 	 *            the {@link PIDSettings} this command's PIDController needs.
 	 * 
 	 * @see PIDController
 	 */
-	
-	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XAxisSource, PIDSource YAxisSource, double XAxisSetpoint,
-			double YAxisSetpoint, PIDSettings XPIDSettings, PIDSettings YPIDSettings) {
-		this(drivetrain, XAxisSource, YAxisSource, () -> XAxisSetpoint, () -> YAxisSetpoint, XPIDSettings, YPIDSettings);
+
+	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XSource, PIDSource YSource, double XSetpoint,
+			double YSetpoint, PIDSettings XPIDSettings, PIDSettings YPIDSettings) {
+		this(drivetrain, XSource, YSource, () -> XSetpoint, () -> YSetpoint, XPIDSettings, YPIDSettings);
 	}
-	
+
 	/**
-	 * This constructs a new {@link DriveHolonomicWithPID} using {@link PIDSource}s
-	 * the setpoints for each side, the PID coefficients this command's PID loop
-	 * should have, and the tolerance for error.
+	 * This constructs a new {@link DriveHolonomicWithPID} using
+	 * {@link PIDSource}s the setpoints for each side, the PID coefficients this
+	 * command's PID loop should have, and the tolerance for error.
 	 *
 	 * @param drivetrain
 	 *            the {@link edu.wpi.first.wpilibj.command.Subsystem} this
 	 *            command requires and moves.
-	 * @param XAxisSource
+	 * @param XSource
 	 *            the {@link PIDSource} this command uses to get feedback for
 	 *            the PID Loop for the X axis.
-	 * @param YAxisSource
+	 * @param YSource
 	 *            the {@link PIDSource} this command uses to get feedback for
 	 *            the PID Loop for the Y axis.
 	 * @param setPoint
 	 *            the target point of this command.
 	 *            <p>
-	 *            This command will try to move drivetrain until both axes
-	 *            reach the setpoint. setpoint should be using the same units
-	 *            as drivetrain's {@link PIDSource}s.
+	 *            This command will try to move drivetrain until both axes reach
+	 *            the setpoint. setpoint should be using the same units as
+	 *            drivetrain's {@link PIDSource}s.
 	 *            </p>
 	 * @param PIDSettings
 	 *            the {@link PIDSettings} this command's PIDController needs.
 	 * 
 	 * @see PIDController
 	 */
-	
-	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XAxisSource, PIDSource YAxisSource, double setpoint,
+
+	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XSource, PIDSource YSource, double setpoint,
 			PIDSettings XPIDSettings, PIDSettings YPIDSettings) {
-		this(drivetrain, XAxisSource, YAxisSource, setpoint, setpoint, XPIDSettings, YPIDSettings);
+		this(drivetrain, XSource, YSource, setpoint, setpoint, XPIDSettings, YPIDSettings);
 	}
-	
+
 	/**
-	 * This constructs a new {@link DriveHolonomicWithPID} using {@link PIDSource}s
-	 * the setpoints for each side, the PID coefficients this command's PID loop
-	 * should have, and the tolerance for error.
+	 * This constructs a new {@link DriveHolonomicWithPID} using
+	 * {@link PIDSource}s the setpoints for each side, the PID coefficients this
+	 * command's PID loop should have, and the tolerance for error.
 	 *
 	 * @param drivetrain
 	 *            the {@link edu.wpi.first.wpilibj.command.Subsystem} this
 	 *            command requires and moves.
-	 * @param XAxisSource
+	 * @param XSource
 	 *            the {@link PIDSource} this command uses to get feedback for
 	 *            the PID Loop for the X axis.
-	 * @param YAxisSource
+	 * @param YSource
 	 *            the {@link PIDSource} this command uses to get feedback for
 	 *            the PID Loop for the Y axis.
 	 * @param setPoint
 	 *            a supplier supplying the target point of this command.
 	 *            <p>
-	 *            This command will try to move drivetrain until both axes
-	 *            reach the setpoint. setpoint should be using the same units
-	 *            as drivetrain's {@link PIDSource}s.
+	 *            This command will try to move drivetrain until both axes reach
+	 *            the setpoint. setpoint should be using the same units as
+	 *            drivetrain's {@link PIDSource}s.
 	 *            </p>
 	 * @param PIDSettings
 	 *            the {@link PIDSettings} this command's PIDController needs.
 	 * 
 	 * @see PIDController
 	 */
-	
-	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XAxisSource, PIDSource YAxisSource,
+
+	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XSource, PIDSource YSource,
 			Supplier<Double> setpoint, PIDSettings XPIDSettings, PIDSettings YPIDSettings) {
-		this(drivetrain, XAxisSource, YAxisSource, setpoint, setpoint, XPIDSettings, YPIDSettings);
+		this(drivetrain, XSource, YSource, setpoint, setpoint, XPIDSettings, YPIDSettings);
 	}
-	
+
 	// Called just before this Command runs the first time
-		protected void initialize() {
-			XAxisMovmentControl = new PIDController(XAxisPIDSettings.getKP(), XAxisPIDSettings.getKI(), XAxisPIDSettings.getKD(),
-					XAxisSource, holonomicDrivetrain::setX);
-			XAxisMovmentControl.setAbsoluteTolerance(XAxisPIDSettings.getTolerance());
-			XAxisMovmentControl.setSetpoint(this.XAxisSetpoint.get());
-			XAxisMovmentControl.setOutputRange(-1, 1);
-			YAxisMovmentControl = new PIDController(YAxisPIDSettings.getKP(), YAxisPIDSettings.getKI(), YAxisPIDSettings.getKD(),
-					YAxisSource, holonomicDrivetrain::setY);
-			YAxisMovmentControl.setAbsoluteTolerance(YAxisPIDSettings.getTolerance());
-			YAxisMovmentControl.setSetpoint(this.YAxisSetpoint.get());
-			YAxisMovmentControl.setOutputRange(-1, 1);
-			XAxisMovmentControl.enable();
-			YAxisMovmentControl.enable();
-		}
-		
-		// Called repeatedly when this Command is scheduled to run
-		protected void execute() {
-			double newSetPointLeft = XAxisSetpoint.get();
-			double newSetPointRight = YAxisSetpoint.get();
-			if (newSetPointLeft != XAxisMovmentControl.getSetpoint())
-				XAxisMovmentControl.setSetpoint(newSetPointLeft);
-			if (newSetPointRight != YAxisMovmentControl.getSetpoint())
-				YAxisMovmentControl.setSetpoint(newSetPointRight);
-		}
-		
-		// Make this return true when this Command no longer needs to run execute()
-		protected boolean isFinished() {
-			if (!XAxisMovmentControl.onTarget() || !YAxisMovmentControl.onTarget()) {
-				lastTimeNotOnTarget = Timer.getFPGATimestamp();
-			}
-			return Timer.getFPGATimestamp() - lastTimeNotOnTarget >= YAxisPIDSettings.getWaitTime();
-		}
+	protected void initialize() {
+		XMovmentControl = new PIDController(XPIDSettings.getKP(), XPIDSettings.getKI(), XPIDSettings.getKD(), XSource,
+				holonomicDrivetrain::setX);
+		XMovmentControl.setAbsoluteTolerance(XPIDSettings.getTolerance());
+		XMovmentControl.setSetpoint(this.XSetpoint.get());
+		XMovmentControl.setOutputRange(-1, 1);
+		YMovmentControl = new PIDController(YPIDSettings.getKP(), YPIDSettings.getKI(), YPIDSettings.getKD(), YSource,
+				holonomicDrivetrain::setY);
+		YMovmentControl.setAbsoluteTolerance(YPIDSettings.getTolerance());
+		YMovmentControl.setSetpoint(this.YSetpoint.get());
+		YMovmentControl.setOutputRange(-1, 1);
+		XMovmentControl.enable();
+		YMovmentControl.enable();
+	}
 
-		// Called once after isFinished returns true
-		protected void end() {
-			XAxisMovmentControl.disable();
-			YAxisMovmentControl.disable();
-			holonomicDrivetrain.stop();
-		}
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+		double newSetPointLeft = XSetpoint.get();
+		double newSetPointRight = YSetpoint.get();
+		if (newSetPointLeft != XMovmentControl.getSetpoint())
+			XMovmentControl.setSetpoint(newSetPointLeft);
+		if (newSetPointRight != YMovmentControl.getSetpoint())
+			YMovmentControl.setSetpoint(newSetPointRight);
+	}
 
-		// Called when another command which requires one or more of the same
-		// subsystems is scheduled to run
-		protected void interrupted() {
-			end();
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		if (!XMovmentControl.onTarget() || !YMovmentControl.onTarget()) {
+			lastTimeNotOnTarget = Timer.getFPGATimestamp();
 		}
+		return Timer.getFPGATimestamp() - lastTimeNotOnTarget >= Math.max(YPIDSettings.getWaitTime(),
+				XPIDSettings.getWaitTime());
+	}
 
+	// Called once after isFinished returns true
+	protected void end() {
+		XMovmentControl.disable();
+		YMovmentControl.disable();
+		holonomicDrivetrain.stop();
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+		end();
+	}
 
 }
