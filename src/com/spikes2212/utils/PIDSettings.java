@@ -24,10 +24,6 @@ public class PIDSettings {
 		this.setWaitTime(waitTime);
 	}
 
-	public PIDSettings(double KP, double KI, double KD, double tolerance) {
-		this(KP, KI, KD, tolerance, 0.5);
-	}
-
 	/**
 	 * Gets the tolerance for error for the PID loop using this settings.
 	 * <p>
