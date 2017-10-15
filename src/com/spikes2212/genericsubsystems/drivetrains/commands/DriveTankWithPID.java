@@ -97,7 +97,7 @@ public class DriveTankWithPID extends Command {
 	 *
 	 * @see PIDSettings#getWaitTime()
 	 *
-	 * @return the wait time, in seconds. Default is 0.5 seconds.
+	 * @return the wait time, in seconds. 
 	 */
 
 	public double getWaitTime() {

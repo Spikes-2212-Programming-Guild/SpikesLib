@@ -135,7 +135,7 @@ public class PIDSettings {
 	 * The PID control of the subsystem continues while waiting
 	 * </p>
 	 *
-	 * @return the wait time, in seconds. Default is 0.5 seconds.
+	 * @return the wait time, in seconds.
 	 */
 
 	public double getWaitTime() {
