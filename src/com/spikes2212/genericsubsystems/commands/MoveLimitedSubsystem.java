@@ -4,8 +4,6 @@ import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 /**
  * This command moves a {@link LimitedSubsystem} according to a {@link Supplier}
  * or a constant speed until it cannot move any more.
