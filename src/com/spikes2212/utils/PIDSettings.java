@@ -78,8 +78,8 @@ public class PIDSettings {
 	 * @see PIDController#setPID(double, double, double)
 	 */
 
-	public void setKP(double kP) {
-		KP = kP;
+	public void setKP(double KP) {
+		this.KP = KP;
 	}
 
 	/**
@@ -101,8 +101,8 @@ public class PIDSettings {
 	 * @see PIDController#setPID(double, double, double)
 	 */
 
-	public void setKI(double kI) {
-		KI = kI;
+	public void setKI(double KI) {
+		this.KI = KI;
 	}
 
 	/**
@@ -124,8 +124,8 @@ public class PIDSettings {
 	 * @see PIDController#setPID(double, double, double)
 	 */
 
-	public void setKD(double kD) {
-		KD = kD;
+	public void setKD(double KD) {
+		this.KD = KD;
 	}
 
 	/**
