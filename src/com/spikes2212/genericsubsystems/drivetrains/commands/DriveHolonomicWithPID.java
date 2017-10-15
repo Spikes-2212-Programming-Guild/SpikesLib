@@ -43,7 +43,7 @@ public class DriveHolonomicWithPID extends Command {
 	 * @see PIDSettings#getKP()
 	 */
 
-	public double getXAxisP() {
+	public double getXAxisKP() {
 		return XPIDSettings.getKP();
 	}
 
@@ -56,7 +56,7 @@ public class DriveHolonomicWithPID extends Command {
 	 * @see PIDSettings#getKI()
 	 */
 
-	public double getXAxisI() {
+	public double getXAxisKI() {
 		return XPIDSettings.getKI();
 	}
 
@@ -69,7 +69,7 @@ public class DriveHolonomicWithPID extends Command {
 	 * @see PIDSettings#getKD()
 	 */
 
-	public double getXAxisD() {
+	public double getXAxisKD() {
 		return XPIDSettings.getKD();
 	}
 
@@ -100,7 +100,7 @@ public class DriveHolonomicWithPID extends Command {
 	 * @see PIDSettings#getKP()
 	 */
 
-	public double getYAxisP() {
+	public double getYAxisKP() {
 		return YPIDSettings.getKP();
 	}
 
@@ -113,7 +113,7 @@ public class DriveHolonomicWithPID extends Command {
 	 * @see PIDSettings#getKI()
 	 */
 
-	public double getYAxisI() {
+	public double getYAxisKI() {
 		return YPIDSettings.getKI();
 	}
 
@@ -126,7 +126,7 @@ public class DriveHolonomicWithPID extends Command {
 	 * @see PIDSettings#getKD()
 	 */
 
-	public double getYAxisD() {
+	public double getYAxisKD() {
 		return YPIDSettings.getKD();
 	}
 
