@@ -4,6 +4,16 @@ import edu.wpi.first.wpilibj.PIDController;
 
 public class PIDSettings {
 
+	/**
+	 * This class contains subsystem's PID setting which wpilib's
+	 * {@link PIDController} uses. It also has the tolerance of the error for
+	 * the PID loop and the time the PID loop will wait while within tolerance
+	 * of the setpoint before ending.
+	 * 
+	 * @author Omri "Riki" Cohen
+	 * @see PIDController
+	 */
+
 	private double KP, KI, KD, tolerance, waitTime;
 
 	public PIDSettings(double KP, double KI, double KD, double tolerance, double waitTime) {
