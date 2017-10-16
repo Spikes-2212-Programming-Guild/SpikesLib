@@ -33,135 +33,49 @@ public class DriveHolonomicWithPID extends Command {
 	private PIDController XMovmentControl;
 	private PIDController YMovmentControl;
 	private double lastTimeNotOnTarget;
-
+	
 	/**
-	 * Gets the Proportional coefficient of the PID loop for the x axis of this
-	 * command.
-	 *
-	 * @return the current Proportional coefficient.
-	 * @see PIDController#getP()
-	 * @see PIDSettings#getKP()
+	 * Gets the PIDSetting the PIDController uses for the x axis.
+	 * 
+	 * @return The PIDSetting the PIDController uses
+	 * @see PIDSettings
+	 * @see PIDController
 	 */
 
-	public double getXAxisKP() {
-		return XPIDSettings.getKP();
+	public PIDSettings getXPIDSetting() {
+		return XPIDSettings;
 	}
-
+	
 	/**
-	 * Gets the Integral coefficient of the PID loop for the x axis of this
-	 * command.
-	 *
-	 * @return the current Integral coefficient.
-	 * @see PIDController#getI()
-	 * @see PIDSettings#getKI()
+	 * Gets the PIDSetting the PIDController uses for the y axis.
+	 * 
+	 * @return The PIDSetting the PIDController uses
+	 * @see PIDSettings
+	 * @see PIDController
 	 */
 
-	public double getXAxisKI() {
-		return XPIDSettings.getKI();
+	public PIDSettings getYPIDSetting() {
+		return XPIDSettings;
 	}
-
+	
 	/**
-	 * Gets the Differential coefficient of the PID loop for the x axis of this
-	 * command.
-	 *
-	 * @return the current Differential coefficient.
-	 * @see PIDController#getD()
-	 * @see PIDSettings#getKD()
-	 */
-
-	public double getXAxisKD() {
-		return XPIDSettings.getKD();
-	}
-
-	/**
-	 * Gets the tolerance for error for the x axis of this command.
+	 * Sets the tolerance for error of this PID loop.
 	 * <p>
-	 * This tolerance defines when this command ends: This command will end
+	 * This tolerance defines when this PID loop ends: This command will end
 	 * after the difference between the setpoint and the current position is
 	 * within the tolerance for the amount of time specified by
 	 * {@link #setWaitTime(double)} straight.
 	 * </p>
 	 *
-	 * @return The current tolerance. If 0, this command will never end.
+	 * @param tolerance
+	 *            The new tolerance to set. If 0, this PID loop will never end.
 	 * @see PIDController#setAbsoluteTolerance(double)
-	 * @see PIDSettings#getTolerance()
+	 * @see PIDSettings#getTolerance
 	 */
 
-	public double getXAxisTolerance() {
-		return XPIDSettings.getTolerance();
-	}
-
-	/**
-	 * Gets the Proportional coefficient of the PID loop for the y axis of this
-	 * command.
-	 *
-	 * @return the current Proportional coefficient.
-	 * @see PIDController#getP()
-	 * @see PIDSettings#getKP()
-	 */
-
-	public double getYAxisKP() {
-		return YPIDSettings.getKP();
-	}
-
-	/**
-	 * Gets the Integral coefficient of the PID loop for the y axis of this
-	 * command.
-	 *
-	 * @return the current Integral coefficient.
-	 * @see PIDController#getI()
-	 * @see PIDSettings#getKI()
-	 */
-
-	public double getYAxisKI() {
-		return YPIDSettings.getKI();
-	}
-
-	/**
-	 * Gets the Differential coefficient of the PID loop for the y axis of this
-	 * command.
-	 *
-	 * @return the current Differential coefficient.
-	 * @see PIDController#getD()
-	 * @see PIDSettings#getKD()
-	 */
-
-	public double getYAxisKD() {
-		return YPIDSettings.getKD();
-	}
-
-	/**
-	 * Gets the tolerance for error for the y axis of this command.
-	 * <p>
-	 * This tolerance defines when this command ends: This command will end
-	 * after the difference between the setpoint and the current position is
-	 * within the tolerance for the amount of time specified by
-	 * {@link #setWaitTime(double)} straight.
-	 * </p>
-	 *
-	 * @return The current tolerance. If 0, this command will never end.
-	 * @see PIDController#setAbsoluteTolerance(double)
-	 * @see PIDSettings#getTolerance()
-	 */
-
-	public double getYAxisTolerance() {
-		return YPIDSettings.getTolerance();
-	}
-
-	/**
-	 * Gets the time this command will wait while within tolerance of the
-	 * setpoint before ending.
-	 * <p>
-	 * The PID control of the subsystem continues while waiting
-	 * </p>
-	 *
-	 * @see PIDSettings#getWaitTime()
-	 *
-	 * @return the wait time, in seconds.
-	 */
-
-	public double getWaitTime() {
-		return Math.max(YPIDSettings.getWaitTime(), XPIDSettings.getWaitTime());
+	public void setTolerance(double tolerance) {
+		XPIDSettings.setTolerance(tolerance);
+		YPIDSettings.setTolerance(tolerance);
 	}
 
 	/**
