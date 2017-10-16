@@ -9,14 +9,11 @@
 	 * @see PIDController
 
 	 */
-
 package com.spikes2212.utils;
 
 import edu.wpi.first.wpilibj.PIDController;
 
 public class PIDSettings {
-
-
 
 	private double KP, KI, KD, tolerance, waitTime;
 
