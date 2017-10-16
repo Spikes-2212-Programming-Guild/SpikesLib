@@ -42,7 +42,7 @@ public class DriveTankWithPID extends Command {
 	 * @see PIDSettings#getKP()
 	 */
 
-	public double getP() {
+	public double getKP() {
 		return PIDSettings.getKP();
 	}
 
@@ -54,7 +54,7 @@ public class DriveTankWithPID extends Command {
 	 * @see PIDSettings#getKI()
 	 */
 
-	public double getI() {
+	public double getKI() {
 		return PIDSettings.getKI();
 	}
 
@@ -66,7 +66,7 @@ public class DriveTankWithPID extends Command {
 	 * @see PIDSettings#getKD()
 	 */
 
-	public double getD() {
+	public double getKD() {
 		return PIDSettings.getKD();
 	}
 
