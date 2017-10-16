@@ -35,84 +35,43 @@ public class DriveTankWithPID extends Command {
 	private double lastTimeNotOnTarget;
 
 	/**
-	 * Gets the Proportional coefficient of the PID loop of this command.
-	 *
-	 * @return the current Proportional coefficient.
-	 * @see PIDController#getP()
-	 * @see PIDSettings#getKP()
+	 * Gets the PIDSetting the PIDController uses for this command.
+	 * 
+	 * @return The PIDSetting the PIDController uses
+	 * @see PIDSettings
+	 * @see PIDController
 	 */
 
-	public double getKP() {
-		return PIDSettings.getKP();
+	public PIDSettings getPIDSetting() {
+		return PIDSettings;
 	}
 
 	/**
-	 * Gets the Integral coefficient of the PID loop of this command.
-	 *
-	 * @return the current Integral coefficient.
-	 * @see PIDController#getI()
-	 * @see PIDSettings#getKI()
-	 */
-
-	public double getKI() {
-		return PIDSettings.getKI();
-	}
-
-	/**
-	 * Gets the Differential coefficient of the PID loop of this command.
-	 *
-	 * @return the current Differential coefficient.
-	 * @see PIDController#getD()
-	 * @see PIDSettings#getKD()
-	 */
-
-	public double getKD() {
-		return PIDSettings.getKD();
-	}
-
-	/**
-	 * Gets the tolerance for error of this command.
+	 * Sets the tolerance for error of this PID loop.
 	 * <p>
-	 * This tolerance defines when this command ends: This command will end
+	 * This tolerance defines when this PID loop ends: This command will end
 	 * after the difference between the setpoint and the current position is
 	 * within the tolerance for the amount of time specified by
 	 * {@link #setWaitTime(double)} straight.
 	 * </p>
 	 *
-	 * @return The current tolerance. If 0, this command will never end.
+	 * @param tolerance
+	 *            The new tolerance to set. If 0, this PID loop will never end.
 	 * @see PIDController#setAbsoluteTolerance(double)
-	 * @see PIDSettings#getTolerance()
+	 * @see PIDController#getTolerance
 	 */
 
-	public double getTolerance() {
-		return PIDSettings.getTolerance();
+	public void setTolerance(double tolerance) {
+		PIDSettings.setTolerance(tolerance);
 	}
 
 	/**
-	 * Gets the time this command will wait while within tolerance of the
-	 * setpoint before ending.
-	 * <p>
-	 * The PID control of the subsystem continues while waiting
-	 * </p>
-	 *
-	 * @see PIDSettings#getWaitTime()
-	 *
-	 * @return the wait time, in seconds. 
-	 */
-
-	public double getWaitTime() {
-		return PIDSettings.getWaitTime();
-	}
-
-	/**
-	 * Sets the time this command will wait while within tolerance of the
+	 * Sets the time this PID loop will wait while within tolerance of the
 	 * setpoint before ending.
 	 * <p>
 	 * The PID control of the subsystem continues while waiting. <br/>
 	 * If wait time is set to 0, the command won't wait.
 	 * </p>
-	 * 
-	 * @see PIDSettings#setWaitTime(double)
 	 *
 	 * @param waitTime
 	 *            the new wait time, in seconds.
