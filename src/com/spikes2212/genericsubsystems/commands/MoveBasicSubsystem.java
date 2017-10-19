@@ -3,11 +3,17 @@ package com.spikes2212.genericsubsystems.commands;
 import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.BasicSubsystem;
+import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
+ * This command moves a {@link BasicSubsystem} according to a {@link Supplier}
+ * or a constant speed until it cannot move any more.
+ * 
  *
+ * @author Omri "Riki" Cohen and Itamar
+ * @see BasicSubsystem
  */
 public class MoveBasicSubsystem extends Command {
 

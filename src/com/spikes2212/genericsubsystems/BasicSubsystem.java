@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * This class represents a subsystem that moves without any limitations.
  *
- * @author Omri "Riki" Cohen
+ * @author Omri "Riki" Cohen and Itamar
  */
 public class BasicSubsystem extends Subsystem {
 	

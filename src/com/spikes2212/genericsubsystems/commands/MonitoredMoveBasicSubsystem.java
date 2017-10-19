@@ -15,7 +15,7 @@ import com.spikes2212.utils.VoltageMonitor;
  * default scaling method and values in {@link VoltageMonitor}.
  * </p>
  *
- * @author Omri "Riki" Cohen
+ * @author Omri "Riki" Cohen and Itamar
  * @see MoveBasicSubsystem
  * @see VoltageMonitor
  */

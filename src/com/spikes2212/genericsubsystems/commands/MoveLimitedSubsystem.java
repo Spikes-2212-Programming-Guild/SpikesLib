@@ -12,7 +12,7 @@ import com.spikes2212.genericsubsystems.LimitedSubsystem;
  * false for the value read from the supplier.
  * </p>
  *
- * @author Unknow Author
+ * @author Omri "Riki" Cohen and Itamar
  * @see LimitedSubsystem
  */
 public class MoveLimitedSubsystem extends MoveBasicSubsystem {

@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * error is within the given tolerance before stopping the PID Loop to make sure
  * the subsystem doesn't go past and remain beyond the setpoint.
  *
- * @author Omri "Riki" Cohen
+ * @author Omri "Riki" and Itamar
  * @see BasicSubsystem
  * @see PIDController
  * @see PIDSettings

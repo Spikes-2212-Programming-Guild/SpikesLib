@@ -7,7 +7,7 @@ import java.util.function.Supplier;
  * This class represents a subsystem that moves linearly between up to two limits.
  * It also makes sure the subsystem doesn't respond to calls that try to move it beyond its defined limits.
  *
- * @author Unkonwn
+ * @author Omri "Riki" Cohen and Itamar
  */
 public class LimitedSubsystem extends BasicSubsystem {
 	
