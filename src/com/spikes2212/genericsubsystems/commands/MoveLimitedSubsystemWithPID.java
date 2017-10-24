@@ -24,11 +24,57 @@ public class MoveLimitedSubsystemWithPID extends MoveBasicSubsystemWithPID {
 
 	private LimitedSubsystem limitedSubsystem;
 
+	/**
+	 * This constructs a new {@link MoveLimitedSubsystemWithPID} using a
+	 * {@link PIDSource}, a setpoint, the PID coefficients this command's PID
+	 * loop should have, and the tolerance for error.
+	 *
+	 * @param limitedSubsystem
+	 *            the {@link edu.wpi.first.wpilibj.command.Subsystem} this
+	 *            command requires and moves.
+	 * @param source
+	 *            the {@link PIDSource} this command uses to get feedback for
+	 *            the PID Loop.
+	 * @param setpoint
+	 *            a supplier supplying the target point of this command.
+	 *            <p>
+	 *            This command will try to move limitedSubsystem until it
+	 *            reaches the latest value supplied by setpoint. setpoint should
+	 *            supply values using the same units as source.
+	 *            </p>
+	 * @param PIDSettings
+	 *            the {@link PIDSettings} this command's PIDController needs.
+	 * @see PIDController
+	 */
+
 	public MoveLimitedSubsystemWithPID(LimitedSubsystem limitedSubsystem, PIDSource source, Supplier<Double> setpoint,
 			PIDSettings PIDSettings) {
 		super(limitedSubsystem, source, setpoint, PIDSettings);
 		this.limitedSubsystem = limitedSubsystem;
 	}
+
+	/**
+	 * This constructs a new {@link MoveLimitedSubsystemWithPID} using a
+	 * {@link PIDSource}, a setpoint, the PID coefficients this command's PID
+	 * loop should have, and the tolerance for error.
+	 *
+	 * @param limitedSubsystem
+	 *            the {@link edu.wpi.first.wpilibj.command.Subsystem} this
+	 *            command requires and moves.
+	 * @param source
+	 *            the {@link PIDSource} this command uses to get feedback for
+	 *            the PID Loop.
+	 * @param setpoint
+	 *            the target point of this command.
+	 *            <p>
+	 *            This command will try to move basicSubsystem until it reaches
+	 *            the setpoint. setpoint should be using the same units as
+	 *            source.
+	 *            </p>
+	 * @param PIDSettings
+	 *            the {@link PIDSettings} this command's PIDController needs.
+	 * @see PIDController
+	 */
 
 	public MoveLimitedSubsystemWithPID(LimitedSubsystem limitedSubsystem, PIDSource source, double setpoint,
 			PIDSettings PIDSettings) {
