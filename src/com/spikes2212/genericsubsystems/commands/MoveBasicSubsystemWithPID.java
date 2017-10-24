@@ -31,21 +31,6 @@ public class MoveBasicSubsystemWithPID extends Command {
 	protected double lastTimeNotOnTarget;
 
 	/**
-	 * Gets the time this command will wait while within tolerance of the
-	 * setpoint before ending.
-	 * <p>
-	 * The PID control of the subsystem continues while waiting
-	 * </p>
-	 * 
-	 * * @see PIDSettings#getWaitTime()
-	 *
-	 * @return the wait time, in seconds. Default is 0.5 seconds.
-	 */
-	public double getWaitTime() {
-		return PIDSettings.getWaitTime();
-	}
-
-	/**
 	 * Sets the time this command will wait while within tolerance of the
 	 * setpoint before ending.
 	 * <p>
@@ -63,53 +48,34 @@ public class MoveBasicSubsystemWithPID extends Command {
 	}
 
 	/**
-	 * Gets the Proportional coefficient of the PID loop of this command.
-	 *
-	 * @return the current Proportional coefficient.
-	 * @see PIDController#getP()
-	 * @see PIDSettings#getKP()
-	 */
-	public double getP() {
-		return PIDSettings.getKP();
-	}
-
-	/**
-	 * Gets the Integral coefficient of the PID loop of this command.
-	 *
-	 * @return the current Integral coefficient.
-	 * @see PIDController#getI()
-	 * @see PIDSettings#getKI()
-	 */
-	public double getI() {
-		return PIDSettings.getKI();
-	}
-
-	/**
-	 * Gets the Differential coefficient of the PID loop of this command.
-	 *
-	 * @return the current Differential coefficient.
-	 * @see PIDController#getD()
-	 * @see PIDSettings#getKD()
-	 */
-	public double getD() {
-		return PIDSettings.getKD();
-	}
-
-	/**
-	 * Gets the tolerance for error of this command.
+	 * Sets the tolerance for error of this PID loop.
 	 * <p>
-	 * This tolerance defines when this command ends: This command will end
+	 * This tolerance defines when this PID loop ends: This command will end
 	 * after the difference between the setpoint and the current position is
 	 * within the tolerance for the amount of time specified by
 	 * {@link #setWaitTime(double)} straight.
 	 * </p>
 	 *
-	 * @return The current tolerance. If 0, this command will never end.
+	 * @param tolerance
+	 *            The new tolerance to set. If 0, this PID loop will never end.
 	 * @see PIDController#setAbsoluteTolerance(double)
-	 * @see PIDSettings#getTolerance()
+	 * @see PIDController#getTolerance
 	 */
-	public double getTolerance() {
-		return PIDSettings.getTolerance();
+
+	public void setTolerance(double tolerance) {
+		PIDSettings.setTolerance(tolerance);
+	}
+	
+	/**
+	 * Gets the PIDSetting the PIDController uses for this command.
+	 * 
+	 * @return The PIDSetting the PIDController uses
+	 * @see PIDSettings
+	 * @see PIDController
+	 */
+
+	public PIDSettings getPIDSetting() {
+		return PIDSettings;
 	}
 
 	/**
