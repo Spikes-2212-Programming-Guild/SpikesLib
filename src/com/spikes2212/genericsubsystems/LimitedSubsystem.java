@@ -41,7 +41,7 @@ public class LimitedSubsystem extends BasicSubsystem {
      * Checks if this subsystem can move with the given speed.
      *
      * @param speed the speed to check if the subsystem can move with.
-     * @return true if the subsytem can move with the given speed, i.e. it hasn't reached the relevant limit.
+     * @return true if the subsystem can move with the given speed, i.e. it hasn't reached the relevant limit.
      */
     public boolean canMove(double speed) {
         return !(speed < 0 && isMin() || speed > 0 && isMax());
