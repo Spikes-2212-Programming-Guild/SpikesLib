@@ -149,9 +149,9 @@ public class MoveBasicSubsystemWithPID extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		double newSetPoint = setpoint.get();
-		if (movmentControl.getSetpoint() != newSetPoint)
-			movmentControl.setSetpoint(newSetPoint);
+		double newSetpoint = setpoint.get();
+		if (movmentControl.getSetpoint() != newSetpoint)
+			movmentControl.setSetpoint(newSetpoint);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
