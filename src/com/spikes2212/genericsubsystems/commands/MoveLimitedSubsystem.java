@@ -20,22 +20,6 @@ public class MoveLimitedSubsystem extends MoveBasicSubsystem {
 
 	/**
 	 * This constructs a new {@link MoveLimitedSubsystem} command using the
-	 * {@link LimitedSubsystem} this command runs on and the speed the
-	 * {@link LimitedSubsystem} should be moved with.
-	 *
-	 * @param limitedSubsystem
-	 *            the {@link LimitedSubsystem} this command should moves.
-	 * @param speed
-	 *            the speed limitedSubsystem should be moved with. Values should
-	 *            be between -1 and 1.
-	 */
-	public MoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, double speed) {
-		super(limitedSubsystem, speed);
-		this.limitedSubsystem = limitedSubsystem;
-	}
-
-	/**
-	 * This constructs a new {@link MoveLimitedSubsystem} command using the
 	 * {@link LimitedSubsystem} this command runs on and the supplier supplying
 	 * the speed the {@link LimitedSubsystem} should be moved with.
 	 *
@@ -48,6 +32,22 @@ public class MoveLimitedSubsystem extends MoveBasicSubsystem {
 	 */
 	public MoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, Supplier<Double> speedSupplier) {
 		super(limitedSubsystem, speedSupplier);
+		this.limitedSubsystem = limitedSubsystem;
+	}
+
+	/**
+	 * This constructs a new {@link MoveLimitedSubsystem} command using the
+	 * {@link LimitedSubsystem} this command runs on and the speed the
+	 * {@link LimitedSubsystem} should be moved with.
+	 *
+	 * @param limitedSubsystem
+	 *            the {@link LimitedSubsystem} this command should moves.
+	 * @param speed
+	 *            the speed limitedSubsystem should be moved with. Values should
+	 *            be between -1 and 1.
+	 */
+	public MoveLimitedSubsystem(LimitedSubsystem limitedSubsystem, double speed) {
+		super(limitedSubsystem, speed);
 		this.limitedSubsystem = limitedSubsystem;
 	}
 
