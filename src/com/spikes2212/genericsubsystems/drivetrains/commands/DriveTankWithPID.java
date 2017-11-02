@@ -40,7 +40,6 @@ public class DriveTankWithPID extends Command {
 	 * @see PIDSettings
 	 * @see PIDController
 	 */
-
 	public PIDSettings getPIDSetting() {
 		return PIDSettings;
 	}
