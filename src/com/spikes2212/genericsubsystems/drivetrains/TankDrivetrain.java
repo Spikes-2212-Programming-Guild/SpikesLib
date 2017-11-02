@@ -15,12 +15,30 @@ public class TankDrivetrain extends Subsystem {
 
 	private Consumer<Double> controlLeft;
 	private Consumer<Double> controlRight;
-	
+
+	/**
+	 * This constructs a new {@link TankDrivetrain} drivetrain.
+	 * 
+	 * @param controlLeft
+	 *            controls the left side on the drivetrain
+	 * @param controlRight
+	 *            controls the right side on the drivetrain
+	 */
 	public TankDrivetrain(Consumer<Double> controlLeft, Consumer<Double> controlRight) {
 		this.controlLeft = controlLeft;
 		this.controlRight = controlRight;
 	}
 
+	/**
+	 * Moves the both sides of this drivetrain using speedLeft and speedRight
+	 * 
+	 * @param speedLeft
+	 *            The speed to set to the left side. Positive values move this
+	 *            side forward.
+	 * @param speedRight
+	 *            The speed to set to the right side. Positive values move this
+	 *            side forward.
+	 */
 	public void tankDrive(double speedLeft, double speedRight) {
 		setLeft(speedLeft);
 		setRight(speedRight);
@@ -62,15 +80,15 @@ public class TankDrivetrain extends Subsystem {
 	}
 
 	/**
-	 *  Sets the default command. If this is not called or is called with null, then there will be no
-     *  default command for the subsystem.
+	 * Sets the default command. If this is not called or is called with null,
+	 * then there will be no default command for the subsystem.
 	 * 
 	 * @see edu.wpi.first.wpilibj.command.Subsystem#setDefaultCommand(edu.wpi.first.wpilibj.command.Command)
 	 */
-	public void setDefaultCommand(Command defaultCommand){
+	public void setDefaultCommand(Command defaultCommand) {
 		super.setDefaultCommand(defaultCommand);
 	}
-	
+
 	@Override
 	protected void initDefaultCommand() {
 	}
