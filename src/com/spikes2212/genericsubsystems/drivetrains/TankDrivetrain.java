@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class TankDrivetrain extends Subsystem {
 
-	Consumer<Double> controlLeft;
-	Consumer<Double> controlRight;
+	private Consumer<Double> controlLeft;
+	private Consumer<Double> controlRight;
 	
 	public TankDrivetrain(Consumer<Double> controlLeft, Consumer<Double> controlRight) {
 		this.controlLeft = controlLeft;

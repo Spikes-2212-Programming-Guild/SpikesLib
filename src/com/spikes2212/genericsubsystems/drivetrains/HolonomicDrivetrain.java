@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class HolonomicDrivetrain extends TankDrivetrain {
 
-	Consumer<Double> controlX;
-	Consumer<Double> controlY;
+	private Consumer<Double> controlX;
+	private Consumer<Double> controlY;
 
 	public HolonomicDrivetrain(Consumer<Double> controlLeft, Consumer<Double> controlRight, Consumer<Double> controlX,
 			Consumer<Double> controlY) {
