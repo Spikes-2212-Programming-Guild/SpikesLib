@@ -24,7 +24,7 @@ public class FunctionList {
 	 *         hasn't reached the relevant limit.
 	 */
 	public static Function<Double, Boolean> twoLimits(Supplier<Boolean> isMax, Supplier<Boolean> isMin) {
-		return (speed) -> (speed > 0 && isMax.get()) || (speed < 0 && isMin.get());
+		return (speed) -> !(speed > 0 && isMax.get() || speed < 0 && isMin.get());
 	}
 
 }
