@@ -13,11 +13,25 @@ import edu.wpi.first.wpilibj.PIDController;
  * @see PIDController
  * 
  */
-
 public class PIDSettings {
 
 	private double KP, KI, KD, tolerance, waitTime;
 
+	/**
+	 * 
+	 * @param KP
+	 *            the Proportional coefficient of the PID loop of this command.
+	 * @param KI
+	 *            the Integral coefficient of the PID loop of this command.
+	 * @param KD
+	 *            the Differential coefficient of the PID loop of this command.
+	 * @param tolerance
+	 *            the tolerance for error of this command. See
+	 *            {@link #setTolerance(double)}.
+	 * @param waitTime
+	 *            the time this PID loop will wait while within tolerance of the
+	 *            setpoint before ending.
+	 */
 	public PIDSettings(double KP, double KI, double KD, double tolerance, double waitTime) {
 		this.setKP(KP);
 		this.setKI(KI);
