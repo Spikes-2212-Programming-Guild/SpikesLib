@@ -23,7 +23,6 @@ public class FunctionList {
 	 * @return true if the subsystem can move with the given speed, i.e. it
 	 *         hasn't reached the relevant limit.
 	 */
-
 	public static Function<Double, Boolean> twoLimits(Supplier<Boolean> isMax, Supplier<Boolean> isMin) {
 		return (speed) -> (speed > 0 && isMax.get()) || (speed < 0 && isMin.get());
 	}
