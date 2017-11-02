@@ -5,13 +5,13 @@ import edu.wpi.first.wpilibj.PIDController;
 
 /**
  * This class contains subsystem's PID setting which wpilib's
- * {@link PIDController} uses. It also has the tolerance of the error for
- * the PID loop and the time the PID loop will wait while within tolerance
- * of the setpoint before ending.
+ * {@link PIDController} uses. It also has the tolerance of the error for the
+ * PID loop and the time the PID loop will wait while within tolerance of the
+ * setpoint before ending.
  * 
  * @author Omri "Riki" Cohen
  * @see PIDController
-
+ * 
  */
 
 public class PIDSettings {
@@ -38,7 +38,6 @@ public class PIDSettings {
 	 * @return The current tolerance. If 0, this PID loop will never end.
 	 * @see PIDController#setAbsoluteTolerance(double)
 	 */
-
 	public double getTolerance() {
 		return tolerance;
 	}
@@ -56,7 +55,6 @@ public class PIDSettings {
 	 *            The new tolerance to set. If 0, this PID loop will never end.
 	 * @see PIDController#setAbsoluteTolerance(double)
 	 */
-
 	public void setTolerance(double tolerance) {
 		this.tolerance = tolerance;
 	}
@@ -67,7 +65,6 @@ public class PIDSettings {
 	 * @return the current Proportional coefficient.
 	 * @see PIDController#getP()
 	 */
-
 	public double getKP() {
 		return KP;
 	}
@@ -79,7 +76,6 @@ public class PIDSettings {
 	 *            the new Proportional coefficient.
 	 * @see PIDController#setPID(double, double, double)
 	 */
-
 	public void setKP(double KP) {
 		this.KP = KP;
 	}
@@ -90,7 +86,6 @@ public class PIDSettings {
 	 * @return the current Integral coefficient.
 	 * @see PIDController#getI()
 	 */
-
 	public double getKI() {
 		return KI;
 	}
@@ -102,7 +97,6 @@ public class PIDSettings {
 	 *            the new Integral coefficient.
 	 * @see PIDController#setPID(double, double, double)
 	 */
-
 	public void setKI(double KI) {
 		this.KI = KI;
 	}
@@ -113,19 +107,18 @@ public class PIDSettings {
 	 * @return the current Differential coefficient.
 	 * @see PIDController#getD()
 	 */
-
 	public double getKD() {
 		return KD;
 	}
 
 	/**
+	 * 
 	 * Sets the Differential coefficient of the PID loop using this settings.
 	 *
 	 * @param KD
 	 *            the new Differential coefficient.
 	 * @see PIDController#setPID(double, double, double)
 	 */
-
 	public void setKD(double KD) {
 		this.KD = KD;
 	}
@@ -139,7 +132,6 @@ public class PIDSettings {
 	 *
 	 * @return the wait time, in seconds.
 	 */
-
 	public double getWaitTime() {
 		return waitTime;
 	}
@@ -155,7 +147,6 @@ public class PIDSettings {
 	 * @param waitTime
 	 *            the new wait time, in seconds.
 	 */
-
 	public void setWaitTime(double waitTime) {
 		this.waitTime = waitTime;
 	}

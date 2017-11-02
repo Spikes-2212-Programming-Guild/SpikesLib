@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  * @author Omri "Riki" Cohen
  */
-
 public class BasicSubsystem extends Subsystem {
 
 	public final Function<Double, Boolean> canMove;
@@ -26,7 +25,6 @@ public class BasicSubsystem extends Subsystem {
 	 * @param canMove
 	 *            the limitation on the movement, which depends on the speed.
 	 */
-
 	public BasicSubsystem(Consumer<Double> speedConsumer, Function<Double, Boolean> canMove) {
 		this.canMove = canMove;
 		this.speedConsumer = speedConsumer;
@@ -39,7 +37,6 @@ public class BasicSubsystem extends Subsystem {
 	 * @param speedConsumer
 	 *            the thing using the speed (usually a motor/ motors).
 	 */
-
 	public BasicSubsystem(Consumer<Double> speedConsumer) {
 		this(speedConsumer, (s) -> true);
 	}
@@ -50,7 +47,6 @@ public class BasicSubsystem extends Subsystem {
 	 * @param speed
 	 *            the speed to move with.
 	 */
-
 	public void move(double speed) {
 		if (canMove.apply(speed))
 			speedConsumer.accept(speed);
@@ -59,7 +55,6 @@ public class BasicSubsystem extends Subsystem {
 	/**
 	 * Stops this subsystem's movement.
 	 */
-
 	public void stop() {
 		move(0);
 	}
@@ -70,7 +65,6 @@ public class BasicSubsystem extends Subsystem {
 	 * 
 	 * @see edu.wpi.first.wpilibj.command.Subsystem#setDefaultCommand(edu.wpi.first.wpilibj.command.Command)
 	 */
-
 	public void setDefaultCommand(Command defaultCommand) {
 		super.setDefaultCommand(defaultCommand);
 	}

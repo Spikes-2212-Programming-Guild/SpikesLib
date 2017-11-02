@@ -21,7 +21,6 @@ import edu.wpi.first.wpilibj.command.Command;
  * @see PIDController
  * @see PIDSettings
  */
-
 public class DriveHolonomicWithPID extends Command {
 	private HolonomicDrivetrain holonomicDrivetrain;
 	private Supplier<Double> XSetpoint;
@@ -33,7 +32,7 @@ public class DriveHolonomicWithPID extends Command {
 	private PIDController XMovmentControl;
 	private PIDController YMovmentControl;
 	private double lastTimeNotOnTarget;
-	
+
 	/**
 	 * Gets the PIDSetting the PIDController uses for the x axis.
 	 * 
@@ -41,11 +40,10 @@ public class DriveHolonomicWithPID extends Command {
 	 * @see PIDSettings
 	 * @see PIDController
 	 */
-
 	public PIDSettings getXPIDSetting() {
 		return XPIDSettings;
 	}
-	
+
 	/**
 	 * Gets the PIDSetting the PIDController uses for the y axis.
 	 * 
@@ -53,11 +51,10 @@ public class DriveHolonomicWithPID extends Command {
 	 * @see PIDSettings
 	 * @see PIDController
 	 */
-
 	public PIDSettings getYPIDSetting() {
 		return XPIDSettings;
 	}
-	
+
 	/**
 	 * Sets the tolerance for error of this PID loop.
 	 * <p>
@@ -72,7 +69,6 @@ public class DriveHolonomicWithPID extends Command {
 	 * @see PIDController#setAbsoluteTolerance(double)
 	 * @see PIDSettings#getTolerance
 	 */
-
 	public void setTolerance(double tolerance) {
 		XPIDSettings.setTolerance(tolerance);
 		YPIDSettings.setTolerance(tolerance);
@@ -91,7 +87,6 @@ public class DriveHolonomicWithPID extends Command {
 	 * @param waitTime
 	 *            the new wait time, in seconds.
 	 */
-
 	public void setWaitTime(double waitTime) {
 		YPIDSettings.setWaitTime(waitTime);
 		XPIDSettings.setWaitTime(waitTime);
@@ -132,7 +127,6 @@ public class DriveHolonomicWithPID extends Command {
 	 * 
 	 * @see PIDController
 	 */
-
 	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XSource, PIDSource YSource,
 			Supplier<Double> XSetpoint, Supplier<Double> YSetpoint, PIDSettings XPIDSettings,
 			PIDSettings YPIDSettings) {
@@ -179,7 +173,6 @@ public class DriveHolonomicWithPID extends Command {
 	 * 
 	 * @see PIDController
 	 */
-
 	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XSource, PIDSource YSource, double XSetpoint,
 			double YSetpoint, PIDSettings XPIDSettings, PIDSettings YPIDSettings) {
 		this(drivetrain, XSource, YSource, () -> XSetpoint, () -> YSetpoint, XPIDSettings, YPIDSettings);
@@ -211,7 +204,6 @@ public class DriveHolonomicWithPID extends Command {
 	 * 
 	 * @see PIDController
 	 */
-
 	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XSource, PIDSource YSource, double setpoint,
 			PIDSettings XPIDSettings, PIDSettings YPIDSettings) {
 		this(drivetrain, XSource, YSource, () -> setpoint, () -> setpoint, XPIDSettings, YPIDSettings);
@@ -243,7 +235,6 @@ public class DriveHolonomicWithPID extends Command {
 	 * 
 	 * @see PIDController
 	 */
-
 	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XSource, PIDSource YSource,
 			Supplier<Double> setpoint, PIDSettings XPIDSettings, PIDSettings YPIDSettings) {
 		this(drivetrain, XSource, YSource, setpoint, setpoint, XPIDSettings, YPIDSettings);

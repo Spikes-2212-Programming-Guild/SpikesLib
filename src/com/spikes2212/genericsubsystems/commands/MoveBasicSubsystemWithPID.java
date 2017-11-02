@@ -61,11 +61,10 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 * @see PIDController#setAbsoluteTolerance(double)
 	 * @see PIDController#getTolerance
 	 */
-
 	public void setTolerance(double tolerance) {
 		PIDSettings.setTolerance(tolerance);
 	}
-	
+
 	/**
 	 * Gets the PIDSetting the PIDController uses for this command.
 	 * 
@@ -73,7 +72,6 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 * @see PIDSettings
 	 * @see PIDController
 	 */
-
 	public PIDSettings getPIDSetting() {
 		return PIDSettings;
 	}

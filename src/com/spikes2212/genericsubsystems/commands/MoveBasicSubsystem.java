@@ -31,12 +31,11 @@ public class MoveBasicSubsystem extends Command {
 	 *            should be moved with. Should only supply values between -1 and
 	 *            1.
 	 */
-	
 	public MoveBasicSubsystem(BasicSubsystem basicSubsystem, Supplier<Double> speedSupplier) {
 		this.basicSubsystem = basicSubsystem;
 		this.speedSupplier = speedSupplier;
 	}
-	
+
 	/**
 	 * This constructs a new {@link MoveBasicSubsystem} command using the
 	 * {@link BasicSubsystem} this command runs on and the supplier supplying
@@ -48,7 +47,6 @@ public class MoveBasicSubsystem extends Command {
 	 *            the speed basicSubsystem should be moved with. Values should
 	 *            be between -1 and 1.
 	 */
-
 	public MoveBasicSubsystem(BasicSubsystem basicSubsystem, double speed) {
 		this(basicSubsystem, () -> speed);
 	}
@@ -64,7 +62,7 @@ public class MoveBasicSubsystem extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return !basicSubsystem.canMove.apply(speedSupplier.get())||isTimedOut();
+		return !basicSubsystem.canMove.apply(speedSupplier.get()) || isTimedOut();
 	}
 
 	// Called once after isFinished returns true

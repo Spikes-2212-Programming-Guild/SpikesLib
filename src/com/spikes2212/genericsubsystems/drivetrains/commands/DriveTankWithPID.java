@@ -21,7 +21,6 @@ import edu.wpi.first.wpilibj.command.Command;
  * @see PIDController
  * @see PIDSettings
  */
-
 public class DriveTankWithPID extends Command {
 
 	private TankDrivetrain tankDrivetrain;
@@ -60,7 +59,6 @@ public class DriveTankWithPID extends Command {
 	 * @see PIDController#setAbsoluteTolerance(double)
 	 * @see PIDController#getTolerance
 	 */
-
 	public void setTolerance(double tolerance) {
 		PIDSettings.setTolerance(tolerance);
 	}
@@ -76,7 +74,6 @@ public class DriveTankWithPID extends Command {
 	 * @param waitTime
 	 *            the new wait time, in seconds.
 	 */
-
 	public void setWaitTime(double waitTime) {
 		PIDSettings.setWaitTime(waitTime);
 	}
@@ -222,7 +219,6 @@ public class DriveTankWithPID extends Command {
 	 * 
 	 * @see PIDController
 	 */
-
 	public DriveTankWithPID(TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource,
 			Supplier<Double> setpoint, PIDSettings PIDSettings) {
 		this(drivetrain, leftSource, rightSource, setpoint, setpoint, PIDSettings);

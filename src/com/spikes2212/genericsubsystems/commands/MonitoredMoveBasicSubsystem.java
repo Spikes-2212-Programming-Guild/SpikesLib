@@ -19,8 +19,8 @@ import com.spikes2212.utils.VoltageMonitor;
  * @see MoveBasicSubsystem
  * @see VoltageMonitor
  */
-
 public class MonitoredMoveBasicSubsystem extends MoveBasicSubsystem {
+	
 	/**
 	 * {@inheritDoc}
 	 *
