@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class BasicSubsystem extends Subsystem {
 
-	private Function<Double, Boolean> canMove;
+	public final Function<Double, Boolean> canMove;
 	private Consumer<Double> speedConsumer;
 
 	/**
