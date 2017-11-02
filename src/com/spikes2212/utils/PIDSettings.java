@@ -74,7 +74,7 @@ public class PIDSettings {
 	/**
 	 * Sets the Proportional coefficient of the PID loop using this settings.
 	 *
-	 * @param P
+	 * @param KP
 	 *            the new Proportional coefficient.
 	 * @see PIDController#setPID(double, double, double)
 	 */
@@ -97,7 +97,7 @@ public class PIDSettings {
 	/**
 	 * Sets the Integral coefficients of the PID loop using this settings.
 	 *
-	 * @param I
+	 * @param KI
 	 *            the new Integral coefficient.
 	 * @see PIDController#setPID(double, double, double)
 	 */
@@ -120,7 +120,7 @@ public class PIDSettings {
 	/**
 	 * Sets the Differential coefficient of the PID loop using this settings.
 	 *
-	 * @param D
+	 * @param KD
 	 *            the new Differential coefficient.
 	 * @see PIDController#setPID(double, double, double)
 	 */
