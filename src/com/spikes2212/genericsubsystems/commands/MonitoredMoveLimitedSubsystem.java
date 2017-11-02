@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
 import com.spikes2212.utils.VoltageMonitor;
 
-import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * This command work similarly to {@link MoveLimitedSubsystem},
@@ -15,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * meaning according to the default scaling method and values in {@link VoltageMonitor}.
  * </p>
  *
- * @author Omri "Riki" Cohen
+ * @author Omri "Riki" Cohen and Itamar
  * @see MoveLimitedSubsystem
  * @see VoltageMonitor
  */

@@ -1,51 +1,47 @@
 package com.spikes2212.genericsubsystems;
 
-import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
  * This class represents a subsystem that moves linearly between up to two limits.
  * It also makes sure the subsystem doesn't respond to calls that try to move it beyond its defined limits.
  *
- * @author Unkonwn
+ * @author Omri "Riki" Cohen and Itamar
  */
-public abstract class LimitedSubsystem extends Subsystem {
+public class LimitedSubsystem extends BasicSubsystem {
+	
+	private Supplier<Boolean> downLimit; 
+	private Supplier<Boolean> upLimit; 
 
+	public LimitedSubsystem(Consumer<Double> movingSpeed, Supplier<Boolean> downLimit, Supplier<Boolean> upLimit){
+		super(movingSpeed);
+		this.downLimit=downLimit;
+		this.upLimit=upLimit;
+	}
     /**
      * The "Negative" limit of this subsystem; i.e. the limit defining if the subsystem can move using a negative speed.
      *
      * @return true if the subsystem reached its minimum point and cannot move with a negative speed any further.
      */
-    public abstract boolean isMin();
-
-
+    public boolean isMin(){
+    	return downLimit.get();
+    }
+    
     /**
      * The "Positive" limit of this subsystem; i.e. the limit defining if the subsystem can move using a positive speed.
      *
      * @return true if the subsystem reached its maximum point and cannot move with a positive speed any further.
      */
-    public abstract boolean isMax();
-
-    /**
-     * Configures and returns the default {@link PIDSource} for this subsystem.
-     *
-     * @return the default {@link PIDSource} for this subsystem. This can be null if the subsystem supplies no default PID source.
-     */
-    public abstract PIDSource getPIDSource();
-
-    /**
-     * Moves this subsystem with the given speed.
-     *
-     * @param speed the speed to move with. Positive values should move this subsystem towards the {@link #isMax()} limit.
-     */
-    protected abstract void move(double speed);
+    public boolean isMax(){
+    	return upLimit.get();
+    }
 
     /**
      * Checks if this subsystem can move with the given speed.
      *
      * @param speed the speed to check if the subsystem can move with.
-     * @return true if the subsytem can move with the given speed, i.e. it hasn't reached the relevant limit.
+     * @return true if the subsystem can move with the given speed, i.e. it hasn't reached the relevant limit.
      */
     public boolean canMove(double speed) {
         return !(speed < 0 && isMin() || speed > 0 && isMax());
@@ -61,21 +57,5 @@ public abstract class LimitedSubsystem extends Subsystem {
         if (canMove(speed)) {
             move(speed);
         }
-    }
-
-    /**
-     * Stops this subsystem's movement.
-     * <p>
-     * synonym to calling tryMove(0).
-     * </p>
-     */
-    public void stop() {
-        move(0);
-    }
-
-    @Override
-    protected void initDefaultCommand() {
-        // TODO Auto-generated method stub
-
     }
 }
