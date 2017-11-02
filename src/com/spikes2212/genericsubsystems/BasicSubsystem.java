@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class BasicSubsystem extends Subsystem {
 
+	/**
+	 * This function should check if the subsystem can move given the speed
+	 */
 	public final Function<Double, Boolean> canMove;
 	private Consumer<Double> speedConsumer;
 
