@@ -5,11 +5,18 @@ import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.BasicSubsystem;
 
+/**
+ * This is the functions that {@link BasicSubsystem} uses
+ * 
+ * @author Omri "Riki" Cohen
+ *
+ */
+
 public class FunctionList {
 
 	/**
-	 * This function is used for a {@link BasicSubsystem} with 2 limits and checks if it can
-	 * move the given speed.
+	 * This function is used for a {@link BasicSubsystem} with 2 limits and
+	 * checks if it can move the given speed.
 	 *
 	 * @param speed
 	 *            the speed to check if the subsystem can move with.
