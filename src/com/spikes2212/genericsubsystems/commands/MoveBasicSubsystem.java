@@ -25,7 +25,7 @@ public class MoveBasicSubsystem extends Command {
 	 * the speed the {@link BasicSubsystem} should be moved with.
 	 *
 	 * @param basicSubsystem
-	 *            the {@link BasicSubsystem} this command should moves.
+	 *            the {@link BasicSubsystem} this command should move.
 	 * @param speedSupplier
 	 *            a Double {@link Supplier} supplying the speed basicSubsystem
 	 *            should be moved with. Should only supply values between -1 and
@@ -42,7 +42,7 @@ public class MoveBasicSubsystem extends Command {
 	 * the speed the {@link BasicSubsystem} should be moved with.
 	 *
 	 * @param basicSubsystem
-	 *            the {@link BasicSubsystem} this command should moves.
+	 *            the {@link BasicSubsystem} this command should move.
 	 * @param speed
 	 *            the speed basicSubsystem should be moved with. Values should
 	 *            be between -1 and 1.

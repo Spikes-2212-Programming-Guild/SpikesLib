@@ -83,7 +83,7 @@ public class DriveTankWithPID extends Command {
 	 * should have, and the tolerance for error.
 	 *
 	 * @param drivetrain
-	 *            the {@link edu.wpi.first.wpilibj.command.Subsystem} this
+	 *            the {@link TankDrivetrain} this
 	 *            command requires and moves.
 	 * @param leftSource
 	 *            the {@link PIDSource} this command uses to get feedback for
@@ -92,7 +92,7 @@ public class DriveTankWithPID extends Command {
 	 *            the {@link PIDSource} this command uses to get feedback for
 	 *            the PID Loop for the right side.
 	 * @param leftSetpoint
-	 *            a supplier supplying the the target point for the left side of
+	 *            a {@link Supplier} supplying the the target point for the left side of
 	 *            the drivetrain.
 	 *            <p>
 	 *            This command will try to move drivetrain's left side until it
@@ -100,7 +100,7 @@ public class DriveTankWithPID extends Command {
 	 *            be using the same units as leftSource.
 	 *            </p>
 	 * @param rightSetpoint
-	 *            a supplier supplying the the target point for the right side
+	 *            a {@link Supplier} supplying the the target point for the right side
 	 *            of the drivetrain.
 	 *            <p>
 	 *            This command will try to move drivetrain's right side until it
@@ -207,7 +207,7 @@ public class DriveTankWithPID extends Command {
 	 *            the {@link PIDSource} this command uses to get feedback for
 	 *            the PID Loop for the right side.
 	 * @param setPoint
-	 *            a supplier supplying the target point of this command.
+	 *            a {@link Supplier} supplying the target point of this command.
 	 *            <p>
 	 *            This command will try to move drivetrain until both sides
 	 *            reache the setpoint. setpoint should be using the same units

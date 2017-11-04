@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * This command moves a {@link BasicSubsystem} using wpilib's
  * {@link PIDController}. It also waits a specified amount of time after the
  * error is within the given tolerance before stopping the PID Loop to make sure
- * the subsystem doesn't go past and remain beyond the setpoint.
+ * the {@link BasicSubsystem} doesn't go past and remain beyond the setpoint.
  *
  * @author Omri "Riki" and Itamar Rivkind
  * @see BasicSubsystem
@@ -57,7 +57,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 * </p>
 	 *
 	 * @param tolerance
-	 *            The new tolerance to set. If 0, this PID loop will never end.
+	 *            The new tolerance to set. If 0, this PID loop will never end unless you cancel it.
 	 * @see PIDController#setAbsoluteTolerance(double)
 	 * @see PIDController#getTolerance
 	 */
@@ -82,7 +82,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 * loop should have, and the tolerance for error.
 	 *
 	 * @param basicSubsystem
-	 *            the {@link edu.wpi.first.wpilibj.command.Subsystem} this
+	 *            the {@link BasicSubsystem} this
 	 *            command requires and moves.
 	 * @param source
 	 *            the {@link PIDSource} this command uses to get feedback for
@@ -114,7 +114,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 * the tolerance for error.
 	 *
 	 * @param BasicSubsystem
-	 *            the {@link edu.wpi.first.wpilibj.command.Subsystem} this
+	 *            the {@link BasicSubsystem} this
 	 *            command requires and moves.
 	 * @param source
 	 *            the {@link PIDSource} this command uses to get feedback for

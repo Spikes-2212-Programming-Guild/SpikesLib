@@ -21,8 +21,10 @@ public class TankDrivetrain extends Subsystem {
 	 * 
 	 * @param controlLeft
 	 *            controls the left side on the drivetrain
+	 *            @see Consumer
 	 * @param controlRight
 	 *            controls the right side on the drivetrain
+	 *            @see Consumer
 	 */
 	public TankDrivetrain(Consumer<Double> controlLeft, Consumer<Double> controlRight) {
 		this.controlLeft = controlLeft;

@@ -26,7 +26,7 @@ public class BasicSubsystem extends Subsystem {
 	 * this constructs a new {@link BasicSubsystem} subsystem.
 	 * 
 	 * @param speedConsumer
-	 *            the thing using the speed (usually a motor/ motors).
+	 *            the component using the speed (usually a motor/ motors).
 	 * @param canMove
 	 *            the limitation on the movement, which depends on the speed.
 	 */
@@ -40,7 +40,7 @@ public class BasicSubsystem extends Subsystem {
 	 * limitations.
 	 * 
 	 * @param speedConsumer
-	 *            the thing using the speed (usually a motor/ motors).
+	 *            the component using the speed (usually a motor/ motors).
 	 */
 	public BasicSubsystem(Consumer<Double> speedConsumer) {
 		this(speedConsumer, (s) -> true);
@@ -51,14 +51,14 @@ public class BasicSubsystem extends Subsystem {
 	 * subsystem can move between.
 	 * 
 	 * @param speedConsumer
-	 *            the thing using the speed (usually a motor/ motors). positive
+	 *            the component using the speed (usually a motor/ motors). positive
 	 *            speed moves towards the maxLimit and negative towards the
 	 *            minLimit
 	 * @param maxLimit
-	 *            the upper limit, positive speed makes the subsystem move
+	 *            the upper limit, positive speed makes the {@link BasicSubsystem} move
 	 *            towards this limit.
 	 * @param minLimit
-	 *            the lower limit, negative speed makes the subsystem move
+	 *            the lower limit, negative speed makes the {@link BasicSubsystem} move
 	 *            towards this limit.
 	 */
 	public BasicSubsystem(Consumer<Double> speedConsumer, Supplier<Boolean> maxLimit, Supplier<Boolean> minLimit) {
@@ -79,7 +79,7 @@ public class BasicSubsystem extends Subsystem {
 	 * Moves this subsystem with the given speed.
 	 *
 	 * @param speed
-	 *            the speed to move with.
+	 *            the speed to move the subsystem with.
 	 */
 	public void move(double speed) {
 		if (canMove.apply(speed))

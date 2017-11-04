@@ -34,7 +34,7 @@ public class DriveHolonomicWithPID extends Command {
 	private double lastTimeNotOnTarget;
 
 	/**
-	 * Gets the PIDSetting the PIDController uses for the x axis.
+	 * Gets the {@link PIDSettings} the {@link PIDController} uses for the x axis.
 	 * 
 	 * @return The PIDSetting the PIDController uses
 	 * @see PIDSettings
@@ -45,7 +45,7 @@ public class DriveHolonomicWithPID extends Command {
 	}
 
 	/**
-	 * Gets the PIDSetting the PIDController uses for the y axis.
+	 * Gets the {@link PIDSettings} the {@link PIDController}r uses for the y axis.
 	 * 
 	 * @return The PIDSetting the PIDController uses
 	 * @see PIDSettings
