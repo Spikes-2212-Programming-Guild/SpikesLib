@@ -65,8 +65,7 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 	 *            The speed to set to the X axis. Positive values move this
 	 *            forward.
 	 */
-	public void holonomicDrive(double speedY, double speedX) { // y-forward/backward 
-																// x-left/right
+	public void holonomicDrive(double speedY, double speedX) { // y-forward/backward  x-left/right 
 		setX(speedX);
 		setY(speedY);
 	}
