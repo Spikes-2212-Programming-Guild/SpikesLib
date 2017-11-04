@@ -49,7 +49,8 @@ public class PIDSettings {
 	 * {@link #setWaitTime(double)} straight.
 	 * </p>
 	 *
-	 * @return The current tolerance. If 0, this PID loop will never end unless you cancel it.
+	 * @return The current tolerance. If 0 and the WaitTime is not 0, this PID
+	 *         loop will never end unless you cancel it.
 	 * @see PIDController#setAbsoluteTolerance(double)
 	 */
 	public double getTolerance() {
@@ -66,7 +67,8 @@ public class PIDSettings {
 	 * </p>
 	 *
 	 * @param tolerance
-	 *            The new tolerance to set. If 0, this PID loop will never end unless you cancel it.
+	 *            The new tolerance to set. If 0 and the WaitTime is not 0, this
+	 *            PID loop will never end unless you cancel it.
 	 * @see PIDController#setAbsoluteTolerance(double)
 	 */
 	public void setTolerance(double tolerance) {

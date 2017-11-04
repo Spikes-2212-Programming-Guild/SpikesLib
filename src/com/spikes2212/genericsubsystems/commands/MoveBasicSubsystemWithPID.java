@@ -57,7 +57,8 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 * </p>
 	 *
 	 * @param tolerance
-	 *            The new tolerance to set. If 0, this PID loop will never end unless you cancel it.
+	 *            The new tolerance to set. If 0 and the WaitTime is not 0, this
+	 *            PID loop will never end unless you cancel it.
 	 * @see PIDController#setAbsoluteTolerance(double)
 	 * @see PIDController#getTolerance
 	 */
@@ -82,8 +83,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 * loop should have, and the tolerance for error.
 	 *
 	 * @param basicSubsystem
-	 *            the {@link BasicSubsystem} this
-	 *            command requires and moves.
+	 *            the {@link BasicSubsystem} this command requires and moves.
 	 * @param source
 	 *            the {@link PIDSource} this command uses to get feedback for
 	 *            the PID Loop.
@@ -114,8 +114,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 * the tolerance for error.
 	 *
 	 * @param BasicSubsystem
-	 *            the {@link BasicSubsystem} this
-	 *            command requires and moves.
+	 *            the {@link BasicSubsystem} this command requires and moves.
 	 * @param source
 	 *            the {@link PIDSource} this command uses to get feedback for
 	 *            the PID Loop.
