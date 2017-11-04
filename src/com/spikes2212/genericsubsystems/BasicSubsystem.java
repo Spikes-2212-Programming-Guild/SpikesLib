@@ -2,6 +2,7 @@ package com.spikes2212.genericsubsystems;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -43,6 +44,35 @@ public class BasicSubsystem extends Subsystem {
 	 */
 	public BasicSubsystem(Consumer<Double> speedConsumer) {
 		this(speedConsumer, (s) -> true);
+	}
+
+	/**
+	 * this constructs a new {@link BasicSubsystem} subsystem this 2 limits the
+	 * subsystem can move between.
+	 * 
+	 * @param speedConsumer
+	 *            the thing using the speed (usually a motor/ motors). positive
+	 *            speed moves towards the maxLimit and negative towards the
+	 *            minLimit
+	 * @param maxLimit
+	 *            the upper limit, positive speed makes the subsystem move
+	 *            towards this limit.
+	 * @param minLimit
+	 *            the lower limit, negative speed makes the subsystem move
+	 *            towards this limit.
+	 */
+	public BasicSubsystem(Consumer<Double> speedConsumer, Supplier<Boolean> maxLimit, Supplier<Boolean> minLimit) {
+		this(speedConsumer, (speed) -> {
+			if (speed > 0 && maxLimit.get()) // Checks if the max limit is
+												// pressed and if a positive
+												// speed is given
+				return false;
+			if (speed < 0 && minLimit.get()) // Checks if the min limit is
+												// pressed and if a negative
+												// speed is given
+				return false;
+			return true;
+		});
 	}
 
 	/**
