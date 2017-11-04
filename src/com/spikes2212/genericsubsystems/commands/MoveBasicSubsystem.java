@@ -32,6 +32,7 @@ public class MoveBasicSubsystem extends Command {
 	 *            1.
 	 */
 	public MoveBasicSubsystem(BasicSubsystem basicSubsystem, Supplier<Double> speedSupplier) {
+		requires(basicSubsystem);
 		this.basicSubsystem = basicSubsystem;
 		this.speedSupplier = speedSupplier;
 	}
