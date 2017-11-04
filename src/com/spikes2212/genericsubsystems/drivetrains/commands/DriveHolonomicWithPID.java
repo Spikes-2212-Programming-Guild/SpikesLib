@@ -45,7 +45,7 @@ public class DriveHolonomicWithPID extends Command {
 	}
 
 	/**
-	 * Gets the {@link PIDSettings} the {@link PIDController}r uses for the y axis.
+	 * Gets the {@link PIDSettings} the {@link PIDController} uses for the y axis.
 	 * 
 	 * @return The PIDSetting the PIDController uses
 	 * @see PIDSettings
