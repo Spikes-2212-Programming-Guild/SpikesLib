@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * or a constant speed until it cannot move any more.
  * 
  *
- * @author Omri "Riki" Cohen and Itamar
+ * @author Omri "Riki" Cohen and Itamar Rivkind
  * @see BasicSubsystem
  */
 public class MoveBasicSubsystem extends Command {
