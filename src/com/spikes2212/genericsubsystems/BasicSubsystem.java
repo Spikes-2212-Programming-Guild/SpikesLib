@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class BasicSubsystem extends Subsystem {
 
+	private double speed;
+
 	/**
 	 * This function, when applied to a certain double speed returns true if
 	 * this subsystem can move at that speed
@@ -33,6 +35,7 @@ public class BasicSubsystem extends Subsystem {
 	public BasicSubsystem(Consumer<Double> speedConsumer, Function<Double, Boolean> canMove) {
 		this.canMove = canMove;
 		this.speedConsumer = speedConsumer;
+		speed = 0;
 	}
 
 	/**
@@ -51,15 +54,15 @@ public class BasicSubsystem extends Subsystem {
 	 * subsystem can move between.
 	 * 
 	 * @param speedConsumer
-	 *            the component using the speed (usually a motor/ motors). positive
-	 *            speed moves towards the maxLimit and negative towards the
-	 *            minLimit
+	 *            the component using the speed (usually a motor/ motors).
+	 *            positive speed moves towards the maxLimit and negative towards
+	 *            the minLimit
 	 * @param maxLimit
-	 *            the upper limit, positive speed makes the {@link BasicSubsystem} move
-	 *            towards this limit.
+	 *            the upper limit, positive speed makes the
+	 *            {@link BasicSubsystem} move towards this limit.
 	 * @param minLimit
-	 *            the lower limit, negative speed makes the {@link BasicSubsystem} move
-	 *            towards this limit.
+	 *            the lower limit, negative speed makes the
+	 *            {@link BasicSubsystem} move towards this limit.
 	 */
 	public BasicSubsystem(Consumer<Double> speedConsumer, Supplier<Boolean> maxLimit, Supplier<Boolean> minLimit) {
 		this(speedConsumer, (speed) -> {
@@ -82,8 +85,24 @@ public class BasicSubsystem extends Subsystem {
 	 *            the speed to move the subsystem with.
 	 */
 	public void move(double speed) {
-		if (canMove.apply(speed))
+		if (canMove.apply(speed)) {
 			speedConsumer.accept(speed);
+			this.speed = speed;
+		}
+	}
+
+	/**
+	 * Adds given speed to the speed this subsystem have already had.
+	 * Use this to have PID controlled speed rather than distance. 
+	 * 
+	 * @param additionalSpeed
+	 *            the addition to the speed the subsystem moves with.
+	 */
+	public void addSpeed(double additionalSpeed) {
+		if (canMove.apply(speed + additionalSpeed)) {
+			speed += additionalSpeed;
+			speedConsumer.accept(speed);
+		}
 	}
 
 	/**
