@@ -13,18 +13,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class TankDrivetrain extends Subsystem {
 
-	private Consumer<Double> controlLeft;
-	private Consumer<Double> controlRight;
+	protected Consumer<Double> controlLeft;
+	protected Consumer<Double> controlRight;
 
 	/**
 	 * This constructs a new {@link TankDrivetrain} drivetrain.
 	 * 
 	 * @param controlLeft
 	 *            controls the left side on the drivetrain
-	 *            @see Consumer
+	 * @see Consumer
 	 * @param controlRight
 	 *            controls the right side on the drivetrain
-	 *            @see Consumer
+	 * @see Consumer
 	 */
 	public TankDrivetrain(Consumer<Double> controlLeft, Consumer<Double> controlRight) {
 		this.controlLeft = controlLeft;
