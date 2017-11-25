@@ -36,17 +36,6 @@ public class BasicSubsystem extends Subsystem {
 	}
 
 	/**
-	 * this constructs a new {@link BasicSubsystem} subsystem without any
-	 * limitations.
-	 * 
-	 * @param speedConsumer
-	 *            the component using the speed (usually a motor/ motors).
-	 */
-	public BasicSubsystem(Consumer<Double> speedConsumer) {
-		this(speedConsumer, (s) -> true);
-	}
-
-	/**
 	 * this constructs a new {@link BasicSubsystem} subsystem this 2 limits the
 	 * subsystem can move between.
 	 * 
