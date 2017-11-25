@@ -23,15 +23,15 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveTankWithPID extends Command {
 
-	private TankDrivetrain tankDrivetrain;
-	private Supplier<Double> leftSetpoint;
-	private Supplier<Double> rightSetpoint;
-	private PIDSettings PIDSettings;
-	private PIDSource leftSource;
-	private PIDSource rightSource;
-	private PIDController leftMovmentControl;
-	private PIDController rightMovmentControl;
-	private double lastTimeNotOnTarget;
+	protected TankDrivetrain tankDrivetrain;
+	protected Supplier<Double> leftSetpoint;
+	protected Supplier<Double> rightSetpoint;
+	protected PIDSettings PIDSettings;
+	protected PIDSource leftSource;
+	protected PIDSource rightSource;
+	protected PIDController leftMovmentControl;
+	protected PIDController rightMovmentControl;
+	protected double lastTimeNotOnTarget;
 
 	/**
 	 * Gets the PIDSetting the PIDController uses for this command.
