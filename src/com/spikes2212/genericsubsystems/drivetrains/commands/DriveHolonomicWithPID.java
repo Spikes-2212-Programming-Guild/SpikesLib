@@ -22,16 +22,16 @@ import edu.wpi.first.wpilibj.command.Command;
  * @see PIDSettings
  */
 public class DriveHolonomicWithPID extends Command {
-	private HolonomicDrivetrain holonomicDrivetrain;
-	private Supplier<Double> XSetpoint;
-	private Supplier<Double> YSetpoint;
-	private PIDSettings XPIDSettings;
-	private PIDSettings YPIDSettings;
-	private PIDSource XSource;
-	private PIDSource YSource;
-	private PIDController XMovmentControl;
-	private PIDController YMovmentControl;
-	private double lastTimeNotOnTarget;
+	protected HolonomicDrivetrain holonomicDrivetrain;
+	protected Supplier<Double> XSetpoint;
+	protected Supplier<Double> YSetpoint;
+	protected PIDSettings XPIDSettings;
+	protected PIDSettings YPIDSettings;
+	protected PIDSource XSource;
+	protected PIDSource YSource;
+	protected PIDController XMovmentControl;
+	protected PIDController YMovmentControl;
+	protected double lastTimeNotOnTarget;
 
 	/**
 	 * Gets the {@link PIDSettings} the {@link PIDController} uses for the x axis.
