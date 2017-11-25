@@ -19,7 +19,7 @@ public class BasicSubsystem extends Subsystem {
 	 * this subsystem can move at that speed
 	 */
 	public final Function<Double, Boolean> canMove;
-	private Consumer<Double> speedConsumer;
+	protected Consumer<Double> speedConsumer;
 
 	/**
 	 * this constructs a new {@link BasicSubsystem} subsystem.
