@@ -15,8 +15,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class BasicSubsystem extends Subsystem {
 
-	private double speed;
-
 	/**
 	 * This function, when applied to a certain double speed returns true if
 	 * this subsystem can move at that speed
@@ -35,7 +33,6 @@ public class BasicSubsystem extends Subsystem {
 	public BasicSubsystem(Consumer<Double> speedConsumer, Function<Double, Boolean> canMove) {
 		this.canMove = canMove;
 		this.speedConsumer = speedConsumer;
-		speed = 0;
 	}
 
 	/**
@@ -86,21 +83,6 @@ public class BasicSubsystem extends Subsystem {
 	 */
 	public void move(double speed) {
 		if (canMove.apply(speed)) {
-			speedConsumer.accept(speed);
-			this.speed = speed;
-		}
-	}
-
-	/**
-	 * Adds given speed to the speed this subsystem have already had.
-	 * Use this to have PID controlled speed rather than distance. 
-	 * 
-	 * @param additionalSpeed
-	 *            the addition to the speed the subsystem moves with.
-	 */
-	public void addSpeed(double additionalSpeed) {
-		if (canMove.apply(speed + additionalSpeed)) {
-			speed += additionalSpeed;
 			speedConsumer.accept(speed);
 		}
 	}
