@@ -32,20 +32,20 @@ public class TwoLimits implements Function<Double, Boolean> {
 	}
 
 	/**
-	 * This get a speed and checks if the max limit is pressed and if a positive
+	 * This method checks if the subsystem can move. It gets a speed and checks if the max limit is pressed and if a positive
 	 * speed is given or if the min limit is pressed and if a negative speed is
 	 * given.
 	 * 
-	 * @param t
+	 * @param speed
 	 *            The speed the {@link BasicSubsystem} tries to move at.
 	 * @return true if the subsystem does not try to move out of the limits.
 	 * 
 	 */
 	@Override
-	public Boolean apply(Double t) {
-		if (t > 0 && maxLimit.get())
+	public Boolean apply(Double speed) {
+		if (speed > 0 && maxLimit.get())
 			return false;
-		if (t < 0 && minLimit.get())
+		if (speed < 0 && minLimit.get())
 			return false;
 		return true;
 	}
