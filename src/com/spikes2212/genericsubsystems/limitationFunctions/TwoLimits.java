@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 import com.spikes2212.genericsubsystems.BasicSubsystem;
 
 /**
- * This is a Function from double to boolean. This is for a
+ * This is a Function from double to boolean. This is for the constructor a
  * {@link BasicSubsystem} that moves between two limits.
  * 
  * @author Omri "Riki" Cohen
@@ -27,8 +27,8 @@ public class TwoLimits implements Function<Double, Boolean> {
 	 *            {@link BasicSubsystem} move towards this limit.
 	 */
 	public TwoLimits(Supplier<Boolean> maxLimit, Supplier<Boolean> minLimit) {
-		this.minLimit = maxLimit;
-		this.maxLimit = minLimit;
+		this.maxLimit = maxLimit;
+		this.minLimit = minLimit;
 	}
 
 	/**
