@@ -3,7 +3,7 @@ package com.spikes2212.utils;
 import edu.wpi.first.wpilibj.SpeedController;
 
 /**
- * This class joins two {@link SpeedController} into one, making a speed controller that activates both.
+ * This class joins two {@link SpeedController} into one, making a {@link SpeedController} that activates both.
  *
  * @author Uriah "Jhonny" Rokach
  * @see SpeedController
@@ -13,7 +13,7 @@ public class DoubleSpeedcontroller implements SpeedController {
     private SpeedController speedControllerRight, speedControllerLeft;
 
     /**
-     * Constructs a speed controller from two other speed controllers that
+     * Constructs a {@link SpeedController} from two other {@link SpeedController} that
      * acts like both: all of its functions call the same functions on the two speed controllers.
      * Example: https://www.youtube.com/watch?v=pU-FNy6RG80
      *
