@@ -6,7 +6,7 @@ import com.spikes2212.genericsubsystems.BasicSubsystem;
 
 /**
  * This is a function from double to boolean that always returns true. This is
- * for a {@link BasicSubsystem} with no limits.
+ * for the constructor of a {@link BasicSubsystem} with no limits.
  * 
  * @author Omri "Riki" Cohen
  *
@@ -21,15 +21,15 @@ public class Limitless implements Function<Double, Boolean> {
 	}
 
 	/**
-	 * This applies this function to a given double. For every double returns
+	 * This method applies this function to a given double. For every speed returns
 	 * true.
 	 * 
-	 * @param t
+	 * @param speed
 	 *            the double this function get.
 	 * @return always true.
 	 */
 	@Override
-	public Boolean apply(Double t) {
+	public Boolean apply(Double speed) {
 		return true;
 	}
 
