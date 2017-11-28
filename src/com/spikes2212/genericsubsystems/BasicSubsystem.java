@@ -20,6 +20,7 @@ public class BasicSubsystem extends Subsystem {
 	 */
 	public final Function<Double, Boolean> canMove;
 	protected Consumer<Double> speedConsumer;
+	private double speed;
 
 	/**
 	 * this constructs a new {@link BasicSubsystem} subsystem.
@@ -32,6 +33,7 @@ public class BasicSubsystem extends Subsystem {
 	public BasicSubsystem(Consumer<Double> speedConsumer, Function<Double, Boolean> canMove) {
 		this.canMove = canMove;
 		this.speedConsumer = speedConsumer;
+		this.speed = 0;
 	}
 
 	/**
@@ -43,6 +45,7 @@ public class BasicSubsystem extends Subsystem {
 	public void move(double speed) {
 		if (canMove.apply(speed)) {
 			speedConsumer.accept(speed);
+			this.speed = speed;
 		}
 	}
 
@@ -51,6 +54,25 @@ public class BasicSubsystem extends Subsystem {
 	 */
 	public void stop() {
 		move(0);
+	}
+
+	/**
+	 * Adds the given speed to the speed the {@link BasicSubsystem} already had.
+	 * 
+	 * @param additionalSpeed
+	 *            The speed to add.
+	 */
+	public void addSpeed(double additionalSpeed) {
+		move(speed + additionalSpeed);
+	}
+
+	/**
+	 * Return the current speed of this {@link BasicSubsystem}.
+	 * 
+	 * @return the current speed of this {@link BasicSubsystem}.
+	 */
+	public double getSpeed() {
+		return speed;
 	}
 
 	/**
