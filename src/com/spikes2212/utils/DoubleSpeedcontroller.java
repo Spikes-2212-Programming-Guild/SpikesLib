@@ -3,17 +3,17 @@ package com.spikes2212.utils;
 import edu.wpi.first.wpilibj.SpeedController;
 
 /**
- * This class joins two {@link SpeedController} into one, making a speed controller that activates both.
+ * This class joins two {@link SpeedController} into one, making a {@link SpeedController} that activates both.
  *
  * @author Uriah "Jhonny" Rokach
  * @see SpeedController
  */
 public class DoubleSpeedcontroller implements SpeedController {
 
-    private SpeedController speedcontrollerRight, speedcontrollerLeft;
+    private SpeedController speedControllerRight, speedControllerLeft;
 
     /**
-     * Constructs a speed controller from two other speed controllers that
+     * Constructs a {@link SpeedController} from two other {@link SpeedController} that
      * acts like both: all of its functions call the same functions on the two speed controllers.
      * Example: https://www.youtube.com/watch?v=pU-FNy6RG80
      *
@@ -21,53 +21,53 @@ public class DoubleSpeedcontroller implements SpeedController {
      * @param speedcontrollerLeft  The second speed controller of the two. The "side" holds no meaning.
      */
     public DoubleSpeedcontroller(SpeedController speedcontrollerRight, SpeedController speedcontrollerLeft) {
-        this.speedcontrollerLeft = speedcontrollerLeft;
-        this.speedcontrollerRight = speedcontrollerRight;
+        this.speedControllerLeft = speedcontrollerLeft;
+        this.speedControllerRight = speedcontrollerRight;
     }
 
     @Override
     public void pidWrite(double output) {
-        this.speedcontrollerLeft.pidWrite(output);
-        this.speedcontrollerRight.pidWrite(output);
+        this.speedControllerLeft.pidWrite(output);
+        this.speedControllerRight.pidWrite(output);
 
     }
 
     @Override
     public double get() {
-        return this.speedcontrollerRight.get();
+        return this.speedControllerRight.get();
     }
 
 
     @Override
     public void set(double speed) {
-        speedcontrollerLeft.set(speed);
-        speedcontrollerRight.set(speed);
+        speedControllerLeft.set(speed);
+        speedControllerRight.set(speed);
     }
 
     @Override
     public void setInverted(boolean isInverted) {
-        speedcontrollerLeft.setInverted(isInverted);
-        speedcontrollerRight.setInverted(isInverted);
+        speedControllerLeft.setInverted(isInverted);
+        speedControllerRight.setInverted(isInverted);
 
     }
 
     @Override
     public boolean getInverted() {
 
-        return speedcontrollerLeft.getInverted();
+        return speedControllerLeft.getInverted();
     }
 
     @Override
     public void disable() {
-        speedcontrollerLeft.disable();
-        speedcontrollerRight.disable();
+        speedControllerLeft.disable();
+        speedControllerRight.disable();
 
     }
 
     @Override
     public void stopMotor() {
-        speedcontrollerLeft.stopMotor();
-        speedcontrollerRight.stopMotor();
+        speedControllerLeft.stopMotor();
+        speedControllerRight.stopMotor();
 
     }
 }

@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author Unknown
  */
 public class DriveArcade extends Command {
-    private TankDrivetrain tankDrivetrain;
-    private Supplier<Double> moveValueSupplier;
-    private Supplier<Double> rotateValueSupplier;
+	protected TankDrivetrain tankDrivetrain;
+	protected Supplier<Double> moveValueSupplier;
+	protected Supplier<Double> rotateValueSupplier;
 
     /**
      * This constructs a new {@link DriveArcade} command
