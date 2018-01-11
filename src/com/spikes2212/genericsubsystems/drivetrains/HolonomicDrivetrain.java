@@ -10,8 +10,28 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class HolonomicDrivetrain extends TankDrivetrain {
 
-	protected Consumer<Double> controlX;
-	protected Consumer<Double> controlY;
+	private Consumer<Double> controlX;
+	private Consumer<Double> controlY;
+
+	public Consumer<Double> getControlX() {
+		return controlX;
+	}
+
+	public void setControlX(Consumer<Double> controlX) {
+		if (controlX != null) {
+			this.controlX = controlX;
+		}
+	}
+
+	public Consumer<Double> getControlY() {
+		return controlY;
+	}
+
+	public void setControlY(Consumer<Double> controlY) {
+		if (controlY != null) {
+			this.controlY = controlY;
+		}
+	}
 
 	/**
 	 * This constructs a new {@link HolonomicDrivetrain} drivetrain.
@@ -29,8 +49,8 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 	public HolonomicDrivetrain(Consumer<Double> controlLeft, Consumer<Double> controlRight, Consumer<Double> controlX,
 			Consumer<Double> controlY) {
 		super(controlLeft, controlRight);
-		this.controlX = controlX;
-		this.controlY = controlY;
+		setControlX(controlX);
+		setControlY(controlY);
 	}
 
 	/**
