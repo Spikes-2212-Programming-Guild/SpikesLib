@@ -38,13 +38,13 @@ public class BasicSubsystem extends Subsystem {
 	/**
 	 * Moves this subsystem with the given speed.
 	 *
-	 * @param newCurrentSpeed
+	 * @param speed
 	 *            the speed to move the subsystem with.
 	 */
-	public void move(double newCurrentSpeed) {
-		if (canMove.apply(newCurrentSpeed)) {
-			speedConsumer.accept(newCurrentSpeed);
-			this.currentSpeed = newCurrentSpeed;
+	public void move(double speed) {
+		if (canMove.apply(speed)) {
+			speedConsumer.accept(speed);
+			this.currentSpeed = speed;
 		}
 	}
 
