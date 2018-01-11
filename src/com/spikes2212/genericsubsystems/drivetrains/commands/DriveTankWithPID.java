@@ -23,12 +23,12 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveTankWithPID extends Command {
 
-	protected TankDrivetrain tankDrivetrain;
-	protected Supplier<Double> leftSetpoint;
-	protected Supplier<Double> rightSetpoint;
-	protected PIDSettings PIDSettings;
-	protected PIDSource leftSource;
-	protected PIDSource rightSource;
+	protected final TankDrivetrain tankDrivetrain;
+	protected final Supplier<Double> leftSetpoint;
+	protected final Supplier<Double> rightSetpoint;
+	protected final PIDSettings PIDSettings;
+	protected final PIDSource leftSource;
+	protected final PIDSource rightSource;
 	protected PIDController leftMovmentControl;
 	protected PIDController rightMovmentControl;
 	protected double lastTimeNotOnTarget;
