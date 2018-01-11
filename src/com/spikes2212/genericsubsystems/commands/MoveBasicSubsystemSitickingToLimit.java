@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.Timer;
 
 /**
  * This command moves a {@link BasicSubsystem} according to a {@link Supplier}
- * or a constant speed until it can no longer move and then wait a given
- * number of second to make the {@link BasicSubsystem} stick to its end state.
+ * or a constant speed until it can no longer move and then wait a given number
+ * of second to make the {@link BasicSubsystem} stick to its end state.
  * 
  *
  * @author Omri "Riki" Cohen
@@ -49,8 +49,8 @@ public class MoveBasicSubsystemSitickingToLimit extends MoveBasicSubsystem {
 	 * @param basicSubsystem
 	 *            the {@link BasicSubsystem} this command should move.
 	 * @param speed
-	 *            the speed {@link BasicSubsystem} should be moved with. Should only
-	 *            be values between -1 and 1.
+	 *            the speed {@link BasicSubsystem} should be moved with. Should
+	 *            only be values between -1 and 1.
 	 * @param waitTime
 	 *            the time the {@link BasicSubsystem} should keep trying to move
 	 *            since reaching its end point.
@@ -63,10 +63,18 @@ public class MoveBasicSubsystemSitickingToLimit extends MoveBasicSubsystem {
 	@Override
 	protected boolean isFinished() {
 		double currentTime = Timer.getFPGATimestamp();
-		if (!super.isFinished()) {
-			lastTimeAtEndState = currentTime; 
+		if (!super.isFinished()) { /*
+									 * if not in the ending position reset the
+									 * timer.
+									 */
+			lastTimeAtEndState = currentTime;
 		}
-		if (currentTime - lastTimeAtEndState > waitTime) {
+		if (currentTime
+				- lastTimeAtEndState > waitTime) { /*
+													 * if the subsystem was on
+													 * limit the wanted time the
+													 * command is finished.
+													 */
 			return true;
 		}
 		return false;
