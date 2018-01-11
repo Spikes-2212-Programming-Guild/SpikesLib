@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveTank extends Command {
 
-	protected TankDrivetrain tankDrivetrain;
-	protected Supplier<Double> leftSpeedSuplier;
-	protected Supplier<Double> rightSpeedSuplier;
+	protected final TankDrivetrain tankDrivetrain;
+	protected final Supplier<Double> leftSpeedSuplier;
+	protected final Supplier<Double> rightSpeedSuplier;
 
     /**
      * This constructs a new {@link DriveTank} command
