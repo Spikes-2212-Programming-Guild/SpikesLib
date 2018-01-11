@@ -16,8 +16,8 @@ import edu.wpi.first.wpilibj.Timer;
  * @see BasicSubsystem
  */
 public class MoveBasicSubsystemSitickingToLimit extends MoveBasicSubsystem {
-	private double waitTime;
-	private double lastTimeAtEndState = 0;
+	protected double waitTime;
+	protected double lastTimeAtEndState = 0;
 
 	/**
 	 * This constructs a new {@link MoveBasicSubsystemSitickingToLimit} command
