@@ -56,16 +56,6 @@ public class BasicSubsystem extends Subsystem {
 	}
 
 	/**
-	 * Adds the given speed to the speed the {@link BasicSubsystem} already had.
-	 * 
-	 * @param additionalSpeed
-	 *            The speed to add.
-	 */
-	public void addSpeed(double additionalSpeed) {
-		move(currentSpeed + additionalSpeed);
-	}
-
-	/**
 	 * Return the current speed of this {@link BasicSubsystem}.
 	 * 
 	 * @return the current speed of this {@link BasicSubsystem}.
