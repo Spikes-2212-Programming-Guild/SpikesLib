@@ -20,7 +20,7 @@ public class BasicSubsystem extends Subsystem {
 	 */
 	public final Function<Double, Boolean> canMove;
 	protected Consumer<Double> speedConsumer;
-	private double currentSpeed;
+	private double currentSpeed = 0;
 
 	/**
 	 * this constructs a new {@link BasicSubsystem} subsystem.
@@ -33,7 +33,6 @@ public class BasicSubsystem extends Subsystem {
 	public BasicSubsystem(Consumer<Double> speedConsumer, Function<Double, Boolean> canMove) {
 		this.canMove = canMove;
 		this.speedConsumer = speedConsumer;
-		this.currentSpeed = 0;
 	}
 
 	/**
