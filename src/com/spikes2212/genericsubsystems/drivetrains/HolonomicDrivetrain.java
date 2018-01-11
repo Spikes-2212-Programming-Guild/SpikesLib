@@ -13,21 +13,21 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 	private Consumer<Double> controlX;
 	private Consumer<Double> controlY;
 
-	public Consumer<Double> getControlX() {
+	protected Consumer<Double> getControlX() {
 		return controlX;
 	}
 
-	public void setControlX(Consumer<Double> controlX) {
+	protected void setControlX(Consumer<Double> controlX) {
 		if (controlX != null) {
 			this.controlX = controlX;
 		}
 	}
 
-	public Consumer<Double> getControlY() {
+	protected Consumer<Double> getControlY() {
 		return controlY;
 	}
 
-	public void setControlY(Consumer<Double> controlY) {
+	protected void setControlY(Consumer<Double> controlY) {
 		if (controlY != null) {
 			this.controlY = controlY;
 		}
