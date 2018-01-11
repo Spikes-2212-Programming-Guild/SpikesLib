@@ -23,10 +23,10 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveBasicSubsystemWithPID extends Command {
 
-	protected BasicSubsystem basicSubsystem;
-	protected PIDSettings PIDSettings;
-	protected Supplier<Double> setpoint;
-	protected PIDSource source;
+	protected final BasicSubsystem basicSubsystem;
+	protected final PIDSettings PIDSettings;
+	protected final Supplier<Double> setpoint;
+	protected final PIDSource source;
 	protected PIDController movmentControl;
 	protected double lastTimeNotOnTarget;
 
