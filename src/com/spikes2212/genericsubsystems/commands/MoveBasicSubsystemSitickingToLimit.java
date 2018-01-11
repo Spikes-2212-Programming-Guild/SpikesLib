@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 /**
  * This command moves a {@link BasicSubsystem} according to a {@link Supplier}
- * or a constant speed until it cannot move no longer and then wait a given
+ * or a constant speed until it can no longer move and then wait a given
  * number of second to make the {@link BasicSubsystem} stick to its end state.
  * 
  *
@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class MoveBasicSubsystemSitickingToLimit extends MoveBasicSubsystem {
 	private double waitTime;
-	private double lastFalseTime = 0;
+	private double lastTimeAtEndState = 0;
 
 	/**
 	 * This constructs a new {@link MoveBasicSubsystemSitickingToLimit} command
@@ -64,9 +64,9 @@ public class MoveBasicSubsystemSitickingToLimit extends MoveBasicSubsystem {
 	protected boolean isFinished() {
 		double currentTime = Timer.getMatchTime();
 		if (!super.isFinished()) {
-			lastFalseTime = currentTime; 
+			lastTimeAtEndState = currentTime; 
 		}
-		if (currentTime - lastFalseTime > waitTime) {
+		if (currentTime - lastTimeAtEndState > waitTime) {
 			return true;
 		}
 		return false;
