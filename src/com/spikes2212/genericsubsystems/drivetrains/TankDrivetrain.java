@@ -13,28 +13,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class TankDrivetrain extends Subsystem {
 
-	protected Consumer<Double> controlLeft;
-	protected Consumer<Double> controlRight;
-
-	protected Consumer<Double> getControlLeft() {
-		return controlLeft;
-	}
-
-	protected void setControlLeft(Consumer<Double> controlLeft) {
-		if (controlLeft != null) {
-			this.controlLeft = controlLeft;
-		}
-	}
-
-	protected Consumer<Double> getControlRight() {
-		return controlRight;
-	}
-
-	protected void setControlRight(Consumer<Double> controlRight) {
-		if (controlRight != null) {
-			this.controlRight = controlRight;
-		}
-	}
+	protected final Consumer<Double> controlLeft;
+	protected final Consumer<Double> controlRight;
 
 	/**
 	 * This constructs a new {@link TankDrivetrain} drivetrain.
@@ -47,8 +27,8 @@ public class TankDrivetrain extends Subsystem {
 	 * @see Consumer
 	 */
 	public TankDrivetrain(Consumer<Double> controlLeft, Consumer<Double> controlRight) {
-		setControlLeft(controlLeft);
-		setControlRight(controlRight);
+		this.controlLeft = controlLeft;
+		this.controlRight = controlRight;
 	}
 
 	/**
