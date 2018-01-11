@@ -62,7 +62,7 @@ public class MoveBasicSubsystemSitickingToLimit extends MoveBasicSubsystem {
 
 	@Override
 	protected boolean isFinished() {
-		double currentTime = Timer.getMatchTime();
+		double currentTime = Timer.getFPGATimestamp();
 		if (!super.isFinished()) {
 			lastTimeAtEndState = currentTime; 
 		}
