@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.PIDSource;
 /**
  * This command makes a {@link BasicSubsystem} using wpilib's
  * {@link PIDController} with a given speed and not a given voltage. After
- * reaching the wanted speed it sticks.
+ * reaching the wanted speed it sticks to this speed until this command is stoped.
  *
  * @author Omri "Riki"
  * @see BasicSubsystem
