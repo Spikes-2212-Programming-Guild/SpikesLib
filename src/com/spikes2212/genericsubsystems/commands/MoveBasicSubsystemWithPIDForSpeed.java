@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj.PIDSource;
 /**
  * This command makes a {@link BasicSubsystem} using wpilib's
  * {@link PIDController} with a given speed and not a given voltage. After
- * reaching the wanted speed it sticks to this speed until this command is stoped.
+ * reaching the wanted speed it sticks to this speed until this command is
+ * stoped.
  *
  * @author Omri "Riki"
  * @see BasicSubsystem
@@ -69,14 +70,14 @@ public class MoveBasicSubsystemWithPIDForSpeed extends MoveBasicSubsystemWithPID
 
 	@Override
 	protected void initialize() {
-		movmentControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), source,
-				(additionalSpeed) -> basicSubsystem.move(basicSubsystem.getSpeed() + additionalSpeed * acceleration));
 		/*
 		 * in PID for speed instead of the PIDController changing the speed to
-		 * get closer to a location, the PIDController is changing the voltage
-		 * to get closer to the speed. It does that by adding to the current
-		 * voltage to get to the wanted speed.
+		 * get closer to the wanted location, the PIDController is changing the
+		 * voltage to get closer to the wanted speed. It does that by adding to
+		 * the current voltage to get to the wanted speed.
 		 */
+		movmentControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), source,
+				(additionalSpeed) -> basicSubsystem.move(basicSubsystem.getSpeed() + additionalSpeed * acceleration));
 		movmentControl.setAbsoluteTolerance(PIDSettings.getTolerance());
 		movmentControl.setSetpoint(this.setpoint.get());
 		movmentControl.setOutputRange(-1, 1);
