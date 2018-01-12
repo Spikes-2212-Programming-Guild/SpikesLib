@@ -2,8 +2,6 @@ package com.spikes2212.genericsubsystems.drivetrains;
 
 import java.util.function.Consumer;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 /**
  * This class represents a type of Drivetrain with a x and y axises which can be
  * controlled separately.
