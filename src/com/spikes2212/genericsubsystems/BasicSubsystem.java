@@ -43,6 +43,10 @@ public class BasicSubsystem extends Subsystem {
 	 */
 	public void move(double speed) {
 		if (canMove.apply(speed)) {
+			if (speed > 1)
+				speed = 1;
+			else if (speed < -1)
+				speed = -1;
 			speedConsumer.accept(speed);
 			this.currentSpeed = speed;
 		}
