@@ -71,6 +71,12 @@ public class MoveBasicSubsystemWithPIDForSpeed extends MoveBasicSubsystemWithPID
 	protected void initialize() {
 		movmentControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), source,
 				(additionalSpeed) -> basicSubsystem.move(basicSubsystem.getSpeed() + additionalSpeed * acceleration));
+		/*
+		 * in PID for speed instead of the PIDController changing the speed to
+		 * get closer to a location, the PIDController is changing the voltage
+		 * to get closer to the speed. It does that by adding to the current
+		 * voltage to get to the wanted speed.
+		 */
 		movmentControl.setAbsoluteTolerance(PIDSettings.getTolerance());
 		movmentControl.setSetpoint(this.setpoint.get());
 		movmentControl.setOutputRange(-1, 1);
