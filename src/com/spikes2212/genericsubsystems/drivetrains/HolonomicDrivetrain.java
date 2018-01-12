@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class HolonomicDrivetrain extends TankDrivetrain {
 
-	protected Consumer<Double> controlX;
-	protected Consumer<Double> controlY;
+	protected final Consumer<Double> controlX;
+	protected final Consumer<Double> controlY;
 
 	/**
 	 * This constructs a new {@link HolonomicDrivetrain} drivetrain.

@@ -14,7 +14,7 @@ import com.spikes2212.genericsubsystems.BasicSubsystem;
  */
 public class TwoLimits implements Function<Double, Boolean> {
 
-	private Supplier<Boolean> maxLimit, minLimit;
+	private final Supplier<Boolean> maxLimit, minLimit;
 
 	/**
 	 * Constructs a two limits function using 2 boolean suppliers.

@@ -14,7 +14,7 @@ import com.spikes2212.genericsubsystems.BasicSubsystem;
 public class Limitless implements Function<Double, Boolean> {
 
 	/**
-	 * Constructs a limitless Funcation.
+	 * Constructs a limitless Function.
 	 * 
 	 */
 	public Limitless() {

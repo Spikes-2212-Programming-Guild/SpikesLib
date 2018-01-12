@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class TankDrivetrain extends Subsystem {
 
-	protected Consumer<Double> controlLeft;
-	protected Consumer<Double> controlRight;
+	protected final Consumer<Double> controlLeft;
+	protected final Consumer<Double> controlRight;
 
 	/**
 	 * This constructs a new {@link TankDrivetrain} drivetrain.

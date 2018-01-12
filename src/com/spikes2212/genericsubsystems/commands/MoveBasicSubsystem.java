@@ -16,8 +16,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveBasicSubsystem extends Command {
 
-	protected BasicSubsystem basicSubsystem;
-	protected Supplier<Double> speedSupplier;
+	protected final BasicSubsystem basicSubsystem;
+	protected final Supplier<Double> speedSupplier;
 
 	/**
 	 * This constructs a new {@link MoveBasicSubsystem} command using the

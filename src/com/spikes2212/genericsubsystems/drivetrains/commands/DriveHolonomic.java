@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class DriveHolonomic extends Command {
-	protected HolonomicDrivetrain holonomicDrivetrain;
-	protected Supplier<Double> speedYSupplier, speedXSupplier;
+	protected final HolonomicDrivetrain holonomicDrivetrain;
+	protected final Supplier<Double> speedYSupplier, speedXSupplier;
 
 	public DriveHolonomic(HolonomicDrivetrain drivetrain, double speedY, double speedX) {
 		// Use requires() here to declare subsystem dependencieslier
