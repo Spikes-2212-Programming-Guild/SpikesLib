@@ -7,6 +7,7 @@ import com.spikes2212.utils.PIDSettings;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.PIDSourceType;
 
 /**
  * This command makes a {@link BasicSubsystem} using wpilib's
@@ -45,6 +46,7 @@ public class MoveBasicSubsystemWithPIDForSpeed extends MoveBasicSubsystemWithPID
 			Supplier<Double> wantedSpeed, PIDSettings PIDSettings, double acceleration) {
 		super(basicSubsystem, source, wantedSpeed, PIDSettings);
 		this.acceleration = acceleration;
+		this.source.setPIDSourceType(PIDSourceType.kRate);
 	}
 
 	/**
