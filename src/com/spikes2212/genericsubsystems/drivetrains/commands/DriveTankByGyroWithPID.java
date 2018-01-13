@@ -9,6 +9,16 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import java.util.function.Supplier;
 
+/**
+ * This command moves {@link TankDrivetrain} instance as strait as possible with
+ * wpilib's {@link PIDController} using the output from {@link GyroBase instance} and
+ * {@link TankDrivetrain#arcadeDrive}
+ *
+ * @see PIDController
+ * @see TankDrivetrain
+ * @see GyroBase
+ * @author Simon "C" Kharmatsky
+ */
 public class DriveTankByGyroWithPID extends Command{
 
     private TankDrivetrain drivetrain;
@@ -19,6 +29,18 @@ public class DriveTankByGyroWithPID extends Command{
 
     private PIDController angleController;
 
+    /**
+     * This constructs a new {@link DriveTankByGyroWithPID} using
+     * {@link GyroBase}, {@link Supplier<Double>}s for the setpoint and the speed,
+     * and the {@link PIDSettings} for this command
+     * @param drivetrain the {@link DriveTankByGyroWithPID} this command requires and moves
+     * @param source the {@link PIDSource} that this command uses to get feedback about the
+     *               {@link DriveTankByGyroWithPID}'s degree
+     * @param setpointSupplier {@link Supplier<Double>} for the degree the robot has to be at
+     * @param speedSupplier {@link Supplier<Double>} supplier of the speed for
+     *                                              {@link TankDrivetrain#arcadeDrive}
+     * @param settings {@link PIDSettings} for this command
+     */
     public DriveTankByGyroWithPID(TankDrivetrain drivetrain, GyroBase source, Supplier<Double> setpointSupplier,
                                   Supplier<Double> speedSupplier, PIDSettings settings) {
         requires(drivetrain);
@@ -29,6 +51,17 @@ public class DriveTankByGyroWithPID extends Command{
         this.settings = settings;
     }
 
+    /**
+     * This constructs a new {@link DriveTankByGyroWithPID} using static values
+     * for {@link DriveTankByGyroWithPID#setpointSupplier} and
+     * {@link DriveTankByGyroWithPID#speedSupplier} instead of {@link Supplier<Double>}s
+     * @param drivetrain the {@link DriveTankByGyroWithPID} this command requires and moves
+     * @param source the {@link PIDSource} that this command uses to get feedback about the
+     *               {@link DriveTankByGyroWithPID}'s degree
+     * @param setpoint static value for {@link DriveTankByGyroWithPID#setpointSupplier}
+     * @param speed static value for {@link DriveTankByGyroWithPID#speedSupplier}
+     * @param settings @link PIDSettings} for this command
+     */
     public DriveTankByGyroWithPID(TankDrivetrain drivetrain, GyroBase source,
                                   double setpoint, double speed, PIDSettings settings) {
         this(drivetrain, source, () -> setpoint, () -> speed, settings);
