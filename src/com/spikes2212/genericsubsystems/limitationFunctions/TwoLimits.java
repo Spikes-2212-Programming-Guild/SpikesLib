@@ -6,11 +6,12 @@ import java.util.function.Supplier;
 import com.spikes2212.genericsubsystems.BasicSubsystem;
 
 /**
- * This is a Function from double to boolean. This is for the constructor a
- * {@link BasicSubsystem} that moves between two limits.
+ * This is a {@link Function} from double to boolean. This is for the
+ * constructor a {@link BasicSubsystem} that moves between two given limits.
  * 
  * @author Omri "Riki" Cohen
  *
+ * @see Function
  */
 public class TwoLimits implements Function<Double, Boolean> {
 
@@ -20,11 +21,11 @@ public class TwoLimits implements Function<Double, Boolean> {
 	 * Constructs a two limits function using 2 boolean suppliers.
 	 * 
 	 * @param maxLimit
-	 *            the upper limit, positive speed makes the
-	 *            {@link BasicSubsystem} move towards this limit.
+	 *            the upper limit, positive speed makes the {@link BasicSubsystem}
+	 *            move towards this limit.
 	 * @param minLimit
-	 *            the lower limit, negative speed makes the
-	 *            {@link BasicSubsystem} move towards this limit.
+	 *            the lower limit, negative speed makes the {@link BasicSubsystem}
+	 *            move towards this limit.
 	 */
 	public TwoLimits(Supplier<Boolean> maxLimit, Supplier<Boolean> minLimit) {
 		this.maxLimit = maxLimit;
@@ -32,13 +33,13 @@ public class TwoLimits implements Function<Double, Boolean> {
 	}
 
 	/**
-	 * This method checks if the subsystem can move. It gets a speed and checks if the max limit is pressed and if a positive
-	 * speed is given or if the min limit is pressed and if a negative speed is
-	 * given.
+	 * This method checks if the subsystem can move.<br>
+	 * If given a positive speed - it checks if the max limit is reached.<br>
+	 * If a negative speed is given - it checks if the min limit is reached.
 	 * 
 	 * @param speed
 	 *            The speed the {@link BasicSubsystem} tries to move at.
-	 * @return true if the subsystem does not try to move out of the limits.
+	 * @return True if the subsystem does not try to move out of the limits.
 	 * 
 	 */
 	@Override
