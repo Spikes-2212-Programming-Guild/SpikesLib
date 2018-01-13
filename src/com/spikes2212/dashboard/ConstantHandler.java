@@ -33,7 +33,7 @@ public class ConstantHandler {
 	private static Map<String, Integer> intMap = new HashMap<String, Integer>();
 
 	/**
-	 * A {@link HashMap} containing all constant {@link string} values.
+	 * A {@link HashMap} containing all constant {@link String} values.
 	 */
 	private static Map<String, String> stringMap = new HashMap<String, String>();;
 
@@ -53,7 +53,7 @@ public class ConstantHandler {
 	 *            always have this value, unless it is manually changed on the
 	 *            <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/Preferences.html">Prefrences</a>.
-	 * @return a {@link Supplier} which supplies the current value of the constant.
+	 * @return A {@link Supplier} which supplies the current value of the constant.
 	 *         If it cannot communicate with the field {@code name} from the
 	 *         <a href=
 	 *         "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/Preferences.html">Prefrences</a>,
@@ -85,7 +85,7 @@ public class ConstantHandler {
 	 *            always have this value, unless it is manually changed on the
 	 *            <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/Preferences.html">Prefrences</a>.
-	 * @return a {@link Supplier} which supplies the current value of the constant.
+	 * @return A {@link Supplier} which supplies the current value of the constant.
 	 *         If it cannot communicate with the field {@code name} from the
 	 *         <a href=
 	 *         "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/Preferences.html">Prefrences</a>,
@@ -117,7 +117,7 @@ public class ConstantHandler {
 	 *            always have this value, unless it is manually changed on the
 	 *            <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/Preferences.html">Prefrences</a>.
-	 * @return a {@link Supplier} which supplies the current value of the constant.
+	 * @return A {@link Supplier} which supplies the current value of the constant.
 	 *         If it cannot communicate with the field {@code name} from the
 	 *         <a href=
 	 *         "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/Preferences.html">Prefrences</a>,
