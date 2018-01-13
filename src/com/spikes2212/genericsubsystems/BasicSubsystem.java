@@ -7,25 +7,29 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * This class represents a subsystem that moves with a limitation which depends
- * on the speed.
+ * This class represents a generic subsystem that moves within a limitation, or
+ * without one, which given speed limits.
  *
  * @author Omri "Riki" Cohen
  */
 public class BasicSubsystem extends Subsystem {
 
 	/**
-	 * This function, when applied to a certain double speed returns true if
-	 * this subsystem can move at that speed
+	 * A {@link Function} to store the limits of the subsystem's speed.
 	 */
 	public final Function<Double, Boolean> canMove;
+
+	/**
+	 * A {@link Consumer} to represent the moving component.
+	 */
 	protected final Consumer<Double> speedConsumer;
 
 	/**
-	 * this constructs a new {@link BasicSubsystem} subsystem.
+	 * Constructor that recieves a {@link Consumer} for speed and a {@link Function}
+	 * that represents the limits of the subsystem's speed.
 	 * 
 	 * @param speedConsumer
-	 *            the component using the speed (usually a motor/ motors).
+	 *            the component using the speed (usually a motor/motors).
 	 * @param canMove
 	 *            the limitation on the movement, which depends on the speed.
 	 */
@@ -35,14 +39,15 @@ public class BasicSubsystem extends Subsystem {
 	}
 
 	/**
-	 * Moves this subsystem with the given speed.
+	 * Moves this subsystem with the given speed, assuming it is within the limits
+	 * specifed when this {@link BasicSubsystem} was constructed.
 	 *
 	 * @param speed
 	 *            the speed to move the subsystem with.
 	 */
 	public void move(double speed) {
-		if (canMove.apply(speed)) {
-			speedConsumer.accept(speed);
+		if (canMove.apply(speed)) {		// Checks whether the given speed is with the limits
+			speedConsumer.accept(speed);// Activates the moving component with the given speed
 		}
 	}
 
@@ -54,10 +59,8 @@ public class BasicSubsystem extends Subsystem {
 	}
 
 	/**
-	 * Sets the default command. If this is not called or is called with null,
-	 * then there will be no default command for the subsystem.
-	 * 
-	 * @see edu.wpi.first.wpilibj.command.Subsystem#setDefaultCommand(edu.wpi.first.wpilibj.command.Command)
+	 * Sets the default command. If this is not called, or is called with null, then
+	 * there will be no default command for the subsystem.
 	 */
 	public void setDefaultCommand(Command defaultCommand) {
 		super.setDefaultCommand(defaultCommand);
