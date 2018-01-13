@@ -9,6 +9,15 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import java.util.function.Supplier;
 
+/**
+ * This command is used to turn {@link TankDrivetrain} to a specific degree using
+ * wpilib's {@link PIDController}.
+ *
+ * @see TankDrivetrain
+ * @see PIDController
+ *
+ * @author Simon "C" Kharmatsky
+ */
 public class TurnTankToTargetWithPID extends Command {
 
     private TankDrivetrain drivetrain;
@@ -20,6 +29,16 @@ public class TurnTankToTargetWithPID extends Command {
 
     private double lastTimeOnTarget = 0;
 
+    /**
+     * This constructs new {@link TurnTankToTargetWithPID} using
+     * {@link PIDSource}, {@link Supplier<Double>} for the setpoint and the
+     * {@link PIDSettings} for the command
+     * @param drivetrain the {@link TankDrivetrain} this command requires and moves
+     * @param source the {@link PIDSource} that is used by the {@link PIDController}
+     *               to get feedback about the robot's position
+     * @param setpointSupplier {@link Supplier<Double>} for the setpoint of the {@link PIDController}
+     * @param settings {@link PIDSettings} for this command
+     */
     public TurnTankToTargetWithPID(TankDrivetrain drivetrain, PIDSource source,
                                    Supplier<Double> setpointSupplier, PIDSettings settings) {
         requires(drivetrain);
@@ -29,6 +48,17 @@ public class TurnTankToTargetWithPID extends Command {
         this.settings = settings;
     }
 
+    /**
+     * This constructs new {@link TurnTankToTargetWithPID} with
+     * constant value for {@link TurnTankToTargetWithPID#setpointSupplier} using
+     * {@link PIDController}, {@link Double} for the setpoint and
+     * {@link PIDController} for the command
+     * @param drivetrain the {@link TankDrivetrain} this command requires and moves
+     * @param source the {@link PIDSource} that is used by the {@link PIDController}
+     *               to get feedback about the robot's position
+     * @param setpoint constant value for {@link TurnTankToTargetWithPID#setpointSupplier}
+     * @param settings {@link PIDSettings} for this command
+     */
     public TurnTankToTargetWithPID(TankDrivetrain drivetrain, PIDSource source,
                                    double setpoint, PIDSettings settings) {
         this(drivetrain, source, ()->setpoint, settings);
