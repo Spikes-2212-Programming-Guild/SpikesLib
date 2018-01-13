@@ -4,120 +4,162 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * This class allows for {@link Supplier}s to be "written" to the {@link SmartDashboard},
- * allowing for changing values to be easily written to the {@link SmartDashboard}.
- *
+ * This class displays {@link Supplier}s to the <a href=
+ * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html">SmartDashboard</a>,
+ * allowing better tracking and control of changing values.
+ * 
  * @author Noam "Mantin" Mantin
  * @see SmartDashboard
  * @see Supplier
  */
 public class DashBoardController {
-    private Map<String, Supplier<String>> stringFields;
-    private Map<String, Supplier<Double>> doubleFields;
-    private Map<String, Supplier<Boolean>> booleanFields;
 
-    /**
-     * Constructs a new {@link DashBoardController}.
-     * <p>
-     * <p>
-     * More than one {@link DashBoardController} can exist at a time,
-     * however if a key name is used twice they'll override each other.
-     * </p>
-     */
-    public DashBoardController() {
-        stringFields = new HashMap<>();
-        doubleFields = new HashMap<>();
-        booleanFields = new HashMap<>();
-    }
+	/**
+	 * A {@link Map} to contain all {@link String} values to be displayed on the
+	 * {@code SmartDashBoard}.
+	 */
+	private Map<String, Supplier<String>> stringFields;
 
-    /**
-     * Add a String {@link Supplier} to this {@link DashBoardController}.
-     *
-     * @param name           The name values from stringSupplier are written under on the {@link SmartDashboard}.
-     *                       If another supplier in this object already uses this name, it is removed, leaving only stringSupplier using that name.
-     * @param stringSupplier The {@link Supplier} supplying the values that should be written to the {@link SmartDashboard}.
-     *                       Values are read from it every time {@link #update()} is run. Cannot be null.
-     */
-    public void addString(String name, Supplier<String> stringSupplier) {
-        remove(name);
-        stringFields.put(name, stringSupplier);
-    }
+	/**
+	 * A {@link Map} to contain all {@link double} values to be displayed on the
+	 * {@code SmartDashBoard}.
+	 */
+	private Map<String, Supplier<Double>> doubleFields;
 
-    /**
-     * Add a Double {@link Supplier} to this {@link DashBoardController}.
-     *
-     * @param name           The name values from stringSupplier are written under on the {@link SmartDashboard}.
-     *                       If another supplier in this object already uses this name, it is removed, leaving only doubleSupplier using that name.
-     * @param doubleSupplier The {@link Supplier} supplying the values that should be written to the {@link SmartDashboard}.
-     *                       Values are read from it every time {@link #update()} is run. Cannot be null.
-     */
-    public void addDouble(String name, Supplier<Double> doubleSupplier) {
-        remove(name);
-        doubleFields.put(name, doubleSupplier);
-    }
+	/**
+	 * A {@link Map} to contain all {@link boolean} values to be displayed on the
+	 * {@code SmartDashBoard}.
+	 */
+	private Map<String, Supplier<Boolean>> booleanFields;
 
-    /**
-     * Add a Boolean {@link Supplier} to this {@link DashBoardController}.
-     *
-     * @param name            The name values from stringSupplier are written under on the {@link SmartDashboard}.
-     *                        If another supplier in this object already uses this name, it is removed, leaving only booleanSupplier using that name.
-     * @param booleanSupplier The {@link Supplier} supplying the values that should be written to the {@link SmartDashboard}.
-     *                        Values are read from it every time {@link #update()} is run. Cannot be null.
-     */
-    public void addBoolean(String name, Supplier<Boolean> booleanSupplier) {
-        remove(name);
-        booleanFields.put(name, booleanSupplier);
-    }
+	/**
+	 * Constructs a new {@link DashBoardController}.
+	 * <p>
+	 * <p>
+	 * More than one {@link DashBoardController} can exist at a time. However, if a
+	 * key name is used more than once they'll override each other.
+	 * </p>
+	 */
+	public DashBoardController() {
+		// Initializing fields
+		stringFields = new HashMap<>();
+		doubleFields = new HashMap<>();
+		booleanFields = new HashMap<>();
+	}
 
-    /**
-     * Remove the supplier using the given name from this object.
-     *
-     * @param name The name that supplier is using, e.g. the name under which the values read
-     *             from that supplier are written on the {@link SmartDashboard}.
-     */
-    public void remove(String name) {
-        stringFields.remove(name);
-        doubleFields.remove(name);
-        booleanFields.remove(name);
-    }
+	/**
+	 * Adds a String {@link Supplier} to this {@link DashBoardController}.
+	 *
+	 * @param name
+	 *            The name of the field where the {@code stringSupplier} will be
+	 *            displayed. Overrides values if the field name is already used.
+	 * @param stringSupplier
+	 *            The {@link Supplier} giving the values that are written to the
+	 *            <a href=
+	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html">SmartDashboard</a>.
+	 *            Cannot be null.
+	 */
+	public void addString(String name, Supplier<String> stringSupplier) {
+		remove(name);
+		stringFields.put(name, stringSupplier);
+	}
 
-    private void updateBooleans() {
-        for (Map.Entry<String, Supplier<Boolean>> entry : booleanFields.entrySet()) {
-            SmartDashboard.putBoolean(entry.getKey(), entry.getValue().get());
-        }
-    }
+	/**
+	 * Adds a Double {@link Supplier} to this {@link DashBoardController}.
+	 *
+	 * @param name
+	 *            The name of the field where the {@code stringSupplier} will be
+	 *            displayed. Overrides values if the field name is already used.
+	 * @param doubleSupplier
+	 *            The {@link Supplier} giving the values that are written to the
+	 *            <a href=
+	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html">SmartDashboard</a>.
+	 *            Cannot be null.
+	 */
+	public void addDouble(String name, Supplier<Double> doubleSupplier) {
+		remove(name);
+		doubleFields.put(name, doubleSupplier);
+	}
 
-    private void updateDoubles() {
-        for (Map.Entry<String, Supplier<Double>> entry : doubleFields.entrySet()) {
-            SmartDashboard.putNumber(entry.getKey(), entry.getValue().get());
-        }
-    }
+	/**
+	 * Adds a Boolean {@link Supplier} to this {@link DashBoardController}.
+	 *
+	 * @param name
+	 *            The name of the field where the {@code stringSupplier} will be
+	 *            displayed. Overrides values if the field name is already used.
+	 * @param booleanSupplier
+	 *            The {@link Supplier} giving the values that are written to the
+	 *            <a href=
+	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html">SmartDashboard</a>.
+	 *            Cannot be null.
+	 */
+	public void addBoolean(String name, Supplier<Boolean> booleanSupplier) {
+		remove(name);
+		booleanFields.put(name, booleanSupplier);
+	}
 
-    private void updateString() {
-        for (Map.Entry<String, Supplier<String>> entry : stringFields.entrySet()) {
-            SmartDashboard.putString(entry.getKey(), entry.getValue().get());
-        }
-    }
+	/**
+	 * Removes the {@link Supplier} using the given name from this
+	 * {@link DashBoardController}.
+	 *
+	 * @param name
+	 *            The name of the field the supplier is using, i.e. the name under
+	 *            which the values read from that supplier are written on the
+	 *            <a href=
+	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html">SmartDashboard</a>.
+	 */
+	public void remove(String name) {
+		// Removes suppliers with the given name from each field
+		stringFields.remove(name);
+		doubleFields.remove(name);
+		booleanFields.remove(name);
+	}
 
-    /**
-     * Read from each supplier, and update the {@link SmartDashboard} according to the read values.
-     * <p>
-     * <p>
-     * This method evokes the {@link Supplier#get()} method for each supplier added to this object,
-     * and than writes that value to the {@link SmartDashboard} under the name given when that supplier was added.
-     * </p>
-     *
-     * @see #addBoolean(String, Supplier)
-     * @see #addDouble(String, Supplier)
-     * @see #addString(String, Supplier)
-     */
-    public void update() {
-        updateBooleans();
-        updateDoubles();
-        updateString();
-    }
+	/**
+	 * Updates the Boolean {@link Supplier}s within the {@link SmartDashboard}. 
+	 */
+	private void updateBooleans() {
+		for (Map.Entry<String, Supplier<Boolean>> entry : booleanFields.entrySet()) {
+			SmartDashboard.putBoolean(entry.getKey(), entry.getValue().get());
+		}
+	}
+
+	/**
+	 * Updates the Double {@link Supplier}s within the {@link SmartDashboard}. 
+	 */
+	private void updateDoubles() {
+		for (Map.Entry<String, Supplier<Double>> entry : doubleFields.entrySet()) {
+			SmartDashboard.putNumber(entry.getKey(), entry.getValue().get());
+		}
+	}
+
+	/**
+	 * Updates the String {@link Supplier}s within the {@link SmartDashboard}. 
+	 */
+	private void updateString() {
+		for (Map.Entry<String, Supplier<String>> entry : stringFields.entrySet()) {
+			SmartDashboard.putString(entry.getKey(), entry.getValue().get());
+		}
+	}
+
+	/**
+	 * Read from each supplier, and update the <a href=
+	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html">SmartDashboard</a>
+	 * according to the read values.
+	 * <p>
+	 * <p>
+	 * This method evokes the {@link Supplier#get()} method for each supplier added
+	 * to this object, and then writes that value to the <a href=
+	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html">SmartDashboard</a>
+	 * under the name given when that supplier was added.
+	 * </p>
+	 */
+	public void update() {
+		updateBooleans();
+		updateDoubles();
+		updateString();
+	}
 }
