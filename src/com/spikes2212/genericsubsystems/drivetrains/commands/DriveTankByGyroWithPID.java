@@ -14,36 +14,33 @@ public class DriveTankByGyroWithPID extends Command{
     private TankDrivetrain drivetrain;
     private PIDSource source;
     private Supplier<Double> setpointSupplier;
-    private Supplier<Double> arcadeSpeedSupplier;
+    private Supplier<Double> speedSupplier;
     private PIDSettings settings;
 
     private PIDController angleController;
 
     public DriveTankByGyroWithPID(TankDrivetrain drivetrain, GyroBase source, Supplier<Double> setpointSupplier,
-                                  Supplier<Double> arcadeSpeedSupplier, PIDSettings settings) {
+                                  Supplier<Double> speedSupplier, PIDSettings settings) {
+        requires(drivetrain);
         this.drivetrain = drivetrain;
         this.source = source;
         this.setpointSupplier = setpointSupplier;
-        this.arcadeSpeedSupplier = arcadeSpeedSupplier;
+        this.speedSupplier = speedSupplier;
         this.settings = settings;
     }
 
     public DriveTankByGyroWithPID(TankDrivetrain drivetrain, GyroBase source,
-                                  double setpoint, double arcadeSpeed, PIDSettings settings) {
-        this.drivetrain = drivetrain;
-        this.source = source;
-        this.setpointSupplier = () -> setpoint;
-        this.arcadeSpeedSupplier = () -> arcadeSpeed;
-        this.settings = settings;
+                                  double setpoint, double speed, PIDSettings settings) {
+        this(drivetrain, source, () -> setpoint, () -> speed, settings);
     }
 
     @Override
     protected void initialize() {
         this.angleController = new PIDController(settings.getKP(), settings.getKI(), settings.getKD(), source,
-                (toggle) -> drivetrain.tankDrive(arcadeSpeedSupplier.get(), toggle));
+                (rotate) -> drivetrain.arcadeDrive(speedSupplier.get(), rotate));
         angleController.setAbsoluteTolerance(settings.getTolerance());
         angleController.setSetpoint(setpointSupplier.get());
-        angleController.setOutputRange(-1.0, 0.1);
+        angleController.setOutputRange(-1.0, 1.0);
         angleController.enable();
     }
 
