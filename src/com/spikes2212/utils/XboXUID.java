@@ -18,9 +18,9 @@ public class XboXUID extends XboxController {
 	}
 
 	/**
-	 * Returns the green button on the joy stick.
+	 * Returns the green button on the joystick.
 	 * 
-	 * @return the green button on the joy stick.
+	 * @return the green button on the joystick.
 	 */
 	public Button getGreenButton() {
 		return new Button() {
@@ -33,9 +33,9 @@ public class XboXUID extends XboxController {
 	}
 
 	/**
-	 * Returns the blue button on the joy stick.
+	 * Returns the blue button on the joystick.
 	 * 
-	 * @return the blue button on the joy stick.
+	 * @return the blue button on the joystick.
 	 */
 	public Button getBlueButton() {
 		return new Button() {
@@ -48,9 +48,9 @@ public class XboXUID extends XboxController {
 	}
 
 	/**
-	 * Returns the red button on the joy stick.
+	 * Returns the red button on the joystick.
 	 * 
-	 * @return the red button on the joy stick.
+	 * @return the red button on the joystick.
 	 */
 	public Button getRedButton() {
 		return new Button() {
@@ -63,9 +63,9 @@ public class XboXUID extends XboxController {
 	}
 
 	/**
-	 * Returns the yellow button on the joy stick.
+	 * Returns the yellow button on the joystick.
 	 * 
-	 * @return the yellow button on the joy stick.
+	 * @return the yellow button on the joystick.
 	 */
 	public Button getYellowButton() {
 		return new Button() {
@@ -78,9 +78,9 @@ public class XboXUID extends XboxController {
 	}
 
 	/**
-	 * Returns the right trigger button on the joy stick.
+	 * Returns the right trigger button on the joystick.
 	 * 
-	 * @return the right trigger button on the joy stick.
+	 * @return the right trigger button on the joystick.
 	 */
 	public Button getRtButton() {
 		return new Button() {
@@ -93,9 +93,9 @@ public class XboXUID extends XboxController {
 	}
 
 	/**
-	 * Returns the right bumper button on the joy stick.
+	 * Returns the right bumper button on the joystick.
 	 * 
-	 * @return the right bumper button on the joy stick.
+	 * @return the right bumper button on the joystick.
 	 */
 	public Button getRbButton() {
 		return new Button() {
@@ -108,9 +108,9 @@ public class XboXUID extends XboxController {
 	}
 
 	/**
-	 * Returns the left trigger button on the joy stick.
+	 * Returns the left trigger button on the joystick.
 	 * 
-	 * @return the left trigger button on the joy stick.
+	 * @return the left trigger button on the joystick.
 	 */
 	public Button getLtButton() {
 		return new Button() {
@@ -123,9 +123,9 @@ public class XboXUID extends XboxController {
 	}
 
 	/**
-	 * Returns the left bumper button on the joy stick.
+	 * Returns the left bumper button on the joystick.
 	 * 
-	 * @return the left bumper button on the joy stick.
+	 * @return the left bumper button on the joystick.
 	 */
 	public Button getLbButton() {
 		return new Button() {
@@ -140,7 +140,7 @@ public class XboXUID extends XboxController {
 	/**
 	 * Returns the button on the right stick.
 	 * 
-	 * @return the left trigger button on the joy stick.
+	 * @return the button on the right stick.
 	 */
 	public Button getRightStickButton() {
 		return new Button() {
@@ -155,7 +155,7 @@ public class XboXUID extends XboxController {
 	/**
 	 * Returns the button on the left stick.
 	 * 
-	 * @return the left trigger button on the joy stick.
+	 * @return the button on the left stick.
 	 */
 	public Button getLeftStickButton() {
 		return new Button() {
