@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class enables writing constants to the {@link SmartDashboard}, allowing them to be changed.

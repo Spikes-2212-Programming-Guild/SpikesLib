@@ -1,7 +1,6 @@
 package com.spikes2212.utils;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * This class enables you to run any segment of code in a new thread as a command,

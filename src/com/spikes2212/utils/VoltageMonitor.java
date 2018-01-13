@@ -1,8 +1,8 @@
 package com.spikes2212.utils;
 
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-
 import java.util.function.Supplier;
+
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 public class VoltageMonitor {
     private static PowerDistributionPanel pdp = new PowerDistributionPanel();

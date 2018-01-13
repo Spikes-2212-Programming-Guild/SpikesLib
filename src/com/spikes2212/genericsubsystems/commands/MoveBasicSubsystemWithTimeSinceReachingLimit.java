@@ -15,12 +15,12 @@ import edu.wpi.first.wpilibj.Timer;
  * @author Omri "Riki" Cohen
  * @see BasicSubsystem
  */
-public class MoveBasicSubsystemSitickingToLimit extends MoveBasicSubsystem {
+public class MoveBasicSubsystemWithTimeSinceReachingLimit extends MoveBasicSubsystem {
 	protected double waitTime;
 	protected double lastTimeAtEndState = 0;
 
 	/**
-	 * This constructs a new {@link MoveBasicSubsystemSitickingToLimit} command
+	 * This constructs a new {@link MoveBasicSubsystemWithTimeSinceReachingLimit} command
 	 * using the {@link BasicSubsystem} this command runs on and the supplier
 	 * supplying the speed the {@link BasicSubsystem} should be moved with and a
 	 * wait time.
@@ -35,13 +35,13 @@ public class MoveBasicSubsystemSitickingToLimit extends MoveBasicSubsystem {
 	 *            the time the {@link BasicSubsystem} should keep trying to move
 	 *            since reaching its end point.
 	 */
-	public MoveBasicSubsystemSitickingToLimit(BasicSubsystem basicSubsystem, Supplier<Double> speed, double waitTime) {
+	public MoveBasicSubsystemWithTimeSinceReachingLimit(BasicSubsystem basicSubsystem, Supplier<Double> speed, double waitTime) {
 		super(basicSubsystem, speed);
 		this.waitTime = waitTime;
 	}
 
 	/**
-	 * This constructs a new {@link MoveBasicSubsystemSitickingToLimit} command
+	 * This constructs a new {@link MoveBasicSubsystemWithTimeSinceReachingLimit} command
 	 * using the {@link BasicSubsystem} this command runs on and the supplier
 	 * supplying the speed the {@link BasicSubsystem} should be moved with and a
 	 * wait time.
@@ -55,7 +55,7 @@ public class MoveBasicSubsystemSitickingToLimit extends MoveBasicSubsystem {
 	 *            the time the {@link BasicSubsystem} should keep trying to move
 	 *            since reaching its end point.
 	 */
-	public MoveBasicSubsystemSitickingToLimit(BasicSubsystem basicSubsystem, double speed, double waitTime) {
+	public MoveBasicSubsystemWithTimeSinceReachingLimit(BasicSubsystem basicSubsystem, double speed, double waitTime) {
 		super(basicSubsystem, speed);
 		this.waitTime = waitTime;
 	}
