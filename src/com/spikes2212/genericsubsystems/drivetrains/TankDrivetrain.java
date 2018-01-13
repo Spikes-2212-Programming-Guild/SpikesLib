@@ -66,6 +66,30 @@ public class TankDrivetrain extends Subsystem {
 		setRight(speedRight);
 	}
 
+	public void arcadeDrive(double moveValue, double rotateValue) {
+		double leftSpeed, rightSpeed;
+
+		if (moveValue > 0.0) {
+			if (rotateValue > 0.0) {
+				leftSpeed = moveValue - rotateValue;
+				rightSpeed = Math.max(moveValue, rotateValue);
+			} else {
+				leftSpeed = Math.max(moveValue, -rotateValue);
+				rightSpeed = moveValue + rotateValue;
+			}
+		} else {
+			if (rotateValue > 0.0) {
+				leftSpeed = -Math.max(-moveValue, rotateValue);
+				rightSpeed = moveValue + rotateValue;
+			} else {
+				leftSpeed = moveValue - rotateValue;
+				rightSpeed = -Math.max(-moveValue, -rotateValue);
+			}
+		}
+
+		this.tankDrive(leftSpeed, rightSpeed);
+	}
+
 	/**
 	 * Moves the left side of this drivetrain using speedLeft
 	 *
