@@ -1,67 +1,128 @@
 package com.spikes2212.utils;
 
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-public class XboXUID extends Joystick {
-
-	static final int X_RIGHT = 2;
-	static final int X_LEFT = 0;
-	static final int Y_RIGHT = 3;
-	static final int Y_LEFT = 1;
+public class XboXUID extends XboxController {
 
 	public XboXUID(int port) {
 		super(port);
 	}
 
 	public Button getGreenButton() {
-		return new JoystickButton(this, 2);
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getAButton();
+			}
+		};
 	}
 
 	public Button getBlueButton() {
-		return new JoystickButton(this, 1);
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getXButton();
+			}
+		};
 	}
-	
 
 	public Button getRedButton() {
-		return new JoystickButton(this, 3);
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getBButton();
+			}
+		};
 	}
 
 	public Button getYellowButton() {
-		return new JoystickButton(this, 4);
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getYButton();
+			}
+		};
 	}
 
 	public Button getRtButton() {
-		return new JoystickButton(this, 8);
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getTrigger(Hand.kRight);
+			}
+		};
 	}
 
 	public Button getRbButton() {
-		return new JoystickButton(this, 6);
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getBumper(Hand.kRight);
+			}
+		};
 	}
 
 	public Button getLtButton() {
-		return new JoystickButton(this, 7);
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getTrigger(Hand.kLeft);
+			}
+		};
 	}
 
 	public Button getLbButton() {
-		return new JoystickButton(this, 5);
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getBumper(Hand.kLeft);
+			}
+		};
+	}
+
+	public Button getRightStickButton() {
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getStickButton(Hand.kRight);
+			}
+		};
+	}
+
+	public Button getLeftStickButton() {
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getStickButton(Hand.kLeft);
+			}
+		};
 	}
 
 	public double getRightX() {
-		return getRawAxis(X_RIGHT);
+		return getX(Hand.kRight);
 	}
 
 	public double getRightY() {
-		return getRawAxis(Y_RIGHT);
+		return getY(Hand.kRight);
 	}
 
 	public double getLeftX() {
-		return getRawAxis(X_LEFT);
+		return getX(Hand.kLeft);
 	}
 
 	public double getLeftY() {
-		return getY(); // Don't change this, for some reason it works
+		return getY(Hand.kLeft);
 	}
 
 	public Button getUpButton() {
