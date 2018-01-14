@@ -37,11 +37,10 @@ public class DashBoardController {
 
 	/**
 	 * Constructs a new {@link DashBoardController}.
-	 * <p>
-	 * <p>
+	 * <br><br>
+	 * 
 	 * More than one {@link DashBoardController} can exist at a time. However, if a
 	 * key name is used more than once they'll override each other.
-	 * </p>
 	 */
 	public DashBoardController() {
 		// Initializing fields
@@ -149,13 +148,12 @@ public class DashBoardController {
 	 * Read from each supplier, and update the <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html">SmartDashboard</a>
 	 * according to the read values.
-	 * <p>
-	 * <p>
+	 * <br><br>
+	 * 
 	 * This method evokes the {@link Supplier#get()} method for each supplier added
 	 * to this object, and then writes that value to the <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html">SmartDashboard</a>
 	 * under the name given when that supplier was added.
-	 * </p>
 	 */
 	public void update() {
 		updateBooleans();

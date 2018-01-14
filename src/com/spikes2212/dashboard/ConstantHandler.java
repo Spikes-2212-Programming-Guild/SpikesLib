@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj.Preferences;
  * This class enables writing constants to the <a href=
  * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html">SmartDashboard</a>,
  * allowing them to be changed.
- * <p>
+ * 
+ * <br><br>
  * This class is meant to be used instead of writing final and static constants
  * into the code; which are problematic because they require you to re-deploy
  * every time you want to change a constant.
- * </p>
  * 
  * @author Omri "Riki" Cohen
  * @see <a href=
