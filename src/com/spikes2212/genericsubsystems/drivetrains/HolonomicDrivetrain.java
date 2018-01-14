@@ -2,11 +2,16 @@ package com.spikes2212.genericsubsystems.drivetrains;
 
 import java.util.function.Consumer;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 /**
- * This class represents a type of Drivetrain with a x and y axises which can be
- * controlled separately.
+ * This class represents a type of Drivetrain with a X (left/right) and Y
+ * (forwards/backwards) axises which can be controlled independently, allowing
+ * it to move by giving each axis a speed value separately. <br>
+ * <br>
+ * 
+ * This Drivetrain extends {@link TankDrivetrain}, which means it can also move
+ * by controlling the left and right sides.
+ * 
+ * @see TankDrivetrain
  */
 public class HolonomicDrivetrain extends TankDrivetrain {
 
@@ -17,13 +22,15 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 	 * This constructs a new {@link HolonomicDrivetrain} drivetrain.
 	 * 
 	 * @param controlLeft
-	 *            controls the left side on the drivetrain
+	 *            the component controlling the left side of the drivetrain
 	 * @param controlRight
-	 *            controls the right side on the drivetrain
+	 *            the component controlling the left side of the drivetrain
 	 * @param controlX
-	 *            controls the x axis of the drivetrain
+	 *            the component controlling the X axis of the drivetrain
 	 * @param controlY
-	 *            controls the y axis of the drivetrain
+	 *            the component controlling the Y axis of the drivetrain
+	 * 
+	 * @see Consumer
 	 */
 
 	public HolonomicDrivetrain(Consumer<Double> controlLeft, Consumer<Double> controlRight, Consumer<Double> controlX,
@@ -34,38 +41,34 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 	}
 
 	/**
-	 * Moves the the drivetrain on the x axis
+	 * Moves the X axis of this drivetrain with a given speed.
 	 *
 	 * @param speedX
-	 *            The speed to set to the x axis. Positive values move this
-	 *            forward.
+	 *            the speed to set to the X axis. Positive values move this forward.
 	 */
 	public void setX(double speedX) {
 		controlX.accept(speedX);
 	}
 
 	/**
-	 * Moves the the drivetrain on the y axis
+	 * Moves the Y axis of this drivetrain with a given speed.
 	 *
 	 * @param speedY
-	 *            The speed to set to the Y axis. Positive values move this
-	 *            forward.
+	 *            the speed to set to the Y axis. Positive values move this forward.
 	 */
 	public void setY(double speedY) {
 		controlY.accept(speedY);
 	}
 
 	/**
-	 * Moves the drivetrain on both x and y axises using speedX and speedY
+	 * Moves the drivetrain on both X and Y axises using given speeds for each axis.
 	 * 
 	 * @param speedY
-	 *            The speed to set to the Y axis. Positive values move this
-	 *            forward.
+	 *            the speed to set to the Y axis. Positive values move this forward.
 	 * @param speedX
-	 *            The speed to set to the X axis. Positive values move this
-	 *            forward.
+	 *            the speed to set to the X axis. Positive values move this forward.
 	 */
-	public void holonomicDrive(double speedY, double speedX) { // y-forward/backward  x-left/right 
+	public void holonomicDrive(double speedY, double speedX) { // y-forward/backward x-left/right
 		setX(speedX);
 		setY(speedY);
 	}
