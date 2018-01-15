@@ -21,15 +21,14 @@ public class MoveBasicSubsystem extends Command {
 
 	/**
 	 * This constructs a new {@link MoveBasicSubsystem} command using the
-	 * {@link BasicSubsystem} this command runs on and the supplier supplying
-	 * the speed the {@link BasicSubsystem} should be moved with.
+	 * {@link BasicSubsystem} this command runs on and a supplier supplying the
+	 * speed the {@link BasicSubsystem} should move with.
 	 *
 	 * @param basicSubsystem
 	 *            the {@link BasicSubsystem} this command should move.
 	 * @param speedSupplier
-	 *            a Double {@link Supplier} supplying the speed basicSubsystem
-	 *            should be moved with. Should only supply values between -1 and
-	 *            1.
+	 *            a Double {@link Supplier} supplying the speed this subsystem
+	 *            should be moved with. Must only supply values between -1 and 1.
 	 */
 	public MoveBasicSubsystem(BasicSubsystem basicSubsystem, Supplier<Double> speedSupplier) {
 		requires(basicSubsystem);
@@ -39,14 +38,14 @@ public class MoveBasicSubsystem extends Command {
 
 	/**
 	 * This constructs a new {@link MoveBasicSubsystem} command using the
-	 * {@link BasicSubsystem} this command runs on and the supplier supplying
-	 * the speed the {@link BasicSubsystem} should be moved with.
+	 * {@link BasicSubsystem} this command runs on and a constant speed the
+	 * {@link BasicSubsystem} should move with.
 	 *
 	 * @param basicSubsystem
-	 *            the {@link BasicSubsystem} this command should move.
+	 *            the {@link BasicSubsystem} this command opperates on.
 	 * @param speed
-	 *            the speed basicSubsystem should be moved with. Values should
-	 *            be between -1 and 1.
+	 *            the speed this subsystem should be moved with. Values must be
+	 *            between -1 and 1.
 	 */
 	public MoveBasicSubsystem(BasicSubsystem basicSubsystem, double speed) {
 		this(basicSubsystem, () -> speed);
@@ -61,7 +60,15 @@ public class MoveBasicSubsystem extends Command {
 		basicSubsystem.move(speedSupplier.get());
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
+	/**
+	 * Checks if the subsystem can move with the current speed according to the
+	 * limits given in the {@link BasicSubsystem} constructor, or if the command has
+	 * timed out.
+	 * 
+	 * @return Returns true if this command should stop.
+	 * 
+	 * @see BasicSubsystem#canMove
+	 */
 	protected boolean isFinished() {
 		return !basicSubsystem.canMove.apply(speedSupplier.get()) || isTimedOut();
 	}
