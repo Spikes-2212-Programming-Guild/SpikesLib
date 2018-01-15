@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * This class represents a generic subsystem that moves within a limitation, or
- * without one, which given speed limits.
+ * without one, with given speed limits.
  *
  * @author Omri "Riki" Cohen
  */
