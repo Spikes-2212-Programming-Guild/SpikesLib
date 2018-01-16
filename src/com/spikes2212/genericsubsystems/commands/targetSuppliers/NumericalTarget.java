@@ -1,4 +1,4 @@
-package com.spikes2212.genericsubsystems.drivetrains.commands.targetSuppliers;
+package com.spikes2212.genericsubsystems.commands.targetSuppliers;
 
 import java.util.function.Supplier;
 
