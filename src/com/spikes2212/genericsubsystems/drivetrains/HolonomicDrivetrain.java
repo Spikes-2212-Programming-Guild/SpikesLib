@@ -44,7 +44,7 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 	 * Moves the X axis of this drivetrain with a given speed.
 	 *
 	 * @param speedX
-	 *            the speed to set to the X axis. Positive values move this forward.
+	 *            the speed to set to the X axis. Positive values move this axis forward.
 	 */
 	public void setX(double speedX) {
 		controlX.accept(speedX);
@@ -54,7 +54,7 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 	 * Moves the Y axis of this drivetrain with a given speed.
 	 *
 	 * @param speedY
-	 *            the speed to set to the Y axis. Positive values move this forward.
+	 *            the speed to set to the Y axis. Positive values move this axis forward.
 	 */
 	public void setY(double speedY) {
 		controlY.accept(speedY);
@@ -64,9 +64,9 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 	 * Moves the drivetrain on both X and Y axises using given speeds for each axis.
 	 * 
 	 * @param speedY
-	 *            the speed to set to the Y axis. Positive values move this forward.
+	 *            the speed to set to the Y axis. Positive values move this axis forward.
 	 * @param speedX
-	 *            the speed to set to the X axis. Positive values move this forward.
+	 *            the speed to set to the X axis. Positive values move this axis forward.
 	 */
 	public void holonomicDrive(double speedY, double speedX) { // y-forward/backward x-left/right
 		setX(speedX);
