@@ -15,7 +15,7 @@ public class NumericalTarget implements Supplier<Boolean> {
 
 	@Override
 	public Boolean get() {
-		return targetPosition - tolerance <= position.get() && position.get() <= targetPosition + tolerance;
+		return (Math.abs(targetPosition - position.get()) <= tolerance);
 	}
 
 }
