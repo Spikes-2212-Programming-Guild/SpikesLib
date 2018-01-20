@@ -100,7 +100,7 @@ public class XboXUID extends XboxController {
 	 * 
 	 * @return the right bumper button on the joystick.
 	 */
-	public Button getRbButton() {
+	public Button getRBButton() {
 		return new Button() {
 
 			@Override
@@ -115,7 +115,7 @@ public class XboXUID extends XboxController {
 	 * 
 	 * @return the left bumper button on the joystick.
 	 */
-	public Button getLbButton() {
+	public Button getLBButton() {
 		return new Button() {
 
 			@Override
