@@ -78,18 +78,21 @@ public class XboXUID extends XboxController {
 	}
 
 	/**
-	 * Returns the right trigger button on the joystick.
+	 * Returns the value of the right trigger on the joystick.
 	 * 
-	 * @return the right trigger button on the joystick.
+	 * @return the value of the right trigger on the joystick.
 	 */
-	public Button getRtButton() {
-		return new Button() {
+	public double getRTXAxis() {
+		return getTriggerAxis(Hand.kRight);
+	}
 
-			@Override
-			public boolean get() {
-				return getTrigger(Hand.kRight);
-			}
-		};
+	/**
+	 * Returns the value of the left trigger on the joystick.
+	 * 
+	 * @return the value of the left trigger on the joystick.
+	 */
+	public double getLTXAxis() {
+		return getTriggerAxis(Hand.kLeft);
 	}
 
 	/**
@@ -103,21 +106,6 @@ public class XboXUID extends XboxController {
 			@Override
 			public boolean get() {
 				return getBumper(Hand.kRight);
-			}
-		};
-	}
-
-	/**
-	 * Returns the left trigger button on the joystick.
-	 * 
-	 * @return the left trigger button on the joystick.
-	 */
-	public Button getLtButton() {
-		return new Button() {
-
-			@Override
-			public boolean get() {
-				return getTrigger(Hand.kLeft);
 			}
 		};
 	}
