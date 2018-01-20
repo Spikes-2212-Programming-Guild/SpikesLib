@@ -1,69 +1,201 @@
 package com.spikes2212.utils;
 
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-public class XboXUID extends Joystick {
+public class XboXUID extends XboxController {
 
-	static final int X_RIGHT = 2;
-	static final int X_LEFT = 0;
-	static final int Y_RIGHT = 3;
-	static final int Y_LEFT = 1;
-
+	/**
+	 * Constructs a new {@link XboXUID} using the port of the USB on the driver
+	 * station.
+	 * 
+	 * @param port
+	 *            The port on the Driver Station that the joystick is plugged
+	 *            into.
+	 */
 	public XboXUID(int port) {
 		super(port);
 	}
 
+	/**
+	 * Returns the green button on the joystick.
+	 * 
+	 * @return the green button on the joystick.
+	 */
 	public Button getGreenButton() {
-		return new JoystickButton(this, 2);
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getAButton();
+			}
+		};
 	}
 
+	/**
+	 * Returns the blue button on the joystick.
+	 * 
+	 * @return the blue button on the joystick.
+	 */
 	public Button getBlueButton() {
-		return new JoystickButton(this, 1);
-	}
-	
+		return new Button() {
 
+			@Override
+			public boolean get() {
+				return getXButton();
+			}
+		};
+	}
+
+	/**
+	 * Returns the red button on the joystick.
+	 * 
+	 * @return the red button on the joystick.
+	 */
 	public Button getRedButton() {
-		return new JoystickButton(this, 3);
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getBButton();
+			}
+		};
 	}
 
+	/**
+	 * Returns the yellow button on the joystick.
+	 * 
+	 * @return the yellow button on the joystick.
+	 */
 	public Button getYellowButton() {
-		return new JoystickButton(this, 4);
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getYButton();
+			}
+		};
 	}
 
-	public Button getRtButton() {
-		return new JoystickButton(this, 8);
+	/**
+	 * Returns the value of the right trigger on the joystick.
+	 * 
+	 * @return the value of the right trigger on the joystick.
+	 */
+	public double getRTAxis() {
+		return getTriggerAxis(Hand.kRight);
 	}
 
-	public Button getRbButton() {
-		return new JoystickButton(this, 6);
+	/**
+	 * Returns the value of the left trigger on the joystick.
+	 * 
+	 * @return the value of the left trigger on the joystick.
+	 */
+	public double getLTAxis() {
+		return getTriggerAxis(Hand.kLeft);
 	}
 
-	public Button getLtButton() {
-		return new JoystickButton(this, 7);
+	/**
+	 * Returns the right bumper button on the joystick.
+	 * 
+	 * @return the right bumper button on the joystick.
+	 */
+	public Button getRBButton() {
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getBumper(Hand.kRight);
+			}
+		};
 	}
 
-	public Button getLbButton() {
-		return new JoystickButton(this, 5);
+	/**
+	 * Returns the left bumper button on the joystick.
+	 * 
+	 * @return the left bumper button on the joystick.
+	 */
+	public Button getLBButton() {
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getBumper(Hand.kLeft);
+			}
+		};
 	}
 
+	/**
+	 * Returns the button on the right stick.
+	 * 
+	 * @return the button on the right stick.
+	 */
+	public Button getRightStickButton() {
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getStickButton(Hand.kRight);
+			}
+		};
+	}
+
+	/**
+	 * Returns the button on the left stick.
+	 * 
+	 * @return the button on the left stick.
+	 */
+	public Button getLeftStickButton() {
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getStickButton(Hand.kLeft);
+			}
+		};
+	}
+
+	/**
+	 * Get the X axis value of the right stick.
+	 * 
+	 * @return the X axis value of the right stick.
+	 */
 	public double getRightX() {
-		return getRawAxis(X_RIGHT);
+		return getX(Hand.kRight);
 	}
 
+	/**
+	 * Get the Y axis value of the right stick.
+	 * 
+	 * @return the Y axis value of the right stick.
+	 */
 	public double getRightY() {
-		return getRawAxis(Y_RIGHT);
+		return getY(Hand.kRight);
 	}
 
+	/**
+	 * Get the X axis value of the left stick.
+	 * 
+	 * @return the X axis value of the left stick.
+	 */
 	public double getLeftX() {
-		return getRawAxis(X_LEFT);
+		return getX(Hand.kLeft);
 	}
 
+	/**
+	 * Get the Y axis value of the left stick.
+	 * 
+	 * @return the Y axis value of the left stick.
+	 */
 	public double getLeftY() {
-		return getY(); // Don't change this, for some reason it works
+		return getY(Hand.kLeft);
 	}
 
+	/**
+	 * Returns the up arrow button.
+	 * 
+	 * @return the up arrow button.
+	 */
 	public Button getUpButton() {
 		return new Button() {
 			@Override
@@ -73,6 +205,11 @@ public class XboXUID extends Joystick {
 		};
 	}
 
+	/**
+	 * Returns the down arrow button.
+	 * 
+	 * @return the down arrow button.
+	 */
 	public Button getDownButton() {
 		return new Button() {
 			@Override
@@ -82,6 +219,11 @@ public class XboXUID extends Joystick {
 		};
 	}
 
+	/**
+	 * Returns the left arrow button.
+	 * 
+	 * @return the left arrow button.
+	 */
 	public Button getLeftButton() {
 		return new Button() {
 			@Override
@@ -91,6 +233,11 @@ public class XboXUID extends Joystick {
 		};
 	}
 
+	/**
+	 * Returns the right arrow button.
+	 * 
+	 * @return the right arrow button.
+	 */
 	public Button getRightButton() {
 		return new Button() {
 			@Override
