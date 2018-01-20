@@ -82,7 +82,7 @@ public class XboXUID extends XboxController {
 	 * 
 	 * @return the value of the right trigger on the joystick.
 	 */
-	public double getRTXAxis() {
+	public double getRTAxis() {
 		return getTriggerAxis(Hand.kRight);
 	}
 
@@ -91,7 +91,7 @@ public class XboXUID extends XboxController {
 	 * 
 	 * @return the value of the left trigger on the joystick.
 	 */
-	public double getLTXAxis() {
+	public double getLTAxis() {
 		return getTriggerAxis(Hand.kLeft);
 	}
 
