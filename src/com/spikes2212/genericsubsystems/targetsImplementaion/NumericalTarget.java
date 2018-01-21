@@ -1,4 +1,4 @@
-package com.spikes2212.genericsubsystems.limitationFunctions;
+package com.spikes2212.genericsubsystems.targetsImplementaion;
 
 import java.util.function.Supplier;
 
