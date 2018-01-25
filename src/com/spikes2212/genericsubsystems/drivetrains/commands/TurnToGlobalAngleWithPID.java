@@ -50,13 +50,7 @@ public class TurnToGlobalAngleWithPID extends Command {
 		requires(drivetrain);
 		this.drivetrain = drivetrain;
 		this.compassGyro = compassGyro;
-		this.setpointSupplier = () -> {
-			double setpoint = setpointSupplier.get();
-			setpoint = setpoint % 360;
-			if (Math.abs(setpoint - compassGyro.pidGet()) > 180)
-				setpoint -= 360;
-			return setpoint;
-		};
+		this.setpointSupplier = setpointSupplier;
 		this.settings = settings;
 	}
 
@@ -86,7 +80,7 @@ public class TurnToGlobalAngleWithPID extends Command {
 	protected void initialize() {
 		controller = new PIDController(settings.getKP(), settings.getKI(), settings.getKD(), compassGyro,
 				(rotate) -> drivetrain.arcadeDrive(0.0, rotate));
-		controller.setSetpoint(setpointSupplier.get());
+		controller.setSetpoint(getSetpoint());
 		controller.setOutputRange(-1.0, 1.0);
 		controller.setAbsoluteTolerance(settings.getTolerance());
 		controller.enable();
@@ -94,7 +88,7 @@ public class TurnToGlobalAngleWithPID extends Command {
 
 	@Override
 	protected void execute() {
-		double newSetpoint = setpointSupplier.get();
+		double newSetpoint = getSetpoint();
 		if (controller.getSetpoint() != newSetpoint)
 			controller.setSetpoint(newSetpoint);
 	}
@@ -117,5 +111,13 @@ public class TurnToGlobalAngleWithPID extends Command {
 	@Override
 	protected void interrupted() {
 		end();
+	}
+	
+	private double getSetpoint(){
+		double setpoint = setpointSupplier.get();
+		setpoint = setpoint % 360;
+		if (Math.abs(setpoint - compassGyro.pidGet()) > 180)
+			setpoint -= 360;
+		return setpoint;
 	}
 }
