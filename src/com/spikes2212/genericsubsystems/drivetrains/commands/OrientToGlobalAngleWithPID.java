@@ -18,7 +18,7 @@ import java.util.function.Supplier;
  *
  * @author Simon "C" Kharmatsky
  */
-public class TurnToGlobalAngleWithPID extends Command {
+public class OrientToGlobalAngleWithPID extends Command {
 
 	private TankDrivetrain drivetrain;
 	private CompassGyro compassGyro;
@@ -30,7 +30,7 @@ public class TurnToGlobalAngleWithPID extends Command {
 	private double lastTimeOnTarget = 0;
 
 	/**
-	 * This constructs new {@link TurnToGlobalAngleWithPID} using {@link PIDSource},
+	 * This constructs new {@link OrientToGlobalAngleWithPID} using {@link PIDSource},
 	 * {@link Supplier<Double>} for the setpoint and the {@link PIDSettings} for the
 	 * command
 	 * 
@@ -45,7 +45,7 @@ public class TurnToGlobalAngleWithPID extends Command {
 	 * @param settings
 	 *            {@link PIDSettings} for this command
 	 */
-	public TurnToGlobalAngleWithPID(TankDrivetrain drivetrain, CompassGyro compassGyro,
+	public OrientToGlobalAngleWithPID(TankDrivetrain drivetrain, CompassGyro compassGyro,
 			Supplier<Double> setpointSupplier, PIDSettings settings) {
 		requires(drivetrain);
 		this.drivetrain = drivetrain;
@@ -55,8 +55,8 @@ public class TurnToGlobalAngleWithPID extends Command {
 	}
 
 	/**
-	 * This constructs new {@link TurnToGlobalAngleWithPID} with constant value for
-	 * {@link TurnToGlobalAngleWithPID#setpointSupplier} using
+	 * This constructs new {@link OrientToGlobalAngleWithPID} with constant value for
+	 * {@link OrientToGlobalAngleWithPID#setpointSupplier} using
 	 * {@link PIDController}, {@link Double} for the setpoint and
 	 * {@link PIDController} for the command
 	 * 
@@ -67,11 +67,11 @@ public class TurnToGlobalAngleWithPID extends Command {
 	 *            get feedback about the robot's position
 	 * @param setpoint
 	 *            constant value for
-	 *            {@link TurnToGlobalAngleWithPID#setpointSupplier}
+	 *            {@link OrientToGlobalAngleWithPID#setpointSupplier}
 	 * @param settings
 	 *            {@link PIDSettings} for this command
 	 */
-	public TurnToGlobalAngleWithPID(TankDrivetrain drivetrain, CompassGyro compassGyro, double setpoint,
+	public OrientToGlobalAngleWithPID(TankDrivetrain drivetrain, CompassGyro compassGyro, double setpoint,
 			PIDSettings settings) {
 		this(drivetrain, compassGyro, () -> setpoint, settings);
 	}
