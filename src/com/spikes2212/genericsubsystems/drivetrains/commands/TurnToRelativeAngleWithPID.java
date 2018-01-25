@@ -18,7 +18,7 @@ import java.util.function.Supplier;
  *
  * @author Simon "C" Kharmatsky
  */
-public class TurnTankToTargetWithPID extends Command {
+public class TurnToRelativeAngleWithPID extends Command {
 
     private TankDrivetrain drivetrain;
     private PIDSource source;
@@ -30,7 +30,7 @@ public class TurnTankToTargetWithPID extends Command {
     private double lastTimeOnTarget = 0;
 
     /**
-     * This constructs new {@link TurnTankToTargetWithPID} using
+     * This constructs new {@link TurnToRelativeAngleWithPID} using
      * {@link PIDSource}, {@link Supplier<Double>} for the setpoint and the
      * {@link PIDSettings} for the command
      * @param drivetrain the {@link TankDrivetrain} this command requires and moves
@@ -39,7 +39,7 @@ public class TurnTankToTargetWithPID extends Command {
      * @param setpointSupplier {@link Supplier<Double>} for the setpoint of the {@link PIDController}
      * @param settings {@link PIDSettings} for this command
      */
-    public TurnTankToTargetWithPID(TankDrivetrain drivetrain, PIDSource source,
+    public TurnToRelativeAngleWithPID(TankDrivetrain drivetrain, PIDSource source,
                                    Supplier<Double> setpointSupplier, PIDSettings settings) {
         requires(drivetrain);
         this.drivetrain = drivetrain;
@@ -49,17 +49,17 @@ public class TurnTankToTargetWithPID extends Command {
     }
 
     /**
-     * This constructs new {@link TurnTankToTargetWithPID} with
-     * constant value for {@link TurnTankToTargetWithPID#setpointSupplier} using
+     * This constructs new {@link TurnToRelativeAngleWithPID} with
+     * constant value for {@link TurnToRelativeAngleWithPID#setpointSupplier} using
      * {@link PIDController}, {@link Double} for the setpoint and
      * {@link PIDController} for the command
      * @param drivetrain the {@link TankDrivetrain} this command requires and moves
      * @param source the {@link PIDSource} that is used by the {@link PIDController}
      *               to get feedback about the robot's position
-     * @param setpoint constant value for {@link TurnTankToTargetWithPID#setpointSupplier}
+     * @param setpoint constant value for {@link TurnToRelativeAngleWithPID#setpointSupplier}
      * @param settings {@link PIDSettings} for this command
      */
-    public TurnTankToTargetWithPID(TankDrivetrain drivetrain, PIDSource source,
+    public TurnToRelativeAngleWithPID(TankDrivetrain drivetrain, PIDSource source,
                                    double setpoint, PIDSettings settings) {
         this(drivetrain, source, ()->setpoint, settings);
     }
