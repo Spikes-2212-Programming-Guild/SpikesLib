@@ -1,9 +1,9 @@
 package com.spikes2212.genericsubsystems.drivetrains.commands;
 
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
+import com.spikes2212.utils.CompassGyro;
 import com.spikes2212.utils.PIDSettings;
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -21,7 +21,7 @@ import java.util.function.Supplier;
 public class TurnToGlobalAngleWithPID extends Command {
 
 	private TankDrivetrain drivetrain;
-	private PIDSource source;
+	private CompassGyro compassGyro;
 	private Supplier<Double> setpointSupplier;
 	private PIDSettings settings;
 
@@ -36,7 +36,7 @@ public class TurnToGlobalAngleWithPID extends Command {
 	 * 
 	 * @param drivetrain
 	 *            the {@link TankDrivetrain} this command requires and moves
-	 * @param source
+	 * @param compassGyro
 	 *            the {@link PIDSource} that is used by the {@link PIDController} to
 	 *            get feedback about the robot's position
 	 * @param setpointSupplier
@@ -45,15 +45,15 @@ public class TurnToGlobalAngleWithPID extends Command {
 	 * @param settings
 	 *            {@link PIDSettings} for this command
 	 */
-	public TurnToGlobalAngleWithPID(TankDrivetrain drivetrain, PIDSource source, Supplier<Double> setpointSupplier,
-			PIDSettings settings) {
+	public TurnToGlobalAngleWithPID(TankDrivetrain drivetrain, CompassGyro compassGyro,
+			Supplier<Double> setpointSupplier, PIDSettings settings) {
 		requires(drivetrain);
 		this.drivetrain = drivetrain;
-		this.source = source;
+		this.compassGyro = compassGyro;
 		this.setpointSupplier = () -> {
 			double setpoint = setpointSupplier.get();
 			setpoint = setpoint % 360;
-			if (Math.abs(setpoint - source.pidGet()) > 180)
+			if (Math.abs(setpoint - compassGyro.pidGet()) > 180)
 				setpoint -= 360;
 			return setpoint;
 		};
@@ -68,7 +68,7 @@ public class TurnToGlobalAngleWithPID extends Command {
 	 * 
 	 * @param drivetrain
 	 *            the {@link TankDrivetrain} this command requires and moves
-	 * @param source
+	 * @param compassGyro
 	 *            the {@link PIDSource} that is used by the {@link PIDController} to
 	 *            get feedback about the robot's position
 	 * @param setpoint
@@ -77,14 +77,14 @@ public class TurnToGlobalAngleWithPID extends Command {
 	 * @param settings
 	 *            {@link PIDSettings} for this command
 	 */
-	public TurnToGlobalAngleWithPID(TankDrivetrain drivetrain, PIDSource source, double setpoint,
+	public TurnToGlobalAngleWithPID(TankDrivetrain drivetrain, CompassGyro compassGyro, double setpoint,
 			PIDSettings settings) {
-		this(drivetrain, source, () -> setpoint, settings);
+		this(drivetrain, compassGyro, () -> setpoint, settings);
 	}
 
 	@Override
 	protected void initialize() {
-		controller = new PIDController(settings.getKP(), settings.getKI(), settings.getKD(), source,
+		controller = new PIDController(settings.getKP(), settings.getKI(), settings.getKD(), compassGyro,
 				(rotate) -> drivetrain.arcadeDrive(0.0, rotate));
 		controller.setSetpoint(setpointSupplier.get());
 		controller.setOutputRange(-1.0, 1.0);
