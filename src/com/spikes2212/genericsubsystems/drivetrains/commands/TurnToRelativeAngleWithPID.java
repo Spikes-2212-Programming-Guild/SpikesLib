@@ -25,8 +25,6 @@ public class TurnToRelativeAngleWithPID extends Command {
     private Supplier<Double> setpointSupplier;
     private PIDSettings settings;
     
-    private double startingAngle;
-
     private PIDController controller;
 
     private double lastTimeOnTarget = 0;
@@ -46,10 +44,9 @@ public class TurnToRelativeAngleWithPID extends Command {
         requires(drivetrain);
         this.drivetrain = drivetrain;
         this.source = source;
-        startingAngle = source.pidGet();
         this.setpointSupplier = () -> {
         	double setpoint = setpointSupplier.get();
-        	setpoint = (setpoint % 360) + startingAngle;
+        	setpoint = (setpoint % 360) + source.pidGet();
         	if(setpoint > 180)
         		setpoint -= 360;
         	return setpoint;
