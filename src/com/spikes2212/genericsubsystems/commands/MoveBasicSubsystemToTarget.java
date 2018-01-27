@@ -4,9 +4,30 @@ import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.BasicSubsystem;
 
+/**
+ * This class moves a {@link BasicSubsystem} in a given speed until reaching a
+ * target.
+ * 
+ * @author Omri "Riki" Cohen
+ */
 public class MoveBasicSubsystemToTarget extends MoveBasicSubsystem {
 	protected final Supplier<Boolean> onTarget;
 
+	/**
+	 * Constructs a new {@link MoveBasicSubsystemToTarget} command using the
+	 * {@link BasicSubsystem} this command runs on, the supplier supplying the speed
+	 * the {@link BasicSubsystem} should be moved with and a boolean supplier, which
+	 * returns true then reaching the wanted target.
+	 * 
+	 * @param basicSubsystem
+	 *            the {@link BasicSubsystem} this command should move.
+	 * @param speedSupplier
+	 *            a Double {@link Supplier} supplying the speed basicSubsystem
+	 *            should be moved with. Should only supply values between -1 and 1.
+	 * @param onTarget
+	 *            a Boolean {@link Supplier} returning true when reaching the wanted
+	 *            target.
+	 */
 	public MoveBasicSubsystemToTarget(BasicSubsystem basicSubsystem, Supplier<Double> speedSupplier,
 			Supplier<Boolean> onTarget) {
 		super(basicSubsystem, speedSupplier);
