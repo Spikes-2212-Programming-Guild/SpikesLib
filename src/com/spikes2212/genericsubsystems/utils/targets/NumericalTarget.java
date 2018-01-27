@@ -6,9 +6,9 @@ import com.spikes2212.genericsubsystems.BasicSubsystem;
 import com.spikes2212.genericsubsystems.commands.MoveBasicSubsystemToTarget;
 
 /**
- * This class is a Double {@link Supplier}. It is used in the constructor of
+ * This class is a Boolean {@link Supplier}. It is used in the constructor of
  * {@link MoveBasicSubsystemToTarget} to move a {@link BasicSubsystem} to a
- * numerical target.
+ * numerical target. For example, encoder's output.
  * 
  * @author Omri "Riki" Cohen
  */
