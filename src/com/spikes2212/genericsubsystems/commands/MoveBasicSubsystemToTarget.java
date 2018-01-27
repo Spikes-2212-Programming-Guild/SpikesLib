@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import com.spikes2212.genericsubsystems.BasicSubsystem;
 
 public class MoveBasicSubsystemToTarget extends MoveBasicSubsystem {
-	protected Supplier<Boolean> onTarget;
+	protected final Supplier<Boolean> onTarget;
 
 	public MoveBasicSubsystemToTarget(BasicSubsystem basicSubsystem, Supplier<Double> speedSupplier,
 			Supplier<Boolean> onTarget) {
