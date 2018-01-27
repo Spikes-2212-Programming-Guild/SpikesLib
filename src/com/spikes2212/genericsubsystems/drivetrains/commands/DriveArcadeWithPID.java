@@ -22,14 +22,14 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveArcadeWithPID extends Command {
 
-	private TankDrivetrain drivetrain;
-	private PIDSource PIDSource;
-	private Supplier<Double> setpointSupplier;
-	private Supplier<Double> speedSupplier;
-	private Supplier<Boolean> isFinishedSupplier;
-	private PIDSettings PIDSettings;
+	protected TankDrivetrain drivetrain;
+	protected PIDSource PIDSource;
+	protected PIDSettings PIDSettings;
+	protected final Supplier<Double> setpointSupplier;
+	protected final Supplier<Double> speedSupplier;
+	protected final Supplier<Boolean> isFinishedSupplier;
 
-	private PIDController angleController;
+	protected PIDController angleController;
 
 	/**
 	 * This constructs a new {@link DriveArcadeWithPID} using {@link PIDSource},
