@@ -29,7 +29,7 @@ public class DriveArcadeWithPID extends Command {
 	protected final Supplier<Double> speedSupplier;
 	protected final Supplier<Boolean> isFinishedSupplier;
 
-	protected PIDController angleController;
+	protected PIDController rotationController;
 
 	/**
 	 * This constructs a new {@link DriveArcadeWithPID} using {@link PIDSource},
@@ -137,19 +137,19 @@ public class DriveArcadeWithPID extends Command {
 
 	@Override
 	protected void initialize() {
-		this.angleController = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
+		this.rotationController = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
 				PIDSource, (rotate) -> drivetrain.arcadeDrive(speedSupplier.get(), rotate));
-		angleController.setAbsoluteTolerance(PIDSettings.getTolerance());
-		angleController.setSetpoint(setpointSupplier.get());
-		angleController.setOutputRange(-1.0, 1.0);
-		angleController.enable();
+		rotationController.setAbsoluteTolerance(PIDSettings.getTolerance());
+		rotationController.setSetpoint(setpointSupplier.get());
+		rotationController.setOutputRange(-1.0, 1.0);
+		rotationController.enable();
 	}
 
 	@Override
 	protected void execute() {
 		double newSetpoint = setpointSupplier.get();
-		if (angleController.getSetpoint() != newSetpoint)
-			angleController.setSetpoint(newSetpoint);
+		if (rotationController.getSetpoint() != newSetpoint)
+			rotationController.setSetpoint(newSetpoint);
 	}
 
 	@Override
@@ -159,7 +159,7 @@ public class DriveArcadeWithPID extends Command {
 
 	@Override
 	protected void end() {
-		angleController.disable();
+		rotationController.disable();
 		drivetrain.stop();
 	}
 
