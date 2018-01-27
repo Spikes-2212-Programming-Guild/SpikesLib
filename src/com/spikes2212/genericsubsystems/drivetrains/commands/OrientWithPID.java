@@ -4,6 +4,7 @@ import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 import com.spikes2212.utils.CompassGyro;
 import com.spikes2212.utils.PIDSettings;
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -21,7 +22,7 @@ import java.util.function.Supplier;
 public class OrientWithPID extends Command {
 
 	private TankDrivetrain drivetrain;
-	private CompassGyro compassGyro;
+	private PIDSource PIDSource;
 	private Supplier<Double> setpointSupplier;
 	private PIDSettings settings;
 
@@ -36,7 +37,7 @@ public class OrientWithPID extends Command {
 	 * 
 	 * @param drivetrain
 	 *            the {@link TankDrivetrain} this command requires and moves
-	 * @param compassGyro
+	 * @param PIDSource
 	 *            the {@link PIDSource} that is used by the {@link PIDController} to
 	 *            get feedback about the robot's position
 	 * @param setpointSupplier
@@ -45,11 +46,11 @@ public class OrientWithPID extends Command {
 	 * @param settings
 	 *            {@link PIDSettings} for this command
 	 */
-	public OrientWithPID(TankDrivetrain drivetrain, CompassGyro compassGyro,
+	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource,
 			Supplier<Double> setpointSupplier, PIDSettings settings) {
 		requires(drivetrain);
 		this.drivetrain = drivetrain;
-		this.compassGyro = compassGyro;
+		this.PIDSource = PIDSource;
 		this.setpointSupplier = setpointSupplier;
 		this.settings = settings;
 	}
@@ -62,7 +63,7 @@ public class OrientWithPID extends Command {
 	 * 
 	 * @param drivetrain
 	 *            the {@link TankDrivetrain} this command requires and moves
-	 * @param compassGyro
+	 * @param PIDSource
 	 *            the {@link PIDSource} that is used by the {@link PIDController} to
 	 *            get feedback about the robot's position
 	 * @param setpoint
@@ -71,14 +72,14 @@ public class OrientWithPID extends Command {
 	 * @param settings
 	 *            {@link PIDSettings} for this command
 	 */
-	public OrientWithPID(TankDrivetrain drivetrain, CompassGyro compassGyro, double setpoint,
+	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint,
 			PIDSettings settings) {
-		this(drivetrain, compassGyro, () -> setpoint, settings);
+		this(drivetrain, PIDSource, () -> setpoint, settings);
 	}
 
 	@Override
 	protected void initialize() {
-		controller = new PIDController(settings.getKP(), settings.getKI(), settings.getKD(), compassGyro,
+		controller = new PIDController(settings.getKP(), settings.getKI(), settings.getKD(), PIDSource,
 				(rotate) -> drivetrain.arcadeDrive(0.0, rotate));
 		controller.setSetpoint(getSetpoint());
 		controller.setOutputRange(-1.0, 1.0);
@@ -116,7 +117,7 @@ public class OrientWithPID extends Command {
 	private double getSetpoint(){
 		double setpoint = setpointSupplier.get();
 		setpoint = setpoint % 360;
-		if (Math.abs(setpoint - compassGyro.pidGet()) > 180)
+		if (Math.abs(setpoint - PIDSource.pidGet()) > 180)
 			setpoint -= 360;
 		return setpoint;
 	}
