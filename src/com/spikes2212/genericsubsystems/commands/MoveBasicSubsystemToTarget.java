@@ -3,10 +3,12 @@ package com.spikes2212.genericsubsystems.commands;
 import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.BasicSubsystem;
+import com.spikes2212.genericsubsystems.utils.targets.NumericalTarget;
 
 /**
  * This class moves a {@link BasicSubsystem} in a given speed until reaching a
- * target.
+ * target. For example, a light sensor, a limit switch or a specific encoder
+ * value (using {@link NumericalTarget}.
  * 
  * @author Omri "Riki" Cohen
  */
