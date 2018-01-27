@@ -22,11 +22,11 @@ import java.util.function.Supplier;
 public class DriveArcadeWithPID extends OrientWithPID {
 
 	private TankDrivetrain drivetrain;
-	private PIDSource source;
+	private PIDSource PIDSource;
 	private Supplier<Double> setpointSupplier;
 	private Supplier<Double> speedSupplier;
 	private Supplier<Boolean> isFinishedSupplier;
-	private PIDSettings settings;
+	private PIDSettings PIDSettings;
 
 	private PIDController angleController;
 
@@ -37,7 +37,7 @@ public class DriveArcadeWithPID extends OrientWithPID {
 	 * 
 	 * @param drivetrain
 	 *            the {@link DriveArcadeWithPID} this command requires and moves
-	 * @param source
+	 * @param PIDSource
 	 *            the {@link PIDSource} that this command uses to get feedback
 	 *            about the {@link DriveArcadeWithPID}'s degree
 	 * @param setpointSupplier
@@ -48,12 +48,12 @@ public class DriveArcadeWithPID extends OrientWithPID {
 	 * @param isFinishedSupplier
 	 *            {@link Supplier<Boolean>} that checks if the command is
 	 *            finished
-	 * @param settings
+	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
 	 */
-	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource source, Supplier<Double> setpointSupplier,
-			Supplier<Double> speedSupplier, Supplier<Boolean> isFinishedSupplier, PIDSettings settings) {
-		super(drivetrain, source, setpointSupplier, settings);
+	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
+			Supplier<Double> speedSupplier, Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings) {
+		super(drivetrain, PIDSource, setpointSupplier, PIDSettings);
 		this.setpointSupplier = setpointSupplier;
 		this.speedSupplier = speedSupplier;
 		this.isFinishedSupplier = isFinishedSupplier;
@@ -67,7 +67,7 @@ public class DriveArcadeWithPID extends OrientWithPID {
 	 * 
 	 * @param drivetrain
 	 *            the {@link DriveArcadeWithPID} this command requires and moves
-	 * @param source
+	 * @param PIDSource
 	 *            the {@link PIDSource} that this command uses to get feedback
 	 *            about the {@link DriveArcadeWithPID#drivetrain}'s degree
 	 * @param setpoint
@@ -77,12 +77,12 @@ public class DriveArcadeWithPID extends OrientWithPID {
 	 * @param isFinishedSupplier
 	 *            {@link Supplier<Boolean>} that checks if the command is
 	 *            finished
-	 * @param settings
+	 * @param PIDSettings
 	 * @link PIDSettings} for this command
 	 */
-	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource source, double setpoint, double speed,
-			Supplier<Boolean> isFinishedSupplier, PIDSettings settings) {
-		this(drivetrain, source, () -> setpoint, () -> speed, isFinishedSupplier, settings);
+	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double speed,
+			Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings) {
+		this(drivetrain, PIDSource, () -> setpoint, () -> speed, isFinishedSupplier, PIDSettings);
 	}
 
 	/**
@@ -92,19 +92,19 @@ public class DriveArcadeWithPID extends OrientWithPID {
 	 * @param drivetrain
 	 *            the {@link DriveArcadeWithPID} this command requires and moves
 	 *
-	 * @param source
+	 * @param PIDSource
 	 *            the {@link PIDSource} that this command uses to get feedback
 	 *            about the {@link DriveArcadeWithPID#drivetrain}'s degree
 	 * @param setpointSupplier
 	 *            {@link Supplier<Double>} for the degree the robot has to be at
 	 * @param speedSupplier
 	 *            supplier of the speed for {@link TankDrivetrain#arcadeDrive}
-	 * @param settings
+	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
 	 */
-	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource source, Supplier<Double> setpointSupplier,
-			Supplier<Double> speedSupplier, PIDSettings settings) {
-		this(drivetrain, source, setpointSupplier, speedSupplier, () -> false, settings);
+	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
+			Supplier<Double> speedSupplier, PIDSettings PIDSettings) {
+		this(drivetrain, PIDSource, setpointSupplier, speedSupplier, () -> false, PIDSettings);
 
 	}
 
@@ -116,26 +116,26 @@ public class DriveArcadeWithPID extends OrientWithPID {
 	 * 
 	 * @param drivetrain
 	 *            the {@link DriveArcadeWithPID} this command requires and moves
-	 * @param source
+	 * @param PIDSource
 	 *            the {@link PIDSource} that this command uses to get feedback
 	 *            about the {@link DriveArcadeWithPID#drivetrain}'s degree
 	 * @param setpoint
 	 *            constant value for {@link DriveArcadeWithPID#setpointSupplier}
 	 * @param speed
 	 *            constant value for {@link DriveArcadeWithPID#speedSupplier}
-	 * @param settings
+	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
 	 */
-	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource source, double setpoint, double speed,
-			PIDSettings settings) {
-		this(drivetrain, source, () -> setpoint, () -> speed, settings);
+	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double speed,
+			PIDSettings PIDSettings) {
+		this(drivetrain, PIDSource, () -> setpoint, () -> speed, PIDSettings);
 	}
 
 	@Override
 	protected void initialize() {
-		this.angleController = new PIDController(settings.getKP(), settings.getKI(), settings.getKD(), source,
+		this.angleController = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), PIDSource,
 				(rotate) -> drivetrain.arcadeDrive(speedSupplier.get(), rotate));
-		angleController.setAbsoluteTolerance(settings.getTolerance());
+		angleController.setAbsoluteTolerance(PIDSettings.getTolerance());
 		angleController.setSetpoint(setpointSupplier.get());
 		angleController.setOutputRange(-1.0, 1.0);
 		angleController.enable();
