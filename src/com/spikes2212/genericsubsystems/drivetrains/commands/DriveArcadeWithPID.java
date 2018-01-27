@@ -47,8 +47,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            {@link Supplier<Double>} supplier of the movement for
 	 *            {@link TankDrivetrain#arcadeDrive}
 	 * @param isFinishedSupplier
-	 *            {@link Supplier<Boolean>} that checks if the command is
-	 *            finished
+	 *            a condition upon returning true stops the command
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
 	 */
@@ -79,8 +78,7 @@ public class DriveArcadeWithPID extends Command {
 	 * @param movement
 	 *            static value for {@link DriveArcadeWithPID#movementSupplier}
 	 * @param isFinishedSupplier
-	 *            {@link Supplier<Boolean>} that checks if the command is
-	 *            finished
+	 *            a condition upon returning true stops the command
 	 * @param PIDSettings
 	 * @link PIDSettings} for this command
 	 */
