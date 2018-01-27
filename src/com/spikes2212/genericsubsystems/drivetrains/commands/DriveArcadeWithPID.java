@@ -1,18 +1,18 @@
 package com.spikes2212.genericsubsystems.drivetrains.commands;
 
+import java.util.function.Supplier;
+
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 import com.spikes2212.utils.PIDSettings;
+
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.command.Command;
-
-import java.util.function.Supplier;
 
 /**
  * This command turns {@link TankDrivetrain} instance with wpilib's
  * {@link PIDController} using the output from {@link PIDSource} and moves it
  * forward using {@link Supplier} and {@link TankDrivetrain#arcadeDrive}. This
- * class can be used to force the instance of {@link TankDrivetrain} move strait
+ * class can be used to force the instance of {@link TankDrivetrain} move straight
  * by giving a setpoint of 0.
  *
  * @see PIDController
