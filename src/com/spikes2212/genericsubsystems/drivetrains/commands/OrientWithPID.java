@@ -24,9 +24,9 @@ public class OrientWithPID extends Command {
 	private TankDrivetrain drivetrain;
 	private PIDSource PIDSource;
 	private Supplier<Double> setpointSupplier;
-	private PIDSettings settings;
+	private PIDSettings PIDsettings;
 
-	private PIDController controller;
+	private PIDController PIDcontroller;
 
 	private double lastTimeOnTarget = 0;
 
@@ -44,16 +44,16 @@ public class OrientWithPID extends Command {
 	 * @param setpointSupplier
 	 *            {@link Supplier<Double>} for the setpoint of the
 	 *            {@link PIDController}
-	 * @param settings
+	 * @param PIDsettings
 	 *            {@link PIDSettings} for this command
 	 */
 	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
-			PIDSettings settings) {
+			PIDSettings PIDsettings) {
 		requires(drivetrain);
 		this.drivetrain = drivetrain;
 		this.PIDSource = PIDSource;
 		this.setpointSupplier = setpointSupplier;
-		this.settings = settings;
+		this.PIDsettings = PIDsettings;
 	}
 
 	/**
@@ -69,42 +69,42 @@ public class OrientWithPID extends Command {
 	 *            position
 	 * @param setpoint
 	 *            constant value for {@link OrientWithPID#setpointSupplier}
-	 * @param settings
+	 * @param PIDsettings
 	 *            {@link PIDSettings} for this command
 	 */
-	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, PIDSettings settings) {
-		this(drivetrain, PIDSource, () -> setpoint, settings);
+	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, PIDSettings PIDsettings) {
+		this(drivetrain, PIDSource, () -> setpoint, PIDsettings);
 	}
 
 	@Override
 	protected void initialize() {
-		controller = new PIDController(settings.getKP(), settings.getKI(), settings.getKD(), PIDSource,
+		PIDcontroller = new PIDController(PIDsettings.getKP(), PIDsettings.getKI(), PIDsettings.getKD(), PIDSource,
 				(rotate) -> drivetrain.arcadeDrive(0.0, rotate));
-		controller.setSetpoint(setpointSupplier.get());
-		controller.setOutputRange(-1.0, 1.0);
-		controller.setAbsoluteTolerance(settings.getTolerance());
-		controller.enable();
+		PIDcontroller.setSetpoint(setpointSupplier.get());
+		PIDcontroller.setOutputRange(-1.0, 1.0);
+		PIDcontroller.setAbsoluteTolerance(PIDsettings.getTolerance());
+		PIDcontroller.enable();
 	}
 
 	@Override
 	protected void execute() {
 		double newSetpoint = setpointSupplier.get();
-		if (controller.getSetpoint() != newSetpoint)
-			controller.setSetpoint(newSetpoint);
+		if (PIDcontroller.getSetpoint() != newSetpoint)
+			PIDcontroller.setSetpoint(newSetpoint);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		if (!controller.onTarget())
+		if (!PIDcontroller.onTarget())
 			lastTimeOnTarget = Timer.getFPGATimestamp();
 
-		return Timer.getFPGATimestamp() - lastTimeOnTarget >= settings.getWaitTime();
+		return Timer.getFPGATimestamp() - lastTimeOnTarget >= PIDsettings.getWaitTime();
 
 	}
 
 	@Override
 	protected void end() {
-		controller.disable();
+		PIDcontroller.disable();
 		drivetrain.stop();
 	}
 
