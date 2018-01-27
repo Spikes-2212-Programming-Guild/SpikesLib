@@ -142,25 +142,6 @@ public class DriveArcadeWithPID extends OrientWithPID {
 	}
 
 	@Override
-	protected void execute() {
-		double newSetpoint = setpointSupplier.get();
-		if (angleController.getSetpoint() != newSetpoint) {
-			angleController.setSetpoint(newSetpoint);
-		}
-	}
-
-	@Override
-	protected void end() {
-		angleController.disable();
-		drivetrain.stop();
-	}
-
-	@Override
-	protected void interrupted() {
-		end();
-	}
-
-	@Override
 	protected boolean isFinished() {
 		return isTimedOut() || isFinishedSupplier.get();
 	}
