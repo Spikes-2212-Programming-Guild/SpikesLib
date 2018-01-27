@@ -11,6 +11,10 @@ public class GlobalAangularTarget implements Supplier<Double> {
 		this.targetSupplier = targetSupplier;
 		this.positionSupplier = positionSupplier;
 	}
+	
+	public GlobalAangularTarget(double target, Supplier<Double> positionSupplier) {
+		this(() -> target, positionSupplier);
+	}
 
 	@Override
 	public Double get() {
