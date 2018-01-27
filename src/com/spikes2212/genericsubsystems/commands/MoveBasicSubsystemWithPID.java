@@ -151,11 +151,11 @@ public class MoveBasicSubsystemWithPID extends Command {
 	}
 
 	/**
-	 * Gets the {@link PIDSetting} the <a href=
+	 * Gets the {@link PIDSettings} the <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 * uses for this command.
 	 * 
-	 * @return The PIDSetting object
+	 * @return The PIDSettings object
 	 */
 	public PIDSettings getPIDSetting() {
 		return PIDSettings;
