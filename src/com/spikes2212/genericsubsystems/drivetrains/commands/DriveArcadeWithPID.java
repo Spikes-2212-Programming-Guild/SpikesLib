@@ -19,7 +19,7 @@ import java.util.function.Supplier;
  * @see TankDrivetrain
  * @author Simon "C" Kharmatsky
  */
-public class DriveArcadeWithPID extends Command {
+public class DriveArcadeWithPID extends OrientWithPID {
 
 	private TankDrivetrain drivetrain;
 	private PIDSource source;
@@ -53,13 +53,10 @@ public class DriveArcadeWithPID extends Command {
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource source, Supplier<Double> setpointSupplier,
 			Supplier<Double> speedSupplier, Supplier<Boolean> isFinishedSupplier, PIDSettings settings) {
-		requires(drivetrain);
-		this.drivetrain = drivetrain;
-		this.source = source;
+		super(drivetrain, source, setpointSupplier, settings);
 		this.setpointSupplier = setpointSupplier;
 		this.speedSupplier = speedSupplier;
 		this.isFinishedSupplier = isFinishedSupplier;
-		this.settings = settings;
 	}
 
 	/**
