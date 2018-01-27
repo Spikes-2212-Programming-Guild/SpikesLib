@@ -1,14 +1,13 @@
 package com.spikes2212.genericsubsystems.drivetrains.commands;
 
+import java.util.function.Supplier;
+
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
-import com.spikes2212.utils.CompassGyro;
 import com.spikes2212.utils.PIDSettings;
+
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
-
-import java.util.function.Supplier;
 
 /**
  * This command is used to turn {@link TankDrivetrain} to a specific degree
@@ -19,14 +18,7 @@ import java.util.function.Supplier;
  *
  * @author Simon "C" Kharmatsky
  */
-public class OrientWithPID extends Command {
-
-	private TankDrivetrain drivetrain;
-	private PIDSource PIDSource;
-	private Supplier<Double> setpointSupplier;
-	private PIDSettings PIDSettings;
-
-	private PIDController PIDController;
+public class OrientWithPID extends DriveArcadeWithPID {
 
 	private double lastTimeOnTarget = 0;
 
@@ -49,11 +41,7 @@ public class OrientWithPID extends Command {
 	 */
 	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
 			PIDSettings PIDSettings) {
-		requires(drivetrain);
-		this.drivetrain = drivetrain;
-		this.PIDSource = PIDSource;
-		this.setpointSupplier = setpointSupplier;
-		this.PIDSettings = PIDSettings;
+		super(drivetrain, PIDSource, setpointSupplier,() -> 0.0, PIDSettings);
 	}
 
 	/**
@@ -75,41 +63,11 @@ public class OrientWithPID extends Command {
 	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, PIDSettings PIDSettings) {
 		this(drivetrain, PIDSource, () -> setpoint, PIDSettings);
 	}
-
+	
 	@Override
-	protected void initialize() {
-		PIDController = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), PIDSource,
-				(rotate) -> drivetrain.arcadeDrive(0.0, rotate));
-		PIDController.setSetpoint(setpointSupplier.get());
-		PIDController.setOutputRange(-1.0, 1.0);
-		PIDController.setAbsoluteTolerance(PIDSettings.getTolerance());
-		PIDController.enable();
-	}
-
-	@Override
-	protected void execute() {
-		double newSetpoint = setpointSupplier.get();
-		if (PIDController.getSetpoint() != newSetpoint)
-			PIDController.setSetpoint(newSetpoint);
-	}
-
-	@Override
-	protected boolean isFinished() {
-		if (!PIDController.onTarget())
+	protected boolean isFinished(){
+		if (!angleController.onTarget())
 			lastTimeOnTarget = Timer.getFPGATimestamp();
-
-		return Timer.getFPGATimestamp() - lastTimeOnTarget >= PIDSettings.getWaitTime();
-
-	}
-
-	@Override
-	protected void end() {
-		PIDController.disable();
-		drivetrain.stop();
-	}
-
-	@Override
-	protected void interrupted() {
-		end();
+		return Timer.getFPGATimestamp() - lastTimeOnTarget >= PIDSettings.getWaitTime() || isTimedOut();
 	}
 }
