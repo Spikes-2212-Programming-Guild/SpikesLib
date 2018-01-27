@@ -7,19 +7,20 @@ import com.spikes2212.utils.PIDSettings;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * This command turns {@link TankDrivetrain} instance with wpilib's
  * {@link PIDController} using the output from {@link PIDSource} and moves it
  * forward using {@link Supplier} and {@link TankDrivetrain#arcadeDrive}. This
- * class can be used to force the instance of {@link TankDrivetrain} move straight
- * by giving a setpoint of 0.
+ * class can be used to force the instance of {@link TankDrivetrain} move
+ * straight by giving a setpoint of 0.
  *
  * @see PIDController
  * @see TankDrivetrain
  * @author Simon "C" Kharmatsky
  */
-public class DriveArcadeWithPID extends OrientWithPID {
+public class DriveArcadeWithPID extends Command {
 
 	private TankDrivetrain drivetrain;
 	private PIDSource PIDSource;
@@ -53,7 +54,10 @@ public class DriveArcadeWithPID extends OrientWithPID {
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
 			Supplier<Double> speedSupplier, Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings) {
-		super(drivetrain, PIDSource, setpointSupplier, PIDSettings);
+		requires(drivetrain);
+		this.drivetrain = drivetrain;
+		this.PIDSource = PIDSource;
+		this.PIDSettings = PIDSettings;
 		this.setpointSupplier = setpointSupplier;
 		this.speedSupplier = speedSupplier;
 		this.isFinishedSupplier = isFinishedSupplier;
@@ -133,8 +137,8 @@ public class DriveArcadeWithPID extends OrientWithPID {
 
 	@Override
 	protected void initialize() {
-		this.angleController = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), PIDSource,
-				(rotate) -> drivetrain.arcadeDrive(speedSupplier.get(), rotate));
+		this.angleController = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
+				PIDSource, (rotate) -> drivetrain.arcadeDrive(speedSupplier.get(), rotate));
 		angleController.setAbsoluteTolerance(PIDSettings.getTolerance());
 		angleController.setSetpoint(setpointSupplier.get());
 		angleController.setOutputRange(-1.0, 1.0);
@@ -142,7 +146,25 @@ public class DriveArcadeWithPID extends OrientWithPID {
 	}
 
 	@Override
+	protected void execute() {
+		double newSetpoint = setpointSupplier.get();
+		if (angleController.getSetpoint() != newSetpoint)
+			angleController.setSetpoint(newSetpoint);
+	}
+
+	@Override
 	protected boolean isFinished() {
 		return isTimedOut() || isFinishedSupplier.get();
+	}
+
+	@Override
+	protected void end() {
+		angleController.disable();
+		drivetrain.stop();
+	}
+
+	@Override
+	protected void interrupted() {
+		end();
 	}
 }
