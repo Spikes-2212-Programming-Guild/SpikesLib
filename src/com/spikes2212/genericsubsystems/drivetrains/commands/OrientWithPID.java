@@ -32,22 +32,23 @@ public class OrientWithPID extends Command {
 
 	/**
 	 * This constructs new {@link OrientWithPID} using {@link PIDSource},
-	 * {@link Supplier<Double>} for the setpoint and the {@link PIDSettings} for the
-	 * command
+	 * {@link Supplier<Double>} for the setpoint and the {@link PIDSettings} for
+	 * the command
 	 * 
 	 * @param drivetrain
 	 *            the {@link TankDrivetrain} this command requires and moves
 	 * @param PIDSource
-	 *            the {@link PIDSource} that is used by the {@link PIDController} to
-	 *            get feedback about the robot's position
+	 *            the {@link PIDSource} that is used by the
+	 *            {@link PIDController} to get feedback about the robot's
+	 *            position
 	 * @param setpointSupplier
 	 *            {@link Supplier<Double>} for the setpoint of the
 	 *            {@link PIDController}
 	 * @param settings
 	 *            {@link PIDSettings} for this command
 	 */
-	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource,
-			Supplier<Double> setpointSupplier, PIDSettings settings) {
+	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
+			PIDSettings settings) {
 		requires(drivetrain);
 		this.drivetrain = drivetrain;
 		this.PIDSource = PIDSource;
@@ -57,23 +58,21 @@ public class OrientWithPID extends Command {
 
 	/**
 	 * This constructs new {@link OrientWithPID} with constant value for
-	 * {@link OrientWithPID#setpointSupplier} using
-	 * {@link PIDController}, {@link Double} for the setpoint and
-	 * {@link PIDController} for the command
+	 * {@link OrientWithPID#setpointSupplier} using {@link PIDController},
+	 * {@link Double} for the setpoint and {@link PIDController} for the command
 	 * 
 	 * @param drivetrain
 	 *            the {@link TankDrivetrain} this command requires and moves
 	 * @param PIDSource
-	 *            the {@link PIDSource} that is used by the {@link PIDController} to
-	 *            get feedback about the robot's position
+	 *            the {@link PIDSource} that is used by the
+	 *            {@link PIDController} to get feedback about the robot's
+	 *            position
 	 * @param setpoint
-	 *            constant value for
-	 *            {@link OrientWithPID#setpointSupplier}
+	 *            constant value for {@link OrientWithPID#setpointSupplier}
 	 * @param settings
 	 *            {@link PIDSettings} for this command
 	 */
-	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint,
-			PIDSettings settings) {
+	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, PIDSettings settings) {
 		this(drivetrain, PIDSource, () -> setpoint, settings);
 	}
 
@@ -81,7 +80,7 @@ public class OrientWithPID extends Command {
 	protected void initialize() {
 		controller = new PIDController(settings.getKP(), settings.getKI(), settings.getKD(), PIDSource,
 				(rotate) -> drivetrain.arcadeDrive(0.0, rotate));
-		controller.setSetpoint(getSetpoint());
+		controller.setSetpoint(setpointSupplier.get());
 		controller.setOutputRange(-1.0, 1.0);
 		controller.setAbsoluteTolerance(settings.getTolerance());
 		controller.enable();
@@ -89,7 +88,7 @@ public class OrientWithPID extends Command {
 
 	@Override
 	protected void execute() {
-		double newSetpoint = getSetpoint();
+		double newSetpoint = setpointSupplier.get();
 		if (controller.getSetpoint() != newSetpoint)
 			controller.setSetpoint(newSetpoint);
 	}
@@ -112,13 +111,5 @@ public class OrientWithPID extends Command {
 	@Override
 	protected void interrupted() {
 		end();
-	}
-	
-	private double getSetpoint(){
-		double setpoint = setpointSupplier.get();
-		setpoint = setpoint % 360;
-		if (Math.abs(setpoint - PIDSource.pidGet()) > 180)
-			setpoint -= 360;
-		return setpoint;
 	}
 }
