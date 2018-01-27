@@ -40,9 +40,9 @@ public class DriveArcadeWithPID extends Command {
 	 *            the {@link DriveArcadeWithPID} this command requires and moves
 	 * @param PIDSource
 	 *            the {@link PIDSource} that this command uses to get feedback
-	 *            about the {@link DriveArcadeWithPID}'s degree
+	 *            about the {@link DriveArcadeWithPID}'s position
 	 * @param setpointSupplier
-	 *            {@link Supplier<Double>} for the degree the robot has to be at
+	 *            {@link Supplier<Double>} for the position the robot has to be at
 	 * @param speedSupplier
 	 *            {@link Supplier<Double>} supplier of the speed for
 	 *            {@link TankDrivetrain#arcadeDrive}
@@ -73,7 +73,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            the {@link DriveArcadeWithPID} this command requires and moves
 	 * @param PIDSource
 	 *            the {@link PIDSource} that this command uses to get feedback
-	 *            about the {@link DriveArcadeWithPID#drivetrain}'s degree
+	 *            about the {@link DriveArcadeWithPID#drivetrain}'s position
 	 * @param setpoint
 	 *            static value for {@link DriveArcadeWithPID#setpointSupplier}
 	 * @param speed
@@ -98,9 +98,9 @@ public class DriveArcadeWithPID extends Command {
 	 *
 	 * @param PIDSource
 	 *            the {@link PIDSource} that this command uses to get feedback
-	 *            about the {@link DriveArcadeWithPID#drivetrain}'s degree
+	 *            about the {@link DriveArcadeWithPID#drivetrain}'s position
 	 * @param setpointSupplier
-	 *            {@link Supplier<Double>} for the degree the robot has to be at
+	 *            {@link Supplier<Double>} for the position the robot has to be at
 	 * @param speedSupplier
 	 *            supplier of the speed for {@link TankDrivetrain#arcadeDrive}
 	 * @param PIDSettings
@@ -122,7 +122,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            the {@link DriveArcadeWithPID} this command requires and moves
 	 * @param PIDSource
 	 *            the {@link PIDSource} that this command uses to get feedback
-	 *            about the {@link DriveArcadeWithPID#drivetrain}'s degree
+	 *            about the {@link DriveArcadeWithPID#drivetrain}'s position
 	 * @param setpoint
 	 *            constant value for {@link DriveArcadeWithPID#setpointSupplier}
 	 * @param speed
