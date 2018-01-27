@@ -26,14 +26,14 @@ public class DriveArcadeWithPID extends Command {
 	protected PIDSource PIDSource;
 	protected PIDSettings PIDSettings;
 	protected final Supplier<Double> setpointSupplier;
-	protected final Supplier<Double> speedSupplier;
+	protected final Supplier<Double> movementSupplier;
 	protected final Supplier<Boolean> isFinishedSupplier;
 
 	protected PIDController rotationController;
 
 	/**
 	 * This constructs a new {@link DriveArcadeWithPID} using {@link PIDSource},
-	 * {@link Supplier<Double>}s for the setpoint and the speed, and the
+	 * {@link Supplier<Double>}s for the setpoint and the movement, and the
 	 * {@link PIDSettings} for this command
 	 * 
 	 * @param drivetrain
@@ -43,8 +43,8 @@ public class DriveArcadeWithPID extends Command {
 	 *            about the {@link DriveArcadeWithPID}'s position
 	 * @param setpointSupplier
 	 *            {@link Supplier<Double>} for the position the robot has to be at
-	 * @param speedSupplier
-	 *            {@link Supplier<Double>} supplier of the speed for
+	 * @param movementSupplier
+	 *            {@link Supplier<Double>} supplier of the movement for
 	 *            {@link TankDrivetrain#arcadeDrive}
 	 * @param isFinishedSupplier
 	 *            {@link Supplier<Boolean>} that checks if the command is
@@ -53,20 +53,20 @@ public class DriveArcadeWithPID extends Command {
 	 *            {@link PIDSettings} for this command
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
-			Supplier<Double> speedSupplier, Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings) {
+			Supplier<Double> movementSupplier, Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings) {
 		requires(drivetrain);
 		this.drivetrain = drivetrain;
 		this.PIDSource = PIDSource;
 		this.PIDSettings = PIDSettings;
 		this.setpointSupplier = setpointSupplier;
-		this.speedSupplier = speedSupplier;
+		this.movementSupplier = movementSupplier;
 		this.isFinishedSupplier = isFinishedSupplier;
 	}
 
 	/**
 	 * This constructs a new {@link DriveArcadeWithPID} using static values for
 	 * {@link DriveArcadeWithPID#setpointSupplier} and
-	 * {@link DriveArcadeWithPID#speedSupplier} instead of
+	 * {@link DriveArcadeWithPID#movementSupplier} instead of
 	 * {@link Supplier<Double>}s
 	 * 
 	 * @param drivetrain
@@ -76,17 +76,17 @@ public class DriveArcadeWithPID extends Command {
 	 *            about the {@link DriveArcadeWithPID#drivetrain}'s position
 	 * @param setpoint
 	 *            static value for {@link DriveArcadeWithPID#setpointSupplier}
-	 * @param speed
-	 *            static value for {@link DriveArcadeWithPID#speedSupplier}
+	 * @param movement
+	 *            static value for {@link DriveArcadeWithPID#movementSupplier}
 	 * @param isFinishedSupplier
 	 *            {@link Supplier<Boolean>} that checks if the command is
 	 *            finished
 	 * @param PIDSettings
 	 * @link PIDSettings} for this command
 	 */
-	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double speed,
+	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double movement,
 			Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings) {
-		this(drivetrain, PIDSource, () -> setpoint, () -> speed, isFinishedSupplier, PIDSettings);
+		this(drivetrain, PIDSource, () -> setpoint, () -> movement, isFinishedSupplier, PIDSettings);
 	}
 
 	/**
@@ -101,14 +101,14 @@ public class DriveArcadeWithPID extends Command {
 	 *            about the {@link DriveArcadeWithPID#drivetrain}'s position
 	 * @param setpointSupplier
 	 *            {@link Supplier<Double>} for the position the robot has to be at
-	 * @param speedSupplier
-	 *            supplier of the speed for {@link TankDrivetrain#arcadeDrive}
+	 * @param movementSupplier
+	 *            supplier of the movement for {@link TankDrivetrain#arcadeDrive}
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
-			Supplier<Double> speedSupplier, PIDSettings PIDSettings) {
-		this(drivetrain, PIDSource, setpointSupplier, speedSupplier, () -> false, PIDSettings);
+			Supplier<Double> movementSupplier, PIDSettings PIDSettings) {
+		this(drivetrain, PIDSource, setpointSupplier, movementSupplier, () -> false, PIDSettings);
 
 	}
 
@@ -116,7 +116,7 @@ public class DriveArcadeWithPID extends Command {
 	 * This constructs a new {@link DriveArcadeWithPID} ignoring the
 	 * {@link DriveArcadeWithPID#isFinishedSupplier} and uses constant values
 	 * for {@link DriveArcadeWithPID#setpointSupplier} and
-	 * {@link DriveArcadeWithPID#speedSupplier}
+	 * {@link DriveArcadeWithPID#movementSupplier}
 	 * 
 	 * @param drivetrain
 	 *            the {@link DriveArcadeWithPID} this command requires and moves
@@ -125,20 +125,20 @@ public class DriveArcadeWithPID extends Command {
 	 *            about the {@link DriveArcadeWithPID#drivetrain}'s position
 	 * @param setpoint
 	 *            constant value for {@link DriveArcadeWithPID#setpointSupplier}
-	 * @param speed
-	 *            constant value for {@link DriveArcadeWithPID#speedSupplier}
+	 * @param movement
+	 *            constant value for {@link DriveArcadeWithPID#movementSupplier}
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
 	 */
-	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double speed,
+	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double movement,
 			PIDSettings PIDSettings) {
-		this(drivetrain, PIDSource, () -> setpoint, () -> speed, PIDSettings);
+		this(drivetrain, PIDSource, () -> setpoint, () -> movement, PIDSettings);
 	}
 
 	@Override
 	protected void initialize() {
 		this.rotationController = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
-				PIDSource, (rotate) -> drivetrain.arcadeDrive(speedSupplier.get(), rotate));
+				PIDSource, (rotate) -> drivetrain.arcadeDrive(movementSupplier.get(), rotate));
 		rotationController.setAbsoluteTolerance(PIDSettings.getTolerance());
 		rotationController.setSetpoint(setpointSupplier.get());
 		rotationController.setOutputRange(-1.0, 1.0);
