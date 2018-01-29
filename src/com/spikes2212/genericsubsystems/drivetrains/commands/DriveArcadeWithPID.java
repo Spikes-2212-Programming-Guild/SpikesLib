@@ -151,7 +151,7 @@ public class DriveArcadeWithPID extends Command {
 	@Override
 	protected void initialize() {
 		this.rotationController = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
-				PIDSource, (rotate) -> drivetrain.arcadeDrive(movementSupplier.get(), rotate / outputRange));
+				PIDSource, (rotate) -> drivetrain.arcadeDrive(movementSupplier.get(), rotate / (outputRange / 2)));
 		rotationController.setAbsoluteTolerance(PIDSettings.getTolerance());
 		rotationController.setSetpoint(setpointSupplier.get());
 		rotationController.setOutputRange(-outputRange / 2, outputRange / 2);
