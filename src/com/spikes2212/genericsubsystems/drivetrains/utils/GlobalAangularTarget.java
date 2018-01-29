@@ -22,6 +22,8 @@ public class GlobalAangularTarget implements Supplier<Double> {
 		setpoint = setpoint % 360;
 		if (Math.abs(setpoint - positionSupplier.get()) > 180)
 			setpoint -= 360;
+		else if(Math.abs(setpoint - positionSupplier.get()) < -180)
+			setpoint += 360;
 		return setpoint;
 	}
 
