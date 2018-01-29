@@ -38,10 +38,12 @@ public class OrientWithPID extends DriveArcadeWithPID {
 	 *            {@link PIDController}
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
+	 * @param outputRange
+	 *            the range of the source's output (for example, gyro's is 360)s
 	 */
 	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
-			PIDSettings PIDSettings) {
-		super(drivetrain, PIDSource, setpointSupplier,() -> 0.0, PIDSettings);
+			PIDSettings PIDSettings, double outputRange) {
+		super(drivetrain, PIDSource, setpointSupplier, () -> 0.0, PIDSettings, outputRange);
 	}
 
 	/**
@@ -59,13 +61,16 @@ public class OrientWithPID extends DriveArcadeWithPID {
 	 *            constant value for {@link OrientWithPID#setpointSupplier}
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
+	 * @param outputRange
+	 *            the range of the source's output (for example, gyro's is 360)
 	 */
-	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, PIDSettings PIDSettings) {
-		this(drivetrain, PIDSource, () -> setpoint, PIDSettings);
+	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, PIDSettings PIDSettings,
+			double outputRange) {
+		this(drivetrain, PIDSource, () -> setpoint, PIDSettings, outputRange);
 	}
-	
+
 	@Override
-	protected boolean isFinished(){
+	protected boolean isFinished() {
 		if (!rotationController.onTarget())
 			lastTimeOnTarget = Timer.getFPGATimestamp();
 		return Timer.getFPGATimestamp() - lastTimeOnTarget >= PIDSettings.getWaitTime() || isTimedOut();

@@ -29,6 +29,8 @@ public class DriveArcadeWithPID extends Command {
 	protected final Supplier<Double> movementSupplier;
 	protected final Supplier<Boolean> isFinishedSupplier;
 
+	protected double outputRange;
+
 	protected PIDController rotationController;
 
 	/**
@@ -42,7 +44,8 @@ public class DriveArcadeWithPID extends Command {
 	 *            the {@link PIDSource} that this command uses to get feedback
 	 *            about the {@link DriveArcadeWithPID}'s position
 	 * @param setpointSupplier
-	 *            {@link Supplier<Double>} for the position the robot has to be at
+	 *            {@link Supplier<Double>} for the position the robot has to be
+	 *            at
 	 * @param movementSupplier
 	 *            {@link Supplier<Double>} supplier of the movement for
 	 *            {@link TankDrivetrain#arcadeDrive}
@@ -50,9 +53,12 @@ public class DriveArcadeWithPID extends Command {
 	 *            a condition upon returning true stops the command
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
+	 * @param outputRange
+	 *            the range of the source's output (for example, gyro's is 360)
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
-			Supplier<Double> movementSupplier, Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings) {
+			Supplier<Double> movementSupplier, Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings,
+			double outputRange) {
 		requires(drivetrain);
 		this.drivetrain = drivetrain;
 		this.PIDSource = PIDSource;
@@ -60,6 +66,7 @@ public class DriveArcadeWithPID extends Command {
 		this.setpointSupplier = setpointSupplier;
 		this.movementSupplier = movementSupplier;
 		this.isFinishedSupplier = isFinishedSupplier;
+		this.outputRange = outputRange;
 	}
 
 	/**
@@ -80,11 +87,13 @@ public class DriveArcadeWithPID extends Command {
 	 * @param isFinishedSupplier
 	 *            a condition upon returning true stops the command
 	 * @param PIDSettings
-	 * @link PIDSettings} for this command
+	 *            {@link PIDSettings} for this command
+	 * @param outputRange
+	 *            the range of the source's output (for example, gyro's is 360)
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double movement,
-			Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings) {
-		this(drivetrain, PIDSource, () -> setpoint, () -> movement, isFinishedSupplier, PIDSettings);
+			Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings, double outputRange) {
+		this(drivetrain, PIDSource, () -> setpoint, () -> movement, isFinishedSupplier, PIDSettings, outputRange);
 	}
 
 	/**
@@ -98,15 +107,19 @@ public class DriveArcadeWithPID extends Command {
 	 *            the {@link PIDSource} that this command uses to get feedback
 	 *            about the {@link DriveArcadeWithPID#drivetrain}'s position
 	 * @param setpointSupplier
-	 *            {@link Supplier<Double>} for the position the robot has to be at
+	 *            {@link Supplier<Double>} for the position the robot has to be
+	 *            at
 	 * @param movementSupplier
-	 *            supplier of the movement for {@link TankDrivetrain#arcadeDrive}
+	 *            supplier of the movement for
+	 *            {@link TankDrivetrain#arcadeDrive}
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
+	 * @param outputRange
+	 *            the range of the source's output (for example, gyro's is 360)
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
-			Supplier<Double> movementSupplier, PIDSettings PIDSettings) {
-		this(drivetrain, PIDSource, setpointSupplier, movementSupplier, () -> false, PIDSettings);
+			Supplier<Double> movementSupplier, PIDSettings PIDSettings, double outputRange) {
+		this(drivetrain, PIDSource, setpointSupplier, movementSupplier, () -> false, PIDSettings, outputRange);
 
 	}
 
@@ -127,19 +140,21 @@ public class DriveArcadeWithPID extends Command {
 	 *            constant value for {@link DriveArcadeWithPID#movementSupplier}
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
+	 * @param outputRange
+	 *            the range of the source's output (for example, gyro's is 360)
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double movement,
-			PIDSettings PIDSettings) {
-		this(drivetrain, PIDSource, () -> setpoint, () -> movement, PIDSettings);
+			PIDSettings PIDSettings, double outputRange) {
+		this(drivetrain, PIDSource, () -> setpoint, () -> movement, PIDSettings, outputRange);
 	}
 
 	@Override
 	protected void initialize() {
 		this.rotationController = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
-				PIDSource, (rotate) -> drivetrain.arcadeDrive(movementSupplier.get(), rotate));
+				PIDSource, (rotate) -> drivetrain.arcadeDrive(movementSupplier.get(), rotate / outputRange));
 		rotationController.setAbsoluteTolerance(PIDSettings.getTolerance());
 		rotationController.setSetpoint(setpointSupplier.get());
-		rotationController.setOutputRange(-1.0, 1.0);
+		rotationController.setOutputRange(-outputRange / 2, outputRange / 2);
 		rotationController.enable();
 	}
 
