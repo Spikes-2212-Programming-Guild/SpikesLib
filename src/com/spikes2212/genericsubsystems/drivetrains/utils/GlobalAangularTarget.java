@@ -11,19 +11,21 @@ public class GlobalAangularTarget implements Supplier<Double> {
 		this.targetSupplier = targetSupplier;
 		this.positionSupplier = positionSupplier;
 	}
-	
+
 	public GlobalAangularTarget(double target, Supplier<Double> positionSupplier) {
 		this(() -> target, positionSupplier);
 	}
 
 	@Override
 	public Double get() {
-		double setpoint = targetSupplier.get();
-		setpoint = setpoint % 360;
-		if (Math.abs(setpoint - positionSupplier.get()) > 180)
-			setpoint -= 360;
-		else if(Math.abs(setpoint - positionSupplier.get()) < -180)
-			setpoint += 360;
+		double setpoint = targetSupplier.get() % 360;
+		double currentPosition = positionSupplier.get() % 360;
+		if (Math.abs(setpoint - currentPosition) > 180)
+			if (setpoint > currentPosition)
+				setpoint += 360;
+			else
+				setpoint -= 360;
+		setpoint = setpoint + (positionSupplier.get() - currentPosition);
 		return setpoint;
 	}
 
