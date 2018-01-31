@@ -3,7 +3,11 @@ package com.spikes2212.utils;
 import edu.wpi.first.wpilibj.SpeedController;
 
 /**
- * This class joins two {@link SpeedController} into one, making a {@link SpeedController} that activates both.
+ * This class joins two <a href=
+ * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/SpeedController.html">SpeedController</a>
+ * into one, making a <a href=
+ * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/SpeedController.html">SpeedController</a>
+ * that activates both.
  *
  * @author Uriah "Jhonny" Rokach
  * @see SpeedController
@@ -13,13 +17,18 @@ public class DoubleSpeedcontroller implements SpeedController {
     private SpeedController speedControllerRight, speedControllerLeft;
 
     /**
-     * Constructs a {@link SpeedController} from two other {@link SpeedController} that
-     * acts like both: all of its functions call the same functions on the two speed controllers.
-     * Example: https://www.youtube.com/watch?v=pU-FNy6RG80
-     *
-     * @param speedcontrollerRight The first speed controller of the two. The "side" holds no meaning.
-     * @param speedcontrollerLeft  The second speed controller of the two. The "side" holds no meaning.
-     */
+	 * Constructs a {@link SpeedController} from two other {@link SpeedController}
+	 * that acts like both: all of its functions call the same functions on the two
+	 * speed controllers.<br>
+	 * The "side" holds no meaning.
+	 *
+	 * @param speedcontrollerRight
+	 *            The first speed controller.
+	 * @param speedcontrollerLeft
+	 *            The second speed controller.
+	 * 
+	 * @see <a href="https://www.youtube.com/watch?v=pU-FNy6RG80">Example</a>
+	 */
     public DoubleSpeedcontroller(SpeedController speedcontrollerRight, SpeedController speedcontrollerLeft) {
         this.speedControllerLeft = speedcontrollerLeft;
         this.speedControllerRight = speedcontrollerRight;
