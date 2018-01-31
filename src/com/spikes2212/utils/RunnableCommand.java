@@ -3,12 +3,12 @@ package com.spikes2212.utils;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * This class enables you to run any segment of code in a new thread as a command,
- * allowing you for example to easily make a button change the value of a variable in the code.
+ * This class enables you to run any segment of code in a new thread as a
+ * command, allowing you, for example, to easily make a button change the value
+ * of a variable in the code.
  *
  * @author Uriah "Jhonny" Rokach
  * @see Thread
- * @see edu.wpi.first.wpilibj.buttons.Trigger
  */
 public class RunnableCommand extends Command {
 
@@ -16,29 +16,37 @@ public class RunnableCommand extends Command {
     private Thread t;
 
     /**
-     * This constructs a command that runs the {@link Runnable#run()}
-     * of the given runnable in a new thread whenever started.
-     * <p>
-     * This command finishes when the thread finishes, meaning when run stops.
-     * This command also works in disabled.
-     * </p>
-     *
-     * @param runnable the runnable to run whenever this command starts
-     */
+	 * This constructs a command that runs the {@link Runnable#run()} of the given
+	 * runnable in a new thread whenever started.
+	 * 
+	 * <br>
+	 * <br>
+	 * This command finishes when the thread finishes, meaning when run stops.
+	 *
+	 * @param runnable
+	 *            the {@link Runnable} to run whenever this command starts
+	 * @param runInDisabled
+	 *            whether this command should be allowed to run when the robot is
+	 *            disabled. Default is true.
+	 */
     public RunnableCommand(Runnable runnable) {
         this(runnable, true);
     }
 
     /**
-     * This constructs a command that runs the {@link Runnable#run()}
-     * of the given runnable in a new thread whenever started.
-     * <p>
-     * This command finishes when the thread finishes, meaning when run stops.
-     * </p>
-     *
-     * @param runnable      the runnable to run whenever this command starts
-     * @param runInDisabled whether this command should be allowed to run when the robot is disabled.
-     */
+	 * This constructs a command that runs the {@link Runnable#run()} of the given
+	 * {@link RunnableCommand} in a new thread whenever started. 
+	 * 
+	 * <br>
+	 * <br>
+	 * This command finishes when the thread finishes, meaning when run stops. This
+	 * command also works in disabled.
+	 *
+	 * @param runnable
+	 *            the {@link Runnable} to run whenever this command starts
+	 *            
+	 * @see #RunnableCommand(Runnable, boolean)
+	 */
     public RunnableCommand(Runnable runnable, boolean runInDisabled) {
         this.runnable = runnable;
         setRunWhenDisabled(runInDisabled);
