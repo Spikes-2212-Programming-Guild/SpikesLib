@@ -6,10 +6,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * This class represents a type of Drivetrain with a left and right sides which
- * can be controlled separately, allowing you to turn by giving each side an
- * opposite sign speed, and go forward or backwards by giving both sides the
- * same positive or negative speed; as well as a combination of the two.
+ * This class represents a type of Drivetrain which left and right sides are
+ * controlled independently, allowing it to move by giving each side a speed
+ * value separately.
  */
 public class TankDrivetrain extends Subsystem {
 
@@ -17,13 +16,13 @@ public class TankDrivetrain extends Subsystem {
 	protected final Consumer<Double> controlRight;
 
 	/**
-	 * This constructs a new {@link TankDrivetrain} drivetrain.
+	 * This constructs a new {@link TankDrivetrain}.
 	 * 
 	 * @param controlLeft
-	 *            controls the left side on the drivetrain
-	 * @see Consumer
+	 *            the component controlling the left side of the drivetrain
 	 * @param controlRight
-	 *            controls the right side on the drivetrain
+	 *            the component controlling the left side of the drivetrain
+	 * 
 	 * @see Consumer
 	 */
 	public TankDrivetrain(Consumer<Double> controlLeft, Consumer<Double> controlRight) {
@@ -32,14 +31,12 @@ public class TankDrivetrain extends Subsystem {
 	}
 
 	/**
-	 * Moves the both sides of this drivetrain using speedLeft and speedRight
+	 * Moves both sides of this drivetrain given speeds for each side.
 	 * 
 	 * @param speedLeft
-	 *            The speed to set to the left side. Positive values move this
-	 *            side forward.
+	 *            the speed to set to the left side. Positive values move forward.
 	 * @param speedRight
-	 *            The speed to set to the right side. Positive values move this
-	 *            side forward.
+	 *            the speed to set to the right side. Positive values move forward.
 	 */
 	public void tankDrive(double speedLeft, double speedRight) {
 		setLeft(speedLeft);
@@ -47,34 +44,31 @@ public class TankDrivetrain extends Subsystem {
 	}
 
 	/**
-	 * Moves the left side of this drivetrain using speedLeft
+	 * Moves the left side of this drivetrain with a given speed.
 	 *
 	 * @param speedLeft
-	 *            The speed to set to the left side. Positive values move this
-	 *            side forward.
+	 *            the speed to set to the left side. Positive values move forward.
 	 */
 	public void setLeft(double speedLeft) {
 		controlLeft.accept(speedLeft);
 	}
 
 	/**
-	 * Moves the right side of this drivetrain using speedRight
+	 * Moves the right side of this drivetrain with a given speed.
 	 *
 	 * @param speedRight
-	 *            The speed to set to the right side. Positive values move this
-	 *            side forward.
+	 *            the speed to set to the right side. Positive values move forward.
 	 */
 	public void setRight(double speedRight) {
 		controlRight.accept(speedRight);
 	}
 
 	/**
-	 * stops this drivetrain
+	 * Stops this drivetrain.
+	 * <br><br>
 	 * 
-	 * <p>
-	 * it set the speed for both sides to 0. if your drivetrain doesn't stop
-	 * this way Override this
-	 * </p>
+	 * This sets the speed for both sides to 0. If your drivetrain doesn't stop
+	 * using this method, override it.
 	 */
 	public void stop() {
 		setRight(0);
@@ -82,10 +76,13 @@ public class TankDrivetrain extends Subsystem {
 	}
 
 	/**
-	 * Sets the default command. If this is not called or is called with null,
-	 * then there will be no default command for the subsystem.
-	 * 
-	 * @see edu.wpi.first.wpilibj.command.Subsystem#setDefaultCommand(edu.wpi.first.wpilibj.command.Command)
+	 * Sets the default command. If this is not called or is called with null, then
+	 * there will be no default command for the subsystem.
+	 *
+	 * @param defaultCommand
+	 *            the default command (or null if there should be none)
+	 * @throws IllegalUseOfCommandException
+	 *             if the command does not require the subsystem
 	 */
 	public void setDefaultCommand(Command defaultCommand) {
 		super.setDefaultCommand(defaultCommand);
