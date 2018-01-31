@@ -4,14 +4,15 @@ package com.spikes2212.utils;
 import edu.wpi.first.wpilibj.PIDController;
 
 /**
- * This class contains subsystem's PID setting which wpilib's
- * {@link PIDController} uses. It also has the tolerance of the error for the
- * PID loop and the time the PID loop will wait while within tolerance of the
- * setpoint before ending.
+ * This class contains a subsystem's PID setting which wpilib's <a href=
+ * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
+ * uses. It also has the error tolerance for the PID loop and the time the PID
+ * loop will wait while within tolerance of the setpoint before ending.
  * 
  * @author Omri "Riki" Cohen
- * @see PIDController
  * 
+ * @see <a href=
+ *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
  */
 public class PIDSettings {
 
@@ -20,17 +21,19 @@ public class PIDSettings {
 	/**
 	 * 
 	 * @param KP
-	 *            the Proportional coefficient of the PID loop of this command.
+	 *            the Proportional coefficient of the PID loop in this command.
 	 * @param KI
-	 *            the Integral coefficient of the PID loop of this command.
+	 *            the Integral coefficient of the PID loop in this command.
 	 * @param KD
-	 *            the Differential coefficient of the PID loop of this command.
+	 *            the Differential coefficient of the PID loop in this command.
 	 * @param tolerance
-	 *            the tolerance for error of this command. See
-	 *            {@link #setTolerance(double)}.
+	 *            the error tolerance of this command.
 	 * @param waitTime
 	 *            the time this PID loop will wait while within tolerance of the
 	 *            setpoint before ending.
+	 * 
+	 * @see #setTolerance(double)
+	 * @see #setWaitTime(double)
 	 */
 	public PIDSettings(double KP, double KI, double KD, double tolerance, double waitTime) {
 		this.setKP(KP);
@@ -41,17 +44,16 @@ public class PIDSettings {
 	}
 
 	/**
-	 * Gets the tolerance for error for the PID loop using this settings.
-	 * <p>
-	 * This tolerance defines when PID loop ends: This PID loop will end after
-	 * the difference between the setpoint and the current position is within
-	 * the tolerance for the amount of time specified by
-	 * {@link #setWaitTime(double)} straight.
-	 * </p>
+	 * Gets the error tolerance for the PID loop using this settings.
+	 * 
+	 * <br>
+	 * <br>
+	 * Tolerance defines when PID loop ends: This PID loop will end after the
+	 * difference between the setpoint and the current position is within the
+	 * tolerance for the amount of time specified by {@link #setWaitTime(double)}.
 	 *
-	 * @return The current tolerance. If 0 and the WaitTime is not 0, this PID
-	 *         loop will never end unless you cancel it.
-	 * @see PIDController#setAbsoluteTolerance(double)
+	 * @return The current tolerance. If tolerance is 0 and the WaitTime is not 0,
+	 *         this PID loop will never end, unless you cancel it.
 	 */
 	public double getTolerance() {
 		return tolerance;
@@ -59,109 +61,104 @@ public class PIDSettings {
 
 	/**
 	 * Sets the tolerance for error of this PID loop.
-	 * <p>
-	 * This tolerance defines when this PID loop ends: This command will end
-	 * after the difference between the setpoint and the current position is
-	 * within the tolerance for the amount of time specified by
-	 * {@link #setWaitTime(double)} straight.
-	 * </p>
+	 * 
+	 * <br>
+	 * <br>
+	 * Tolerance defines when PID loop ends: This PID loop will end after the
+	 * difference between the setpoint and the current position is within the
+	 * tolerance for the amount of time specified by {@link #setWaitTime(double)}.
 	 *
 	 * @param tolerance
-	 *            The new tolerance to set. If 0 and the WaitTime is not 0, this
-	 *            PID loop will never end unless you cancel it.
-	 * @see PIDController#setAbsoluteTolerance(double)
+	 *            the new tolerance to set. If tolerance is 0 and the WaitTime is
+	 *            not 0, this PID loop will never end, unless you cancel it.
 	 */
 	public void setTolerance(double tolerance) {
 		this.tolerance = tolerance;
 	}
 
 	/**
-	 * Gets the Proportional coefficient of the PID loop using this settings.
+	 * Gets the Proportional coefficient of the PID loop using these
+	 * {@link PIDSettings}.
 	 *
-	 * @return the current Proportional coefficient.
-	 * @see PIDController#getP()
+	 * @return The current Proportional coefficient.
 	 */
 	public double getKP() {
 		return KP;
 	}
 
 	/**
-	 * Sets the Proportional coefficient of the PID loop using this settings.
+	 * Sets the Proportional coefficient of the PID loop using these
+	 * {@link PIDSettings}.
 	 *
 	 * @param KP
 	 *            the new Proportional coefficient.
-	 * @see PIDController#setPID(double, double, double)
 	 */
 	public void setKP(double KP) {
 		this.KP = KP;
 	}
 
 	/**
-	 * Gets the Integral coefficient of the PID loop using this settings.
+	 * Gets the Integral coefficient of the PID loop using these
+	 * {@link PIDSettings}.
 	 *
-	 * @return the current Integral coefficient.
-	 * @see PIDController#getI()
+	 * @return The current Integral coefficient.
 	 */
 	public double getKI() {
 		return KI;
 	}
 
 	/**
-	 * Sets the Integral coefficients of the PID loop using this settings.
+	 * Sets the Intergral coefficient of the PID loop using these
+	 * {@link PIDSettings}.
 	 *
-	 * @param KI
+	 * @param KP
 	 *            the new Integral coefficient.
-	 * @see PIDController#setPID(double, double, double)
 	 */
 	public void setKI(double KI) {
 		this.KI = KI;
 	}
 
 	/**
-	 * Gets the Differential coefficient of the PID loop using this settings.
+	 * Gets the Differential coefficient of the PID loop using these
+	 * {@link PIDSettings}.
 	 *
-	 * @return the current Differential coefficient.
-	 * @see PIDController#getD()
+	 * @return The current Differential coefficient.
 	 */
 	public double getKD() {
 		return KD;
 	}
 
 	/**
-	 * 
-	 * Sets the Differential coefficient of the PID loop using this settings.
+	 * Sets the Differential coefficient of the PID loop using these
+	 * {@link PIDSettings}.
 	 *
-	 * @param KD
+	 * @param KP
 	 *            the new Differential coefficient.
-	 * @see PIDController#setPID(double, double, double)
 	 */
 	public void setKD(double KD) {
 		this.KD = KD;
 	}
 
 	/**
-	 * Gets the time this PID loop will wait while within tolerance of the
-	 * setpoint before ending.
-	 * <p>
-	 * The PID control of the subsystem continues while waiting
-	 * </p>
+	 * Gets the time this PID loop will wait while within tolerance of the setpoint
+	 * before ending.
 	 *
-	 * @return the wait time, in seconds.
+	 * @return The wait time, in seconds.
 	 */
 	public double getWaitTime() {
 		return waitTime;
 	}
 
 	/**
-	 * Sets the time this PID loop will wait while within tolerance of the
-	 * setpoint before ending.
-	 * <p>
-	 * The PID control of the subsystem continues while waiting. <br/>
+	 * Sets the time this PID loop will wait while within tolerance of the setpoint
+	 * before ending.
+	 * 
+	 * <br>
+	 * <br>
 	 * If wait time is set to 0, the command won't wait.
-	 * </p>
 	 *
 	 * @param waitTime
-	 *            the new wait time, in seconds.
+	 *            the new wait time, in seconds
 	 */
 	public void setWaitTime(double waitTime) {
 		this.waitTime = waitTime;
