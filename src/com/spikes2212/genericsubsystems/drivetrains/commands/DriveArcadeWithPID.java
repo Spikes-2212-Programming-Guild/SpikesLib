@@ -48,7 +48,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>
 	 *            that this command uses to get feedback about the
-	 *            {@link DriveArcadeWithPID}'s position
+	 *            {@link DriveArcadeWithPID}'s current state
 	 * @param setpointSupplier
 	 *            a supplier supplying the target point of this command.
 	 *            <p>
@@ -94,7 +94,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>
 	 *            that this command uses to get feedback about the
-	 *            {@link DriveArcadeWithPID#drivetrain}'s position
+	 *            {@link DriveArcadeWithPID#drivetrain}'s current state
 	 * @param setpoint
 	 *            the target point of this command.
 	 *            <p>
@@ -125,12 +125,11 @@ public class DriveArcadeWithPID extends Command {
 	 * 
 	 * @param drivetrain
 	 *            the {@link DriveArcadeWithPID} this command operates on
-	 *
 	 * @param PIDSource
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>
 	 *            that this command uses to get feedback about the
-	 *            {@link DriveArcadeWithPID#drivetrain}'s position
+	 *            {@link DriveArcadeWithPID#drivetrain}'s current state
 	 * @param setpointSupplier
 	 *            a supplier supplying the target point of this command.
 	 *            <p>
@@ -167,7 +166,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>
 	 *            that this command uses to get feedback about the
-	 *            {@link DriveArcadeWithPID#drivetrain}'s position
+	 *            {@link DriveArcadeWithPID#drivetrain}'s current state
 	 * @param setpoint
 	 *            the target point of this command.
 	 *            <p>
