@@ -10,10 +10,10 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * This command is used to orient {@link TankDrivetrain} to a specific setpoint
+ * This command is used to orient an instance of {@link TankDrivetrain} to a specific setpoint
  * using wpilib's {@link PIDController}. This command is like
  * {@link DriveArcadeWithPID} but doesn't move the {@link TankDrivetrain}
- * forwards and ends then reaching the wanted setpoint.
+ * forwards and ends when reaching the wanted setpoint.
  *
  * @see TankDrivetrain
  * @see PIDController
@@ -44,7 +44,7 @@ public class OrientWithPID extends DriveArcadeWithPID {
 	 * @param outputRange
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
-	 *            640, and one that was scaled between -1 and 1 has output range
+	 *            640, and one that its values range was scaled between -1 and 1 has output range
 	 *            of 2.
 	 */
 	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
@@ -70,7 +70,7 @@ public class OrientWithPID extends DriveArcadeWithPID {
 	 * @param outputRange
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
-	 *            640, and one that was scaled between -1 and 1 has output range
+	 *            640, and one that its values range was scaled between -1 and 1 has output range
 	 *            of 2.
 	 */
 	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, PIDSettings PIDSettings,

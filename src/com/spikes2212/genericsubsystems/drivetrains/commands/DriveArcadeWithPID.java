@@ -10,12 +10,15 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * This command turns instance {@link TankDrivetrain} with wpilib's <a href =
+ * This command turns an instance of {@link TankDrivetrain} with wpilib's
+ * <a href =
  * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
  * using the output from <a href=
  * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>.
- * and moves it forward using {@link Supplier} to supply the speed to the
- * {@link TankDrivetrain#arcadeDrive}. This class can be used to force the
+ * and moves it forward using {@link Supplier} to supply the movement speed to
+ * the {@link TankDrivetrain#arcadeDrive}.
+ * <br />
+ * This class can be used to force the
  * instance of {@link TankDrivetrain} move straight by giving its starting state
  * as the setpoint.
  *
@@ -48,7 +51,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>
 	 *            that this command uses to get feedback about the
-	 *            {@link DriveArcadeWithPID}'s current state
+	 *            {@link TankDrivetrain}'s current state
 	 * @param setpointSupplier
 	 *            a supplier supplying the target point of this command.
 	 *            <p>
@@ -66,7 +69,7 @@ public class DriveArcadeWithPID extends Command {
 	 * @param outputRange
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
-	 *            640, and one that was scaled between -1 and 1 has output range
+	 *            640, and one that its values range was scaled between -1 and 1 has output range
 	 *            of 2.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
@@ -94,7 +97,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>
 	 *            that this command uses to get feedback about the
-	 *            {@link DriveArcadeWithPID#drivetrain}'s current state
+	 *            {@link TankDrivetrain}'s current state
 	 * @param setpoint
 	 *            the target point of this command.
 	 *            <p>
@@ -111,8 +114,8 @@ public class DriveArcadeWithPID extends Command {
 	 * @param outputRange
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
-	 *            640, and one that was scaled between -1 and 1 has output range
-	 *            of 2.
+	 *            640, and one that its values range was scaled between -1 and 1 has output range
+	 *            of 2.s
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double movement,
 			Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings, double outputRange) {
@@ -129,7 +132,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>
 	 *            that this command uses to get feedback about the
-	 *            {@link DriveArcadeWithPID#drivetrain}'s current state
+	 *            {@link TankDrivetrain}'s current state
 	 * @param setpointSupplier
 	 *            a supplier supplying the target point of this command.
 	 *            <p>
@@ -145,7 +148,7 @@ public class DriveArcadeWithPID extends Command {
 	 * @param outputRange
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
-	 *            640, and one that was scaled between -1 and 1 has output range
+	 *            640, and one that its values range was scaled between -1 and 1 has output range
 	 *            of 2.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
@@ -181,7 +184,7 @@ public class DriveArcadeWithPID extends Command {
 	 * @param outputRange
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
-	 *            640, and one that was scaled between -1 and 1 has output range
+	 *            640, and one that its values range was scaled between -1 and 1 has output range
 	 *            of 2.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double movement,
