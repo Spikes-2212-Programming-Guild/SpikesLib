@@ -43,24 +43,31 @@ public class DriveArcadeWithPID extends Command {
 	 * {@link PIDSettings} for this command
 	 * 
 	 * @param drivetrain
-	 *            the {@link DriveArcadeWithPID} this command requires and moves
+	 *            the {@link DriveArcadeWithPID} this command operates on
 	 * @param PIDSource
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>
 	 *            that this command uses to get feedback about the
 	 *            {@link DriveArcadeWithPID}'s position
 	 * @param setpointSupplier
-	 *            {@link Supplier<Double>} for the position the robot has to be
-	 *            at
+	 *            a supplier supplying the target point of this command.
+	 *            <p>
+	 *            This command will try to move {@link TankDrivetrain} to the
+	 *            latest value supplied by setpoint. setpoint should supply
+	 *            values using the same units as source.
+	 *            </p>
 	 * @param movementSupplier
 	 *            {@link Supplier<Double>} supplier of the movement for
 	 *            {@link TankDrivetrain#arcadeDrive}
 	 * @param isFinishedSupplier
-	 *            a condition upon returning true stops the command
+	 *            a condition upon returning true stops this command
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
 	 * @param outputRange
-	 *            the range of the source's output (for example, gyro's is 360)
+	 *            the range of the source's output. For example, gyro's is 360.
+	 *            Camera that has 640 px on the wanted axis has output range of
+	 *            640, and one that was scaled between -1 and 1 has output range
+	 *            of 2.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
 			Supplier<Double> movementSupplier, Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings,
@@ -82,22 +89,30 @@ public class DriveArcadeWithPID extends Command {
 	 * {@link Supplier<Double>}s
 	 * 
 	 * @param drivetrain
-	 *            the {@link DriveArcadeWithPID} this command requires and moves
+	 *            the {@link DriveArcadeWithPID} this command operates on
 	 * @param PIDSource
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>
 	 *            that this command uses to get feedback about the
 	 *            {@link DriveArcadeWithPID#drivetrain}'s position
 	 * @param setpoint
-	 *            static value for {@link DriveArcadeWithPID#setpointSupplier}
+	 *            the target point of this command.
+	 *            <p>
+	 *            This command will try to move {@link TankDrivetrain} to the
+	 *            setpoint. setpoint should supply values using the same units
+	 *            as source.
+	 *            </p>
 	 * @param movement
 	 *            static value for {@link DriveArcadeWithPID#movementSupplier}
 	 * @param isFinishedSupplier
-	 *            a condition upon returning true stops the command
+	 *            a condition upon returning true stops this command
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
 	 * @param outputRange
-	 *            the range of the source's output (for example, gyro's is 360)
+	 *            the range of the source's output. For example, gyro's is 360.
+	 *            Camera that has 640 px on the wanted axis has output range of
+	 *            640, and one that was scaled between -1 and 1 has output range
+	 *            of 2.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double movement,
 			Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings, double outputRange) {
@@ -109,7 +124,7 @@ public class DriveArcadeWithPID extends Command {
 	 * {@link DriveArcadeWithPID#isFinishedSupplier}
 	 * 
 	 * @param drivetrain
-	 *            the {@link DriveArcadeWithPID} this command requires and moves
+	 *            the {@link DriveArcadeWithPID} this command operates on
 	 *
 	 * @param PIDSource
 	 *            the <a href=
@@ -117,15 +132,22 @@ public class DriveArcadeWithPID extends Command {
 	 *            that this command uses to get feedback about the
 	 *            {@link DriveArcadeWithPID#drivetrain}'s position
 	 * @param setpointSupplier
-	 *            {@link Supplier<Double>} for the position the robot has to be
-	 *            at
+	 *            a supplier supplying the target point of this command.
+	 *            <p>
+	 *            This command will try to move {@link TankDrivetrain} to the
+	 *            latest value supplied by setpoint. setpoint should supply
+	 *            values using the same units as source.
+	 *            </p>
 	 * @param movementSupplier
 	 *            supplier of the movement for
 	 *            {@link TankDrivetrain#arcadeDrive}
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
 	 * @param outputRange
-	 *            the range of the source's output (for example, gyro's is 360)
+	 *            the range of the source's output. For example, gyro's is 360.
+	 *            Camera that has 640 px on the wanted axis has output range of
+	 *            640, and one that was scaled between -1 and 1 has output range
+	 *            of 2.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
 			Supplier<Double> movementSupplier, PIDSettings PIDSettings, double outputRange) {
@@ -140,20 +162,28 @@ public class DriveArcadeWithPID extends Command {
 	 * {@link DriveArcadeWithPID#movementSupplier}
 	 * 
 	 * @param drivetrain
-	 *            the {@link DriveArcadeWithPID} this command requires and moves
+	 *            the {@link DriveArcadeWithPID} this command operates on
 	 * @param PIDSource
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>
 	 *            that this command uses to get feedback about the
 	 *            {@link DriveArcadeWithPID#drivetrain}'s position
 	 * @param setpoint
-	 *            constant value for {@link DriveArcadeWithPID#setpointSupplier}
+	 *            the target point of this command.
+	 *            <p>
+	 *            This command will try to move {@link TankDrivetrain} to the
+	 *            setpoint. setpoint should supply values using the same units
+	 *            as source.
+	 *            </p>
 	 * @param movement
 	 *            constant value for {@link DriveArcadeWithPID#movementSupplier}
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
 	 * @param outputRange
-	 *            the range of the source's output (for example, gyro's is 360)
+	 *            the range of the source's output. For example, gyro's is 360.
+	 *            Camera that has 640 px on the wanted axis has output range of
+	 *            640, and one that was scaled between -1 and 1 has output range
+	 *            of 2.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double movement,
 			PIDSettings PIDSettings, double outputRange) {
