@@ -70,7 +70,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
 	 *            640, and one that its values range was scaled between -1 and 1 has output range
-	 *            of 2.
+	 *            of 2 and so on.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
 			Supplier<Double> movementSupplier, Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings,
@@ -115,7 +115,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
 	 *            640, and one that its values range was scaled between -1 and 1 has output range
-	 *            of 2.s
+	 *            of 2 and so on.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double movement,
 			Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings, double outputRange) {
@@ -149,7 +149,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
 	 *            640, and one that its values range was scaled between -1 and 1 has output range
-	 *            of 2.
+	 *            of 2 and so on.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
 			Supplier<Double> movementSupplier, PIDSettings PIDSettings, double outputRange) {
@@ -185,7 +185,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
 	 *            640, and one that its values range was scaled between -1 and 1 has output range
-	 *            of 2.
+	 *            of 2 and so on.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double movement,
 			PIDSettings PIDSettings, double outputRange) {
