@@ -5,10 +5,13 @@ There are many concepts in First Robotics Competition that repeat themeselves ev
 combines all these concepts into few simple classes which can be used for any robot by any FRC team in the world.
 
 <h4>
-* <a href='#WhatIsSpikesLib'>What Is SpikesLib?</a> </br>
-* Download and Setup SpikesLib </br>
-* SpikesLib api </br>
-* Contributing to SpikesLib </br>
+* <a href='#WhatIsSL'>What Is SpikesLib?</a> </br>
+* <a href='Download&Setup'>Download and Setup SpikesLib</a> </br>
+* <a href='api'>SpikesLib api</a> </br>
+* <a href='contribute'>Contributing and Developing SpikesLib</a> </br>
 </h4>
 
-<h2> <a name = 'WhatIsSpikesLib'> What Is SpikesLib?</a> </h2>
+<h2> <a name = 'WhatIsSL'> What Is SpikesLib?</a> </h2>
+<h2> <a name = 'Download&Setup'> Download and Setup SpikesLib </a> </h2>
+<h2> <a name = 'api'> SpikesLib api</a> </h2>
+<h2> <a name = 'contribute'>Contributing and Developing SpikesLib </a> </h2>
