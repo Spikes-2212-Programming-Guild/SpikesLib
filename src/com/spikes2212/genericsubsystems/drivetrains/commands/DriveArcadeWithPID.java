@@ -10,12 +10,14 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * This command turns instance {@link TankDrivetrain} with wpilib's
- * <a>"http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
- * using the output from {@link PIDSource} and moves it forward using
- * {@link Supplier} to supply the speed to the
+ * This command turns instance {@link TankDrivetrain} with wpilib's <a href =
+ * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
+ * using the output from <a href=
+ * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>.
+ * and moves it forward using {@link Supplier} to supply the speed to the
  * {@link TankDrivetrain#arcadeDrive}. This class can be used to force the
- * instance of {@link TankDrivetrain} move straight by giving a setpoint of 0.
+ * instance of {@link TankDrivetrain} move straight by giving its starting state
+ * as the setpoint.
  *
  * @see PIDController
  * @see TankDrivetrain
@@ -35,15 +37,18 @@ public class DriveArcadeWithPID extends Command {
 	protected PIDController rotationController;
 
 	/**
-	 * This constructs a new {@link DriveArcadeWithPID} using {@link PIDSource},
+	 * This constructs a new {@link DriveArcadeWithPID} using <a href=
+	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>,
 	 * {@link Supplier<Double>}s for the setpoint and the movement, and the
 	 * {@link PIDSettings} for this command
 	 * 
 	 * @param drivetrain
 	 *            the {@link DriveArcadeWithPID} this command requires and moves
 	 * @param PIDSource
-	 *            the {@link PIDSource} that this command uses to get feedback
-	 *            about the {@link DriveArcadeWithPID}'s position
+	 *            the <a href=
+	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>
+	 *            that this command uses to get feedback about the
+	 *            {@link DriveArcadeWithPID}'s position
 	 * @param setpointSupplier
 	 *            {@link Supplier<Double>} for the position the robot has to be
 	 *            at
@@ -79,8 +84,10 @@ public class DriveArcadeWithPID extends Command {
 	 * @param drivetrain
 	 *            the {@link DriveArcadeWithPID} this command requires and moves
 	 * @param PIDSource
-	 *            the {@link PIDSource} that this command uses to get feedback
-	 *            about the {@link DriveArcadeWithPID#drivetrain}'s position
+	 *            the <a href=
+	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>
+	 *            that this command uses to get feedback about the
+	 *            {@link DriveArcadeWithPID#drivetrain}'s position
 	 * @param setpoint
 	 *            static value for {@link DriveArcadeWithPID#setpointSupplier}
 	 * @param movement
@@ -105,8 +112,10 @@ public class DriveArcadeWithPID extends Command {
 	 *            the {@link DriveArcadeWithPID} this command requires and moves
 	 *
 	 * @param PIDSource
-	 *            the {@link PIDSource} that this command uses to get feedback
-	 *            about the {@link DriveArcadeWithPID#drivetrain}'s position
+	 *            the <a href=
+	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>
+	 *            that this command uses to get feedback about the
+	 *            {@link DriveArcadeWithPID#drivetrain}'s position
 	 * @param setpointSupplier
 	 *            {@link Supplier<Double>} for the position the robot has to be
 	 *            at
@@ -133,8 +142,10 @@ public class DriveArcadeWithPID extends Command {
 	 * @param drivetrain
 	 *            the {@link DriveArcadeWithPID} this command requires and moves
 	 * @param PIDSource
-	 *            the {@link PIDSource} that this command uses to get feedback
-	 *            about the {@link DriveArcadeWithPID#drivetrain}'s position
+	 *            the <a href=
+	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>
+	 *            that this command uses to get feedback about the
+	 *            {@link DriveArcadeWithPID#drivetrain}'s position
 	 * @param setpoint
 	 *            constant value for {@link DriveArcadeWithPID#setpointSupplier}
 	 * @param movement
