@@ -6,9 +6,9 @@ combines all these concepts into few simple classes which can be used for any ro
 
 <h4>
 * <a href='#WhatIsSL'>What Is SpikesLib?</a> </br>
-* <a href='Download&Setup'>Download and Setup SpikesLib</a> </br>
-* <a href='api'>SpikesLib api</a> </br>
-* <a href='contribute'>Contributing and Developing SpikesLib</a> </br>
+* <a href='#Download&Setup'>Download and Setup SpikesLib</a> </br>
+* <a href='#api'>SpikesLib api</a> </br>
+* <a href='#contribute'>Contributing and Developing SpikesLib</a> </br>
 </h4>
 
 <h2> <a name = 'WhatIsSL'> What Is SpikesLib?</a> </h2>
