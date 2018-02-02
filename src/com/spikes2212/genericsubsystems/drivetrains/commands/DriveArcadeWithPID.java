@@ -10,11 +10,12 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * This command turns {@link TankDrivetrain} instance with wpilib's
- * {@link PIDController} using the output from {@link PIDSource} and moves it
- * forward using {@link Supplier} and {@link TankDrivetrain#arcadeDrive}. This
- * class can be used to force the instance of {@link TankDrivetrain} move
- * straight by giving a setpoint of 0.
+ * This command turns instance {@link TankDrivetrain} with wpilib's
+ * <a>"http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
+ * using the output from {@link PIDSource} and moves it forward using
+ * {@link Supplier} to supply the speed to the
+ * {@link TankDrivetrain#arcadeDrive}. This class can be used to force the
+ * instance of {@link TankDrivetrain} move straight by giving a setpoint of 0.
  *
  * @see PIDController
  * @see TankDrivetrain
