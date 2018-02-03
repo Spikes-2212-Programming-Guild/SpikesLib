@@ -13,7 +13,7 @@ public class PIDSettings {
 	 * @param KD
 	 *            the Differential coefficient of the PID loop of this command.
 	 */
-	public PIDSettings(double KP, double KI, double KD, double tolerance, double waitTime) {
+	public PIDSettings(double KP, double KI, double KD) {
 		this.setKP(KP);
 		this.setKI(KI);
 		this.setKD(KD);
