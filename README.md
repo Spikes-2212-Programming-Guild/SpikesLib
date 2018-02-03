@@ -2,11 +2,11 @@
 Welcome to SpikesLib! </br>
 SpikesLib is an open source, generic library, which extends <a href='https://github.com/wpilibsuite/allwpilib'> FRC WPILib </a> by adding useful features to it. </br>
 
-<h4>
-* <a href='#WhatIsSL'>What Is SpikesLib?</a> </br>
-* <a href='#Download&Setup'>Download and Setup SpikesLib</a> </br>
-* <a href='#api'>SpikesLib api</a> </br>
-* <a href='#contribute'>Contributing and Developing SpikesLib</a> </br>
+<h4><ul>
+  <li> <a href='#WhatIsSL'>What Is SpikesLib?</a></li>
+  <li><a href='#Download&Setup'>Download and Setup SpikesLib</a></li>
+  <li><a href='#api'>SpikesLib api</a> </li>
+  <li><a href='#contribute'>Contributing and Developing SpikesLib</a></li>
 </h4>
 
 <h2> <a name = 'WhatIsSL'> What Is SpikesLib?</a> </h2>
