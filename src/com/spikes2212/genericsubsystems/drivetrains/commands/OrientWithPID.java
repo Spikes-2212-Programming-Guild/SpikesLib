@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * This command is used to orient an instance of {@link TankDrivetrain} to a specific setpoint
- * using wpilib's {@link PIDController}. This command is like
+ * This command is used to orient an instance of {@link TankDrivetrain} to a
+ * specific setpoint using wpilib's {@link PIDController}. This command is like
  * {@link DriveArcadeWithPID} but doesn't move the {@link TankDrivetrain}
  * forwards and ends when reaching the wanted setpoint.
  *
@@ -44,8 +44,8 @@ public class OrientWithPID extends DriveArcadeWithPID {
 	 * @param outputRange
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
-	 *            640, and one that its values range was scaled between -1 and 1 has output range
-	 *            of 2 and so on.
+	 *            640, and one that its values range was scaled between -1 and 1
+	 *            has output range of 2 and so on.
 	 */
 	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
 			ExtendedPIDSettings PIDSettings, double outputRange) {
@@ -70,18 +70,25 @@ public class OrientWithPID extends DriveArcadeWithPID {
 	 * @param outputRange
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
-	 *            640, and one that its values range was scaled between -1 and 1 has output range
-	 *            of 2 and so on.
+	 *            640, and one that its values range was scaled between -1 and 1
+	 *            has output range of 2 and so on.
 	 */
-	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, ExtendedPIDSettings PIDSettings,
-			double outputRange) {
+	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint,
+			ExtendedPIDSettings PIDSettings, double outputRange) {
 		this(drivetrain, PIDSource, () -> setpoint, PIDSettings, outputRange);
+	}
+
+	@Override
+	protected void initialize() {
+		super.initialize();
+		rotationController.setAbsoluteTolerance(((ExtendedPIDSettings) PIDSettings).getTolerance());
 	}
 
 	@Override
 	protected boolean isFinished() {
 		if (!rotationController.onTarget())
 			lastTimeOnTarget = Timer.getFPGATimestamp();
-		return Timer.getFPGATimestamp() - lastTimeOnTarget >= PIDSettings.getWaitTime() || isTimedOut();
+		return Timer.getFPGATimestamp() - lastTimeOnTarget >= ((ExtendedPIDSettings) PIDSettings).getWaitTime()
+				|| isTimedOut();
 	}
 }
