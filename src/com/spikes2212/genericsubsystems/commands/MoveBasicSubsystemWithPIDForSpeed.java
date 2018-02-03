@@ -3,7 +3,7 @@ package com.spikes2212.genericsubsystems.commands;
 import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.BasicSubsystem;
-import com.spikes2212.utils.PIDSettings;
+import com.spikes2212.utils.ExtendedPIDSettings;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.PIDSourceType;
  * @see BasicSubsystem
  * @see MoveBasicSubsystemWithPID
  * @see PIDController
- * @see PIDSettings
+ * @see ExtendedPIDSettings
  */
 public class MoveBasicSubsystemWithPIDForSpeed extends MoveBasicSubsystemWithPID {
 
@@ -39,11 +39,11 @@ public class MoveBasicSubsystemWithPIDForSpeed extends MoveBasicSubsystemWithPID
 	 *            a supplier supplying the speed the {@link BasicSubsystem}
 	 *            should move at.
 	 * @param PIDSettings
-	 *            the {@link PIDSettings} this command's PIDController needs.
+	 *            the {@link ExtendedPIDSettings} this command's PIDController needs.
 	 * @see PIDController
 	 */
 	public MoveBasicSubsystemWithPIDForSpeed(BasicSubsystem basicSubsystem, PIDSource source,
-			Supplier<Double> wantedSpeed, PIDSettings PIDSettings, double acceleration) {
+			Supplier<Double> wantedSpeed, ExtendedPIDSettings PIDSettings, double acceleration) {
 		super(basicSubsystem, source, wantedSpeed, PIDSettings);
 		this.acceleration = acceleration;
 		this.source.setPIDSourceType(PIDSourceType.kRate);
@@ -62,11 +62,11 @@ public class MoveBasicSubsystemWithPIDForSpeed extends MoveBasicSubsystemWithPID
 	 * @param wantedSpeed
 	 *            the speed the {@link BasicSubsystem} should move at.
 	 * @param PIDSettings
-	 *            the {@link PIDSettings} this command's PIDController needs.
+	 *            the {@link ExtendedPIDSettings} this command's PIDController needs.
 	 * @see PIDController
 	 */
 	public MoveBasicSubsystemWithPIDForSpeed(BasicSubsystem basicSubsystem, PIDSource source, double wantedSpeed,
-			PIDSettings PIDSettings, double acceleration) {
+			ExtendedPIDSettings PIDSettings, double acceleration) {
 		this(basicSubsystem, source, () -> wantedSpeed, PIDSettings, acceleration);
 	}
 

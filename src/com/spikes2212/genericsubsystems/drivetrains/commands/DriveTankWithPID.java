@@ -3,7 +3,7 @@ package com.spikes2212.genericsubsystems.drivetrains.commands;
 import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
-import com.spikes2212.utils.PIDSettings;
+import com.spikes2212.utils.ExtendedPIDSettings;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -19,14 +19,14 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author Omri "Riki" Cohen
  * @see TankDrivetrain
  * @see PIDController
- * @see PIDSettings
+ * @see ExtendedPIDSettings
  */
 public class DriveTankWithPID extends Command {
 
 	protected final TankDrivetrain tankDrivetrain;
 	protected final Supplier<Double> leftSetpoint;
 	protected final Supplier<Double> rightSetpoint;
-	protected final PIDSettings PIDSettings;
+	protected final ExtendedPIDSettings PIDSettings;
 	protected final PIDSource leftSource;
 	protected final PIDSource rightSource;
 	protected PIDController leftMovmentControl;
@@ -37,10 +37,10 @@ public class DriveTankWithPID extends Command {
 	 * Gets the PIDSetting the PIDController uses for this command.
 	 * 
 	 * @return The PIDSetting the PIDController uses
-	 * @see PIDSettings
+	 * @see ExtendedPIDSettings
 	 * @see PIDController
 	 */
-	public PIDSettings getPIDSetting() {
+	public ExtendedPIDSettings getPIDSetting() {
 		return PIDSettings;
 	}
 
@@ -108,12 +108,12 @@ public class DriveTankWithPID extends Command {
 	 *            be using the same units as rightSource.
 	 *            </p>
 	 * @param PIDSettings
-	 *            the {@link PIDSettings} this command's PIDController needs.
+	 *            the {@link ExtendedPIDSettings} this command's PIDController needs.
 	 * 
 	 * @see PIDController
 	 */
 	public DriveTankWithPID(TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource,
-			Supplier<Double> leftSetpoint, Supplier<Double> rightSetpoint, PIDSettings PIDSettings) {
+			Supplier<Double> leftSetpoint, Supplier<Double> rightSetpoint, ExtendedPIDSettings PIDSettings) {
 		requires(drivetrain);
 		this.tankDrivetrain = drivetrain;
 		this.leftSource = leftSource;
@@ -152,12 +152,12 @@ public class DriveTankWithPID extends Command {
 	 *            as rightSource.
 	 *            </p>
 	 * @param PIDSettings
-	 *            the {@link PIDSettings} this command's PIDController needs.
+	 *            the {@link ExtendedPIDSettings} this command's PIDController needs.
 	 * 
 	 * @see PIDController
 	 */
 	public DriveTankWithPID(TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource, double leftSetpoint,
-			double rightSetpoint, PIDSettings PIDSettings) {
+			double rightSetpoint, ExtendedPIDSettings PIDSettings) {
 		this(drivetrain, leftSource, rightSource, () -> leftSetpoint, () -> rightSetpoint, PIDSettings);
 	}
 
@@ -183,12 +183,12 @@ public class DriveTankWithPID extends Command {
 	 *            as drivetrain's {@link PIDSource}s.
 	 *            </p>
 	 * @param PIDSettings
-	 *            the {@link PIDSettings} this command's PIDController needs.
+	 *            the {@link ExtendedPIDSettings} this command's PIDController needs.
 	 * 
 	 * @see PIDController
 	 */
 	public DriveTankWithPID(TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource, double setpoint,
-			PIDSettings PIDSettings) {
+			ExtendedPIDSettings PIDSettings) {
 		this(drivetrain, leftSource, rightSource, () -> setpoint, () -> setpoint, PIDSettings);
 	}
 
@@ -214,12 +214,12 @@ public class DriveTankWithPID extends Command {
 	 *            as drivetrain's {@link PIDSource}s.
 	 *            </p>
 	 * @param PIDSettings
-	 *            the {@link PIDSettings} this command's PIDController needs.
+	 *            the {@link ExtendedPIDSettings} this command's PIDController needs.
 	 * 
 	 * @see PIDController
 	 */
 	public DriveTankWithPID(TankDrivetrain drivetrain, PIDSource leftSource, PIDSource rightSource,
-			Supplier<Double> setpoint, PIDSettings PIDSettings) {
+			Supplier<Double> setpoint, ExtendedPIDSettings PIDSettings) {
 		this(drivetrain, leftSource, rightSource, setpoint, setpoint, PIDSettings);
 	}
 

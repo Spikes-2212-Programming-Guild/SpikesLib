@@ -3,7 +3,7 @@ package com.spikes2212.genericsubsystems.drivetrains.commands;
 import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
-import com.spikes2212.utils.PIDSettings;
+import com.spikes2212.utils.ExtendedPIDSettings;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -28,7 +28,7 @@ public class OrientWithPID extends DriveArcadeWithPID {
 	/**
 	 * This constructs new {@link OrientWithPID} command using
 	 * {@link PIDSource}, {@link Supplier<Double>} for the setpoint and the
-	 * {@link PIDSettings} for the command.
+	 * {@link ExtendedPIDSettings} for the command.
 	 * 
 	 * @param drivetrain
 	 *            the {@link TankDrivetrain} this command operates on
@@ -40,7 +40,7 @@ public class OrientWithPID extends DriveArcadeWithPID {
 	 *            {@link Supplier<Double>} for the setpoint of the
 	 *            {@link PIDController}
 	 * @param PIDSettings
-	 *            {@link PIDSettings} for this command
+	 *            {@link ExtendedPIDSettings} for this command
 	 * @param outputRange
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
@@ -48,7 +48,7 @@ public class OrientWithPID extends DriveArcadeWithPID {
 	 *            of 2 and so on.
 	 */
 	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
-			PIDSettings PIDSettings, double outputRange) {
+			ExtendedPIDSettings PIDSettings, double outputRange) {
 		super(drivetrain, PIDSource, setpointSupplier, () -> 0.0, PIDSettings, outputRange);
 	}
 
@@ -66,14 +66,14 @@ public class OrientWithPID extends DriveArcadeWithPID {
 	 * @param setpoint
 	 *            constant value for {@link OrientWithPID#setpointSupplier}
 	 * @param PIDSettings
-	 *            {@link PIDSettings} for this command
+	 *            {@link ExtendedPIDSettings} for this command
 	 * @param outputRange
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
 	 *            640, and one that its values range was scaled between -1 and 1 has output range
 	 *            of 2 and so on.
 	 */
-	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, PIDSettings PIDSettings,
+	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, ExtendedPIDSettings PIDSettings,
 			double outputRange) {
 		this(drivetrain, PIDSource, () -> setpoint, PIDSettings, outputRange);
 	}

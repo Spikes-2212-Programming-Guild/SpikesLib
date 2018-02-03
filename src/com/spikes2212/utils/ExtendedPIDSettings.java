@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.PIDController;
  * @see PIDController
  * 
  */
-public class PIDSettings {
+public class ExtendedPIDSettings {
 
 	private double KP, KI, KD, tolerance, waitTime;
 
@@ -32,7 +32,7 @@ public class PIDSettings {
 	 *            the time this PID loop will wait while within tolerance of the
 	 *            setpoint before ending.
 	 */
-	public PIDSettings(double KP, double KI, double KD, double tolerance, double waitTime) {
+	public ExtendedPIDSettings(double KP, double KI, double KD, double tolerance, double waitTime) {
 		this.setKP(KP);
 		this.setKI(KI);
 		this.setKD(KD);

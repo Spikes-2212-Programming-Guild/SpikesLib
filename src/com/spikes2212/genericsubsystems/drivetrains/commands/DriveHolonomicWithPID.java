@@ -3,7 +3,7 @@ package com.spikes2212.genericsubsystems.drivetrains.commands;
 import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.drivetrains.HolonomicDrivetrain;
-import com.spikes2212.utils.PIDSettings;
+import com.spikes2212.utils.ExtendedPIDSettings;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -19,14 +19,14 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author Omri "Riki" Cohen
  * @see HolonomicDrivetrain
  * @see PIDController
- * @see PIDSettings
+ * @see ExtendedPIDSettings
  */
 public class DriveHolonomicWithPID extends Command {
 	protected final HolonomicDrivetrain holonomicDrivetrain;
 	protected final Supplier<Double> XSetpoint;
 	protected final Supplier<Double> YSetpoint;
-	protected final PIDSettings XPIDSettings;
-	protected final PIDSettings YPIDSettings;
+	protected final ExtendedPIDSettings XPIDSettings;
+	protected final ExtendedPIDSettings YPIDSettings;
 	protected final PIDSource XSource;
 	protected final PIDSource YSource;
 	protected PIDController XMovmentControl;
@@ -34,24 +34,24 @@ public class DriveHolonomicWithPID extends Command {
 	protected double lastTimeNotOnTarget;
 
 	/**
-	 * Gets the {@link PIDSettings} the {@link PIDController} uses for the x axis.
+	 * Gets the {@link ExtendedPIDSettings} the {@link PIDController} uses for the x axis.
 	 * 
 	 * @return The PIDSetting the PIDController uses
-	 * @see PIDSettings
+	 * @see ExtendedPIDSettings
 	 * @see PIDController
 	 */
-	public PIDSettings getXPIDSetting() {
+	public ExtendedPIDSettings getXPIDSetting() {
 		return XPIDSettings;
 	}
 
 	/**
-	 * Gets the {@link PIDSettings} the {@link PIDController} uses for the y axis.
+	 * Gets the {@link ExtendedPIDSettings} the {@link PIDController} uses for the y axis.
 	 * 
 	 * @return The PIDSetting the PIDController uses
-	 * @see PIDSettings
+	 * @see ExtendedPIDSettings
 	 * @see PIDController
 	 */
-	public PIDSettings getYPIDSetting() {
+	public ExtendedPIDSettings getYPIDSetting() {
 		return XPIDSettings;
 	}
 
@@ -67,7 +67,7 @@ public class DriveHolonomicWithPID extends Command {
 	 * @param tolerance
 	 *            The new tolerance to set. If 0, this PID loop will never end.
 	 * @see PIDController#setAbsoluteTolerance(double)
-	 * @see PIDSettings#getTolerance
+	 * @see ExtendedPIDSettings#getTolerance
 	 */
 	public void setTolerance(double tolerance) {
 		XPIDSettings.setTolerance(tolerance);
@@ -82,7 +82,7 @@ public class DriveHolonomicWithPID extends Command {
 	 * If wait time is set to 0, the command won't wait.
 	 * </p>
 	 * 
-	 * @see PIDSettings#setWaitTime(double)
+	 * @see ExtendedPIDSettings#setWaitTime(double)
 	 *
 	 * @param waitTime
 	 *            the new wait time, in seconds.
@@ -122,14 +122,14 @@ public class DriveHolonomicWithPID extends Command {
 	 *            reaches the latest value supplied by setpoint. setpoint should
 	 *            be using the same units as YSource.
 	 *            </p>
-	 * @param PIDSettings
-	 *            the {@link PIDSettings} this command's PIDController needs.
+	 * @param ExtendedPIDSettings
+	 *            the {@link ExtendedPIDSettings} this command's PIDController needs.
 	 * 
 	 * @see PIDController
 	 */
 	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XSource, PIDSource YSource,
-			Supplier<Double> XSetpoint, Supplier<Double> YSetpoint, PIDSettings XPIDSettings,
-			PIDSettings YPIDSettings) {
+			Supplier<Double> XSetpoint, Supplier<Double> YSetpoint, ExtendedPIDSettings XPIDSettings,
+			ExtendedPIDSettings YPIDSettings) {
 		requires(drivetrain);
 		this.holonomicDrivetrain = drivetrain;
 		this.XSource = XSource;
@@ -168,13 +168,13 @@ public class DriveHolonomicWithPID extends Command {
 	 *            reaches the setpoint. setpoint should be using the same units
 	 *            as YSource.
 	 *            </p>
-	 * @param PIDSettings
-	 *            the {@link PIDSettings} this command's PIDController needs.
+	 * @param ExtendedPIDSettings
+	 *            the {@link ExtendedPIDSettings} this command's PIDController needs.
 	 * 
 	 * @see PIDController
 	 */
 	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XSource, PIDSource YSource, double XSetpoint,
-			double YSetpoint, PIDSettings XPIDSettings, PIDSettings YPIDSettings) {
+			double YSetpoint, ExtendedPIDSettings XPIDSettings, ExtendedPIDSettings YPIDSettings) {
 		this(drivetrain, XSource, YSource, () -> XSetpoint, () -> YSetpoint, XPIDSettings, YPIDSettings);
 	}
 
@@ -199,13 +199,13 @@ public class DriveHolonomicWithPID extends Command {
 	 *            the setpoint. setpoint should be using the same units as
 	 *            drivetrain's {@link PIDSource}s.
 	 *            </p>
-	 * @param PIDSettings
-	 *            the {@link PIDSettings} this command's PIDController needs.
+	 * @param ExtendedPIDSettings
+	 *            the {@link ExtendedPIDSettings} this command's PIDController needs.
 	 * 
 	 * @see PIDController
 	 */
 	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XSource, PIDSource YSource, double setpoint,
-			PIDSettings XPIDSettings, PIDSettings YPIDSettings) {
+			ExtendedPIDSettings XPIDSettings, ExtendedPIDSettings YPIDSettings) {
 		this(drivetrain, XSource, YSource, () -> setpoint, () -> setpoint, XPIDSettings, YPIDSettings);
 	}
 
@@ -230,13 +230,13 @@ public class DriveHolonomicWithPID extends Command {
 	 *            the setpoint. setpoint should be using the same units as
 	 *            drivetrain's {@link PIDSource}s.
 	 *            </p>
-	 * @param PIDSettings
-	 *            the {@link PIDSettings} this command's PIDController needs.
+	 * @param ExtendedPIDSettings
+	 *            the {@link ExtendedPIDSettings} this command's PIDController needs.
 	 * 
 	 * @see PIDController
 	 */
 	public DriveHolonomicWithPID(HolonomicDrivetrain drivetrain, PIDSource XSource, PIDSource YSource,
-			Supplier<Double> setpoint, PIDSettings XPIDSettings, PIDSettings YPIDSettings) {
+			Supplier<Double> setpoint, ExtendedPIDSettings XPIDSettings, ExtendedPIDSettings YPIDSettings) {
 		this(drivetrain, XSource, YSource, setpoint, setpoint, XPIDSettings, YPIDSettings);
 	}
 

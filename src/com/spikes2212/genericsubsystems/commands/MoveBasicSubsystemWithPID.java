@@ -3,7 +3,7 @@ package com.spikes2212.genericsubsystems.commands;
 import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.BasicSubsystem;
-import com.spikes2212.utils.PIDSettings;
+import com.spikes2212.utils.ExtendedPIDSettings;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -19,12 +19,12 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author Omri "Riki" and Itamar Rivkind
  * @see BasicSubsystem
  * @see PIDController
- * @see PIDSettings
+ * @see ExtendedPIDSettings
  */
 public class MoveBasicSubsystemWithPID extends Command {
 
 	protected final BasicSubsystem basicSubsystem;
-	protected final PIDSettings PIDSettings;
+	protected final ExtendedPIDSettings PIDSettings;
 	protected final Supplier<Double> setpoint;
 	protected final PIDSource source;
 	protected PIDController movmentControl;
@@ -38,7 +38,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 * If wait time is set to 0, the command won't wait.
 	 * </p>
 	 * 
-	 * * @see PIDSettings#getWaitTime()
+	 * * @see ExtendedPIDSettings#getWaitTime()
 	 *
 	 * @param waitTime
 	 *            the new wait time, in seconds.
@@ -70,10 +70,10 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 * Gets the PIDSetting the PIDController uses for this command.
 	 * 
 	 * @return The PIDSetting the PIDController uses
-	 * @see PIDSettings
+	 * @see ExtendedPIDSettings
 	 * @see PIDController
 	 */
-	public PIDSettings getPIDSetting() {
+	public ExtendedPIDSettings getPIDSetting() {
 		return PIDSettings;
 	}
 
@@ -95,11 +95,11 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 *            values using the same units as source.
 	 *            </p>
 	 * @param PIDSettings
-	 *            the {@link PIDSettings} this command's PIDController needs.
+	 *            the {@link ExtendedPIDSettings} this command's PIDController needs.
 	 * @see PIDController
 	 */
 	public MoveBasicSubsystemWithPID(BasicSubsystem basicSubsystem, PIDSource source, Supplier<Double> setpoint,
-			PIDSettings PIDSettings) {
+			ExtendedPIDSettings PIDSettings) {
 		requires(basicSubsystem);
 		this.basicSubsystem = basicSubsystem;
 		this.source = source;
@@ -126,11 +126,11 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 *            source.
 	 *            </p>
 	 * @param PIDSettings
-	 *            the {@link PIDSettings} this command's PIDController needs.
+	 *            the {@link ExtendedPIDSettings} this command's PIDController needs.
 	 * @see PIDController
 	 */
 	public MoveBasicSubsystemWithPID(BasicSubsystem BasicSubsystem, PIDSource source, double setpoint,
-			PIDSettings PIDSettings) {
+			ExtendedPIDSettings PIDSettings) {
 		this(BasicSubsystem, source, () -> setpoint, PIDSettings);
 	}
 
