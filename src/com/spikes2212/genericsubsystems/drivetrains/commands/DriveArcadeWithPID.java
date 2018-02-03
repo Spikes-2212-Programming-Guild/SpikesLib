@@ -3,7 +3,7 @@ package com.spikes2212.genericsubsystems.drivetrains.commands;
 import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
-import com.spikes2212.utils.ExtendedPIDSettings;
+import com.spikes2212.utils.PIDSettings;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -30,7 +30,7 @@ public class DriveArcadeWithPID extends Command {
 
 	protected TankDrivetrain drivetrain;
 	protected PIDSource PIDSource;
-	protected ExtendedPIDSettings PIDSettings;
+	protected PIDSettings PIDSettings;
 	protected final Supplier<Double> setpointSupplier;
 	protected final Supplier<Double> movementSupplier;
 	protected final Supplier<Boolean> isFinishedSupplier;
@@ -43,7 +43,7 @@ public class DriveArcadeWithPID extends Command {
 	 * This constructs a new {@link DriveArcadeWithPID} using <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>,
 	 * {@link Supplier<Double>}s for the setpoint and the movement, and the
-	 * {@link ExtendedPIDSettings} for this command
+	 * {@link PIDSettings} for this command
 	 * 
 	 * @param drivetrain
 	 *            the {@link DriveArcadeWithPID} this command operates on
@@ -65,7 +65,7 @@ public class DriveArcadeWithPID extends Command {
 	 * @param isFinishedSupplier
 	 *            a condition upon returning true stops this command
 	 * @param PIDSettings
-	 *            {@link ExtendedPIDSettings} for this command
+	 *            {@link PIDSettings} for this command
 	 * @param outputRange
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
@@ -73,7 +73,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            of 2 and so on.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
-			Supplier<Double> movementSupplier, Supplier<Boolean> isFinishedSupplier, ExtendedPIDSettings PIDSettings,
+			Supplier<Double> movementSupplier, Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings,
 			double outputRange) {
 		requires(drivetrain);
 		this.drivetrain = drivetrain;
@@ -110,7 +110,7 @@ public class DriveArcadeWithPID extends Command {
 	 * @param isFinishedSupplier
 	 *            a condition upon returning true stops this command
 	 * @param PIDSettings
-	 *            {@link ExtendedPIDSettings} for this command
+	 *            {@link PIDSettings} for this command
 	 * @param outputRange
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
@@ -118,7 +118,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            of 2 and so on.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double movement,
-			Supplier<Boolean> isFinishedSupplier, ExtendedPIDSettings PIDSettings, double outputRange) {
+			Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings, double outputRange) {
 		this(drivetrain, PIDSource, () -> setpoint, () -> movement, isFinishedSupplier, PIDSettings, outputRange);
 	}
 
@@ -144,7 +144,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            supplier of the movement for
 	 *            {@link TankDrivetrain#arcadeDrive}
 	 * @param PIDSettings
-	 *            {@link ExtendedPIDSettings} for this command
+	 *            {@link PIDSettings} for this command
 	 * @param outputRange
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
@@ -152,7 +152,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            of 2 and so on.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
-			Supplier<Double> movementSupplier, ExtendedPIDSettings PIDSettings, double outputRange) {
+			Supplier<Double> movementSupplier, PIDSettings PIDSettings, double outputRange) {
 		this(drivetrain, PIDSource, setpointSupplier, movementSupplier, () -> false, PIDSettings, outputRange);
 
 	}
@@ -180,7 +180,7 @@ public class DriveArcadeWithPID extends Command {
 	 * @param movement
 	 *            constant value for {@link DriveArcadeWithPID#movementSupplier}
 	 * @param PIDSettings
-	 *            {@link ExtendedPIDSettings} for this command
+	 *            {@link PIDSettings} for this command
 	 * @param outputRange
 	 *            the range of the source's output. For example, gyro's is 360.
 	 *            Camera that has 640 px on the wanted axis has output range of
@@ -188,7 +188,7 @@ public class DriveArcadeWithPID extends Command {
 	 *            of 2 and so on.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double movement,
-			ExtendedPIDSettings PIDSettings, double outputRange) {
+			PIDSettings PIDSettings, double outputRange) {
 		this(drivetrain, PIDSource, () -> setpoint, () -> movement, PIDSettings, outputRange);
 	}
 
@@ -196,7 +196,7 @@ public class DriveArcadeWithPID extends Command {
 	protected void initialize() {
 		this.rotationController = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
 				PIDSource, (rotate) -> drivetrain.arcadeDrive(movementSupplier.get(), rotate / (outputRange / 2)));
-		rotationController.setAbsoluteTolerance(PIDSettings.getTolerance());
+		rotationController.setAbsoluteTolerance(0);
 		rotationController.setSetpoint(setpointSupplier.get());
 		rotationController.setOutputRange(-outputRange / 2, outputRange / 2);
 		rotationController.enable();
