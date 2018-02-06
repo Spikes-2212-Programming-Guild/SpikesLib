@@ -42,7 +42,7 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 	}
 
 	/**
-	 * Moves the drivetrain on the X axis at a given speed.
+	 * Moves the drivetrain on the X axis by a given speed.
 	 *
 	 * @param speedX
 	 *            the speed to set to the X axis. Positive values move this axis
@@ -53,7 +53,7 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 	}
 
 	/**
-	 * Moves the drivetrain on the Y axis at a given speed.
+	 * Moves the drivetrain on the Y axis by a given speed.
 	 *
 	 * @param speedY
 	 *            the speed to set to the Y axis. Positive values move this axis
