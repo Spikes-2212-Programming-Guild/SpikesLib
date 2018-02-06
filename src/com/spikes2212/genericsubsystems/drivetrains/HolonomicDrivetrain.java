@@ -64,14 +64,14 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 	}
 
 	/**
-	 * Moves the drivetrain on both X and Y axises using given speeds for each axis.
+	 * Moves the drivetrain on both X and Y axes using given speeds for each axis.
 	 * 
 	 * @param speedY
-	 *            the speed to set to the Y axis. Positive values move this axis
-	 *            forward.
+	 *            the speed to set to the Y axis. Positive values move the {@link HolonomicDrivetrain}
+	 *            forward on this axis.
 	 * @param speedX
-	 *            the speed to set to the X axis. Positive values move this axis
-	 *            forward.
+	 *            the speed to set to the X axis. Positive values move the {@link HolonomicDrivetrain}
+	 *            forward on this axis.
 	 */
 	public void holonomicDrive(double speedY, double speedX) { // y-forward/backward x-left/right
 		setX(speedX);
