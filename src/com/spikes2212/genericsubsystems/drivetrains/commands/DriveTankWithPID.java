@@ -41,20 +41,8 @@ public class DriveTankWithPID extends Command {
 	protected PIDController rightMovmentControl;
 	protected double lastTimeNotOnTarget;
 
-	/**
-	 * The <a href=
-	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 * the left side this subsystem uses, given by
-	 * {@link BasicSubsystem#getPIDSource()}.
-	 */
 	protected final PIDSource leftSource;
 
-	/**
-	 * The <a href=
-	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 * the right side this subsystem uses, given by
-	 * {@link BasicSubsystem#getPIDSource()}.
-	 */
 	protected final PIDSource rightSource;
 
 	/**
