@@ -27,7 +27,6 @@ public class DoubleSpeedcontroller implements SpeedController {
 	 * @param speedcontrollerLeft
 	 *            The second speed controller.
 	 * 
-	 * @see <a href="https://www.youtube.com/watch?v=pU-FNy6RG80">Example</a>
 	 */
     public DoubleSpeedcontroller(SpeedController speedcontrollerRight, SpeedController speedcontrollerLeft) {
         this.speedControllerLeft = speedcontrollerLeft;
