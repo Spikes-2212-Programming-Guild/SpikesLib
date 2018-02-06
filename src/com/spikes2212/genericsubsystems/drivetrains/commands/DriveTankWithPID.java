@@ -204,8 +204,6 @@ public class DriveTankWithPID extends Command {
 	 * 
 	 * <br>
 	 * <br>
-	 * <b>Warning:</b> If tolerance is set to 0 and the wait time is not 0, this PID
-	 * loop will never end unless you cancel it.
 	 *
 	 * @param tolerance
 	 *            the tolerance in the same units as the {@link #source}.
