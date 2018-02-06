@@ -25,9 +25,6 @@ public class RunnableCommand extends Command {
 	 *
 	 * @param runnable
 	 *            the {@link Runnable} to run whenever this command starts
-	 * @param runInDisabled
-	 *            whether this command should be allowed to run when the robot is
-	 *            disabled. Default is true.
 	 */
     public RunnableCommand(Runnable runnable) {
         this(runnable, true);
