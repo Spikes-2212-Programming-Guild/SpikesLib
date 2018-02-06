@@ -184,7 +184,7 @@ public class DriveTankWithPID extends Command {
 	 *             <p>
  	 *            This command will try to move the drivetrain until it
  	 *            reaches the latest value supplied by setpoint. setpoint should
- 	 *            be using the same units as rightSource/LeftSource.
+ 	 *            be using the same units as the source.
  	 *            </p>
 	 * @param PIDSettings
 	 *            the {@link PIDSettings} this command's PIDController needs.
