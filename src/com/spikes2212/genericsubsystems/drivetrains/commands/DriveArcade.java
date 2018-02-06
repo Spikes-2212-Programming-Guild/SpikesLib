@@ -17,7 +17,7 @@ public class DriveArcade extends Command {
 
 	/**
 	 * This constructs a new {@link DriveArcade} command that moves the given
-	 * {@link TankDrivetrain} acording to constant linear and rotational speeds.
+	 * {@link TankDrivetrain} according to constant linear and rotational speeds.
 	 *
 	 * @param drivetrain
 	 *            the tank drivetrain this command opperates on.
@@ -32,8 +32,8 @@ public class DriveArcade extends Command {
 
 	/**
 	 * This constructs a new {@link DriveArcade} command that moves the given
-	 * {@link TankDrivetrain} acording to speed values from Double {@link Supplier}s
-	 * for linear and rotational movments.
+	 * {@link TankDrivetrain} according to speed values from Double {@link Supplier}s
+	 * for linear and rotational movements.
 	 *
 	 * @param drivetrain
 	 *            the tank drivetrain this command opperates on.
