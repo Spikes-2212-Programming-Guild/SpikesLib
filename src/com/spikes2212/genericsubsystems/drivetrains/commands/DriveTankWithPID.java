@@ -63,9 +63,19 @@ public class DriveTankWithPID extends Command {
 	 *            this command uses to get feedback for the right side's PID Loop.
 	 * @param leftSetpoint
 	 *            a supplier supplying the target point of this command's left side.
+	 *            <p>
+ 	 *            This command will try to move the drivetrain's left side until it
+ 	 *            reaches the latest value supplied by setpoint. setpoint should
+ 	 *            be using the same units as leftSource.
+ 	 *            </p>
 	 * @param rightSetpoint
 	 *            a supplier supplying the target point of this command's right
 	 *            side.
+	 *             <p>
+ 	 *            This command will try to move the drivetrain's left side until it
+ 	 *            reaches the latest value supplied by setpoint. setpoint should
+ 	 *            be using the same units as rightSource.
+ 	 *            </p>
 	 * @param PIDSettings
 	 *            the {@link PIDSettings} this command's PIDController needs.
 	 * 
@@ -144,7 +154,7 @@ public class DriveTankWithPID extends Command {
 	}
 
 	/**
-	 * This constructs a new {@link DriveTankWithPID} using <a href=
+	 * This constructs a new {@link DriveTankWithPID} command using <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources<a>
 	 * for each side of the drivetrain, a setpoint, the {@link PIDSettings} for
 	 * command's PID loop, and it's tolerance for error.
