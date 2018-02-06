@@ -109,7 +109,7 @@ public class PIDSettings {
 	 * Sets the Intergral coefficient of the PID loop using these
 	 * {@link PIDSettings}.
 	 *
-	 * @param KP
+	 * @param KI
 	 *            the new Integral coefficient.
 	 */
 	public void setKI(double KI) {
@@ -130,7 +130,7 @@ public class PIDSettings {
 	 * Sets the Differential coefficient of the PID loop using these
 	 * {@link PIDSettings}.
 	 *
-	 * @param KP
+	 * @param KD
 	 *            the new Differential coefficient.
 	 */
 	public void setKD(double KD) {
@@ -140,6 +140,10 @@ public class PIDSettings {
 	/**
 	 * Gets the time this PID loop will wait while within tolerance of the setpoint
 	 * before ending.
+	 * 
+	 * <p>
+	 * The PID control of the subsystem continues while waiting
+	 * </p>
 	 *
 	 * @return The wait time, in seconds.
 	 */
