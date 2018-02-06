@@ -72,7 +72,7 @@ public class ConstantHandler {
 	}
 
 	/**
-	 * This method writes a {@link int} constant to the <a href=
+	 * This method writes an {@link Integer} constant to the <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/Preferences.html">Prefrences</a>,
 	 * allowing the user to change it without redeploying the code.
 	 *
@@ -104,7 +104,7 @@ public class ConstantHandler {
 	}
 
 	/**
-	 * This method writes a {@link string} constant to the <a href=
+	 * This method writes a {@link String} constant to the <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/Preferences.html">Prefrences</a>,
 	 * allowing the user to change it without redeploying the code.
 	 *
