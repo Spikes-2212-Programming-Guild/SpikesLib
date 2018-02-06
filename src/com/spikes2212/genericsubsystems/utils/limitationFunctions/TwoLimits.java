@@ -33,9 +33,9 @@ public class TwoLimits implements Function<Double, Boolean> {
 	}
 
 	/**
-	 * This method checks if the subsystem can move.<br>
-	 * If given a positive speed - it checks if the max limit is reached.<br>
-	 * If a negative speed is given - it checks if the min limit is reached.
+	 * This method checks if the basicSubsystem can move.<br>
+	 * When given a positive speed - it checks if the max limit is reached.<br>
+	 * When a negative speed is given - it checks if the min limit is reached.
 	 * 
 	 * @param speed
 	 *            The speed the {@link BasicSubsystem} tries to move at.
