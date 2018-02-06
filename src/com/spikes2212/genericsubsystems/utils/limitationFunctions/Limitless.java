@@ -5,7 +5,7 @@ import java.util.function.Function;
 import com.spikes2212.genericsubsystems.BasicSubsystem;
 
 /**
- * This is a {@link Function} that always returns true. This is
+ * This is a {@link Function} from Double to Bollean that always returns true. This is
  * for the constructor of a {@link BasicSubsystem} with no limits.
  * 
  * @author Omri "Riki" Cohen

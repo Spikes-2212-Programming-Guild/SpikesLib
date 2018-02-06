@@ -6,8 +6,8 @@ import java.util.function.Supplier;
 import com.spikes2212.genericsubsystems.BasicSubsystem;
 
 /**
- * This is a {@link Function} from double to boolean. This is for the
- * constructor a {@link BasicSubsystem} that moves between two given limits.
+ * This is a {@link Function} from Double to Boolean. This is for the
+ * constructor of a {@link BasicSubsystem} that moves between two given limits.
  * 
  * @author Omri "Riki" Cohen
  *
