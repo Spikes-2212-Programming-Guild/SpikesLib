@@ -13,15 +13,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * This command moves a {@link TankDrivetrain} using wpilib's <a href=
  * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>.
- * It also waits a specified amount of time after the error is
- * within the given tolerance before stopping the PID loop to make sure the
+ * It also waits a specified amount of time after the error is within the given
+ * tolerance before stopping the PID loop to make sure the
  * {@link TankDrivetrain} doesn't go past the setpoint.
  *
  * <br>
  * <br>
- * This command will try to move {@link TankDrivetrain} until it reaches the latest value
- * supplied by the given setpoint. The setpoint should use values using the same units as
- * the <a href=
+ * This command will try to move {@link TankDrivetrain} until it reaches the
+ * latest value supplied by the given setpoint. The setpoint should use values
+ * using the same units as the <a href=
  * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>.
  *
  * @author Omri "Riki" Cohen
@@ -46,7 +46,7 @@ public class DriveTankWithPID extends Command {
 	protected final PIDSource rightSource;
 
 	/**
-	 * This constructs a new {@link DriveTankWithPID} using <a href=
+	 * This constructs a new {@link DriveTankWithPID} command using <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources<a>
 	 * and {@link Supplier}s for setpoints for each side of the drivetrain, the
 	 * {@link PIDSettings} for command's PID loop, and it's tolerance for error.
@@ -56,16 +56,13 @@ public class DriveTankWithPID extends Command {
 	 * @param leftSource
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 *            this command uses to get feedback for the left side's PID
-	 *            Loop.
+	 *            this command uses to get feedback for the left side's PID Loop.
 	 * @param rightSource
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 *            this command uses to get feedback for the right side's PID
-	 *            Loop.
+	 *            this command uses to get feedback for the right side's PID Loop.
 	 * @param leftSetpoint
-	 *            a supplier supplying the target point of this command's left
-	 *            side.
+	 *            a supplier supplying the target point of this command's left side.
 	 * @param rightSetpoint
 	 *            a supplier supplying the target point of this command's right
 	 *            side.
@@ -87,23 +84,21 @@ public class DriveTankWithPID extends Command {
 	}
 
 	/**
-	 * This constructs a new {@link DriveTankWithPID} using <a href=
+	 * This constructs a new {@link DriveTankWithPID} command using <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources<a>
-	 * and setpoints for each side of the drivetrain, the {@link PIDSettings}
-	 * for command's PID loop, and it's tolerance for error.
+	 * and setpoints for each side of the drivetrain, the {@link PIDSettings} for
+	 * command's PID loop, and it's tolerance for error.
 	 *
 	 * @param drivetrain
 	 *            the {@link TankDrivetrain} this command opperates on
 	 * @param leftSource
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 *            this command uses to get feedback for the left side's PID
-	 *            Loop.
+	 *            this command uses to get feedback for the left side's PID Loop.
 	 * @param rightSource
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 *            this command uses to get feedback for the right side's PID
-	 *            Loop.
+	 *            this command uses to get feedback for the right side's PID Loop.
 	 * @param leftSetpoint
 	 *            the target point of this command's left side.
 	 * @param rightSetpoint
@@ -130,13 +125,11 @@ public class DriveTankWithPID extends Command {
 	 * @param leftSource
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 *            this command uses to get feedback for the left side's PID
-	 *            Loop.
+	 *            this command uses to get feedback for the left side's PID Loop.
 	 * @param rightSource
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 *            this command uses to get feedback for the right side's PID
-	 *            Loop.
+	 *            this command uses to get feedback for the right side's PID Loop.
 	 * @param setpoint
 	 *            a supplier supplying the target point of this command.
 	 * @param PIDSettings
@@ -161,13 +154,11 @@ public class DriveTankWithPID extends Command {
 	 * @param leftSource
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 *            this command uses to get feedback for the left side's PID
-	 *            Loop.
+	 *            this command uses to get feedback for the left side's PID Loop.
 	 * @param rightSource
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 *            this command uses to get feedback for the right side's PID
-	 *            Loop.
+	 *            this command uses to get feedback for the right side's PID Loop.
 	 * @param setpoint
 	 *            the target point of this command.s
 	 * @param PIDSettings
@@ -197,15 +188,14 @@ public class DriveTankWithPID extends Command {
 	 * 
 	 * <br>
 	 * <br>
-	 * This tolerance defines when this PID loop ends: this command will end
-	 * after the difference between the setpoint and the current position is
-	 * within the tolerance for the amount of time specified by
-	 * {@link #setWaitTime(double)}.
+	 * This tolerance defines when this PID loop ends: this command will end after
+	 * the difference between the setpoint and the current position is within the
+	 * tolerance for the amount of time specified by {@link #setWaitTime(double)}.
 	 * 
 	 * <br>
 	 * <br>
-	 * <b>Warning:</b> If tolerance is set to 0 and the wait time is not 0, this
-	 * PID loop will never end unless you cancel it.
+	 * <b>Warning:</b> If tolerance is set to 0 and the wait time is not 0, this PID
+	 * loop will never end unless you cancel it.
 	 *
 	 * @param tolerance
 	 *            the tolerance in the same units as the {@link #source}.
@@ -218,8 +208,8 @@ public class DriveTankWithPID extends Command {
 	}
 
 	/**
-	 * Sets the time this command will wait while within tolerance of the
-	 * setpoint before ending.
+	 * Sets the time this command will wait while within tolerance of the setpoint
+	 * before ending.
 	 * 
 	 * <br>
 	 * <br>
