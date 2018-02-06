@@ -149,7 +149,7 @@ public class DashBoardController {
 	 * <br><br>
 	 * 
 	 * This method evokes the {@link Supplier#get()} method for each supplier added
-	 * to this object, and then writes that value to the <a href=
+	 * to this DashboardController instance, and then writes that value to the <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html">SmartDashboard</a>
 	 * under the name given when that supplier was added.
 	 */
