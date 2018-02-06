@@ -25,12 +25,12 @@ public class MonitoredDriveHolonomic extends DriveHolonomic {
 
 	/**
 	 * This constructs a new {@link DriveHolonomic} command that moves the given
-	 * {@link HolonomicDrivetrain} acording to speed values from Double
+	 * {@link HolonomicDrivetrain} according to speed values from Double
 	 * {@link Supplier}s for X and Y axes.<br>
-	 * Positive values move the axis forwards.
+	 * Positive values move the {@link HolonomicDrivetrain} forwards.
 	 *
 	 * @param drivetrain
-	 *            the holonomic drivetrain this command opperates on.
+	 *            the holonomic drivetrain this command operates on.
 	 * @param speedY
 	 *            the double {@link Supplier} supplying the speed to move in the
 	 *            Y axis with.
