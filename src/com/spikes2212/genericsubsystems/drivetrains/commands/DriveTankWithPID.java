@@ -72,7 +72,7 @@ public class DriveTankWithPID extends Command {
 	 *            a supplier supplying the target point of this command's right
 	 *            side.
 	 *             <p>
- 	 *            This command will try to move the drivetrain's left side until it
+ 	 *            This command will try to move the drivetrain's right side until it
  	 *            reaches the latest value supplied by setpoint. setpoint should
  	 *            be using the same units as rightSource.
  	 *            </p>
@@ -111,8 +111,18 @@ public class DriveTankWithPID extends Command {
 	 *            this command uses to get feedback for the right side's PID Loop.
 	 * @param leftSetpoint
 	 *            the target point of this command's left side.
+	 *            <p>
+ 	 *            This command will try to move the drivetrain's left side until it
+ 	 *            reaches the latest value supplied by setpoint. setpoint should
+ 	 *            be using the same units as leftSource.
+ 	 *            </p>
 	 * @param rightSetpoint
 	 *            the target point of this command's right side.
+	 *             <p>
+ 	 *            This command will try to move the drivetrain's right side until it
+ 	 *            reaches the latest value supplied by setpoint. setpoint should
+ 	 *            be using the same units as rightSource.
+ 	 *            </p>
 	 * @param PIDSettings
 	 *            the {@link PIDSettings} this command's PIDController needs.
 	 * 
@@ -170,7 +180,12 @@ public class DriveTankWithPID extends Command {
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
 	 *            this command uses to get feedback for the right side's PID Loop.
 	 * @param setpoint
-	 *            the target point of this command.s
+	 *            the target point of this command.
+	 *             <p>
+ 	 *            This command will try to move the drivetrain until it
+ 	 *            reaches the latest value supplied by setpoint. setpoint should
+ 	 *            be using the same units as rightSource.
+ 	 *            </p>
 	 * @param PIDSettings
 	 *            the {@link PIDSettings} this command's PIDController needs.
 	 * 

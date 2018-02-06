@@ -24,11 +24,11 @@ public class MonitoredDriveArcade extends DriveArcade {
 
 	/**
 	 * This constructs a new {@link MonitoredDriveArcade} command that moves the given
-	 * {@link TankDrivetrain} acording to speed values from Double
-	 * {@link Supplier}s for linear and rotational movments.
+	 * {@link TankDrivetrain} according to speed values from Double
+	 * {@link Supplier}s for linear and rotational movements.
 	 *
 	 * @param drivetrain
-	 *            the tank drivetrain this command opperates on.
+	 *            the tank drivetrain this command operates on.
 	 * @param moveValueSupplier
 	 *            the double {@link Supplier} supplying the speed to move
 	 *            forward with. Positive values go forwards.
@@ -46,10 +46,10 @@ public class MonitoredDriveArcade extends DriveArcade {
 
 	/**
 	 * This constructs a new {@link DriveArcade} command that moves the given
-	 * {@link TankDrivetrain} acording to constant linear and rotational speeds.
+	 * {@link TankDrivetrain} according to constant linear and rotational speeds.
 	 *
 	 * @param drivetrain
-	 *            the tank drivetrain this command opperates on.
+	 *            the tank drivetrain this command operates on.
 	 * @param moveValue
 	 *            the speed to move straight with. Positive values go forwards.
 	 * @param rotateValue
