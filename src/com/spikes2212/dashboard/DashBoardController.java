@@ -19,19 +19,19 @@ public class DashBoardController {
 	
 	/**
 	 * A {@link Map} to contain all {@link String} values to be displayed on the
-	 * {@code SmartDashBoard}. This map gives a String to each Supplier as a key to identify it
+	 * {@code SmartDashBoard}. This map assigns a String to each Supplier as a key to identify it
 	 */
     private Map<String, Supplier<String>> stringFields;
     
     /**
 	 * A {@link Map} to contain all {@link String} values to be displayed on the
-	 * {@code SmartDashBoard}. This map gives a String to each Supplier as a key to identify it
+	 * {@code SmartDashBoard}. This map assigns a double to each Supplier as a key to identify it
 	 */
     private Map<String, Supplier<Double>> doubleFields;
     
     /**
 	 * A {@link Map} to contain all {@link String} values to be displayed on the
-	 * {@code SmartDashBoard}. This map gives a String to each Supplier as a key to identify it
+	 * {@code SmartDashBoard}. This map assigns a boolean to each Supplier as a key to identify it
 	 */
     private Map<String, Supplier<Boolean>> booleanFields;
 
