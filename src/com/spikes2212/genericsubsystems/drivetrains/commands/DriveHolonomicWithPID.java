@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * <br>
  * <br>
  * This command will try to move the {@link HolonomicDrivetrain} until it reaches the latest value
- * supplied by setpoint. The setpoint should use values using the same units as
+ * supplied by the given setpoint. The setpoint should use values using the same units as
  * the <a href=
  * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>.
  *
