@@ -13,15 +13,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * This command moves a {@link BasicSubsystem} using wpilib's <a href=
  * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>.
- * It also waits a specified amount of time after the error is
- * within the given tolerance before stopping the PID loop to make sure the
+ * It also waits a specified amount of time after the error is within the given
+ * tolerance before stopping the PID loop to make sure the
  * {@link BasicSubsystem} doesn't go past the setpoint.
  * 
  * <br>
  * <br>
- * This command will try to move the basicSubsystem until it reaches the latest value
- * supplied by setpoint. The setpoint should use values using the same units as
- * the <a href=
+ * This command will try to move the basicSubsystem until it reaches the latest
+ * value supplied by setpoint. The setpoint should use values using the same
+ * units as the <a href=
  * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>.
  *
  * @author Omri "Riki" and Itamar Rivkind
@@ -47,19 +47,24 @@ public class MoveBasicSubsystemWithPID extends Command {
 
 	/**
 	 * This constructs a new {@link MoveBasicSubsystemWithPID} using a <a href=
-	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 * given by {@link BasicSubsystem#getPIDSource()}, a setpoint, the PID
-	 * coefficients this command's PID loop should have, and the tolerance for
-	 * error.
+	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>,
+	 * a setpoint, the PID coefficients this command's PID loop should have, and the
+	 * tolerance for error.
 	 *
 	 * @param basicSubsystem
-	 *            the {@link BasicSubsystem} this command should move.
+	 *            the {@link BasicSubsystem} this command operates on.
 	 * @param source
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
 	 *            this command uses to get feedback for the PID Loop.
 	 * @param setpoint
 	 *            a supplier supplying the target point of this command.
+	 *            
+	 *            <p>
+ 	 *            This command will try to move basicSubsystem until it reaches
+ 	 *            the latest value supplied by setpoint. setpoint should supply
+ 	 *            values using the same units as source.
+ 	 *            </p>
 	 * @param PIDSettings
 	 *            the {@link PIDSettings} this command's PIDController needs.
 	 * 
@@ -100,7 +105,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 			PIDSettings PIDSettings) {
 		this(BasicSubsystem, source, () -> setpoint, PIDSettings);
 	}
-	
+
 	/**
 	 * Sets the time this command will wait while within tolerance of the setpoint
 	 * before ending.
