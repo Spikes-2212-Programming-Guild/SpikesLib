@@ -15,18 +15,18 @@ public class DriveHolonomic extends Command {
 
 	/**
 	 * This constructs a new {@link DriveHolonomic} command that moves the given
-	 * {@link HolonomicDrivetrain} acording to constant X and Y axes speeds.<br>
-	 * Positive values move the axis forwards.
+	 * {@link HolonomicDrivetrain} according to constant X and Y axes speeds.<br>
+	 * Positive values move the drivetrain forward on the corresponding axis.
 	 *
 	 * @param drivetrain
-	 *            the holonomic drivetrain this command opperates on.
+	 *            the holonomic drivetrain this command operates on.
 	 * @param speedY
 	 *            the speed to move in the Y axis with.
 	 * @param speedX
 	 *            the speed to move in the X axis with.
 	 */
 	public DriveHolonomic(HolonomicDrivetrain drivetrain, double speedY, double speedX) {
-		// Use requires() here to declare subsystem dependencieslier
+		// Use requires() here to declare subsystem dependencies lier
 		// eg. requires(chassis);
 		this(drivetrain, () -> speedY, () -> speedX);
 
@@ -34,12 +34,12 @@ public class DriveHolonomic extends Command {
 
 	/**
 	 * This constructs a new {@link DriveHolonomic} command that moves the given
-	 * {@link HolonomicDrivetrain} acording to speed values from Double {@link Supplier}s
+	 * {@link HolonomicDrivetrain} according to speed values from Double {@link Supplier}s
 	 * for X and Y axes.<br>
-	 * Positive values move the axis forwards.
+	 * Positive values move the drivetrain forward on the given axis.
 	 *
 	 * @param drivetrain
-	 *            the holonomic drivetrain this command opperates on.
+	 *            the holonomic drivetrain this command operates on.
 	 * @param speedY
 	 *            the double {@link Supplier} supplying the speed to move in the Y
 	 *            axis with.
