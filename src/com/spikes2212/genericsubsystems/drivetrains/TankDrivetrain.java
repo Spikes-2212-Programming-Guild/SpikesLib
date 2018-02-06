@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * This class represents a type of Drivetrain that its left an right sides are
+ * This class represents a type of Drivetrain that its left and right sides are
  * controlled independently, allowing it to move by giving each side a speed
  * value separately.
  * 
