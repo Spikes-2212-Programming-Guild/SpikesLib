@@ -77,7 +77,7 @@ public class CamerasHandler {
 	 * with that port in the {@link CamerasHandler}, does nothing.
 	 *
 	 * @param port
-	 *            the port of the said camera
+	 *            the port of the wanted camera
 	 * @param exposure
 	 *            the exposure this camera should have, in percentage
 	 * 
