@@ -40,7 +40,7 @@ public class ConstantHandler {
 	private static Map<String, String> stringMap = new HashMap<String, String>();
 
 	/**
-	 * This function writes a {@link double} constant to the <a href=
+	 * This method writes a {@link double} constant to the <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/Preferences.html">Prefrences</a>,
 	 * allowing the user to change it without redeploying the code.
 	 *
@@ -72,7 +72,7 @@ public class ConstantHandler {
 	}
 
 	/**
-	 * This function writes a {@link int} constant to the <a href=
+	 * This method writes a {@link int} constant to the <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/Preferences.html">Prefrences</a>,
 	 * allowing the user to change it without redeploying the code.
 	 *
@@ -104,7 +104,7 @@ public class ConstantHandler {
 	}
 
 	/**
-	 * This function writes a {@link string} constant to the <a href=
+	 * This method writes a {@link string} constant to the <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/Preferences.html">Prefrences</a>,
 	 * allowing the user to change it without redeploying the code.
 	 *
@@ -136,7 +136,7 @@ public class ConstantHandler {
 	}
 
 	/**
-	 * This function sets the Preferences' values with the original ones stored
+	 * This method sets the Preferences' values with the original ones stored
 	 * in the Maps.
 	 */
 	public static void reset() {
