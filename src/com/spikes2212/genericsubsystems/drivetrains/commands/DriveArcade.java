@@ -55,33 +55,12 @@ public class DriveArcade extends Command {
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-
 	}
 
-	@Override
-	protected void execute() {
-		double leftSpeed, rightSpeed;
-		double moveValue = moveValueSupplier.get();
-		double rotateValue = rotateValueSupplier.get();
-		if (moveValue > 0.0) {
-			if (rotateValue > 0.0) {
-				leftSpeed = moveValue - rotateValue;
-				rightSpeed = Math.max(moveValue, rotateValue);
-			} else {
-				leftSpeed = Math.max(moveValue, -rotateValue);
-				rightSpeed = moveValue + rotateValue;
-			}
-		} else {
-			if (rotateValue > 0.0) {
-				leftSpeed = -Math.max(-moveValue, rotateValue);
-				rightSpeed = moveValue + rotateValue;
-			} else {
-				leftSpeed = moveValue - rotateValue;
-				rightSpeed = -Math.max(-moveValue, -rotateValue);
-			}
-		}
-		tankDrivetrain.tankDrive(leftSpeed, rightSpeed);
-	}
+    @Override
+    protected void execute() {
+        tankDrivetrain.arcadeDrive(moveValueSupplier.get(), rotateValueSupplier.get());
+    }
 
 	@Override
 	protected boolean isFinished() {
