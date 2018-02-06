@@ -86,7 +86,7 @@ public class TankDrivetrain extends Subsystem {
 
 	/**
 	 * Sets the default
-	 * <a href="command">http://first.wpi.edu/FRC/roborio/release/docs/java/</a>).
+	 * <a href="http://first.wpi.edu/FRC/roborio/release/docs/java/">command</a>).
 	 * If this is not called or is called with null, then there will be no default
 	 * command for the subsystem.
 	 *
