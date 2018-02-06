@@ -7,7 +7,7 @@ import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * This command moves a {@link TankDrivetrain} using left and right speeds.
+ * This command moves a {@link TankDrivetrain} using speeds supplied to the left and the right sides independently.
  */
 public class DriveTank extends Command {
 
