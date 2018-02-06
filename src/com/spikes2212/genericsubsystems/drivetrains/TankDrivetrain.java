@@ -39,9 +39,11 @@ public class TankDrivetrain extends Subsystem {
 	 * Moves both sides of this drivetrain by the given speeds for each side.
 	 * 
 	 * @param speedLeft
-	 *            the speed to set to the left side. Positive values move this side forward.
+	 *            the speed to set to the left side. Positive values move this side
+	 *            forward.
 	 * @param speedRight
-	 *            the speed to set to the right side. Positive values move this side forward.
+	 *            the speed to set to the right side. Positive values move this side
+	 *            forward.
 	 */
 	public void tankDrive(double speedLeft, double speedRight) {
 		setLeft(speedLeft);
@@ -52,7 +54,8 @@ public class TankDrivetrain extends Subsystem {
 	 * Moves the left side of this drivetrain by a given speed.
 	 *
 	 * @param speedLeft
-	 *            the speed to set to the left side. Positive values move this side forward.
+	 *            the speed to set to the left side. Positive values move this side
+	 *            forward.
 	 */
 	public void setLeft(double speedLeft) {
 		controlLeft.accept(speedLeft);
@@ -62,7 +65,8 @@ public class TankDrivetrain extends Subsystem {
 	 * Moves the right side of this drivetrain with a given speed.
 	 *
 	 * @param speedRight
-	 *            the speed to set to the right side. Positive values move this side forward.
+	 *            the speed to set to the right side. Positive values move this side
+	 *            forward.
 	 */
 	public void setRight(double speedRight) {
 		controlRight.accept(speedRight);
@@ -81,8 +85,10 @@ public class TankDrivetrain extends Subsystem {
 	}
 
 	/**
-	 * Sets the default command. If this is not called or is called with null, then
-	 * there will be no default command for the subsystem.
+	 * Sets the default command (See <a href="wpilib's
+	 * command">http://first.wpi.edu/FRC/roborio/release/docs/java/</a>). If this is
+	 * not called or is called with null, then there will be no default command for
+	 * the subsystem.
 	 *
 	 * @param defaultCommand
 	 *            the default command (or null if there should be none)
