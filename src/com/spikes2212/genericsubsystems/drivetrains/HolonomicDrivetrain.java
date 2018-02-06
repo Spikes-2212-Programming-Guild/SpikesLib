@@ -53,7 +53,7 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 	}
 
 	/**
-	 * Moves the Y axis of this drivetrain with a given speed.
+	 * Moves the drivetrain on the Y axis at a given speed.
 	 *
 	 * @param speedY
 	 *            the speed to set to the Y axis. Positive values move this axis
