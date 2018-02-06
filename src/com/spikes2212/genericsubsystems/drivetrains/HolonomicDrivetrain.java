@@ -3,13 +3,14 @@ package com.spikes2212.genericsubsystems.drivetrains;
 import java.util.function.Consumer;
 
 /**
- * This class represents a type of Drivetrain with a X (left/right) and Y
- * (forwards/backwards) axises which can be controlled independently, allowing
- * it to move by giving each axis a speed value separately. <br>
+ * This class represents a type of Drivetrain with an X (left/right) and Y
+ * (forwards/backwards) axes which can be controlled independently, allowing it
+ * to move by giving each axis a speed value separately. <br>
  * <br>
  * 
  * This Drivetrain extends {@link TankDrivetrain}, which means it can also move
- * by controlling the left and right sides.
+ * by controlling the left and right sides of the drivetrain using driveTank, or by
+ * controlling its linear and rotational speeds using driveArcade.
  * 
  * @see TankDrivetrain
  */
@@ -44,7 +45,8 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 	 * Moves the X axis of this drivetrain with a given speed.
 	 *
 	 * @param speedX
-	 *            the speed to set to the X axis. Positive values move this axis forward.
+	 *            the speed to set to the X axis. Positive values move this axis
+	 *            forward.
 	 */
 	public void setX(double speedX) {
 		controlX.accept(speedX);
@@ -54,7 +56,8 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 	 * Moves the Y axis of this drivetrain with a given speed.
 	 *
 	 * @param speedY
-	 *            the speed to set to the Y axis. Positive values move this axis forward.
+	 *            the speed to set to the Y axis. Positive values move this axis
+	 *            forward.
 	 */
 	public void setY(double speedY) {
 		controlY.accept(speedY);
@@ -64,11 +67,13 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 	 * Moves the drivetrain on both X and Y axises using given speeds for each axis.
 	 * 
 	 * @param speedY
-	 *            the speed to set to the Y axis. Positive values move this axis forward.
+	 *            the speed to set to the Y axis. Positive values move this axis
+	 *            forward.
 	 * @param speedX
-	 *            the speed to set to the X axis. Positive values move this axis forward.
+	 *            the speed to set to the X axis. Positive values move this axis
+	 *            forward.
 	 */
-	public void holonomicDrive(double speedY, double speedX) { // y-forward/backward  x-left/right 
+	public void holonomicDrive(double speedY, double speedX) { // y-forward/backward x-left/right
 		setX(speedX);
 		setY(speedY);
 	}
