@@ -10,10 +10,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * controlled independently, allowing it to move by giving each side a speed
  * value separately.
  * 
- * It can move forward by giving both its sides an equal speed or turn by giving
- * them either two different positive speeds to move forward and turn,
- * differently signed speeds to spin in place or two negative speeds to move
- * backwards and spin
+ * It can move forwards/backwards by giving both its sides an equal speed or
+ * turn by giving the sides different speeds
  */
 public class TankDrivetrain extends Subsystem {
 
