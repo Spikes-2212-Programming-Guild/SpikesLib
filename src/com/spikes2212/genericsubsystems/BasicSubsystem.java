@@ -16,13 +16,13 @@ public class BasicSubsystem extends Subsystem {
 
 	/**
 	 * This function, when applied to a certain double speed returns true if
--	 * this subsystem can move at that speed
-+	 * A {@link Function} to store the limits of the subsystem's speed.
+	 * this subsystem can move at that speed
+	 * A {@link Function} to store the limits of the subsystem's speed.
 	 */
 	public final Function<Double, Boolean> canMove;
 	
 	/**
-	 * A {@link Consumer} to represent the moving component's speed.
+	 * A {@link Consumer} to represent the movement of the basicSubsystem.
 	 */
 	protected final Consumer<Double> speedConsumer;
 	private double currentSpeed = 0;
@@ -42,7 +42,7 @@ public class BasicSubsystem extends Subsystem {
 	}
 
 	/**
-	 * Moves this subsystem with the given speed, while it is within the limits
+	 * Moves this basicSubsystem with the given speed, as long as it is within the limits
 	 * specifed when this {@link BasicSubsystem} was constructed.
 	 *
 	 * @param speed
