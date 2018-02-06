@@ -7,7 +7,8 @@ import com.spikes2212.utils.VoltageMonitor;
 
 /**
  * This command works similarly to {@link MoveBasicSubsystem}, only it scales
- * down the speed according to the current voltage.
+ * down the speed given to the {@link BasicSubsystem} according to the current
+ * voltage.
  * 
  * <br>
  * <br>
