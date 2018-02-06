@@ -52,7 +52,7 @@ public class TankDrivetrain extends Subsystem {
 	 * Moves the left side of this drivetrain by a given speed.
 	 *
 	 * @param speedLeft
-	 *            the speed to set to the left side. Positive values move forward.
+	 *            the speed to set to the left side. Positive values move this side forward.
 	 */
 	public void setLeft(double speedLeft) {
 		controlLeft.accept(speedLeft);
@@ -62,7 +62,7 @@ public class TankDrivetrain extends Subsystem {
 	 * Moves the right side of this drivetrain with a given speed.
 	 *
 	 * @param speedRight
-	 *            the speed to set to the right side. Positive values move forward.
+	 *            the speed to set to the right side. Positive values move this side forward.
 	 */
 	public void setRight(double speedRight) {
 		controlRight.accept(speedRight);
