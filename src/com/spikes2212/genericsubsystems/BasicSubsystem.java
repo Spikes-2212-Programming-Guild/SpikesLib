@@ -8,25 +8,27 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * This class represents a generic subsystem that moves within a limitation, or
- * without one, with given speed limits.
+ * without one.
  *
  * @author Omri "Riki" Cohen
  */
 public class BasicSubsystem extends Subsystem {
 
 	/**
-	 * A {@link Function} to store the limits of the subsystem's speed.
+	 * This function, when applied to a certain double speed returns true if
+-	 * this subsystem can move at that speed
++	 * A {@link Function} to store the limits of the subsystem's speed.
 	 */
 	public final Function<Double, Boolean> canMove;
 	
 	/**
-	 * A {@link Consumer} to represent the moving component.
+	 * A {@link Consumer} to represent the moving component's speed.
 	 */
 	protected final Consumer<Double> speedConsumer;
 	private double currentSpeed = 0;
 
 	/**
-	 * Constructor that recieves a {@link Consumer} for speed and a {@link Function}
+	 * Constructor that recieves a {@link Consumer} for the movement component and a {@link Function}
 	 * that represents the limits of the subsystem's speed.
 	 * 
 	 * @param speedConsumer
@@ -40,7 +42,7 @@ public class BasicSubsystem extends Subsystem {
 	}
 
 	/**
-	 * Moves this subsystem with the given speed, assuming it is within the limits
+	 * Moves this subsystem with the given speed, while it is within the limits
 	 * specifed when this {@link BasicSubsystem} was constructed.
 	 *
 	 * @param speed
@@ -74,7 +76,7 @@ public class BasicSubsystem extends Subsystem {
 	}
 
 	/**
-	 * Sets the default command. If this is not called, or is called with null, then
+	 * @see Sets the default command. If this is not called, or is called with null, then
 	 * there will be no default command for the subsystem.
 	 */
 	public void setDefaultCommand(Command defaultCommand) {
