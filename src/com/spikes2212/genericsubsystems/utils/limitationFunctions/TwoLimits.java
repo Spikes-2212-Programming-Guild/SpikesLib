@@ -6,8 +6,9 @@ import java.util.function.Supplier;
 import com.spikes2212.genericsubsystems.BasicSubsystem;
 
 /**
- * This is a {@link Function} from Double to Boolean. This is for the
- * constructor of a {@link BasicSubsystem} that moves between two given limits.
+ * This is a {@link Function} from Double to Boolean. An
+ * instance of this class can be used as the canMove condition in the
+ * constructor of a  {@link BasicSubsystem} that moves between two given limits.
  * 
  * @author Omri "Riki" Cohen
  *

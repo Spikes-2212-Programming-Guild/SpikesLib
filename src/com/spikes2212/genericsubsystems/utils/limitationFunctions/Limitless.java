@@ -5,8 +5,10 @@ import java.util.function.Function;
 import com.spikes2212.genericsubsystems.BasicSubsystem;
 
 /**
- * This is a {@link Function} from Double to Boolean that always returns true. This is
- * for the constructor of a {@link BasicSubsystem} with no limits.
+ * This is a {@link Function} from Double to Boolean that always returns true.An
+ * instance of this class can be used as the canMove condition in the
+ * constructor of a {@link BasicSubsystem} with no limits.
+ * 
  * 
  * @author Omri "Riki" Cohen
  *
