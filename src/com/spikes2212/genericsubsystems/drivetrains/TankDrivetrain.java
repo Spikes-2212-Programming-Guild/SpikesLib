@@ -6,9 +6,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * This class represents a type of Drivetrain which left and right sides are
+ * This class represents a type of Drivetrain that its left an right sides are
  * controlled independently, allowing it to move by giving each side a speed
  * value separately.
+ * 
+ * It can move forward by giving both its sides an equal speed or turn by giving
+ * them either two different positive speeds to move forward and turn,
+ * differently signed speeds to spin in place or two negative speeds to move
+ * backwards and spin
  */
 public class TankDrivetrain extends Subsystem {
 
@@ -64,8 +69,8 @@ public class TankDrivetrain extends Subsystem {
 	}
 
 	/**
-	 * Stops this drivetrain.
-	 * <br><br>
+	 * Stops this drivetrain. <br>
+	 * <br>
 	 * 
 	 * This sets the speed for both sides to 0. If your drivetrain doesn't stop
 	 * using this method, override it.
