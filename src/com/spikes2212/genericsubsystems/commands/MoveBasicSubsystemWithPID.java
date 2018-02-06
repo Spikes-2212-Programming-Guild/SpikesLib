@@ -34,18 +34,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class MoveBasicSubsystemWithPID extends Command {
 
 	protected final BasicSubsystem basicSubsystem;
-	
-	/**
-	 * The target distance. Units according to {@link #source}.
-	 */
 	protected final PIDSettings PIDSettings;
-	
+	protected final Supplier<Double> setpoint;
 	/**
 	 * The <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
 	 * this subsystem uses, given by {@link BasicSubsystem#getPIDSource()}.
 	 */
-	protected final Supplier<Double> setpoint;
 	protected final PIDSource source;
 	protected PIDController movmentControl;
 	protected double lastTimeNotOnTarget;
