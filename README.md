@@ -22,3 +22,5 @@ combines all these concepts into few simple classes which can be used for any ro
 
 
 <h2> <a name = 'contribute'>Contributing and Developing SpikesLib </a> </h2>
+
+https://guides.github.com/features/mastering-markdown/
