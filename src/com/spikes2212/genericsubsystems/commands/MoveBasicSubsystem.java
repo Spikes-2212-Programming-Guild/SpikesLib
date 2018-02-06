@@ -21,7 +21,7 @@ public class MoveBasicSubsystem extends Command {
 
 	/**
 	 * This constructs a new {@link MoveBasicSubsystem} command using the
-	 * {@link BasicSubsystem} this command runs on and a supplier supplying the
+	 * {@link BasicSubsystem} this command operates on and a supplier supplying the
 	 * speed the {@link BasicSubsystem} should move with.
 	 *
 	 * @param basicSubsystem
