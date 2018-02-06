@@ -28,8 +28,7 @@ public class MoveBasicSubsystem extends Command {
 	 *            the {@link BasicSubsystem} this command should move.
 	 * @param speedSupplier
 	 *            a Double {@link Supplier} supplying the speed this subsystem
-	 *            should be moved with. Must only supply values between -1 and
-	 *            1.
+	 *            should be moved with. Must only supply values between -1 and 1.
 	 */
 	public MoveBasicSubsystem(BasicSubsystem basicSubsystem, Supplier<Double> speedSupplier) {
 		requires(basicSubsystem);
@@ -62,9 +61,10 @@ public class MoveBasicSubsystem extends Command {
 	}
 
 	/**
-	 * Checks if the subsystem can move with the current speed according to the
-	 * limits given in the {@link BasicSubsystem} constructor, or if the command
-	 * has timed out.
+	 * Checks if the subsystem can move using the function canMove that is given to
+	 * the {@link BasicSubsystem} in the Constructor with the current speed
+	 * according to the limits given in the {@link BasicSubsystem} constructor, or
+	 * if the command has timed out.
 	 * 
 	 * @return Returns true if this command should stop.
 	 * 
