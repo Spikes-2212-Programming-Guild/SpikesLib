@@ -17,13 +17,13 @@ import com.spikes2212.utils.VoltageMonitor;
  * default scaling method and values in {@link VoltageMonitor}.
  *
  * @author Omri "Riki" Cohen
- * @see DriveTank
+ * @see DriveArcade
  * @see VoltageMonitor
  */
 public class MonitoredDriveArcade extends DriveArcade {
 
 	/**
-	 * This constructs a new {@link DriveArcade} command that moves the given
+	 * This constructs a new {@link MonitoredDriveArcade} command that moves the given
 	 * {@link TankDrivetrain} acording to speed values from Double
 	 * {@link Supplier}s for linear and rotational movments.
 	 *
