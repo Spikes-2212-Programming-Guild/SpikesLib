@@ -5,9 +5,9 @@ import java.util.function.Supplier;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 /**
- * This class is ment to decrease the posibility of power drops while running by
- * decreasing the engine power according the the current voltage.<br>
- * Voltage is messured in Volts.
+ * This class is meant to decrease the possibility of power drops while running by
+ * decreasing the motor's power according the the current voltage.<br>
+ * Voltage is measured in Volts.
  * 
  * @author Noam "Mantin" Mantin
  * 
