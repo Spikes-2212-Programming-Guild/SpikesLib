@@ -13,13 +13,13 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * This command moves a {@link BasicSubsystem} using wpilib's <a href=
  * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>.
- * It also waits a specified amount of time after the {@link BasicSubsystem} is
- * within the given tolerance before stopping, to make sure the
+ * It also waits a specified amount of time after the error is
+ * within the given tolerance before stopping the PID loop to make sure the
  * {@link BasicSubsystem} doesn't go past the setpoint.
  * 
  * <br>
  * <br>
- * This command will try to move the subsystem until it reaches the latest value
+ * This command will try to move the basicSubsystem until it reaches the latest value
  * supplied by setpoint. The setpoint should use values using the same units as
  * the <a href=
  * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>.
