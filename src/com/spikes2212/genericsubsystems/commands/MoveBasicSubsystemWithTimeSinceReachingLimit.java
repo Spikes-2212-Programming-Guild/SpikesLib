@@ -17,13 +17,13 @@ import edu.wpi.first.wpilibj.Timer;
 public class MoveBasicSubsystemWithTimeSinceReachingLimit extends MoveBasicSubsystem {
 
 	/**
-	 * The time the {@link BasicSubsystem} should keep trying to move anter
+	 * The time the {@link BasicSubsystem} should keep trying to move after
 	 * reaching its end point.
 	 */
 	protected double waitTime;
 
 	/**
-	 * The last time the {@link BasicSubsystem} has been on the wanted target.
+	 * The last time the {@link BasicSubsystem} has been on the wanted endState.
 	 */
 	protected double lastTimeAtEndState = 0;
 
