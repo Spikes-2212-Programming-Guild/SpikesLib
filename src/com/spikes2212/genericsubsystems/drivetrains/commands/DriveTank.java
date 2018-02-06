@@ -17,11 +17,11 @@ public class DriveTank extends Command {
 
 	/**
 	 * This constructs a new {@link DriveTank} command that moves the given
-	 * {@link TankDrivetrain} acording to constant left and right speeds.<br>
+	 * {@link TankDrivetrain} according to constant left side and right side speeds.<br>
 	 * Positive values move forwards.
 	 *
 	 * @param drivetrain
-	 *            the tank drivetrain this command opperates on.
+	 *            the tank drivetrain this command operates on.
 	 * @param leftSpeed
 	 *            the speed to move the left side with.
 	 * @param rightSpeed
