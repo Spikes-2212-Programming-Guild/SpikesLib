@@ -85,10 +85,10 @@ public class TankDrivetrain extends Subsystem {
 	}
 
 	/**
-	 * Sets the default command (See <a href="wpilib's
-	 * command">http://first.wpi.edu/FRC/roborio/release/docs/java/</a>). If this is
-	 * not called or is called with null, then there will be no default command for
-	 * the subsystem.
+	 * Sets the default
+	 * <a href="command">http://first.wpi.edu/FRC/roborio/release/docs/java/</a>).
+	 * If this is not called or is called with null, then there will be no default
+	 * command for the subsystem.
 	 *
 	 * @param defaultCommand
 	 *            the default command (or null if there should be none)
