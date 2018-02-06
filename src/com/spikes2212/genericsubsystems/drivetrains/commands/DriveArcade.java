@@ -7,7 +7,7 @@ import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * this command moves a TankDrivetrain by linear and rotational speeds, using
+ * this command moves a {@link TankDrivetrain} by linear and rotational speeds, using
  * the arcade control method written by WPILIB.
  */
 public class DriveArcade extends Command {
