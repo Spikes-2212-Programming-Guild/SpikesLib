@@ -52,8 +52,7 @@ public class PIDSettings {
 	 * difference between the setpoint and the current position is within the
 	 * tolerance for the amount of time specified by {@link #setWaitTime(double)}.
 	 *
-	 * @return The current tolerance. If tolerance is 0 and the WaitTime is not 0,
-	 *         this PID loop will never end, unless you cancel it.
+	 * @return The current tolerance.
 	 */
 	public double getTolerance() {
 		return tolerance;
@@ -69,8 +68,7 @@ public class PIDSettings {
 	 * tolerance for the amount of time specified by {@link #setWaitTime(double)}.
 	 *
 	 * @param tolerance
-	 *            the new tolerance to set. If tolerance is 0 and the WaitTime is
-	 *            not 0, this PID loop will never end, unless you cancel it.
+	 *            the new tolerance to set. 
 	 */
 	public void setTolerance(double tolerance) {
 		this.tolerance = tolerance;
