@@ -6,11 +6,13 @@ import java.util.function.Supplier;
 import com.spikes2212.genericsubsystems.BasicSubsystem;
 
 /**
- * This is a Function from double to boolean. This is for the constructor a
- * {@link BasicSubsystem} that moves between two limits.
+ * This is a {@link Function} from Double to Boolean. An
+ * instance of this class can be used as the canMove condition in the
+ * constructor of a  {@link BasicSubsystem} that moves between two given limits.
  * 
  * @author Omri "Riki" Cohen
  *
+ * @see Function
  */
 public class TwoLimits implements Function<Double, Boolean> {
 
@@ -32,13 +34,13 @@ public class TwoLimits implements Function<Double, Boolean> {
 	}
 
 	/**
-	 * This method checks if the subsystem can move. It gets a speed and checks if the max limit is pressed and if a positive
-	 * speed is given or if the min limit is pressed and if a negative speed is
-	 * given.
+	 * This method checks if the basicSubsystem can move.<br>
+	 * When given a positive speed - it checks if the max limit is reached.<br>
+	 * When a negative speed is given - it checks if the min limit is reached.
 	 * 
 	 * @param speed
 	 *            The speed the {@link BasicSubsystem} tries to move at.
-	 * @return true if the subsystem does not try to move out of the limits.
+	 * @return True if the subsystem does not try to move out of the limits.
 	 * 
 	 */
 	@Override

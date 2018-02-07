@@ -5,11 +5,14 @@ import java.util.function.Function;
 import com.spikes2212.genericsubsystems.BasicSubsystem;
 
 /**
- * This is a function from double to boolean that always returns true. This is
- * for the constructor of a {@link BasicSubsystem} with no limits.
+ * This is a {@link Function} from Double to Boolean that always returns true.An
+ * instance of this class can be used as the canMove condition in the
+ * constructor of a {@link BasicSubsystem} with no limits.
+ * 
  * 
  * @author Omri "Riki" Cohen
  *
+ * @see Function
  */
 public class Limitless implements Function<Double, Boolean> {
 
@@ -21,8 +24,7 @@ public class Limitless implements Function<Double, Boolean> {
 	}
 
 	/**
-	 * This method applies this function to a given double. For every speed returns
-	 * true.
+	 * This method applies this function to a given double. Always returns true.
 	 * 
 	 * @param speed
 	 *            the double this function get.

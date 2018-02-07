@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * This class represents a subsystem that moves with a limitation which depends
- * on the speed.
+ * This class represents a generic subsystem that moves within a limitation, or
+ * without one.
  *
  * @author Omri "Riki" Cohen
  */
@@ -17,16 +17,22 @@ public class BasicSubsystem extends Subsystem {
 	/**
 	 * This function, when applied to a certain double speed returns true if
 	 * this subsystem can move at that speed
+	 * A {@link Function} to store the limits of the subsystem's speed.
 	 */
 	public final Function<Double, Boolean> canMove;
+	
+	/**
+	 * A {@link Consumer} to represent the movement of the basicSubsystem.
+	 */
 	protected final Consumer<Double> speedConsumer;
 	private double currentSpeed = 0;
 
 	/**
-	 * this constructs a new {@link BasicSubsystem} subsystem.
+	 * Constructor that recieves a {@link Consumer} for the movement component and a {@link Function}
+	 * that represents the limits of the subsystem's speed.
 	 * 
 	 * @param speedConsumer
-	 *            the component using the speed (usually a motor/ motors).
+	 *            the component using the speed (usually a motor/motors).
 	 * @param canMove
 	 *            the limitation on the movement, which depends on the speed.
 	 */
@@ -36,7 +42,8 @@ public class BasicSubsystem extends Subsystem {
 	}
 
 	/**
-	 * Moves this subsystem with the given speed.
+	 * Moves this basicSubsystem with the given speed, as long as it is within the limits
+	 * specifed when this {@link BasicSubsystem} was constructed.
 	 *
 	 * @param speed
 	 *            the speed to move the subsystem with.
@@ -69,10 +76,8 @@ public class BasicSubsystem extends Subsystem {
 	}
 
 	/**
-	 * Sets the default command. If this is not called or is called with null,
-	 * then there will be no default command for the subsystem.
-	 * 
-	 * @see edu.wpi.first.wpilibj.command.Subsystem#setDefaultCommand(edu.wpi.first.wpilibj.command.Command)
+	 * @see Sets the default command. If this is not called, or is called with null, then
+	 * there will be no default command for the subsystem.
 	 */
 	public void setDefaultCommand(Command defaultCommand) {
 		super.setDefaultCommand(defaultCommand);
