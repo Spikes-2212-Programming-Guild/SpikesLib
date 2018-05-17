@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.Timer;
 
 /**
  * This command moves a BasicSubsystem according to a Supplier or a constant
- * speed until it cannot move any more, and then wait a given number of second
- * to make the {@link BasicSubsystem} stick to its end state.
+ * speed until it reaches its limit, and then wait a given number of second to
+ * make the {@link BasicSubsystem} stick to its end state.
  * 
  * @author Omri "Riki" Cohen
  * @see MoveBasicSubsystem
@@ -17,8 +17,8 @@ import edu.wpi.first.wpilibj.Timer;
 public class MoveBasicSubsystemWithTimeSinceReachingLimit extends MoveBasicSubsystem {
 
 	/**
-	 * The time the {@link BasicSubsystem} should keep trying to move after
-	 * reaching its end point.
+	 * The time the {@link BasicSubsystem} should keep trying to move after reaching
+	 * its end point.
 	 */
 	protected double waitTime;
 
@@ -28,17 +28,16 @@ public class MoveBasicSubsystemWithTimeSinceReachingLimit extends MoveBasicSubsy
 	protected double lastTimeAtEndState = 0;
 
 	/**
-	 * This constructs a new
-	 * {@link MoveBasicSubsystemWithTimeSinceReachingLimit} command using the
-	 * {@link BasicSubsystem} this command runs on and the supplier supplying
-	 * the speed the {@link BasicSubsystem} should move with and a wait time.
+	 * This constructs a new {@link MoveBasicSubsystemWithTimeSinceReachingLimit}
+	 * command using the {@link BasicSubsystem} this command runs on and the
+	 * supplier supplying the speed the {@link BasicSubsystem} should move with and
+	 * a wait time.
 	 *
 	 * @param basicSubsystem
 	 *            the {@link BasicSubsystem} this command should move.
 	 * @param speedSupplier
 	 *            a Double {@link Supplier} supplying the speed this subsystem
-	 *            should be moved with. Must only supply values between -1 and
-	 *            1.
+	 *            should be moved with. Must only supply values between -1 and 1.
 	 * @param waitTime
 	 *            the time the {@link BasicSubsystem} should keep trying to move
 	 *            after reaching its end point.
@@ -50,10 +49,9 @@ public class MoveBasicSubsystemWithTimeSinceReachingLimit extends MoveBasicSubsy
 	}
 
 	/**
-	 * This constructs a new
-	 * {@link MoveBasicSubsystemWithTimeSinceReachingLimit} command using the
-	 * {@link BasicSubsystem} this command runs on and a constant speed the
-	 * {@link BasicSubsystem} should moved with and a wait time.
+	 * This constructs a new {@link MoveBasicSubsystemWithTimeSinceReachingLimit}
+	 * command using the {@link BasicSubsystem} this command runs on and a constant
+	 * speed the {@link BasicSubsystem} should moved with and a wait time.
 	 *
 	 * @param basicSubsystem
 	 *            the {@link BasicSubsystem} this command opperates on.
@@ -70,27 +68,21 @@ public class MoveBasicSubsystemWithTimeSinceReachingLimit extends MoveBasicSubsy
 	}
 
 	/**
-	 * Checks if the subsystem can move with the current speed according to the
-	 * limits given in the BasicSubsystem constructor, then checks if the system
-	 * has been on target for the wanted amount time.
-	 * 
-	 * @see MoveBasicSubsystemWithTimeSinceReachingLimit#waitTime
+	 * Checks if the subsystem has reached the limits given in the
+	 * {@link BasicSubsystem} constructor, then for the given amount time.
 	 */
 	@Override
 	protected boolean isFinished() {
 		double currentTime = Timer.getFPGATimestamp();
 		if (!super.isFinished()) { /*
-									 * if not in the ending position reset the
-									 * timer.
+									 * if not in the ending position reset the timer.
 									 */
 			lastTimeAtEndState = currentTime;
 		}
-		if (currentTime
-				- lastTimeAtEndState > waitTime) { /*
-													 * if the subsystem was on
-													 * limit the wanted time the
-													 * command is finished.
-													 */
+		if (currentTime - lastTimeAtEndState > waitTime) { /*
+															 * if the subsystem was on limit the wanted time the command
+															 * is finished.
+															 */
 			return true;
 		}
 		return false;

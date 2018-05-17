@@ -6,9 +6,9 @@ import com.spikes2212.genericsubsystems.BasicSubsystem;
 import com.spikes2212.genericsubsystems.utils.targets.NumericalTarget;
 
 /**
- * This class moves a {@link BasicSubsystem} in a given speed until reaching a
+ * This class moves a {@link BasicSubsystem} until reaching a
  * target. For example, a light sensor, a limit switch or a specific encoder
- * value (using {@link NumericalTarget}.
+ * value (using {@link NumericalTarget}).
  * 
  * @author Omri "Riki" Cohen
  */
@@ -24,7 +24,7 @@ public class MoveBasicSubsystemToTarget extends MoveBasicSubsystem {
 	 * @param basicSubsystem
 	 *            the {@link BasicSubsystem} this command should move.
 	 * @param speedSupplier
-	 *            a Double {@link Supplier} supplying the speed basicSubsystem
+	 *            a Double {@link Supplier} supplying the speed subsystem
 	 *            should be moved with. Should only supply values between -1 and 1.
 	 * @param onTarget
 	 *            a Boolean {@link Supplier} returning true when reaching the wanted
