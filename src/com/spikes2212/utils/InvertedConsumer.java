@@ -1,8 +1,8 @@
-package com.spikes2212.genericsubsystems.utils;
+package com.spikes2212.utils;
 
 import java.util.function.Consumer;
 
-import com.spikes2212.genericsubsystems.BasicSubsystem;
+import com.spikes2212.genericsubsystems.basicSubsystem.BasicSubsystem;
 
 /**
  * This class is a {@link Consumer} of Double. This is used for the constructor
