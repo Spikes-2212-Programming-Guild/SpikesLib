@@ -76,6 +76,36 @@ public class XboXUID extends XboxController {
 			}
 		};
 	}
+	
+	/**
+	 * Returns the yellow button on the joystick.
+	 * 
+	 * @return the yellow button on the joystick.
+	 */
+	public Button getButtonStart() {
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getStartButton();
+			}
+		};
+	}
+	
+	/**
+	 * Returns the yellow button on the joystick.
+	 * 
+	 * @return the yellow button on the joystick.
+	 */
+	public Button getButtonBack() {
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getBackButton();
+			}
+		};
+	}
 
 	/**
 	 * Returns the value of the right trigger on the joystick.
