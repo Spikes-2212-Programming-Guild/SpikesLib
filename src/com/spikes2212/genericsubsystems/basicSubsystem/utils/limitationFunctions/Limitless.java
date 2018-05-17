@@ -1,4 +1,4 @@
-package com.spikes2212.genericsubsystems.basicSubsystem.limitationFunctions;
+package com.spikes2212.genericsubsystems.basicSubsystem.utils.limitationFunctions;
 
 import java.util.function.Function;
 
