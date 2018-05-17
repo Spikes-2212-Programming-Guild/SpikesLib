@@ -6,4 +6,4 @@
  * For example - a numerical target with a certain tolerance. The info of the current state can be provided
  * from any numerical sensor.
  */
-package com.spikes2212.genericsubsystems.basicSubsystem.targets;
+package com.spikes2212.genericsubsystems.basicSubsystem.utils.targets;
