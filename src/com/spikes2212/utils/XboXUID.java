@@ -77,9 +77,9 @@ public class XboXUID extends XboxController {
 	}
 
 	/**
-	 * Returns the yellow button on the joystick.
+	 * Returns the start button on the joystick.
 	 * 
-	 * @return the yellow button on the joystick.
+	 * @return the start button on the joystick.
 	 */
 	public Button getButtonStart() {
 		return new Button() {
@@ -92,9 +92,9 @@ public class XboXUID extends XboxController {
 	}
 
 	/**
-	 * Returns the yellow button on the joystick.
+	 * Returns the back button on the joystick.
 	 * 
-	 * @return the yellow button on the joystick.
+	 * @return the back button on the joystick.
 	 */
 	public Button getButtonBack() {
 		return new Button() {
@@ -125,16 +125,16 @@ public class XboXUID extends XboxController {
 	}
 
 	/**
-	 * Returns the value of the left trigger on the joystick.
+	 * Returns the left trigger button on the joystick.
 	 * 
-	 * @return the value of the left trigger on the joystick.
+	 * @return the left trigger button on the joystick.
 	 */
 	public boolean getLTButton() {
 		return getTriggerAxis(Hand.kLeft) == 1;
 	}
 
 	/**
-	 * Returns the value of the left trigger on the joystick.
+	 * Returns the right trigger button on the joystick.
 	 * 
 	 * @return the value of the left trigger on the joystick.
 	 */
