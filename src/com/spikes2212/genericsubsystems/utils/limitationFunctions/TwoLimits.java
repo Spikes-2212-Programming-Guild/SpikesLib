@@ -21,14 +21,14 @@ public class TwoLimits implements Function<Double, Boolean> {
 	/**
 	 * Constructs a two limits function using 2 boolean suppliers.
 	 * 
-	 * @param maxLimit
-	 *            the upper limit, positive speed makes the
-	 *            {@link BasicSubsystem} move towards this limit.
 	 * @param minLimit
 	 *            the lower limit, negative speed makes the
 	 *            {@link BasicSubsystem} move towards this limit.
+	 * @param maxLimit
+	 *            the upper limit, positive speed makes the
+	 *            {@link BasicSubsystem} move towards this limit.
 	 */
-	public TwoLimits(Supplier<Boolean> maxLimit, Supplier<Boolean> minLimit) {
+	public TwoLimits(Supplier<Boolean> minLimit, Supplier<Boolean> maxLimit) {
 		this.maxLimit = maxLimit;
 		this.minLimit = minLimit;
 	}
