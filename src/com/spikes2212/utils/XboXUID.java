@@ -10,8 +10,7 @@ public class XboXUID extends XboxController {
 	 * station.
 	 * 
 	 * @param port
-	 *            The port on the Driver Station that the joystick is plugged
-	 *            into.
+	 *            The port on the Driver Station that the joystick is plugged into.
 	 */
 	public XboXUID(int port) {
 		super(port);
@@ -76,7 +75,7 @@ public class XboXUID extends XboxController {
 			}
 		};
 	}
-	
+
 	/**
 	 * Returns the yellow button on the joystick.
 	 * 
@@ -91,7 +90,7 @@ public class XboXUID extends XboxController {
 			}
 		};
 	}
-	
+
 	/**
 	 * Returns the yellow button on the joystick.
 	 * 
@@ -123,6 +122,24 @@ public class XboXUID extends XboxController {
 	 */
 	public double getLTAxis() {
 		return getTriggerAxis(Hand.kLeft);
+	}
+
+	/**
+	 * Returns the value of the left trigger on the joystick.
+	 * 
+	 * @return the value of the left trigger on the joystick.
+	 */
+	public boolean getLTButton() {
+		return getTriggerAxis(Hand.kLeft) == 1;
+	}
+
+	/**
+	 * Returns the value of the left trigger on the joystick.
+	 * 
+	 * @return the value of the left trigger on the joystick.
+	 */
+	public boolean getRTButton() {
+		return getTriggerAxis(Hand.kRight) == 1;
 	}
 
 	/**
