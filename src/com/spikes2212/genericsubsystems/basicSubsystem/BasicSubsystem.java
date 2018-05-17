@@ -1,4 +1,4 @@
-package com.spikes2212.genericsubsystems;
+package com.spikes2212.genericsubsystems.basicSubsystem;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
