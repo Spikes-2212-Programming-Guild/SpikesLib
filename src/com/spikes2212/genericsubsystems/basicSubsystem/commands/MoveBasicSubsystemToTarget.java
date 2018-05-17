@@ -3,7 +3,7 @@ package com.spikes2212.genericsubsystems.basicSubsystem.commands;
 import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.basicSubsystem.BasicSubsystem;
-import com.spikes2212.genericsubsystems.utils.targets.NumericalTarget;
+import com.spikes2212.genericsubsystems.basicSubsystem.targets.NumericalTarget;
 
 /**
  * This class moves a {@link BasicSubsystem} in a given speed until reaching a
