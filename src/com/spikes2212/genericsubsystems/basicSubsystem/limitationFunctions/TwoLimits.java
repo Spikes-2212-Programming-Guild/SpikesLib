@@ -1,9 +1,9 @@
-package com.spikes2212.genericsubsystems.utils.limitationFunctions;
+package com.spikes2212.genericsubsystems.basicSubsystem.limitationFunctions;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import com.spikes2212.genericsubsystems.BasicSubsystem;
+import com.spikes2212.genericsubsystems.basicSubsystem.BasicSubsystem;
 
 /**
  * This is a {@link Function} from Double to Boolean. An
