@@ -70,8 +70,8 @@ public class MoveBasicSubsystemWithTimeSinceReachingLimit extends MoveBasicSubsy
 	}
 
 	/**
-	 * Checks if the subsystem has reached the limits given in the
-	 * {@link BasicSubsystem} constructor, then for the given amount time.
+	 * Checks if the subsystem has reached the limits given, then waits for the
+	 * given amount time.
 	 */
 	@Override
 	protected boolean isFinished() {
