@@ -8,7 +8,7 @@ import com.spikes2212.genericsubsystems.basicSubsystem.commands.MoveBasicSubsyst
 /**
  * This class is a Boolean {@link Supplier}. It is used in the constructor of
  * {@link MoveBasicSubsystemToTarget} to move a {@link BasicSubsystem} to a
- * numerical target. For example, encoder's output.
+ * numerical target, for example, an encoder's output.
  * 
  * @author Omri "Riki" Cohen
  */
@@ -36,9 +36,7 @@ public class NumericalTarget implements Supplier<Boolean> {
 	}
 
 	/**
-	 * Returns if the position is within target position's tolerance.
-	 * 
-	 * @return if the position is within target position's tolerance.
+	 * @return whether the position is within target position's tolerance.
 	 */
 	@Override
 	public Boolean get() {
