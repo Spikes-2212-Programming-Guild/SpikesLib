@@ -25,7 +25,7 @@ To download the library (.zip file) go to <a href='http://www.spikes2212.com/'> 
 5. Click on Configure Build Path
 6. Click on Add External JARs
 7. Find and add the SpikesLib.jar file
-8. Done!
+8. return 0
 
 ## <a name = 'Exmps'> Examples </a>
 We created a repository with a pleathra of <a href='https://github.com/Spikes-2212-Programming-Guild/Spikes-Lib-Example'> examples of how to use SpikesLib</a>. <br/>
