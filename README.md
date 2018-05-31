@@ -22,6 +22,3 @@ You can learn how to use this library by reading the examples and playing with t
 ## <a name = 'Contacts'> Contacts </a>
 Omri "Riki" Cohen - +972 54-626-4324 <br/>
 Uriah "Jhonny" Rokach - +972 58-430-9901
-
-## <a name = 'Acknowledgments'>Acknowledgments</a>
-Thanks for Athena #5747 for testing our library in its early stages.
