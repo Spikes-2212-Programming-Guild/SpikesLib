@@ -22,12 +22,12 @@ import edu.wpi.first.wpilibj.command.Command;
  * This command will try to move the basicSubsystem until it reaches the latest
  * value supplied by setpoint. The setpoint should use values using the same
  * units as the <a href=
- * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>.
+ * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource</a>.
  *
  * @author Omri "Riki" and Itamar Rivkind
  * @see BasicSubsystem
  * @see <a href=
- *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>
+ *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource</a>
  * @see <a href=
  *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
  */
