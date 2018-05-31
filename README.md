@@ -18,7 +18,8 @@ We created a repository with a pleathra of <a href='https://github.com/Spikes-22
 You can learn how to use this library by reading the examples and playing with them.
 
 ## <a name = 'Contacts'> Contacts </a>
-TBA
+Omri "Riki" Cohen - +972 54-626-4324
+Uriah "Jhonny" Rokach - +972 58-430-9901
 
 ## <a name = 'Acknowledgments'>Acknowledgments</a>
-Thanks for Athena #5747 for testing our library
+Thanks for Athena #5747 for testing our library in its early stages.
