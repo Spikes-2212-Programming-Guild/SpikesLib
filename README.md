@@ -5,7 +5,7 @@ SpikesLib is an open source, generic library, which extends <a href='https://git
 This library was written by the FRC team The Spikes #2212. For more information about us, visit <a href='http://www.spikes2212.com/'> our site</a>.
 
 * ####  <a href='#Purpose'>What Is the purpose of SpikesLib?</a>
-* ####  <a href='#Download&Setup'>How can I download SpikesLib?</a>
+* ####  <a href='#Download&Setup'>How can I install SpikesLib?</a>
 * ####  <a href='#Exmps'>How do I use SpikesLib?</a>
 * ####  <a href='#Contacts'>Have questions? Here are people to ask</a>
 
@@ -13,7 +13,19 @@ This library was written by the FRC team The Spikes #2212. For more information 
 There are many concepts in First Robotics Competition that repeat themeselves every year, with a small change in implemantation. The purpose of SpikesLib is to reduce time in writing code for your robot and reduce the chances of incountering bugs, by creating generic classes for common types of subsystems and commands.
   
 ## <a name = 'Download&Setup'> Download and Setup SpikesLib </a>
-TBA
+
+### Download
+To download the library (.zip file) go to <a href='http://www.spikes2212.com/'> our site </a> and click the download button.
+
+### Installation (for Eclipse)
+1. Extract the SL.zip file into C:\Users\%USERNAME%\wpilib\user\java\lib
+2. Open Eclipse
+3. Right click on the wanted project
+4. Hover on Build Path
+5. Click on Configure Build Path
+6. Click on Add External JARs
+7. Find and add the SpikesLib.jar file
+8. Done!
 
 ## <a name = 'Exmps'> Examples </a>
 We created a repository with a pleathra of <a href='https://github.com/Spikes-2212-Programming-Guild/Spikes-Lib-Example'> examples of how to use SpikesLib</a>. <br/>
