@@ -1,8 +1,8 @@
-package com.spikes2212.genericsubsystems.commands;
+package com.spikes2212.genericsubsystems.basicSubsystem.commands;
 
 import java.util.function.Supplier;
 
-import com.spikes2212.genericsubsystems.BasicSubsystem;
+import com.spikes2212.genericsubsystems.basicSubsystem.BasicSubsystem;
 
 import edu.wpi.first.wpilibj.Timer;
 
