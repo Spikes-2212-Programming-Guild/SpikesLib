@@ -10,8 +10,7 @@ public class XboXUID extends XboxController {
 	 * station.
 	 * 
 	 * @param port
-	 *            The port on the Driver Station that the joystick is plugged
-	 *            into.
+	 *            The port on the Driver Station that the joystick is plugged into.
 	 */
 	public XboXUID(int port) {
 		super(port);
@@ -78,6 +77,36 @@ public class XboXUID extends XboxController {
 	}
 
 	/**
+	 * Returns the start button on the joystick.
+	 * 
+	 * @return the start button on the joystick.
+	 */
+	public Button getButtonStart() {
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getStartButton();
+			}
+		};
+	}
+
+	/**
+	 * Returns the back button on the joystick.
+	 * 
+	 * @return the back button on the joystick.
+	 */
+	public Button getButtonBack() {
+		return new Button() {
+
+			@Override
+			public boolean get() {
+				return getBackButton();
+			}
+		};
+	}
+
+	/**
 	 * Returns the value of the right trigger on the joystick.
 	 * 
 	 * @return the value of the right trigger on the joystick.
@@ -93,6 +122,24 @@ public class XboXUID extends XboxController {
 	 */
 	public double getLTAxis() {
 		return getTriggerAxis(Hand.kLeft);
+	}
+	
+	/**
+	 * Returns the right trigger button on the joystick.
+	 * 
+	 * @return the right trigger on the joystick.
+	 */
+	public boolean getRTButton() {
+		return getTriggerAxis(Hand.kRight) == 1;
+	}
+
+	/**
+	 * Returns the left trigger button on the joystick.
+	 * 
+	 * @return the left trigger button on the joystick.
+	 */
+	public boolean getLTButton() {
+		return getTriggerAxis(Hand.kLeft) == 1;
 	}
 
 	/**
@@ -243,6 +290,62 @@ public class XboXUID extends XboxController {
 			@Override
 			public boolean get() {
 				return getPOV() == 90;
+			}
+		};
+	}
+	
+	/**
+	 * Returns the upper right arrow button.
+	 * 
+	 * @return the upper right arrow button.
+	 */
+	public Button getUpperRightButton() {
+		return new Button() {
+			@Override
+			public boolean get() {
+				return getPOV() == 45;
+			}
+		};
+	}
+	
+	/**
+	 * Returns the lower right arrow button.
+	 * 
+	 * @return the lower right arrow button.
+	 */
+	public Button getLowerRightButton() {
+		return new Button() {
+			@Override
+			public boolean get() {
+				return getPOV() == 135;
+			}
+		};
+	}
+	
+	/**
+	 * Returns the lower left arrow button.
+	 * 
+	 * @return the lower left arrow button.
+	 */
+	public Button getLowerLeftButton() {
+		return new Button() {
+			@Override
+			public boolean get() {
+				return getPOV() == 225;
+			}
+		};
+	}
+	
+	/**
+	 * Returns the right arrow button.
+	 * 
+	 * @return the right arrow button.
+	 */
+	public Button getUpperLeftButton() {
+		return new Button() {
+			@Override
+			public boolean get() {
+				return getPOV() == 315;
 			}
 		};
 	}
