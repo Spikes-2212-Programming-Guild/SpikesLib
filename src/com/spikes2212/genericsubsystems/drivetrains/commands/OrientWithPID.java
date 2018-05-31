@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.Timer;
  * This command is used to orient an instance of {@link TankDrivetrain} to a
  * specific setpoint using wpilib's <a href=
  * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>.
+ * <br/>
+ * 
  * This command only rotates the {@link TankDrivetrain}.
  *
  * @see PIDController
@@ -24,26 +26,24 @@ public class OrientWithPID extends DriveArcadeWithPID {
 	private double lastTimeOnTarget = 0;
 
 	/**
-	 * This constructs new {@link OrientWithPID} command using {@link PIDSource},
-	 * {@link Supplier} for the setpoint and the {@link PIDSettings} for the
+	 * This constructs new {@link OrientWithPID} command using a <a href=
+	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>,
+	 * a {@link Supplier} for the setpoint and the {@link PIDSettings} for the
 	 * command.
 	 * 
 	 * @param drivetrain
 	 *            the {@link TankDrivetrain} this command operates on
 	 * @param PIDSource
-	 *            the {@link PIDSource} that is used by the <a href=
+	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 *            to get feedback about the robot's current state
+	 *            that is used by the {@link TankDrivetrain}
 	 * @param setpointSupplier
-	 *            {@link Supplier<Double>} for the setpoint of the <a href=
+	 *            a {@link Supplier} of doubles for the setpoint of the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
 	 * @param outputRange
 	 *            the range of the source's output. For example, gyro's is 360.
-	 *            Camera that has 640 px on the wanted axis has output range of 640,
-	 *            and one that its values range was scaled between -1 and 1 has
-	 *            output range of 2 and so on.
 	 */
 	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
 			PIDSettings PIDSettings, double outputRange) {
@@ -51,28 +51,23 @@ public class OrientWithPID extends DriveArcadeWithPID {
 	}
 
 	/**
-	 * This constructs new {@link OrientWithPID} command with constant value for
-	 * {@link OrientWithPID#setpointSupplier} using <a href=
+	 * This constructs new {@link OrientWithPID} command using a <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>,
-	 * {@link Double} for the setpoint and <a href=
-	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 * for the command
+	 * a {@link Double} for the setpoint and the {@link PIDSettings} for the
+	 * command.
 	 * 
 	 * @param drivetrain
 	 *            the {@link TankDrivetrain} this command operates on
 	 * @param PIDSource
-	 *            the {@link PIDSource} that is used by the <a href=
+	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 *            to get feedback about the robot's current state
+	 *            that is used by the {@link TankDrivetrain}
 	 * @param setpoint
-	 *            constant value for {@link OrientWithPID#setpointSupplier}
+	 *            a set point to get to
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
 	 * @param outputRange
 	 *            the range of the source's output. For example, gyro's is 360.
-	 *            Camera that has 640 px on the wanted axis has output range of 640,
-	 *            and one that its values range was scaled between -1 and 1 has
-	 *            output range of 2 and so on.
 	 */
 	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, PIDSettings PIDSettings,
 			double outputRange) {
