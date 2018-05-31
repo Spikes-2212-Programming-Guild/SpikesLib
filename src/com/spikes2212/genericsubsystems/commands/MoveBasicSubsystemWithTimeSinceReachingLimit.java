@@ -7,11 +7,12 @@ import com.spikes2212.genericsubsystems.BasicSubsystem;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * This command moves a BasicSubsystem according to a Supplier or a constant
- * speed until it reaches its limit, and then wait a given number of second to
- * make the {@link BasicSubsystem} stick to its end state.
+ * This command moves a {@link BasicSubsystem} according to a {@link Supplier}
+ * or a constant speed until it reaches its limit, and then continue moving for
+ * a given number of seconds.
  * 
  * @author Omri "Riki" Cohen
+ * 
  * @see MoveBasicSubsystem
  */
 public class MoveBasicSubsystemWithTimeSinceReachingLimit extends MoveBasicSubsystem {
@@ -29,15 +30,16 @@ public class MoveBasicSubsystemWithTimeSinceReachingLimit extends MoveBasicSubsy
 
 	/**
 	 * This constructs a new {@link MoveBasicSubsystemWithTimeSinceReachingLimit}
-	 * command using the {@link BasicSubsystem} this command runs on and the
-	 * supplier supplying the speed the {@link BasicSubsystem} should move with and
-	 * a wait time.
+	 * command using the {@link BasicSubsystem} this command runs on, a supplier
+	 * supplying the speed the {@link BasicSubsystem} should move with, and a wait
+	 * time.
 	 *
 	 * @param basicSubsystem
 	 *            the {@link BasicSubsystem} this command should move.
 	 * @param speedSupplier
-	 *            a Double {@link Supplier} supplying the speed this subsystem
-	 *            should be moved with. Must only supply values between -1 and 1.
+	 *            a {@link Double} {@link Supplier} supplying the speed this
+	 *            subsystem should be moved with. Must only supply values between -1
+	 *            and 1.
 	 * @param waitTime
 	 *            the time the {@link BasicSubsystem} should keep trying to move
 	 *            after reaching its end point.
@@ -50,14 +52,14 @@ public class MoveBasicSubsystemWithTimeSinceReachingLimit extends MoveBasicSubsy
 
 	/**
 	 * This constructs a new {@link MoveBasicSubsystemWithTimeSinceReachingLimit}
-	 * command using the {@link BasicSubsystem} this command runs on and a constant
-	 * speed the {@link BasicSubsystem} should moved with and a wait time.
+	 * command using the {@link BasicSubsystem} this command runs on, a constant
+	 * speed the {@link BasicSubsystem} should move with, and a wait time.
 	 *
 	 * @param basicSubsystem
-	 *            the {@link BasicSubsystem} this command opperates on.
-	 * @param speed
-	 *            the speed this basicSubsystem should be moved with. Values must
-	 *            only be between -1 and 1.
+	 *            the {@link BasicSubsystem} this command should move.
+	 * @param speedSupplier
+	 *            a speed this subsystem should be moved with. Must only be a value
+	 *            between -1 and 1.
 	 * @param waitTime
 	 *            the time the {@link BasicSubsystem} should keep trying to move
 	 *            after reaching its end point.
