@@ -123,6 +123,15 @@ public class XboXUID extends XboxController {
 	public double getLTAxis() {
 		return getTriggerAxis(Hand.kLeft);
 	}
+	
+	/**
+	 * Returns the right trigger button on the joystick.
+	 * 
+	 * @return the right trigger on the joystick.
+	 */
+	public boolean getRTButton() {
+		return getTriggerAxis(Hand.kRight) == 1;
+	}
 
 	/**
 	 * Returns the left trigger button on the joystick.
@@ -131,15 +140,6 @@ public class XboXUID extends XboxController {
 	 */
 	public boolean getLTButton() {
 		return getTriggerAxis(Hand.kLeft) == 1;
-	}
-
-	/**
-	 * Returns the right trigger button on the joystick.
-	 * 
-	 * @return the value of the left trigger on the joystick.
-	 */
-	public boolean getRTButton() {
-		return getTriggerAxis(Hand.kRight) == 1;
 	}
 
 	/**
@@ -290,6 +290,62 @@ public class XboXUID extends XboxController {
 			@Override
 			public boolean get() {
 				return getPOV() == 90;
+			}
+		};
+	}
+	
+	/**
+	 * Returns the upper right arrow button.
+	 * 
+	 * @return the upper right arrow button.
+	 */
+	public Button getUpperRightButton() {
+		return new Button() {
+			@Override
+			public boolean get() {
+				return getPOV() == 45;
+			}
+		};
+	}
+	
+	/**
+	 * Returns the lower right arrow button.
+	 * 
+	 * @return the lower right arrow button.
+	 */
+	public Button getLowerRightButton() {
+		return new Button() {
+			@Override
+			public boolean get() {
+				return getPOV() == 135;
+			}
+		};
+	}
+	
+	/**
+	 * Returns the lower left arrow button.
+	 * 
+	 * @return the lower left arrow button.
+	 */
+	public Button getLowerLeftButton() {
+		return new Button() {
+			@Override
+			public boolean get() {
+				return getPOV() == 225;
+			}
+		};
+	}
+	
+	/**
+	 * Returns the right arrow button.
+	 * 
+	 * @return the right arrow button.
+	 */
+	public Button getUpperLeftButton() {
+		return new Button() {
+			@Override
+			public boolean get() {
+				return getPOV() == 315;
 			}
 		};
 	}
