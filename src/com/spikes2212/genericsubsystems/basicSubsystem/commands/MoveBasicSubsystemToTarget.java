@@ -21,7 +21,7 @@ public class MoveBasicSubsystemToTarget extends MoveBasicSubsystem {
 	 * the {@link BasicSubsystem} should be moved with and a boolean supplier, which
 	 * returns true then reaching the wanted target.
 	 * 
-	 * @param basicSubsystem
+	 * @param subsystem
 	 *            the {@link BasicSubsystem} this command should move.
 	 * @param speedSupplier
 	 *            a Double {@link Supplier} supplying the speed subsystem should be
@@ -30,9 +30,9 @@ public class MoveBasicSubsystemToTarget extends MoveBasicSubsystem {
 	 *            a Boolean {@link Supplier} returning true when reaching the wanted
 	 *            target.
 	 */
-	public MoveBasicSubsystemToTarget(BasicSubsystem basicSubsystem, Supplier<Double> speedSupplier,
+	public MoveBasicSubsystemToTarget(BasicSubsystem subsystem, Supplier<Double> speedSupplier,
 			Supplier<Boolean> onTarget) {
-		super(basicSubsystem, speedSupplier);
+		super(subsystem, speedSupplier);
 		this.onTarget = onTarget;
 	}
 
