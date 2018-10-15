@@ -1,20 +1,21 @@
 package com.spikes2212.genericsubsystems.basicSubsystem.utils.limitationFunctions;
 
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import com.spikes2212.genericsubsystems.basicSubsystem.BasicSubsystem;
 
 /**
- * This is a {@link Function} from Double to Boolean. An
+ * This is a {@link Predicate<Double>}. An
  * instance of this class can be used as the canMove condition in the
  * constructor of a  {@link BasicSubsystem} that moves between two given limits.
  * 
  * @author Omri "Riki" Cohen
  *
- * @see Function
+ * @see Predicate
  */
-public class TwoLimits implements Function<Double, Boolean> {
+public class TwoLimits implements Predicate<Double> {
 
 	private final Supplier<Boolean> maxLimit, minLimit;
 
@@ -44,7 +45,7 @@ public class TwoLimits implements Function<Double, Boolean> {
 	 * 
 	 */
 	@Override
-	public Boolean apply(Double speed) {
+	public boolean test(Double speed) {
 		if (speed > 0 && maxLimit.get())
 			return false;
 		if (speed < 0 && minLimit.get())
