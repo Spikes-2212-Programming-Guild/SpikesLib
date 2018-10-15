@@ -2,6 +2,7 @@ package com.spikes2212.genericsubsystems.basicSubsystem;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,7 +20,7 @@ public class BasicSubsystem extends Subsystem {
 	 * this subsystem can move at that speed
 	 * A {@link Function} to store the limits of the subsystem's speed.
 	 */
-	public final Function<Double, Boolean> canMove;
+	public final Predicate<Double> canMove;
 	
 	/**
 	 * A {@link Consumer} to represent the movement of the basicSubsystem.
@@ -36,20 +37,20 @@ public class BasicSubsystem extends Subsystem {
 	 * @param canMove
 	 *            the limitation on the movement, which depends on the speed.
 	 */
-	public BasicSubsystem(Consumer<Double> speedConsumer, Function<Double, Boolean> canMove) {
+	public BasicSubsystem(Consumer<Double> speedConsumer, Predicate<Double> canMove) {
 		this.canMove = canMove;
 		this.speedConsumer = speedConsumer;
 	}
 
 	/**
-	 * Moves this basicSubsystem with the given speed, as long as it is within the limits
+	 * Moves this {@link BasicSubsystem} with the given speed, as long as it is within the limits
 	 * specifed when this {@link BasicSubsystem} was constructed.
 	 *
 	 * @param speed
 	 *            the speed to move the subsystem with.
 	 */
 	public void move(double speed) {
-		if (canMove.apply(speed)) {
+		if (canMove.test(speed)) {
 			if (speed > 1)
 				speed = 1;
 			else if (speed < -1)
