@@ -23,7 +23,7 @@ public class BasicSubsystem extends Subsystem {
 	public final Predicate<Double> canMove;
 	
 	/**
-	 * A {@link Consumer} to represent the movement of the basicSubsystem.
+	 * A {@link Consumer} to represent the movement of the {@link BasicSubsystem}.
 	 */
 	protected final Consumer<Double> speedConsumer;
 	private double currentSpeed = 0;
