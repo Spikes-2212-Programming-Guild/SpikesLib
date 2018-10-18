@@ -34,7 +34,7 @@ public class MoveBasicSubsystemWithTimeSinceReachingLimit extends MoveBasicSubsy
 	 * supplying the speed the {@link BasicSubsystem} should move with, and a wait
 	 * time.
 	 *
-	 * @param subsystem
+	 * @param basicSubsystem
 	 *            the {@link BasicSubsystem} this command should move.
 	 * @param speedSupplier
 	 *            a {@link Double} {@link Supplier} supplying the speed this
@@ -44,9 +44,9 @@ public class MoveBasicSubsystemWithTimeSinceReachingLimit extends MoveBasicSubsy
 	 *            the time the {@link BasicSubsystem} should keep trying to move
 	 *            after reaching its end point.
 	 */
-	public MoveBasicSubsystemWithTimeSinceReachingLimit(BasicSubsystem subsystem, Supplier<Double> speedSupplier,
+	public MoveBasicSubsystemWithTimeSinceReachingLimit(BasicSubsystem basicSubsystem, Supplier<Double> speedSupplier,
 			double waitTime) {
-		super(subsystem, speedSupplier);
+		super(basicSubsystem, speedSupplier);
 		this.waitTime = waitTime;
 	}
 
@@ -55,7 +55,7 @@ public class MoveBasicSubsystemWithTimeSinceReachingLimit extends MoveBasicSubsy
 	 * command using the {@link BasicSubsystem} this command runs on, a constant
 	 * speed the {@link BasicSubsystem} should move with, and a wait time.
 	 *
-	 * @param subsystem
+	 * @param basicSubsystem
 	 *            the {@link BasicSubsystem} this command should move.
 	 * @param speed
 	 *            a speed this subsystem should be moved with. Must only be a value
@@ -64,8 +64,8 @@ public class MoveBasicSubsystemWithTimeSinceReachingLimit extends MoveBasicSubsy
 	 *            the time the {@link BasicSubsystem} should keep trying to move
 	 *            after reaching its end point.
 	 */
-	public MoveBasicSubsystemWithTimeSinceReachingLimit(BasicSubsystem subsystem, double speed, double waitTime) {
-		super(subsystem, speed);
+	public MoveBasicSubsystemWithTimeSinceReachingLimit(BasicSubsystem basicSubsystem, double speed, double waitTime) {
+		super(basicSubsystem, speed);
 		this.waitTime = waitTime;
 	}
 

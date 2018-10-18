@@ -34,7 +34,7 @@ public class MoveBasicSubsystemWithPIDForSpeed extends MoveBasicSubsystemWithPID
 	 * a {@link Supplier} supplying the wanted speed, the PID coefficients this command's PID loop should have,
 	 * and the tolerance for error.
 	 *
-	 * @param subsystem
+	 * @param basicSubsystem
 	 *            the {@link BasicSubsystem} this command requires and moves.
 	 * @param source
 	 *            the <a href=
@@ -49,9 +49,9 @@ public class MoveBasicSubsystemWithPIDForSpeed extends MoveBasicSubsystemWithPID
 	 * @see <a href=
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
-	public MoveBasicSubsystemWithPIDForSpeed(BasicSubsystem subsystem, PIDSource source,
+	public MoveBasicSubsystemWithPIDForSpeed(BasicSubsystem basicSubsystem, PIDSource source,
 			Supplier<Double> wantedSpeed, PIDSettings PIDSettings) {
-		super(subsystem, source, wantedSpeed, PIDSettings);
+		super(basicSubsystem, source, wantedSpeed, PIDSettings);
 		this.source.setPIDSourceType(PIDSourceType.kRate);
 	}
 
@@ -90,8 +90,8 @@ public class MoveBasicSubsystemWithPIDForSpeed extends MoveBasicSubsystemWithPID
 		 * to get to the wanted speed.
 		 */
 		movmentControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), source,
-				(additionalSpeed) -> subsystem
-						.move(subsystem.getSpeed() + additionalSpeed));
+				(additionalSpeed) -> basicSubsystem
+						.move(basicSubsystem.getSpeed() + additionalSpeed));
 		movmentControl.setAbsoluteTolerance(PIDSettings.getTolerance());
 		movmentControl.setSetpoint(this.setpoint.get());
 		movmentControl.setOutputRange(-1, 1);

@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveBasicSubsystem extends Command {
 
-	protected final BasicSubsystem subsystem;
+	protected final BasicSubsystem basicSubsystem;
 	protected final Supplier<Double> speedSupplier;
 
 	/**
@@ -24,15 +24,15 @@ public class MoveBasicSubsystem extends Command {
 	 * {@link BasicSubsystem} this command operates on and a supplier supplying the
 	 * speed the {@link BasicSubsystem} should move with.
 	 *
-	 * @param subsystem
+	 * @param basicSubsystem
 	 *            the {@link BasicSubsystem} this command should move.
 	 * @param speedSupplier
 	 *            a Double {@link Supplier} supplying the speed this subsystem
 	 *            should be moved with. Must only supply values between -1 and 1.
 	 */
-	public MoveBasicSubsystem(BasicSubsystem subsystem, Supplier<Double> speedSupplier) {
-		requires(subsystem);
-		this.subsystem = subsystem;
+	public MoveBasicSubsystem(BasicSubsystem basicSubsystem, Supplier<Double> speedSupplier) {
+		requires(basicSubsystem);
+		this.basicSubsystem = basicSubsystem;
 		this.speedSupplier = speedSupplier;
 	}
 
@@ -41,14 +41,14 @@ public class MoveBasicSubsystem extends Command {
 	 * {@link BasicSubsystem} this command runs on and a constant speed the
 	 * {@link BasicSubsystem} should move with.
 	 *
-	 * @param subsystem
+	 * @param basicSubsystem
 	 *            the {@link BasicSubsystem} this command opperates on.
 	 * @param speed
 	 *            the speed this subsystem should be moved with. Values must be
 	 *            between -1 and 1.
 	 */
-	public MoveBasicSubsystem(BasicSubsystem subsystem, double speed) {
-		this(subsystem, () -> speed);
+	public MoveBasicSubsystem(BasicSubsystem basicSubsystem, double speed) {
+		this(basicSubsystem, () -> speed);
 	}
 
 	// Called just before this Command runs the first time
@@ -57,7 +57,7 @@ public class MoveBasicSubsystem extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		subsystem.move(speedSupplier.get());
+		basicSubsystem.move(speedSupplier.get());
 	}
 
 	/**
@@ -71,12 +71,12 @@ public class MoveBasicSubsystem extends Command {
 	 * @see BasicSubsystem#canMove
 	 */
 	protected boolean isFinished() {
-		return !subsystem.canMove.test(speedSupplier.get()) || isTimedOut();
+		return !basicSubsystem.canMove.apply(speedSupplier.get()) || isTimedOut();
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		subsystem.stop();
+		basicSubsystem.stop();
 	}
 
 	// Called when another command which requires one or more of the same
