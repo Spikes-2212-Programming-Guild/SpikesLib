@@ -1,7 +1,6 @@
 package com.spikes2212.genericsubsystems.basicSubsystem;
 
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -18,7 +17,7 @@ public class BasicSubsystem extends Subsystem {
 	/**
 	 * This function, when applied to a certain double speed returns true if
 	 * this subsystem can move at that speed
-	 * A {@link Function} to store the limits of the subsystem's speed.
+	 * A {@link Predicate<Double>} to store the limits of the subsystem's speed.
 	 */
 	public final Predicate<Double> canMove;
 	
@@ -29,7 +28,7 @@ public class BasicSubsystem extends Subsystem {
 	private double currentSpeed = 0;
 
 	/**
-	 * Constructor that recieves a {@link Consumer} for the movement component and a {@link Function}
+	 * Constructor that recieves a {@link Consumer} for the movement component and a {@link Predicate<Double>}
 	 * that represents the limits of the subsystem's speed.
 	 * 
 	 * @param speedConsumer
