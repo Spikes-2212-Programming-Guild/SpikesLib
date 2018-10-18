@@ -37,7 +37,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 	protected final PIDSettings PIDSettings;
 	protected final Supplier<Double> setpoint;
 	protected final PIDSource source;
-	protected PIDController movmentControl;
+	protected PIDController movementControl;
 	protected double lastTimeNotOnTarget;
 
 	/**
@@ -160,24 +160,24 @@ public class MoveBasicSubsystemWithPID extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		movmentControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), source,
+		movementControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), source,
 				basicSubsystem::move);
-		movmentControl.setAbsoluteTolerance(PIDSettings.getTolerance());
-		movmentControl.setSetpoint(this.setpoint.get());
-		movmentControl.setOutputRange(-1, 1);
-		movmentControl.enable();
+		movementControl.setAbsoluteTolerance(PIDSettings.getTolerance());
+		movementControl.setSetpoint(this.setpoint.get());
+		movementControl.setOutputRange(-1, 1);
+		movementControl.enable();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		double newSetpoint = setpoint.get();
-		if (movmentControl.getSetpoint() != newSetpoint)
-			movmentControl.setSetpoint(newSetpoint);
+		if (movementControl.getSetpoint() != newSetpoint)
+			movementControl.setSetpoint(newSetpoint);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (!movmentControl.onTarget()) {
+		if (!movementControl.onTarget()) {
 			lastTimeNotOnTarget = Timer.getFPGATimestamp();
 		}
 		return Timer.getFPGATimestamp() - lastTimeNotOnTarget >= PIDSettings.getWaitTime();
@@ -185,7 +185,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		movmentControl.disable();
+		movementControl.disable();
 		basicSubsystem.stop();
 	}
 
