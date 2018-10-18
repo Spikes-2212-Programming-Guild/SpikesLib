@@ -71,7 +71,7 @@ public class MoveBasicSubsystem extends Command {
 	 * @see BasicSubsystem#canMove
 	 */
 	protected boolean isFinished() {
-		return !basicSubsystem.canMove.apply(speedSupplier.get()) || isTimedOut();
+		return !basicSubsystem.canMove.test(speedSupplier.get()) || isTimedOut();
 	}
 
 	// Called once after isFinished returns true

@@ -1,20 +1,21 @@
 package com.spikes2212.genericsubsystems.basicSubsystem.utils.limitationFunctions;
 
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 import com.spikes2212.genericsubsystems.basicSubsystem.BasicSubsystem;
 
 /**
- * This is a {@link Function} from Double to Boolean that always returns true.An
+ * This is a {@link Predicate<Double>} that always returns true.An
  * instance of this class can be used as the canMove condition in the
  * constructor of a {@link BasicSubsystem} with no limits.
  * 
  * 
  * @author Omri "Riki" Cohen
  *
- * @see Function
+ * @see Predicate
  */
-public class Limitless implements Function<Double, Boolean> {
+public class Limitless implements Predicate<Double> {
 
 	/**
 	 * Constructs a limitless Function.
@@ -31,7 +32,7 @@ public class Limitless implements Function<Double, Boolean> {
 	 * @return always true.
 	 */
 	@Override
-	public Boolean apply(Double speed) {
+	public boolean test(Double speed) {
 		return true;
 	}
 

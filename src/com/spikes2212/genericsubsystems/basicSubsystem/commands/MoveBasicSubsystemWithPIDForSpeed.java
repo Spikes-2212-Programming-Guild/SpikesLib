@@ -27,8 +27,6 @@ import edu.wpi.first.wpilibj.PIDSourceType;
  */
 public class MoveBasicSubsystemWithPIDForSpeed extends MoveBasicSubsystemWithPID {
 
-	private double accelerationModifier;
-
 	/**
 	 * This constructs a new {@link MoveBasicSubsystemWithPIDForSpeed} using a
 	 * <a href=
@@ -47,16 +45,13 @@ public class MoveBasicSubsystemWithPIDForSpeed extends MoveBasicSubsystemWithPID
 	 *            move at.
 	 * @param PIDSettings
 	 *            the {@link PIDSettings} this command's PIDController needs.
-	 * @param accelerationModifier
-	 *            the increment in which the speed should grow.
 	 * 
 	 * @see <a href=
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
 	public MoveBasicSubsystemWithPIDForSpeed(BasicSubsystem basicSubsystem, PIDSource source,
-			Supplier<Double> wantedSpeed, PIDSettings PIDSettings, double accelerationModifier) {
+			Supplier<Double> wantedSpeed, PIDSettings PIDSettings) {
 		super(basicSubsystem, source, wantedSpeed, PIDSettings);
-		this.accelerationModifier = accelerationModifier;
 		this.source.setPIDSourceType(PIDSourceType.kRate);
 	}
 
@@ -78,15 +73,12 @@ public class MoveBasicSubsystemWithPIDForSpeed extends MoveBasicSubsystemWithPID
 	 *            move at.
 	 * @param PIDSettings
 	 *            the {@link PIDSettings} this command's PIDController needs.
-	 * @param accelerationModifier
-	 *            the increment in which the speed should grow.
-	 * 
 	 * @see <a href=
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
 	public MoveBasicSubsystemWithPIDForSpeed(BasicSubsystem basicSubsystem, PIDSource source, double wantedSpeed,
-			PIDSettings PIDSettings, double acceleration) {
-		this(basicSubsystem, source, () -> wantedSpeed, PIDSettings, acceleration);
+			PIDSettings PIDSettings) {
+		this(basicSubsystem, source, () -> wantedSpeed, PIDSettings);
 	}
 
 	@Override
@@ -97,13 +89,13 @@ public class MoveBasicSubsystemWithPIDForSpeed extends MoveBasicSubsystemWithPID
 		 * get closer to the wanted speed. It does that by adding to the current voltage
 		 * to get to the wanted speed.
 		 */
-		movmentControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), source,
+		movementControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), source,
 				(additionalSpeed) -> basicSubsystem
-						.move(basicSubsystem.getSpeed() + additionalSpeed * accelerationModifier));
-		movmentControl.setAbsoluteTolerance(PIDSettings.getTolerance());
-		movmentControl.setSetpoint(this.setpoint.get());
-		movmentControl.setOutputRange(-1, 1);
-		movmentControl.enable();
+						.move(basicSubsystem.getSpeed() + additionalSpeed));
+		movementControl.setAbsoluteTolerance(PIDSettings.getTolerance());
+		movementControl.setSetpoint(this.setpoint.get());
+		movementControl.setOutputRange(-1, 1);
+		movementControl.enable();
 	}
 
 	@Override
