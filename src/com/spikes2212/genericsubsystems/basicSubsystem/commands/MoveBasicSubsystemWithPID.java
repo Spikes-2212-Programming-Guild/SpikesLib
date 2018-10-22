@@ -8,7 +8,7 @@ import com.spikes2212.utils.PIDSettings;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PIDCommand;
 
 /**
  * This command moves a {@link BasicSubsystem} using wpilib's <a href=
@@ -31,13 +31,12 @@ import edu.wpi.first.wpilibj.command.Command;
  * @see <a href=
  *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
  */
-public class MoveBasicSubsystemWithPID extends Command {
+public class MoveBasicSubsystemWithPID extends PIDCommand {
 
 	protected final BasicSubsystem basicSubsystem;
 	protected final PIDSettings PIDSettings;
 	protected final Supplier<Double> setpoint;
 	protected final PIDSource source;
-	protected PIDController movementControl;
 	protected double lastTimeNotOnTarget;
 	protected boolean continuous;
 
@@ -73,6 +72,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 */
 	public MoveBasicSubsystemWithPID(BasicSubsystem basicSubsystem, PIDSource source, Supplier<Double> setpoint,
 			PIDSettings PIDSettings, boolean continuous) {
+		super(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD());
 		requires(basicSubsystem);
 		this.basicSubsystem = basicSubsystem;
 		this.source = source;
@@ -229,14 +229,15 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 *
 	 * @return The PIDSettings object
 	 */
+
+
 	public PIDSettings getPIDSetting() {
 		return PIDSettings;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		movementControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), source,
-				basicSubsystem::move);
+		PIDController movementControl = getPIDController();
 		movementControl.setAbsoluteTolerance(PIDSettings.getTolerance());
 		movementControl.setSetpoint(this.setpoint.get());
 		movementControl.setOutputRange(-1, 1);
@@ -247,12 +248,13 @@ public class MoveBasicSubsystemWithPID extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		double newSetpoint = setpoint.get();
-		if (movementControl.getSetpoint() != newSetpoint)
-			movementControl.setSetpoint(newSetpoint);
+		if (getSetpoint() != newSetpoint)
+			setSetpoint(newSetpoint);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
+		PIDController movementControl = getPIDController();
 		if (!movementControl.onTarget()) {
 			lastTimeNotOnTarget = Timer.getFPGATimestamp();
 		}
@@ -261,7 +263,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		movementControl.disable();
+		super.end();
 		basicSubsystem.stop();
 	}
 
@@ -271,4 +273,13 @@ public class MoveBasicSubsystemWithPID extends Command {
 		end();
 	}
 
+	@Override
+	protected double returnPIDInput() {
+		return source.pidGet();
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		basicSubsystem.move(output);
+	}
 }
