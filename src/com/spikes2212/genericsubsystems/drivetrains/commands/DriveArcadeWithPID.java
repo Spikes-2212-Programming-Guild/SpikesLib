@@ -7,7 +7,7 @@ import com.spikes2212.utils.PIDSettings;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PIDCommand;
 
 /**
  * This command turns an instance of {@link TankDrivetrain} with wpilib's
@@ -26,18 +26,17 @@ import edu.wpi.first.wpilibj.command.Command;
  * @see TankDrivetrain
  * @author Simon "C" Kharmatsky
  */
-public class DriveArcadeWithPID extends Command {
+public class DriveArcadeWithPID extends PIDCommand {
 
 	protected TankDrivetrain drivetrain;
 	protected PIDSource PIDSource;
-	protected PIDSettings PIDSettings;
 	protected final Supplier<Double> setpointSupplier;
 	protected final Supplier<Double> movementSupplier;
 	protected final Supplier<Boolean> isFinishedSupplier;
 
-	protected double outputRange;
+	protected PIDSettings PIDSettings;
 
-	protected PIDController rotationController;
+	protected double outputRange;
 
 	/**
 	 * This constructs a new {@link DriveArcadeWithPID} using <a href=
@@ -75,14 +74,19 @@ public class DriveArcadeWithPID extends Command {
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
 			Supplier<Double> movementSupplier, Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings,
 			double outputRange) {
+		super(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD());
 		requires(drivetrain);
 		this.drivetrain = drivetrain;
 		this.PIDSource = PIDSource;
-		this.PIDSettings = PIDSettings;
 		this.setpointSupplier = setpointSupplier;
 		this.movementSupplier = movementSupplier;
 		this.isFinishedSupplier = isFinishedSupplier;
 		this.outputRange = outputRange;
+		this.PIDSettings = PIDSettings;
+
+		PIDController rotationController = getPIDController();
+		rotationController.setAbsoluteTolerance(PIDSettings.getTolerance());
+		rotationController.setOutputRange(- outputRange / 2, outputRange / 2);
 	}
 
 	/**
@@ -194,19 +198,16 @@ public class DriveArcadeWithPID extends Command {
 
 	@Override
 	protected void initialize() {
-		this.rotationController = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
-				PIDSource, (rotate) -> drivetrain.arcadeDrive(movementSupplier.get(), rotate / (outputRange / 2)));
-		rotationController.setAbsoluteTolerance(PIDSettings.getTolerance());
-		rotationController.setSetpoint(setpointSupplier.get());
-		rotationController.setOutputRange(-outputRange / 2, outputRange / 2);
+		setSetpoint(setpointSupplier.get());
+		PIDController rotationController = getPIDController();
 		rotationController.enable();
 	}
 
 	@Override
 	protected void execute() {
 		double newSetpoint = setpointSupplier.get();
-		if (rotationController.getSetpoint() != newSetpoint)
-			rotationController.setSetpoint(newSetpoint);
+		if (getSetpoint() != newSetpoint)
+			setSetpoint(newSetpoint);
 	}
 
 	@Override
@@ -216,12 +217,23 @@ public class DriveArcadeWithPID extends Command {
 
 	@Override
 	protected void end() {
-		rotationController.disable();
+		super.end();
+		getPIDController().disable();
 		drivetrain.stop();
 	}
 
 	@Override
 	protected void interrupted() {
 		end();
+	}
+
+	@Override
+	protected double returnPIDInput() {
+		return PIDSource.pidGet();
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		drivetrain.arcadeDrive(movementSupplier.get(), output / (outputRange / 2));
 	}
 }
