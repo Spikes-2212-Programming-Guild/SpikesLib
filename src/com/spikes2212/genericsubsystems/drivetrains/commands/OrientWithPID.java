@@ -76,7 +76,7 @@ public class OrientWithPID extends DriveArcadeWithPID {
 
 	@Override
 	protected boolean isFinished() {
-		if (!rotationController.onTarget())
+		if (!getPIDController().onTarget())
 			lastTimeOnTarget = Timer.getFPGATimestamp();
 		return Timer.getFPGATimestamp() - lastTimeOnTarget >= PIDSettings.getWaitTime() || isTimedOut();
 	}
