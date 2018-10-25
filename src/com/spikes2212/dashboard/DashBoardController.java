@@ -27,7 +27,7 @@ public class DashBoardController {
 	 * A {@link Map} to contain all {@link String} values to be displayed on the
 	 * {@code SmartDashBoard}. This map assigns a double to each Supplier as a key to identify it
 	 */
-    private Map<String, Supplier<Double>> doubleFields;
+    private Map<String, Supplier<Number>> doubleFields;
     
     /**
 	 * A {@link Map} to contain all {@link String} values to be displayed on the
@@ -128,8 +128,8 @@ public class DashBoardController {
 	 * Updates the Double {@link Supplier}s within the {@link SmartDashboard}. 
 	 */
     private void updateDoubles() {
-        for (Map.Entry<String, Supplier<Double>> entry : doubleFields.entrySet()) {
-            SmartDashboard.putNumber(entry.getKey(), entry.getValue().get());
+        for (Map.Entry<String, Supplier<Number>> entry : doubleFields.entrySet()) {
+            SmartDashboard.putNumber(entry.getKey(), entry.getValue().get().doubleValue());
         }
     }
 
