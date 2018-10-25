@@ -200,6 +200,7 @@ public class DriveArcadeWithPID extends PIDCommand {
 	protected void initialize() {
 		setSetpoint(setpointSupplier.get());
 		PIDController rotationController = getPIDController();
+		rotationController.reset();
 		rotationController.enable();
 	}
 
