@@ -79,6 +79,11 @@ public class MoveBasicSubsystemWithPID extends PIDCommand {
 		this.setpoint = setpoint;
 		this.PIDSettings = PIDSettings;
 		this.continuous = continuous;
+
+		PIDController movementControl = getPIDController();
+		movementControl.setAbsoluteTolerance(PIDSettings.getTolerance());
+		movementControl.setOutputRange(-1, 1);
+		movementControl.setContinuous(this.continuous);
 	}
 
 	/**
@@ -237,12 +242,9 @@ public class MoveBasicSubsystemWithPID extends PIDCommand {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		PIDController movementControl = getPIDController();
-		movementControl.setAbsoluteTolerance(PIDSettings.getTolerance());
-		movementControl.setSetpoint(this.setpoint.get());
-		movementControl.setOutputRange(-1, 1);
-		movementControl.setContinuous(this.continuous);
-		movementControl.enable();
+		setSetpoint(setpoint.get());
+		getPIDController().reset();
+		getPIDController().enable();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -263,7 +265,7 @@ public class MoveBasicSubsystemWithPID extends PIDCommand {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		super.end();
+		getPIDController().disable();
 		basicSubsystem.stop();
 	}
 
