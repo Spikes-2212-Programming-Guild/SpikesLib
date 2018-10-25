@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.SpeedController;
  * @author Uriah "Jhonny" Rokach
  * @see SpeedController
  */
+@Deprecated
 public class DoubleSpeedcontroller implements SpeedController {
 
     private SpeedController speedControllerRight, speedControllerLeft;
