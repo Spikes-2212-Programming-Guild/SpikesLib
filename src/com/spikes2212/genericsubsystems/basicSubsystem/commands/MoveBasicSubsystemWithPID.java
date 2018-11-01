@@ -71,7 +71,7 @@ public class MoveBasicSubsystemWithPID extends PIDCommand {
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
 	public MoveBasicSubsystemWithPID(BasicSubsystem basicSubsystem, PIDSource source, Supplier<Double> setpoint,
-			PIDSettings PIDSettings, boolean continuous) {
+			PIDSettings PIDSettings, boolean continuous, double minInput, double maxInput) {
 		super(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD());
 		requires(basicSubsystem);
 		this.basicSubsystem = basicSubsystem;
@@ -84,6 +84,7 @@ public class MoveBasicSubsystemWithPID extends PIDCommand {
 		movementControl.setAbsoluteTolerance(PIDSettings.getTolerance());
 		movementControl.setOutputRange(-1, 1);
 		movementControl.setContinuous(this.continuous);
+		movementControl.setInputRange(minInput, maxInput);
 	}
 
 	/**
@@ -117,8 +118,8 @@ public class MoveBasicSubsystemWithPID extends PIDCommand {
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
 	public MoveBasicSubsystemWithPID(BasicSubsystem basicSubsystem, PIDSource source, double setpoint,
-			PIDSettings PIDSettings, boolean continuous) {
-		this(basicSubsystem, source, () -> setpoint, PIDSettings, continuous);
+			PIDSettings PIDSettings, boolean continuous, double minInput, double maxInput) {
+		this(basicSubsystem, source, () -> setpoint, PIDSettings, continuous, minInput, maxInput);
 	}
 
     /**
@@ -150,7 +151,7 @@ public class MoveBasicSubsystemWithPID extends PIDCommand {
      */
     public MoveBasicSubsystemWithPID(BasicSubsystem basicSubsystem, PIDSource source, Supplier<Double> setpoint,
                                      PIDSettings PIDSettings) {
-        this(basicSubsystem, source, setpoint, PIDSettings, false);
+        this(basicSubsystem, source, setpoint, PIDSettings, false, 0, 0);
     }
 
     /**
@@ -183,7 +184,7 @@ public class MoveBasicSubsystemWithPID extends PIDCommand {
      */
     public MoveBasicSubsystemWithPID(BasicSubsystem basicSubsystem, PIDSource source, double setpoint,
                                      PIDSettings PIDSettings) {
-        this(basicSubsystem, source, setpoint, PIDSettings, false);
+        this(basicSubsystem, source, setpoint, PIDSettings, false, 0, 0);
     }
 
 	/**
