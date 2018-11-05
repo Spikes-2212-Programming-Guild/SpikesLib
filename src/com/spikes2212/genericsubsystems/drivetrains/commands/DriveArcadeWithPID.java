@@ -16,11 +16,9 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
  * using the output from <a href=
  * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSources</a>.
  * and moves it forward using {@link Supplier} to supply the movement speed to
- * the {@link TankDrivetrain#arcadeDrive}.
- * <br />
- * This class can be used to force the
- * instance of {@link TankDrivetrain} move straight by giving its starting state
- * as the setpoint.
+ * the {@link TankDrivetrain#arcadeDrive}. <br />
+ * This class can be used to force the instance of {@link TankDrivetrain} move
+ * straight by giving its starting state as the setpoint.
  *
  * @see PIDController
  * @see TankDrivetrain
@@ -33,10 +31,6 @@ public class DriveArcadeWithPID extends PIDCommand {
 	protected final Supplier<Double> setpointSupplier;
 	protected final Supplier<Double> movementSupplier;
 	protected final Supplier<Boolean> isFinishedSupplier;
-
-	protected PIDSettings PIDSettings;
-
-	protected double outputRange;
 
 	/**
 	 * This constructs a new {@link DriveArcadeWithPID} using <a href=
@@ -54,9 +48,9 @@ public class DriveArcadeWithPID extends PIDCommand {
 	 * @param setpointSupplier
 	 *            a supplier supplying the target point of this command.
 	 *            <p>
-	 *            This command will try to move {@link TankDrivetrain} to the
-	 *            latest value supplied by setpoint. setpoint should supply
-	 *            values using the same units as source.
+	 *            This command will try to move {@link TankDrivetrain} to the latest
+	 *            value supplied by setpoint. setpoint should supply values using
+	 *            the same units as source.
 	 *            </p>
 	 * @param movementSupplier
 	 *            {@link Supplier<Double>} supplier of the movement for
@@ -65,15 +59,20 @@ public class DriveArcadeWithPID extends PIDCommand {
 	 *            a condition upon returning true stops this command
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
-	 * @param outputRange
-	 *            the range of the source's output. For example, gyro's is 360.
-	 *            Camera that has 640 px on the wanted axis has output range of
-	 *            640, and one that its values range was scaled between -1 and 1 has output range
-	 *            of 2 and so on.
+	 * @param inputRange
+	 *            the range of the source's input. For example, gyro's is 360.
+	 *            Camera that has 640 px on the wanted axis has output range of 640,
+	 *            and one that its values range was scaled between -1 and 1 has
+	 *            output range of 2 and so on.
+	 * @param continuous
+	 *            true to make the PID controller consider the input to be
+	 *            continuous, Rather then using the max and min input range as
+	 *            constraints, it considers them to be the same point and
+	 *            automatically calculates the shortest route to the setpoint.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
 			Supplier<Double> movementSupplier, Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings,
-			double outputRange) {
+			double inputRange, boolean continuous) {
 		super(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD());
 		requires(drivetrain);
 		this.drivetrain = drivetrain;
@@ -81,12 +80,11 @@ public class DriveArcadeWithPID extends PIDCommand {
 		this.setpointSupplier = setpointSupplier;
 		this.movementSupplier = movementSupplier;
 		this.isFinishedSupplier = isFinishedSupplier;
-		this.outputRange = outputRange;
-		this.PIDSettings = PIDSettings;
 
 		PIDController rotationController = getPIDController();
 		rotationController.setAbsoluteTolerance(PIDSettings.getTolerance());
-		rotationController.setOutputRange(- outputRange / 2, outputRange / 2);
+		rotationController.setInputRange(-inputRange / 2, inputRange / 2);
+		rotationController.setContinuous(continuous);
 	}
 
 	/**
@@ -106,8 +104,8 @@ public class DriveArcadeWithPID extends PIDCommand {
 	 *            the target point of this command.
 	 *            <p>
 	 *            This command will try to move {@link TankDrivetrain} to the
-	 *            setpoint. setpoint should supply values using the same units
-	 *            as source.
+	 *            setpoint. setpoint should supply values using the same units as
+	 *            source.
 	 *            </p>
 	 * @param movement
 	 *            static value for {@link DriveArcadeWithPID#movementSupplier}
@@ -115,15 +113,21 @@ public class DriveArcadeWithPID extends PIDCommand {
 	 *            a condition upon returning true stops this command
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
-	 * @param outputRange
-	 *            the range of the source's output. For example, gyro's is 360.
-	 *            Camera that has 640 px on the wanted axis has output range of
-	 *            640, and one that its values range was scaled between -1 and 1 has output range
-	 *            of 2 and so on.
+	 * @param inputRange
+	 *            the range of the source's input. For example, gyro's is 360.
+	 *            Camera that has 640 px on the wanted axis has output range of 640,
+	 *            and one that its values range was scaled between -1 and 1 has
+	 *            output range of 2 and so on.
+	 * @param continuous
+	 *            true to make the PID controller consider the input to be
+	 *            continuous, Rather then using the max and min input range as
+	 *            constraints, it considers them to be the same point and
+	 *            automatically calculates the shortest route to the setpoint.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double movement,
-			Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings, double outputRange) {
-		this(drivetrain, PIDSource, () -> setpoint, () -> movement, isFinishedSupplier, PIDSettings, outputRange);
+			Supplier<Boolean> isFinishedSupplier, PIDSettings PIDSettings, double inputRange, boolean continuous) {
+		this(drivetrain, PIDSource, () -> setpoint, () -> movement, isFinishedSupplier, PIDSettings, inputRange,
+				continuous);
 	}
 
 	/**
@@ -140,31 +144,36 @@ public class DriveArcadeWithPID extends PIDCommand {
 	 * @param setpointSupplier
 	 *            a supplier supplying the target point of this command.
 	 *            <p>
-	 *            This command will try to move {@link TankDrivetrain} to the
-	 *            latest value supplied by setpoint. setpoint should supply
-	 *            values using the same units as source.
+	 *            This command will try to move {@link TankDrivetrain} to the latest
+	 *            value supplied by setpoint. setpoint should supply values using
+	 *            the same units as source.
 	 *            </p>
 	 * @param movementSupplier
-	 *            supplier of the movement for
-	 *            {@link TankDrivetrain#arcadeDrive}
+	 *            supplier of the movement for {@link TankDrivetrain#arcadeDrive}
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
-	 * @param outputRange
-	 *            the range of the source's output. For example, gyro's is 360.
-	 *            Camera that has 640 px on the wanted axis has output range of
-	 *            640, and one that its values range was scaled between -1 and 1 has output range
-	 *            of 2 and so on.
+	 * @param inputRange
+	 *            the range of the source's input. For example, gyro's is 360.
+	 *            Camera that has 640 px on the wanted axis has output range of 640,
+	 *            and one that its values range was scaled between -1 and 1 has
+	 *            output range of 2 and so on.
+	 * @param continuous
+	 *            true to make the PID controller consider the input to be
+	 *            continuous, Rather then using the max and min input range as
+	 *            constraints, it considers them to be the same point and
+	 *            automatically calculates the shortest route to the setpoint.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
-			Supplier<Double> movementSupplier, PIDSettings PIDSettings, double outputRange) {
-		this(drivetrain, PIDSource, setpointSupplier, movementSupplier, () -> false, PIDSettings, outputRange);
+			Supplier<Double> movementSupplier, PIDSettings PIDSettings, double inputRange, boolean continuous) {
+		this(drivetrain, PIDSource, setpointSupplier, movementSupplier, () -> false, PIDSettings, inputRange,
+				continuous);
 
 	}
 
 	/**
 	 * This constructs a new {@link DriveArcadeWithPID} ignoring the
-	 * {@link DriveArcadeWithPID#isFinishedSupplier} and uses constant values
-	 * for {@link DriveArcadeWithPID#setpointSupplier} and
+	 * {@link DriveArcadeWithPID#isFinishedSupplier} and uses constant values for
+	 * {@link DriveArcadeWithPID#setpointSupplier} and
 	 * {@link DriveArcadeWithPID#movementSupplier}
 	 * 
 	 * @param drivetrain
@@ -178,22 +187,27 @@ public class DriveArcadeWithPID extends PIDCommand {
 	 *            the target point of this command.
 	 *            <p>
 	 *            This command will try to move {@link TankDrivetrain} to the
-	 *            setpoint. setpoint should supply values using the same units
-	 *            as source.
+	 *            setpoint. setpoint should supply values using the same units as
+	 *            source.
 	 *            </p>
 	 * @param movement
 	 *            constant value for {@link DriveArcadeWithPID#movementSupplier}
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
-	 * @param outputRange
-	 *            the range of the source's output. For example, gyro's is 360.
-	 *            Camera that has 640 px on the wanted axis has output range of
-	 *            640, and one that its values range was scaled between -1 and 1 has output range
-	 *            of 2 and so on.
+	 * @param inputRange
+	 *            the range of the source's input. For example, gyro's is 360.
+	 *            Camera that has 640 px on the wanted axis has output range of 640,
+	 *            and one that its values range was scaled between -1 and 1 has
+	 *            output range of 2 and so on.
+	 * @param continuous
+	 *            true to make the PID controller consider the input to be
+	 *            continuous, Rather then using the max and min input range as
+	 *            constraints, it considers them to be the same point and
+	 *            automatically calculates the shortest route to the setpoint.
 	 */
 	public DriveArcadeWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, double movement,
-			PIDSettings PIDSettings, double outputRange) {
-		this(drivetrain, PIDSource, () -> setpoint, () -> movement, PIDSettings, outputRange);
+			PIDSettings PIDSettings, double inputRange, boolean continuous) {
+		this(drivetrain, PIDSource, () -> setpoint, () -> movement, PIDSettings, inputRange, continuous);
 	}
 
 	@Override
@@ -235,6 +249,6 @@ public class DriveArcadeWithPID extends PIDCommand {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		drivetrain.arcadeDrive(movementSupplier.get(), output / (outputRange / 2));
+		drivetrain.arcadeDrive(movementSupplier.get(), output);
 	}
 }
