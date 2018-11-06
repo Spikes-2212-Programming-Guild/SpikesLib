@@ -31,6 +31,7 @@ public class DriveArcadeWithPID extends PIDCommand {
 	protected final Supplier<Double> setpointSupplier;
 	protected final Supplier<Double> movementSupplier;
 	protected final Supplier<Boolean> isFinishedSupplier;
+	protected final PIDSettings PIDSettings;
 
 	/**
 	 * This constructs a new {@link DriveArcadeWithPID} using <a href=
@@ -80,6 +81,7 @@ public class DriveArcadeWithPID extends PIDCommand {
 		this.setpointSupplier = setpointSupplier;
 		this.movementSupplier = movementSupplier;
 		this.isFinishedSupplier = isFinishedSupplier;
+		this.PIDSettings = PIDSettings;
 
 		PIDController rotationController = getPIDController();
 		rotationController.setAbsoluteTolerance(PIDSettings.getTolerance());

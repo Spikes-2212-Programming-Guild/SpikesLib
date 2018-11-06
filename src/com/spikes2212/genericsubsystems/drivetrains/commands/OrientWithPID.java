@@ -42,12 +42,22 @@ public class OrientWithPID extends DriveArcadeWithPID {
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
-	 * @param outputRange
+	 * @param inputRange
 	 *            the range of the source's output. For example, gyro's is 360.
+	 * @param inputRange
+	 *            the range of the source's input. For example, gyro's is 360.
+	 *            Camera that has 640 px on the wanted axis has output range of 640,
+	 *            and one that its values range was scaled between -1 and 1 has
+	 *            output range of 2 and so on.
+	 * @param continuous
+	 *            true to make the PID controller consider the input to be
+	 *            continuous, Rather then using the max and min input range as
+	 *            constraints, it considers them to be the same point and
+	 *            automatically calculates the shortest route to the setpoint.
 	 */
 	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, Supplier<Double> setpointSupplier,
-			PIDSettings PIDSettings, double outputRange) {
-		super(drivetrain, PIDSource, setpointSupplier, () -> 0.0, PIDSettings, outputRange);
+			PIDSettings PIDSettings, double inputRange, boolean continuous) {
+		super(drivetrain, PIDSource, setpointSupplier, () -> 0.0, PIDSettings, inputRange, continuous);
 	}
 
 	/**
@@ -66,12 +76,20 @@ public class OrientWithPID extends DriveArcadeWithPID {
 	 *            a set point to get to
 	 * @param PIDSettings
 	 *            {@link PIDSettings} for this command
-	 * @param outputRange
-	 *            the range of the source's output. For example, gyro's is 360.
+	 * @param inputRange
+	 *            the range of the source's input. For example, gyro's is 360.
+	 *            Camera that has 640 px on the wanted axis has output range of 640,
+	 *            and one that its values range was scaled between -1 and 1 has
+	 *            output range of 2 and so on.
+	 * @param continuous
+	 *            true to make the PID controller consider the input to be
+	 *            continuous, Rather then using the max and min input range as
+	 *            constraints, it considers them to be the same point and
+	 *            automatically calculates the shortest route to the setpoint.
 	 */
 	public OrientWithPID(TankDrivetrain drivetrain, PIDSource PIDSource, double setpoint, PIDSettings PIDSettings,
-			double outputRange) {
-		this(drivetrain, PIDSource, () -> setpoint, PIDSettings, outputRange);
+			double inputRange, boolean continuous) {
+		this(drivetrain, PIDSource, () -> setpoint, PIDSettings, inputRange, continuous);
 	}
 
 	@Override
