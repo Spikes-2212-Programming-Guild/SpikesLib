@@ -89,7 +89,6 @@ public class MoveBasicSubsystemWithPIDForSpeed extends MoveBasicSubsystemWithPID
 		 * get closer to the wanted speed. It does that by adding to the current voltage
 		 * to get to the wanted speed.
 		 */
-		PIDController movementControl = getPIDController();
 		movementControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), source,
 				(additionalSpeed) -> basicSubsystem
 						.move(basicSubsystem.getSpeed() + additionalSpeed));
