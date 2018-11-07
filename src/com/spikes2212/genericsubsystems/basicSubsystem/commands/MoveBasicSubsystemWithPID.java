@@ -37,9 +37,9 @@ public class MoveBasicSubsystemWithPID extends Command {
 	protected final PIDSettings PIDSettings;
 	protected final Supplier<Double> setpoint;
 	protected final PIDSource source;
-    protected PIDController movementControl;
+	protected PIDController movementControl;
 	protected double lastTimeNotOnTarget;
-    protected double inputRange;
+	protected double inputRange;
 	protected boolean continuous;
 
 	/**
@@ -87,7 +87,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 		this.setpoint = setpoint;
 		this.PIDSettings = PIDSettings;
 		this.continuous = continuous;
-		this.inputRange= inputRange;
+		this.inputRange = inputRange;
 	}
 
 	/**
@@ -113,10 +113,13 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 * @param PIDSettings
 	 *            the {@link PIDSettings} this command's PIDController needs.
 	 *
-     * @param continuous a value that is passed to the internal {@link PIDController}
-     *                   which makes it handle sensors that give a circular output. A {@link edu.wpi.first.wpilibj.interfaces.Gyro}
-     *                   sensor is a good example of such a sensor, where x and x+360k degrees are essentially the same position
-     *
+	 * @param continuous
+	 *            a value that is passed to the internal {@link PIDController} which
+	 *            makes it handle sensors that give a circular output. A
+	 *            {@link edu.wpi.first.wpilibj.interfaces.Gyro} sensor is a good
+	 *            example of such a sensor, where x and x+360k degrees are
+	 *            essentially the same position
+	 *
 	 * @see <a href=
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
@@ -249,7 +252,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 		movementControl.setAbsoluteTolerance(PIDSettings.getTolerance());
 		movementControl.setSetpoint(this.setpoint.get());
 		movementControl.setOutputRange(-1, 1);
-		movementControl.setInputRange(- inputRange / 2, inputRange / 2);
+		movementControl.setInputRange(-inputRange / 2, inputRange / 2);
 		movementControl.setContinuous(this.continuous);
 		movementControl.enable();
 	}
