@@ -14,6 +14,7 @@ import com.spikes2212.genericsubsystems.basicSubsystem.utils.targets.NumericalTa
  */
 public class MoveBasicSubsystemToTarget extends MoveBasicSubsystem {
 	protected final Supplier<Boolean> onTarget;
+	
 
 	/**
 	 * Constructs a new {@link MoveBasicSubsystemToTarget} command using the
