@@ -16,10 +16,15 @@ repositories {
 }
 
 val wpilibVersion by extra("2019.1.1-beta-2")
+val cscoreVersion by extra("1.3.0")
+val opencvVersion by extra("3.")
 
 dependencies {
     api("edu.wpi.first.wpilibj:wpilibj-java:$wpilibVersion")
+    api("edu.wpi.first.cscore:cscore-java:$cscoreVersion")
+    api("edu.wpi.first.thirdparty.frc2019.opencv:opencv-java:$opencvVersion")
 }
+
 
 sourceSets {
     main {
