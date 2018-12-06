@@ -21,6 +21,14 @@ dependencies {
     compile("edu.wpi.first.wpilibj:wpilibj-java:$wpilibVersion")
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir("src/")
+        }
+    }
+}
+
 task("printProps") {
     doLast {
     }
