@@ -35,7 +35,7 @@ public class RiseBasicSubsystem extends MoveBasicSubsystem {
 	 */
 	public RiseBasicSubsystem(BasicSubsystem basicSubsystem, Supplier<Double> wantedSpeed, double time) {
 		super(basicSubsystem, wantedSpeed);
-		if (time <= 0) {
+		if (time <= 1) {
 			time = 1;
 		}
 		this.time = time;
@@ -72,7 +72,9 @@ public class RiseBasicSubsystem extends MoveBasicSubsystem {
 	 */
 	@Override
 	public void execute() {
-		currentSpeed = Math.min(speedSupplier.get(), (Timer.getFPGATimestamp() - startTime) * acceleration);
+		currentSpeed = (Timer.getFPGATimestamp() - startTime) * acceleration;
+		if (Math.abs(currentSpeed) > Math.abs(speedSupplier.get()))
+			currentSpeed = speedSupplier.get();
 		basicSubsystem.move(currentSpeed);
 	}
 
