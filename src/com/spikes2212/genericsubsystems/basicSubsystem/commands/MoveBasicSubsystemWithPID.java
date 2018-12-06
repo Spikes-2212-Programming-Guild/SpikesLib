@@ -193,58 +193,6 @@ public class MoveBasicSubsystemWithPID extends Command {
 		this(basicSubsystem, source, setpoint, PIDSettings, 0, false);
 	}
 
-	/**
-	 * Sets the time this command will wait while within tolerance of the setpoint
-	 * before ending.
-	 *
-	 * <br>
-	 * <br>
-	 * The PID control of the subsystem continues while waiting. <br/>
-	 * If wait time is set to 0, the command will not wait after reaching the
-	 * setpoint.
-	 *
-	 * @param waitTime
-	 *            the new wait time, in seconds. Positive values only.
-	 *
-	 * @see PIDSettings#getWaitTime()
-	 */
-	public void setWaitTime(double waitTime) {
-		PIDSettings.setWaitTime(waitTime);
-	}
-
-	/**
-	 * Sets the tolerance for error of this PID loop.
-	 *
-	 * <br>
-	 * <br>
-	 * This tolerance defines when this PID loop ends: this command will end after
-	 * the difference between the setpoint and the current position is within the
-	 * tolerance for the amount of time specified by {@link #setWaitTime(double)}.
-	 *
-	 * <br>
-	 * <br>
-	 *
-	 * @param tolerance
-	 *            the tolerance in the same units as the {@link #source}.
-	 *
-	 * @see <a href=
-	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
-	 */
-	public void setTolerance(double tolerance) {
-		PIDSettings.setTolerance(tolerance);
-	}
-
-	/**
-	 * Gets the {@link PIDSettings} the <a href=
-	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
-	 * uses for this command.
-	 *
-	 * @return The PIDSettings object
-	 */
-	public PIDSettings getPIDSetting() {
-		return PIDSettings;
-	}
-
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		movementControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), source,
