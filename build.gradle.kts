@@ -6,7 +6,7 @@
  */
 
 plugins {
-    `java`
+    `java-library`
 }
 
 repositories {
@@ -18,7 +18,7 @@ repositories {
 val wpilibVersion by extra("2019.1.1-beta-2")
 
 dependencies {
-    compile("edu.wpi.first.wpilibj:wpilibj-java:$wpilibVersion")
+    api("edu.wpi.first.wpilibj:wpilibj-java:$wpilibVersion")
 }
 
 sourceSets {
