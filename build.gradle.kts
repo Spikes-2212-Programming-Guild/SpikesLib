@@ -17,7 +17,7 @@ repositories {
 
 val wpilibVersion by extra("2019.1.1-beta-2")
 val cscoreVersion by extra("1.3.0")
-val opencvVersion by extra("3.")
+val opencvVersion by extra("3.4.3")
 
 dependencies {
     api("edu.wpi.first.wpilibj:wpilibj-java:$wpilibVersion")
@@ -34,7 +34,7 @@ sourceSets {
     }
 }
 
-task("printProps") {
-    doLast {
-    }
+val jar = task<Jar>("SpikesLib")
+artifacts {
+    add("archives", jar)
 }
