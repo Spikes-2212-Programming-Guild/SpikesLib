@@ -42,6 +42,23 @@ public class BasicSubsystem extends Subsystem {
 	}
 
 	/**
+	 * Constructor that recieves a {@link Consumer} for the movement component and a {@link Predicate<Double>}
+	 * that represents the limits of the subsystem's speed.
+	 *
+	 * @param name
+	 * 			  the name of the subsystem that will be displayed on the dashboard
+	 * @param speedConsumer
+	 *            the component using the speed (usually a motor/motors).
+	 * @param canMove
+	 *            the limitation on the movement, which depends on the speed.
+	 */
+	public BasicSubsystem(String name, Consumer<Double> speedConsumer, Predicate<Double> canMove) {
+		super(name);
+		this.canMove = canMove;
+		this.speedConsumer = speedConsumer;
+	}
+
+	/**
 	 * Moves this {@link BasicSubsystem} with the given speed, as long as it is within the limits
 	 * specifed when this {@link BasicSubsystem} was constructed.
 	 *

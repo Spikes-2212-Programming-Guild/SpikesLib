@@ -39,6 +39,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 	protected final PIDSource source;
 	protected PIDController movementControl;
 	protected double lastTimeNotOnTarget;
+	protected double inputRange;
 	protected boolean continuous;
 
 	/**
@@ -63,22 +64,30 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 *            </p>
 	 * @param PIDSettings
 	 *            the {@link PIDSettings} this command's PIDController needs.
-     *
-     * @param continuous a value that is passed to the internal {@link PIDController}
-     *                   which makes it handle sensors that give a circular output. A {@link edu.wpi.first.wpilibj.interfaces.Gyro}
-     *                   sensor is a good example of such a sensor, where x and x+360k degrees are essentially the same position
+	 *
+	 * @param inputRange
+	 *            the range of the source's input. For example, gyro's is 360.
+	 *            Camera that has 640 px on the wanted axis has output range of 640,
+	 *            and one that its values range was scaled between -1 and 1 has
+	 *            output range of 2 and so on.
+	 * @param continuous
+	 *            true to make the PID controller consider the input to be
+	 *            continuous, Rather then using the max and min input range as
+	 *            constraints, it considers them to be the same point and
+	 *            automatically calculates the shortest route to the setpoint.
 	 *
 	 * @see <a href=
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
 	public MoveBasicSubsystemWithPID(BasicSubsystem basicSubsystem, PIDSource source, Supplier<Double> setpoint,
-			PIDSettings PIDSettings, boolean continuous) {
+			PIDSettings PIDSettings, double inputRange, boolean continuous) {
 		requires(basicSubsystem);
 		this.basicSubsystem = basicSubsystem;
 		this.source = source;
 		this.setpoint = setpoint;
 		this.PIDSettings = PIDSettings;
 		this.continuous = continuous;
+		this.inputRange = inputRange;
 	}
 
 	/**
@@ -104,133 +113,84 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 * @param PIDSettings
 	 *            the {@link PIDSettings} this command's PIDController needs.
 	 *
-     * @param continuous a value that is passed to the internal {@link PIDController}
-     *                   which makes it handle sensors that give a circular output. A {@link edu.wpi.first.wpilibj.interfaces.Gyro}
-     *                   sensor is a good example of such a sensor, where x and x+360k degrees are essentially the same position
-     *
+	 * @param continuous
+	 *            a value that is passed to the internal {@link PIDController} which
+	 *            makes it handle sensors that give a circular output. A
+	 *            {@link edu.wpi.first.wpilibj.interfaces.Gyro} sensor is a good
+	 *            example of such a sensor, where x and x+360k degrees are
+	 *            essentially the same position
+	 *
 	 * @see <a href=
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
 	public MoveBasicSubsystemWithPID(BasicSubsystem basicSubsystem, PIDSource source, double setpoint,
-			PIDSettings PIDSettings, boolean continuous) {
-		this(basicSubsystem, source, () -> setpoint, PIDSettings, continuous);
-	}
-
-    /**
-     * This constructs a new {@link MoveBasicSubsystemWithPID} using a <a href=
-     * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>,
-     * a setpoint, the PID coefficients this command's PID loop should have, and the
-     * tolerance for error.
-     * this constructor sets {@link MoveBasicSubsystemWithPID#continuous} to false automatically
-     *
-     * @param basicSubsystem
-     *            the {@link BasicSubsystem} this command operates on.
-     * @param source
-     *            the <a href=
-     *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-     *            this command uses to get feedback for the PID Loop.
-     * @param setpoint
-     *            a supplier supplying the target point of this command.
-     *
-     *            <p>
-     *            This command will try to move basicSubsystem until it reaches the
-     *            latest value supplied by setpoint. setpoint should supply values
-     *            using the same units as source.
-     *            </p>
-     * @param PIDSettings
-     *            the {@link PIDSettings} this command's PIDController needs.
-     *
-     * @see <a href=
-     *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
-     */
-    public MoveBasicSubsystemWithPID(BasicSubsystem basicSubsystem, PIDSource source, Supplier<Double> setpoint,
-                                     PIDSettings PIDSettings) {
-        this(basicSubsystem, source, setpoint, PIDSettings, false);
-    }
-
-    /**
-     * This constructs a new {@link MoveBasicSubsystemWithPID} using a <a href=
-     * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-     * given by {@link BasicSubsystem#getPIDSource()}, a setpoint, the PID
-     * coefficients this command's PID loop should have, and the tolerance for
-     * error.
-     * this constructor sets {@link MoveBasicSubsystemWithPID#continuous} to false automatically
-     *
-     *
-     * @param basicSubsystem
-     *            the {@link BasicSubsystem} this command requires and moves.
-     * @param source
-     *            the <a href=
-     *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-     *            this command uses to get feedback for the PID Loop.
-     * @param setpoint
-     *            the target point of this command.
-     *
-     *            <p>
-     *            This command will try to move basicSubsystem until it reaches the
-     *            setpoint. setpoint should be using the same units as source.
-     *            </p>
-     * @param PIDSettings
-     *            the {@link PIDSettings} this command's PIDController needs.
-     *
-     * @see <a href=
-     *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
-     */
-    public MoveBasicSubsystemWithPID(BasicSubsystem basicSubsystem, PIDSource source, double setpoint,
-                                     PIDSettings PIDSettings) {
-        this(basicSubsystem, source, setpoint, PIDSettings, false);
-    }
-
-	/**
-	 * Sets the time this command will wait while within tolerance of the setpoint
-	 * before ending.
-	 *
-	 * <br>
-	 * <br>
-	 * The PID control of the subsystem continues while waiting. <br/>
-	 * If wait time is set to 0, the command will not wait after reaching the
-	 * setpoint.
-	 *
-	 * @param waitTime
-	 *            the new wait time, in seconds. Positive values only.
-	 *
-	 * @see PIDSettings#getWaitTime()
-	 */
-	public void setWaitTime(double waitTime) {
-		PIDSettings.setWaitTime(waitTime);
+			PIDSettings PIDSettings, double inputRange, boolean continuous) {
+		this(basicSubsystem, source, () -> setpoint, PIDSettings, inputRange, continuous);
 	}
 
 	/**
-	 * Sets the tolerance for error of this PID loop.
+	 * This constructs a new {@link MoveBasicSubsystemWithPID} using a <a href=
+	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>,
+	 * a setpoint, the PID coefficients this command's PID loop should have, and the
+	 * tolerance for error. this constructor sets
+	 * {@link MoveBasicSubsystemWithPID#continuous} to false automatically
 	 *
-	 * <br>
-	 * <br>
-	 * This tolerance defines when this PID loop ends: this command will end after
-	 * the difference between the setpoint and the current position is within the
-	 * tolerance for the amount of time specified by {@link #setWaitTime(double)}.
+	 * @param basicSubsystem
+	 *            the {@link BasicSubsystem} this command operates on.
+	 * @param source
+	 *            the <a href=
+	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
+	 *            this command uses to get feedback for the PID Loop.
+	 * @param setpoint
+	 *            a supplier supplying the target point of this command.
 	 *
-	 * <br>
-	 * <br>
-	 *
-	 * @param tolerance
-	 *            the tolerance in the same units as the {@link #source}.
+	 *            <p>
+	 *            This command will try to move basicSubsystem until it reaches the
+	 *            latest value supplied by setpoint. setpoint should supply values
+	 *            using the same units as source.
+	 *            </p>
+	 * @param PIDSettings
+	 *            the {@link PIDSettings} this command's PIDController needs.
 	 *
 	 * @see <a href=
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
-	public void setTolerance(double tolerance) {
-		PIDSettings.setTolerance(tolerance);
+	public MoveBasicSubsystemWithPID(BasicSubsystem basicSubsystem, PIDSource source, Supplier<Double> setpoint,
+			PIDSettings PIDSettings) {
+		this(basicSubsystem, source, setpoint, PIDSettings, 0, false);
 	}
 
 	/**
-	 * Gets the {@link PIDSettings} the <a href=
-	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
-	 * uses for this command.
+	 * This constructs a new {@link MoveBasicSubsystemWithPID} using a <a href=
+	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
+	 * given by {@link BasicSubsystem#getPIDSource()}, a setpoint, the PID
+	 * coefficients this command's PID loop should have, and the tolerance for
+	 * error. this constructor sets {@link MoveBasicSubsystemWithPID#continuous} to
+	 * false automatically
 	 *
-	 * @return The PIDSettings object
+	 *
+	 * @param basicSubsystem
+	 *            the {@link BasicSubsystem} this command requires and moves.
+	 * @param source
+	 *            the <a href=
+	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
+	 *            this command uses to get feedback for the PID Loop.
+	 * @param setpoint
+	 *            the target point of this command.
+	 *
+	 *            <p>
+	 *            This command will try to move basicSubsystem until it reaches the
+	 *            setpoint. setpoint should be using the same units as source.
+	 *            </p>
+	 * @param PIDSettings
+	 *            the {@link PIDSettings} this command's PIDController needs.
+	 *
+	 * @see <a href=
+	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
-	public PIDSettings getPIDSetting() {
-		return PIDSettings;
+	public MoveBasicSubsystemWithPID(BasicSubsystem basicSubsystem, PIDSource source, double setpoint,
+			PIDSettings PIDSettings) {
+		this(basicSubsystem, source, setpoint, PIDSettings, 0, false);
 	}
 
 	// Called just before this Command runs the first time
@@ -240,6 +200,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 		movementControl.setAbsoluteTolerance(PIDSettings.getTolerance());
 		movementControl.setSetpoint(this.setpoint.get());
 		movementControl.setOutputRange(-1, 1);
+		movementControl.setInputRange(-inputRange / 2, inputRange / 2);
 		movementControl.setContinuous(this.continuous);
 		movementControl.enable();
 	}
@@ -270,5 +231,4 @@ public class MoveBasicSubsystemWithPID extends Command {
 	protected void interrupted() {
 		end();
 	}
-
 }
