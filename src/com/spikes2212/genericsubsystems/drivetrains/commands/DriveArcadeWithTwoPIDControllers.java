@@ -52,8 +52,6 @@ public class DriveArcadeWithTwoPIDControllers extends Command {
 		forwardMovementControl.setAbsoluteTolerance(forwardPIDSettings.getTolerance());
 		forwardMovementControl.setSetpoint(this.forwardSetpoint.get());
 		forwardMovementControl.setOutputRange(-1, 1);
-		forwardMovementControl.setInputRange(-inputRange / 2, inputRange / 2);
-		forwardMovementControl.setContinuous(this.continuous);
 		forwardMovementControl.enable();
 		rotationMovementControl = new PIDController(rotationPIDSettings.getKP(), rotationPIDSettings.getKI(), rotationPIDSettings.getKD(), rotationSource,
 				(PIDOutput1)->rotationSpeed=PIDOutput1);
