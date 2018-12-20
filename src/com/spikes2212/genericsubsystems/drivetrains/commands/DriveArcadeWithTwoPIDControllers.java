@@ -29,8 +29,8 @@ public class DriveArcadeWithTwoPIDControllers extends Command {
 	private double rotationSpeed;
 
 	public DriveArcadeWithTwoPIDControllers(TankDrivetrain drivetrain,
-			com.spikes2212.utils.PIDSettings forwardPIDSettings, Supplier<Double> forwardSetpoint,
-			PIDSource forwardSource, com.spikes2212.utils.PIDSettings rotationPIDSettings,
+			PIDSettings forwardPIDSettings, Supplier<Double> forwardSetpoint,
+			PIDSource forwardSource,PIDSettings rotationPIDSettings,
 			Supplier<Double> rotationSetpoint, PIDSource rotationSource, double lastTimeNotOnTarget, double inputRange,
 			boolean continuous) {
 		this.drivetrain = drivetrain;
@@ -67,8 +67,8 @@ public class DriveArcadeWithTwoPIDControllers extends Command {
 
 	@Override
 	protected void execute() {
-		
-		drivetrain.arcadeDrive(forwardSpeed,rotationSpeed);
+
+		drivetrain.arcadeDrive(forwardSpeed, rotationSpeed);
 		double newSetPointLeft = forwardSetpoint.get();
 		double newSetPointRight = rotationSetpoint.get();
 		if (newSetPointLeft != forwardMovementControl.getSetpoint())
