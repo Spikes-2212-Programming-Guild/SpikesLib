@@ -28,9 +28,8 @@ public class DriveArcadeWithTwoPIDControllers extends Command {
 	private double forwardSpeed;
 	private double rotationSpeed;
 
-	public DriveArcadeWithTwoPIDControllers(TankDrivetrain drivetrain,
-			PIDSettings forwardPIDSettings, Supplier<Double> forwardSetpoint,
-			PIDSource forwardSource,PIDSettings rotationPIDSettings,
+	public DriveArcadeWithTwoPIDControllers(TankDrivetrain drivetrain, PIDSettings forwardPIDSettings,
+			Supplier<Double> forwardSetpoint, PIDSource forwardSource, PIDSettings rotationPIDSettings,
 			Supplier<Double> rotationSetpoint, PIDSource rotationSource, double lastTimeNotOnTarget, double inputRange,
 			boolean continuous) {
 		this.drivetrain = drivetrain;
@@ -44,6 +43,27 @@ public class DriveArcadeWithTwoPIDControllers extends Command {
 		this.inputRange = inputRange;
 		this.continuous = continuous;
 
+	}
+
+	public DriveArcadeWithTwoPIDControllers(TankDrivetrain drivetrain, PIDSettings forwardPIDSettings,
+			double forwardSetpoint, PIDSource forwardSource, PIDSettings rotationPIDSettings, double rotationSetpoint,
+			PIDSource rotationSource, double lastTimeNotOnTarget, double inputRange, boolean continuous) {
+		this(drivetrain, forwardPIDSettings, () -> forwardSetpoint, forwardSource, rotationPIDSettings,
+				() -> rotationSetpoint, rotationSource, lastTimeNotOnTarget, inputRange, continuous);
+	}
+
+	public DriveArcadeWithTwoPIDControllers(TankDrivetrain drivetrain, PIDSettings forwardPIDSettings,
+			double forwardSetpoint, PIDSource forwardSource, PIDSettings rotationPIDSettings, double rotationSetpoint,
+			PIDSource rotationSource, double lastTimeNotOnTarget) {
+		this(drivetrain, forwardPIDSettings, () -> forwardSetpoint, forwardSource, rotationPIDSettings,
+				() -> rotationSetpoint, rotationSource, lastTimeNotOnTarget, 0, false);
+	}
+
+	public DriveArcadeWithTwoPIDControllers(TankDrivetrain drivetrain, PIDSettings forwardPIDSettings,
+			Supplier<Double> forwardSetpoint, PIDSource forwardSource, PIDSettings rotationPIDSettings,
+			Supplier<Double> rotationSetpoint, PIDSource rotationSource, double lastTimeNotOnTarget) {
+		this(drivetrain, forwardPIDSettings, forwardSetpoint, forwardSource, rotationPIDSettings, rotationSetpoint,
+				rotationSource, lastTimeNotOnTarget, 0, false);
 	}
 
 	@Override
