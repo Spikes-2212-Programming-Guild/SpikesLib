@@ -18,11 +18,11 @@ import edu.wpi.first.wpilibj.Timer;
  * This command only rotates the {@link TankDrivetrain}.
  *
  * @see PIDController
- * @see DriveArcadeWithPID
+ * @see DriveArcadeWithBetterPID
  *
  * @author Simon "C" Kharmatsky
  */
-public class OrientWithPID extends DriveArcadeWithPID {
+public class OrientWithPID extends DriveArcadeWithBetterPID {
 	private double lastTimeOnTarget = 0;
 
 	/**
