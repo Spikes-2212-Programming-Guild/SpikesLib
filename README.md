@@ -18,13 +18,13 @@ There are many concepts in First Robotics Competition that repeat themeselves ev
 To download the library (.zip file) go to <a href='https://github.com/Spikes-2212-Programming-Guild/SpikesLib/releases'> the latest release </a> and you can download the jar there.
 
 ### Installation (for Eclipse)
-1. Extract the SpikesLib2.zip file into C:\Users\%USERNAME%\wpilib\user\java\lib
+1. Extract the SpikesLib jar file into C:\Users\%USERNAME%\wpilib\user\java\lib
 2. Open Eclipse
 3. Right click on the wanted project
 4. Hover on Build Path
 5. Click on Configure Build Path
 6. Click on Add External JARs
-7. Find and add the SpikesLib2.jar file
+7. Find and add the SpikesLib jar file
 8. return 0
 
 ## <a name = 'Exmps'> Examples </a>
