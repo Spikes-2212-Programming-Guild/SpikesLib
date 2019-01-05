@@ -19,7 +19,7 @@ repositories {
     }
 }
 
-val wpilibVersion by extra("2019.1.1-beta-2")
+val wpilibVersion by extra("2019.1.1")
 val cscoreVersion by extra("1.3.0")
 val opencvVersion by extra("3.4.3")
 
