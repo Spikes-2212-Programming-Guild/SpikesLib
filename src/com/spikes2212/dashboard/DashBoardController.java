@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -25,9 +26,9 @@ public class DashBoardController {
     
     /**
 	 * A {@link Map} to contain all {@link String} values to be displayed on the
-	 * {@code SmartDashBoard}. This map assigns a double to each Supplier as a key to identify it
+	 * {@code SmartDashBoard}. This map assigns a number to each Supplier as a key to identify it
 	 */
-    private Map<String, Supplier<Double>> doubleFields;
+    private Map<String, Supplier<Number>> numberFields;
     
     /**
 	 * A {@link Map} to contain all {@link String} values to be displayed on the
@@ -44,7 +45,7 @@ public class DashBoardController {
 	 */
     public DashBoardController() {
         stringFields = new HashMap<>();
-        doubleFields = new HashMap<>();
+        numberFields = new HashMap<>();
         booleanFields = new HashMap<>();
     }
 
@@ -66,20 +67,20 @@ public class DashBoardController {
     }
 
     /**
-	 * Adds a Double {@link Supplier} to this {@link DashBoardController}.
+	 * Adds a Number {@link Supplier} to this {@link DashBoardController}.
 	 *
 	 * @param name
 	 *            The name of the field where the {@code stringSupplier} will be
 	 *            displayed. Overrides values if the field name is already used.
-	 * @param doubleSupplier
+	 * @param numberSupplier
 	 *            The {@link Supplier} giving the values that are written to the
 	 *            <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html">SmartDashboard</a>.
 	 *            Cannot be null.
 	 */
-    public void addDouble(String name, Supplier<Double> doubleSupplier) {
+    public void addNumber(String name, Supplier<Number> numberSupplier) {
         remove(name);
-        doubleFields.put(name, doubleSupplier);
+        numberFields.put(name, numberSupplier);
     }
 
     /**
@@ -111,7 +112,7 @@ public class DashBoardController {
 	 */
     public void remove(String name) {
         stringFields.remove(name);
-        doubleFields.remove(name);
+        numberFields.remove(name);
         booleanFields.remove(name);
     }
 
@@ -125,11 +126,11 @@ public class DashBoardController {
     }
 
     /**
-	 * Updates the Double {@link Supplier}s within the {@link SmartDashboard}. 
+	 * Updates the Number {@link Supplier}s within the {@link SmartDashboard}. 
 	 */
-    private void updateDoubles() {
-        for (Map.Entry<String, Supplier<Double>> entry : doubleFields.entrySet()) {
-            SmartDashboard.putNumber(entry.getKey(), entry.getValue().get());
+    private void updateNumbers() {
+        for (Map.Entry<String, Supplier<Number>> entry : numberFields.entrySet()) {
+            SmartDashboard.putNumber(entry.getKey(), entry.getValue().get().doubleValue());
         }
     }
 
@@ -155,7 +156,7 @@ public class DashBoardController {
 	 */
     public void update() {
         updateBooleans();
-        updateDoubles();
+        updateNumbers();
         updateString();
     }
 }

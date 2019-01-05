@@ -17,23 +17,23 @@ There are many concepts in First Robotics Competition that repeat themeselves ev
 ### Download
 To download the library (.zip file) go to <a href='https://github.com/Spikes-2212-Programming-Guild/SpikesLib/releases'> the latest release </a> and you can download the jar there.
 
-### Using SpikesLib in Ant Projects (Eclipse)
+### Installation (for Eclipse)
 1. Extract the SpikesLib2.zip file into C:\Users\%USERNAME%\wpilib\user\java\lib
 2. Open Eclipse
 3. Right click on the wanted project
 4. Hover on Build Path
 5. Click on Configure Build Path
 6. Click on Add External JARs
-7. Find and add the SpikesLib2.jar file
+7. Find and add the SpikesLib jar file
 8. return 0
 
 ### Using SpikesLib in Gradle Projects
 Currently, there are no artifacts maven for SpikesLib.
 Regardless of that, you can include the SpikesLib jar file in your gradle projects.
-1. add a `libs` directory to your project root. 
+1. add a `libs` directory to your project root.
 2. add the .jar file to that folder
 3. in your `gradle.build` go to the `dependencies` section.
-once there, add the following line `compile files('libs/YOUR_JAR.jar')` under all the other dependencies. 
+once there, add the following line `compile files('libs/YOUR_JAR.jar')` under all the other dependencies.
 ## <a name = 'Exmps'> Examples </a>
 We created a repository with a pleathra of <a href='https://github.com/Spikes-2212-Programming-Guild/Spikes-Lib-Example'> examples of how to use SpikesLib</a>. <br/>
 You can learn how to use this library by reading the examples and playing with them.
