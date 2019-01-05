@@ -6,7 +6,7 @@
  */
 
 group = "com.spikes2212"
-projectVersion = "3.0.0"
+
 
 plugins {
     `java-library`
@@ -45,7 +45,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.spikes2212"
             artifactId = "sl"
-            version = projectVersion
+            version = "3.0.0"
 
             from(components["java"])
         }
