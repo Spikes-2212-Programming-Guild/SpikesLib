@@ -54,7 +54,7 @@ publishing {
     repositories {
         maven {
             name = "publish"
-            url = uri("https://mymavenrepo.com/repo/0FlsGVeGi3hYeaRK5kqO/")
+            url = uri("")
         }
     }
 }
