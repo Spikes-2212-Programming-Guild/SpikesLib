@@ -27,7 +27,7 @@ download the library (.zip file) from <a href='https://github.com/Spikes-2212-Pr
 8. return 0
 
 ### Using SpikesLib in Gradle Projects
-####Using Maven Artifacts
+#### Using Maven Artifacts
 SpikesLib includes Gradle Support Since 2019. <br>
 In order to add SpikesLib to your Gradle FRC Project
 you should add the following lines  to the repositories section of your build.gradle
@@ -38,8 +38,10 @@ maven {
 ```
 then, add the following line to your dependencies section <br>
  `compile "com.spikes2212:sl:3.0.0"`
+ 
+Note that you should run a build task once while connected to the internet before deploying your code to the RIO.
 
-####Using A Local Jar
+#### Using A Local Jar
 
 1. download the .jar file using the method mentioned above
 2. add a `libs` directory to your project root.
