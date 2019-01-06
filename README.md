@@ -1,4 +1,4 @@
-s# SpikesLib
+# SpikesLib
 Welcome to SpikesLib!
 
 SpikesLib is an open source, generic library, which extends <a href='https://github.com/wpilibsuite/allwpilib'> FRC WPILib </a> by adding useful features to it.
@@ -16,8 +16,7 @@ There are many concepts in First Robotics Competition that repeat themeselves ev
 
 
 ### Using SpikesLib in Eclipse Porjects
-##### Download
-To download the library (.zip file) go to <a href='https://github.com/Spikes-2212-Programming-Guild/SpikesLib/releases'> the latest release </a> and you can download the jar there.
+download the library (.zip file) from <a href='https://github.com/Spikes-2212-Programming-Guild/SpikesLib/releases'> the latest release </a> and you can download the jar there.
 1. Extract the SpikesLib2.zip file into C:\Users\%USERNAME%\wpilib\user\java\lib
 2. Open Eclipse
 3. Right click on the wanted project
@@ -29,11 +28,16 @@ To download the library (.zip file) go to <a href='https://github.com/Spikes-221
 
 ### Using SpikesLib in Gradle Projects
 ####Using Maven Artifacts
-SpikesLib includes Gradle Support Since 2019.
+SpikesLib includes Gradle Support Since 2019. <br>
 In order to add SpikesLib to your Gradle FRC Project
-you should add the next repository to your repository list
-`https://mymavenrepo.com/repo/fDwN5Fqu32WHQ4GM9lTY/`
-then, add the following line to your dependencies `compile com.spikes2212:sl:3.0.0`
+you should add the following lines  to the repositories section of your build.gradle
+```
+maven {
+    url = "https://mymavenrepo.com/repo/fDwN5Fqu32WHQ4GM9lTY/"
+}
+```
+then, add the following line to your dependencies section <br>
+ `compile "com.spikes2212:sl:3.0.0"`
 
 ####Using A Local Jar
 
