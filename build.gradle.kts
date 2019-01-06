@@ -54,6 +54,7 @@ publishing {
     repositories {
         maven {
             name = "publish"
+            // we wont store our url here, you aren't allowed to publish artifacts to our repo.
             url = uri("")
         }
     }
