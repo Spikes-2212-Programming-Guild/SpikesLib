@@ -14,18 +14,6 @@ There are many concepts in First Robotics Competition that repeat themeselves ev
   
 ## <a name = 'Download&Setup'> Download and Setup SpikesLib </a>
 
-
-### Using SpikesLib in Eclipse Porjects
-download the library (.zip file) from <a href='https://github.com/Spikes-2212-Programming-Guild/SpikesLib/releases'> the latest release </a> and you can download the jar there.
-1. Extract the SpikesLib2.zip file into C:\Users\%USERNAME%\wpilib\user\java\lib
-2. Open Eclipse
-3. Right click on the wanted project
-4. Hover on Build Path
-5. Click on Configure Build Path
-6. Click on Add External JARs
-7. Find and add the SpikesLib jar file
-8. return 0
-
 ### Using SpikesLib in Gradle Projects
 #### Using Maven Artifacts
 SpikesLib includes Gradle Support Since 2019. <br>
@@ -51,6 +39,17 @@ once there, add the following line `compile files('libs/YOUR_JAR.jar')` under al
 ## <a name = 'Exmps'> Examples </a>
 We created a repository with a pleathra of <a href='https://github.com/Spikes-2212-Programming-Guild/Spikes-Lib-Example'> examples of how to use SpikesLib</a>. <br/>
 You can learn how to use this library by reading the examples and playing with them.
+
+### Using SpikesLib in Eclipse Porjects
+download the library (.zip file) from <a href='https://github.com/Spikes-2212-Programming-Guild/SpikesLib/releases'> the latest release </a> and you can download the jar there.
+1. Extract the SpikesLib2.zip file into C:\Users\%USERNAME%\wpilib\user\java\lib
+2. Open Eclipse
+3. Right click on the wanted project
+4. Hover on Build Path
+5. Click on Configure Build Path
+6. Click on Add External JARs
+7. Find and add the SpikesLib jar file
+8. return 0
 
 ## <a name = 'Contacts'> Contacts </a>
 Omri "Riki" Cohen - +972 54-626-4324 <br/>
