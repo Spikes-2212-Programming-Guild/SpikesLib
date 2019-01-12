@@ -38,7 +38,7 @@ download the library (.zip file) from <a href='https://github.com/Spikes-2212-Pr
 once there, add the following line `compile files('libs/YOUR_JAR.jar')` under all the other dependencies.
 
 ### Using SpikesLib in Eclipse Projects
-1. download the .jar file using the method mentioned above
+1. download the .jar file using the method mentioned above into C:\Users\%USERNAME%\wpilib\user\java\lib
 2. Open Eclipse
 3. Right click on the wanted project
 4. Hover on Build Path
