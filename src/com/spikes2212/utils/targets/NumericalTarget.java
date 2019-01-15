@@ -1,4 +1,4 @@
-package com.spikes2212.genericsubsystems.basicSubsystem.utils.targets;
+package com.spikes2212.utils.targets;
 
 import java.util.function.Supplier;
 
