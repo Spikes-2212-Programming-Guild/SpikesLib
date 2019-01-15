@@ -16,5 +16,8 @@ public class DriveArcadeToTarget extends DriveArcade{
 		super(drivetrain, moveValueSupplier, rotateValueSupplier);
 		this.onTarget = onTarget;
 	}
-
+	
+	protected boolean isFinished() {
+		return onTarget.get() || super.isFinished();
+	}
 }
