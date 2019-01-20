@@ -1,6 +1,5 @@
 package com.spikes2212.genericsubsystems.basicSubsystem.utils.limitationFunctions;
 
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -20,7 +19,7 @@ public class TwoLimits implements Predicate<Double> {
 	private final Supplier<Boolean> maxLimit, minLimit;
 
 	/**
-	 * Constructs a two limits function using 2 boolean suppliers.
+	 * Constructs a two limits predicate using 2 boolean suppliers.
 	 * 
 	 * @param minLimit
 	 *            the lower limit, negative speed makes the
