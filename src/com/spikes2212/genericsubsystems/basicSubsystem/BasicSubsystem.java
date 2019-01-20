@@ -66,7 +66,8 @@ public class BasicSubsystem extends Subsystem {
 
 	/**
 	 * Moves this {@link BasicSubsystem} with the given speed, as long as it is within the limits
-	 * specifed when this {@link BasicSubsystem} was constructed.
+	 * specifed when this {@link BasicSubsystem} was constructed and within the limits of the maxChange
+	 * from the previous speed.
 	 *
 	 * @param speed
 	 *            the speed to move the subsystem with.
@@ -77,6 +78,8 @@ public class BasicSubsystem extends Subsystem {
 				speed = 1;
 			else if (speed < -1)
 				speed = -1;
+			if (Math.abs(speed - currentSpeed) > maxChange)
+				speed = currentSpeed + maxChange * Math.signum(speed - currentSpeed);
 			speedConsumer.accept(speed);
 			this.currentSpeed = speed;
 		}
