@@ -60,7 +60,7 @@ public class BasicSubsystem extends Subsystem {
 
 	/**
 	 * Moves this {@link BasicSubsystem} with the given speed, as long as it is within the limits
-	 * specifed when this {@link BasicSubsystem} was constructed.
+	 * specified when this {@link BasicSubsystem} was constructed.
 	 *
 	 * @param speed
 	 *            the speed to move the subsystem with.
