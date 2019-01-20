@@ -100,7 +100,27 @@ public class BasicSubsystem extends Subsystem {
 	public double getSpeed() {
 		return currentSpeed;
 	}
-
+	
+	/**
+	 * Return the max change in speed of this {@link BasicSubsystem}.
+	 *
+	 * @return the max change in speed of this {@link BasicSubsystem}.
+	 */
+	public double getMaxChange() {
+		return maxChange;
+	}
+	
+	/**
+	 * Set the maximum change in speed this {@link BasicSubsystem} will tolerate.
+	 *
+	 * @param maxChange
+	 * 				The new maximum change in speed this
+	 * 				{@link BasicSubsystem} will tolerate.
+	 */
+	public void setMaxChange(double maxChange) {
+		this.maxChange = maxChange;
+	}
+	
 	/**
 	 * @see Sets the default command. If this is not called, or is called with null, then
 	 * there will be no default command for the subsystem.
