@@ -26,6 +26,12 @@ public class BasicSubsystem extends Subsystem {
 	 */
 	protected final Consumer<Double> speedConsumer;
 	private double currentSpeed = 0;
+	
+	/**
+	 * The maximum change between the current speed and the speed
+	 * the {@link BasicSubsystem} is being set to.
+	 */
+	private double maxChange = 1;
 
 	/**
 	 * Constructor that recieves a {@link Consumer} for the movement component and a {@link Predicate<Double>}
