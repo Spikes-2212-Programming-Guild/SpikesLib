@@ -28,7 +28,7 @@ public class TalonSRXEncoder implements PIDSource {
 	@Override
 	public double pidGet() {
 		if(type.equals(PIDSourceType.kRate)) return talon.getSelectedSensorVelocity() / countsPerRevolution;
-		return talon.getActiveTrajectoryPosition() / countsPerRevolution;
+		return talon.getSelectedSensorPosition() / countsPerRevolution;
 	}
 
 }
