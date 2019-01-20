@@ -1,6 +1,5 @@
 package com.spikes2212.genericsubsystems.basicSubsystem.utils.limitationFunctions;
 
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
