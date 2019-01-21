@@ -14,18 +14,6 @@ There are many concepts in First Robotics Competition that repeat themeselves ev
   
 ## <a name = 'Download&Setup'> Download and Setup SpikesLib </a>
 
-
-### Using SpikesLib in Eclipse Porjects
-download the library (.zip file) from <a href='https://github.com/Spikes-2212-Programming-Guild/SpikesLib/releases'> the latest release </a> and you can download the jar there.
-1. Extract the SpikesLib2.zip file into C:\Users\%USERNAME%\wpilib\user\java\lib
-2. Open Eclipse
-3. Right click on the wanted project
-4. Hover on Build Path
-5. Click on Configure Build Path
-6. Click on Add External JARs
-7. Find and add the SpikesLib jar file
-8. return 0
-
 ### Using SpikesLib in Gradle Projects
 #### Using Maven Artifacts
 SpikesLib includes Gradle Support Since 2019. <br>
@@ -43,11 +31,22 @@ Note that you should run a build task once while connected to the internet befor
 
 #### Using A Local Jar
 
-1. download the .jar file using the method mentioned above
-2. add a `libs` directory to your project root.
-3. add the .jar file to that folder
-4. in your `gradle.build` go to the `dependencies` section.
+download the library (.zip file) from <a href='https://github.com/Spikes-2212-Programming-Guild/SpikesLib/releases'> the latest release </a> and you can download the jar there.
+1. add a `libs` directory to your project root.
+2. Extract the SpikesLib2.zip to that folder
+3. in your `gradle.build` go to the `dependencies` section.
 once there, add the following line `compile files('libs/YOUR_JAR.jar')` under all the other dependencies.
+
+### Using SpikesLib in Eclipse Projects
+1. download the .jar file using the method mentioned above into C:\Users\%USERNAME%\wpilib\user\java\lib
+2. Open Eclipse
+3. Right click on the wanted project
+4. Hover on Build Path
+5. Click on Configure Build Path
+6. Click on Add External JARs
+7. Find and add the SpikesLib jar file
+8. return 0
+
 ## <a name = 'Exmps'> Examples </a>
 We created a repository with a pleathra of <a href='https://github.com/Spikes-2212-Programming-Guild/Spikes-Lib-Example'> examples of how to use SpikesLib</a>. <br/>
 You can learn how to use this library by reading the examples and playing with them.
