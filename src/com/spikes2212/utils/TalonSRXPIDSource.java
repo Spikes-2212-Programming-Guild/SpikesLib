@@ -61,8 +61,8 @@ public class TalonSRXPIDSource implements PIDSource {
 	@Override
 	public double pidGet() {
 		if (type.equals(PIDSourceType.kRate))
-			return talon.getSelectedSensorVelocity() / countsPerRevolution;
-		return talon.getSelectedSensorPosition() / countsPerRevolution;
+			return talon.getSelectedSensorVelocity() / (double) countsPerRevolution;
+		return talon.getSelectedSensorPosition() / (double) countsPerRevolution;
 	}
 
 }
