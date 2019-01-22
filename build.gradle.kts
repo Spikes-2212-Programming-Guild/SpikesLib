@@ -17,17 +17,24 @@ repositories {
     maven {
         url = uri("http://first.wpi.edu/FRC/roborio/maven/release/")
     }
+
+    maven {
+        url = uri("http://devsite.ctr-electronics.com/maven/release/")
+    }
 }
 
 val wpilibVersion by extra("2019.1.1")
 val cscoreVersion by extra("1.3.0")
 val opencvVersion by extra("3.4.3")
+val ctreVersion by extra("5.12.1")
 
 dependencies {
     implementation("edu.wpi.first.wpilibj:wpilibj-java:$wpilibVersion")
     implementation("edu.wpi.first.cscore:cscore-java:$cscoreVersion")
     implementation("edu.wpi.first.thirdparty.frc2019.opencv:opencv-java:$opencvVersion")
     implementation("edu.wpi.first.cameraserver:cameraserver-java:$wpilibVersion")
+    implementation("com.ctre.phoenix:api-java:$ctreVersion")
+    implementation("com.ctre.phoenix:wpiapi-java:$ctreVersion")
 }
 
 
@@ -45,7 +52,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.spikes2212"
             artifactId = "sl"
-            version = "3.0.0"
+            version = "3.1.0"
 
             from(components["java"])
         }
