@@ -217,7 +217,8 @@ public class MoveBasicSubsystemWithPID extends Command {
 		if (!movementControl.onTarget()) {
 			lastTimeNotOnTarget = Timer.getFPGATimestamp();
 		}
-		return Timer.getFPGATimestamp() - lastTimeNotOnTarget >= PIDSettings.getWaitTime();
+		return Timer.getFPGATimestamp() - lastTimeNotOnTarget >= PIDSettings.getWaitTime()
+				|| !basicSubsystem.canMove.test(movementControl.get());
 	}
 
 	// Called once after isFinished returns true
