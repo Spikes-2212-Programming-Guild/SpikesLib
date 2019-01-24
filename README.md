@@ -25,7 +25,7 @@ maven {
 }
 ```
 then, add the following line to your dependencies section <br>
- `compile "com.spikes2212:sl:3.1.1"`
+ `compile "com.spikes2212:sl:3.1.2"`
  
 Note that you should run a build task once while connected to the internet before deploying your code to the RIO.
 
