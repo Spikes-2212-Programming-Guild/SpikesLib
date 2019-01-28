@@ -10,7 +10,7 @@ This library was written by the FRC team The Spikes #2212. For more information 
 * ####  <a href='#Contacts'>Have questions? Here are people to ask</a>
 
 ## <a name = 'Purpose'> The Purpose Of The Library 
-There are many concepts in First Robotics Competition that repeat themeselves every year, with a small change in implemantation. The purpose of SpikesLib is to reduce time in writing code for your robot and reduce the chances of incountering bugs, by creating generic classes for common types of subsystems and commands.
+There are many concepts in First Robotics Competition that repeat themeselves every year, with a small change in implemantation. The purpose of SpikesLib is to reduce time in writing code for your robot and reduce the chances of encountering bugs, by creating generic classes for common types of subsystems and commands.
   
 ## <a name = 'Download&Setup'> Download and Setup SpikesLib </a>
 
