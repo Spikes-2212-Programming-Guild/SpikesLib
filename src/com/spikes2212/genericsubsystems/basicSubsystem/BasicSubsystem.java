@@ -37,7 +37,14 @@ public class BasicSubsystem extends Subsystem {
 	 *            the limitation on the movement, which depends on the speed.
 	 */
 	public BasicSubsystem(Consumer<Double> speedConsumer, Predicate<Double> canMove) {
-		this.canMove = canMove;
+		if(canMove.test(0.0))
+			this.canMove = canMove;
+		else
+			this.canMove = (speed) -> {
+				if(speed == 0)
+					return true;
+				return canMove.test(speed);
+			};
 		this.speedConsumer = speedConsumer;
 	}
 
@@ -54,7 +61,14 @@ public class BasicSubsystem extends Subsystem {
 	 */
 	public BasicSubsystem(String name, Consumer<Double> speedConsumer, Predicate<Double> canMove) {
 		super(name);
-		this.canMove = canMove;
+		if(canMove.test(0.0))
+			this.canMove = canMove;
+		else
+			this.canMove = (speed) -> {
+				if(speed == 0)
+					return true;
+				return canMove.test(speed);
+			};
 		this.speedConsumer = speedConsumer;
 	}
 
