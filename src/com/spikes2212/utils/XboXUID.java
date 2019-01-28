@@ -129,8 +129,14 @@ public class XboXUID extends XboxController {
 	 * 
 	 * @return the right trigger on the joystick.
 	 */
-	public boolean getRTButton() {
-		return getTriggerAxis(Hand.kRight) == 1;
+	public Button getRTButton() {
+		return new Button() {
+			
+			@Override
+			public boolean get() {
+				return getTriggerAxis(Hand.kRight) == 1;
+			}
+		}; 
 	}
 
 	/**
@@ -138,8 +144,14 @@ public class XboXUID extends XboxController {
 	 * 
 	 * @return the left trigger button on the joystick.
 	 */
-	public boolean getLTButton() {
-		return getTriggerAxis(Hand.kLeft) == 1;
+	public Button getLTButton() {
+		return new Button() {
+			
+			@Override
+			public boolean get() {
+				return getTriggerAxis(Hand.kLeft) == 1;
+			}
+		};
 	}
 
 	/**
