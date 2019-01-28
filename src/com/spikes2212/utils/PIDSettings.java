@@ -1,8 +1,6 @@
 
 package com.spikes2212.utils;
 
-import edu.wpi.first.wpilibj.PIDController;
-
 /**
  * This class contains a subsystem's PID setting which wpilib's <a href=
  * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
