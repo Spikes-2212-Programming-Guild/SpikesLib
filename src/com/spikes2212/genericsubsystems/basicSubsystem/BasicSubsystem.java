@@ -15,12 +15,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class BasicSubsystem extends Subsystem {
 
 	/**
-	 * This function, when applied to a certain double speed returns true if
-	 * this subsystem can move at that speed
-	 * A {@link Predicate<Double>} to store the limits of the subsystem's speed.
+	 * This function, when applied to a certain double speed returns true if this
+	 * subsystem can move at that speed A {@link Predicate<Double>} to store the
+	 * limits of the subsystem's speed.
 	 */
 	public final Predicate<Double> canMove;
-	
+
 	/**
 	 * A {@link Consumer} to represent the movement of the {@link BasicSubsystem}.
 	 */
@@ -28,8 +28,9 @@ public class BasicSubsystem extends Subsystem {
 	private double currentSpeed = 0;
 
 	/**
-	 * Constructor that recieves a {@link Consumer} for the movement component and a {@link Predicate<Double>}
-	 * that represents the limits of the subsystem's speed.
+	 * Constructor that recieves a {@link Consumer} for the movement component and a
+	 * {@link Predicate<Double>} that represents the limits of the subsystem's
+	 * speed.
 	 * 
 	 * @param speedConsumer
 	 *            the component using the speed (usually a motor/motors).
@@ -37,23 +38,17 @@ public class BasicSubsystem extends Subsystem {
 	 *            the limitation on the movement, which depends on the speed.
 	 */
 	public BasicSubsystem(Consumer<Double> speedConsumer, Predicate<Double> canMove) {
-		if(canMove.test(0.0))
-			this.canMove = canMove;
-		else
-			this.canMove = (speed) -> {
-				if(speed == 0)
-					return true;
-				return canMove.test(speed);
-			};
+		this.canMove = canMove;
 		this.speedConsumer = speedConsumer;
 	}
 
 	/**
-	 * Constructor that recieves a {@link Consumer} for the movement component and a {@link Predicate<Double>}
-	 * that represents the limits of the subsystem's speed.
+	 * Constructor that recieves a {@link Consumer} for the movement component and a
+	 * {@link Predicate<Double>} that represents the limits of the subsystem's
+	 * speed.
 	 *
 	 * @param name
-	 * 			  the name of the subsystem that will be displayed on the dashboard
+	 *            the name of the subsystem that will be displayed on the dashboard
 	 * @param speedConsumer
 	 *            the component using the speed (usually a motor/motors).
 	 * @param canMove
@@ -61,20 +56,13 @@ public class BasicSubsystem extends Subsystem {
 	 */
 	public BasicSubsystem(String name, Consumer<Double> speedConsumer, Predicate<Double> canMove) {
 		super(name);
-		if(canMove.test(0.0))
-			this.canMove = canMove;
-		else
-			this.canMove = (speed) -> {
-				if(speed == 0)
-					return true;
-				return canMove.test(speed);
-			};
 		this.speedConsumer = speedConsumer;
+		this.canMove = canMove;
 	}
 
 	/**
-	 * Moves this {@link BasicSubsystem} with the given speed, as long as it is within the limits
-	 * specified when this {@link BasicSubsystem} was constructed.
+	 * Moves this {@link BasicSubsystem} with the given speed, as long as it is
+	 * within the limits specified when this {@link BasicSubsystem} was constructed.
 	 *
 	 * @param speed
 	 *            the speed to move the subsystem with.
@@ -107,8 +95,8 @@ public class BasicSubsystem extends Subsystem {
 	}
 
 	/**
-	 * @see Sets the default command. If this is not called, or is called with null, then
-	 * there will be no default command for the subsystem.
+	 * @see Sets the default command. If this is not called, or is called with null,
+	 *      then there will be no default command for the subsystem.
 	 */
 	public void setDefaultCommand(Command defaultCommand) {
 		super.setDefaultCommand(defaultCommand);
