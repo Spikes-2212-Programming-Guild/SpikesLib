@@ -3,6 +3,7 @@ package com.spikes2212.genericsubsystems.drivetrains;
 import java.util.function.Consumer;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.IllegalUseOfCommandException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
