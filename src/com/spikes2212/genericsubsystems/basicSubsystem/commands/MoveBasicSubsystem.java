@@ -42,7 +42,7 @@ public class MoveBasicSubsystem extends Command {
 	 * {@link BasicSubsystem} should move with.
 	 *
 	 * @param basicSubsystem
-	 *            the {@link BasicSubsystem} this command opperates on.
+	 *            the {@link BasicSubsystem} this command operates on.
 	 * @param speed
 	 *            the speed this subsystem should be moved with. Values must be
 	 *            between -1 and 1.

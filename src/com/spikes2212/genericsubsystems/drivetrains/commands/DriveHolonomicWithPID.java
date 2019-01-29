@@ -44,16 +44,14 @@ public class DriveHolonomicWithPID extends Command {
 	/**
 	 * The <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 * the X axis of this subsystem uses, given by
-	 * {@link BasicSubsystem#getPIDSource()}.
+	 * the X axis of this drivetrain.
 	 */
 	protected final PIDSource XSource;
 
 	/**
 	 * The <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 * the Y axis of this subsystem uses, given by
-	 * {@link BasicSubsystem#getPIDSource()}.
+	 * the Y axis of this drivetrain.
 	 */
 	protected final PIDSource YSource;
 
