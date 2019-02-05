@@ -41,16 +41,20 @@ public class PistonSubsystem extends Subsystem {
 		return false;
 	}
 
-	public void move(int speed) {
-		if (canMove(speed)) {
-			if (speed == 0) {
-				piston.off();
-			} else if (speed < 0) {
-				piston.close();
-			} else if (speed > 0) {
-				piston.open();
-			}
+	public void open() {
+		if(canMove(1)) {
+			piston.open();
 		}
+	}
+	
+	public void close() {
+		if(canMove(-1)) {
+			piston.close();
+		}
+	}
+	
+	public void off() {
+		piston.off();
 	}
 
 	public void setDefaultCommand(Command defaultCommand) {
