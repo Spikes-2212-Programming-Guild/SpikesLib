@@ -12,16 +12,8 @@ public class Piston extends DoubleSolenoid {
 		super(moduleNumber, forwardChannel, reverseChannel);
 	}
 
-	public void open() {
-		super.set(Value.kForward);
-	}
-
-	public void close() {
-		super.set(Value.kReverse);
-	}
-
-	public void off() {
-		super.set(Value.kOff);
+	public void move(Value value) {
+		super.set(value);
 	}
 
 }
