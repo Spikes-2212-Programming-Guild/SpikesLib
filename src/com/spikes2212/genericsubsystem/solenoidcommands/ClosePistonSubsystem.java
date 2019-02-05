@@ -3,6 +3,7 @@ package com.spikes2212.genericsubsystem.solenoidcommands;
 
 import com.spikes2212.utils.Piston;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ClosePistonSubsystem extends Command {
@@ -20,7 +21,7 @@ public class ClosePistonSubsystem extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		piston.close();
+		piston.move(Value.kReverse);
 	}
 
 	protected boolean isFinished() {
@@ -29,7 +30,7 @@ public class ClosePistonSubsystem extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		piston.off();
+		piston.move(Value.kOff);
 	}
 
 	// Called when another command which requires one or more of the same
