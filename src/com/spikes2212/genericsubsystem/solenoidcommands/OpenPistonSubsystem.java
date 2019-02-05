@@ -25,7 +25,7 @@ public class OpenPistonSubsystem extends Command {
 	protected void execute() {
 		pistonsubsystem.open();
 	}
-
+	
 	protected boolean isFinished() {
 		return !pistonsubsystem.canMove(1)|| isTimedOut();
 	}
