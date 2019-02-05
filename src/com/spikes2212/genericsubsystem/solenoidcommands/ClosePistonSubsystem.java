@@ -1,19 +1,16 @@
 package com.spikes2212.genericsubsystem.solenoidcommands;
 
-import java.util.function.Supplier;
 
-import com.spikes2212.genericsubsystem.solenoid.PistonSubsystem;
-import com.spikes2212.genericsubsystems.basicSubsystem.BasicSubsystem;
+import com.spikes2212.utils.Piston;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ClosePistonSubsystem extends Command {
 
-	private PistonSubsystem pistonsubsystem;
+	private Piston piston;
 
-	public ClosePistonSubsystem(PistonSubsystem pistonSubsystem) {
-		requires(pistonSubsystem);
-		this.pistonsubsystem = pistonSubsystem;
+	public ClosePistonSubsystem(Piston piston) {
+		this.piston = piston;
 	}
 	
 
@@ -23,16 +20,16 @@ public class ClosePistonSubsystem extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		pistonsubsystem.close();
+		piston.close();
 	}
 
 	protected boolean isFinished() {
-		return !pistonsubsystem.canMove(-1)|| isTimedOut();
+		return isTimedOut();
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		pistonsubsystem.stop();
+		piston.off();
 	}
 
 	// Called when another command which requires one or more of the same
