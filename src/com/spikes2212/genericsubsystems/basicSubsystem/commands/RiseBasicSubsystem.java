@@ -16,8 +16,9 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class RiseBasicSubsystem extends MoveBasicSubsystem {
 	protected final double time;
-	protected final double acceleration;
-	private double currentSpeed = 0;
+	protected final Supplier<Double> wantedSpeed;
+	private double acceleration;
+	private double currentSpeed;
 	private double startTime;
 
 	/**
@@ -39,7 +40,7 @@ public class RiseBasicSubsystem extends MoveBasicSubsystem {
 			time = 1;
 		}
 		this.time = time;
-		acceleration = wantedSpeed.get() / time;
+		this.wantedSpeed = wantedSpeed;
 	}
 
 	/**
@@ -65,6 +66,8 @@ public class RiseBasicSubsystem extends MoveBasicSubsystem {
 	@Override
 	protected void initialize() {
 		startTime = Timer.getFPGATimestamp();
+		currentSpeed=0;
+		acceleration = wantedSpeed.get() / time;
 	}
 
 	/**
