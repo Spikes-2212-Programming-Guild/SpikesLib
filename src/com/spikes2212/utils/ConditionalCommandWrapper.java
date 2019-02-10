@@ -12,12 +12,12 @@ import edu.wpi.first.wpilibj.command.ConditionalCommand;
  * 
  * @author Uriah "Johnny" Rokach
  */
-public class SLConditionalCommand extends ConditionalCommand {
+public class ConditionalCommandWrapper extends ConditionalCommand {
 
 	private Supplier<Boolean> condition;
 
 	/**
-	 * Constructs a new {@link SLConditionalCommand} using two commands (on
+	 * Constructs a new {@link ConditionalCommandWrapper} using two commands (on
 	 * operates when the condition is true, the other when it is false) and a
 	 * boolean supplier of the condition.
 	 * 
@@ -28,7 +28,7 @@ public class SLConditionalCommand extends ConditionalCommand {
 	 * @param condition
 	 *            The supplier of the condition boolean.
 	 */
-	public SLConditionalCommand(Command onTrue, Command onFalse, Supplier<Boolean> condition) {
+	public ConditionalCommandWrapper(Command onTrue, Command onFalse, Supplier<Boolean> condition) {
 		super(onTrue, onFalse);
 		this.condition = condition;
 	}
