@@ -1,6 +1,7 @@
 package com.spikes2212.genericsubsystems.drivetrains;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -17,6 +18,7 @@ public class TankDrivetrain extends Subsystem {
 
 	protected final Consumer<Double> controlLeft;
 	protected final Consumer<Double> controlRight;
+	protected final Supplier<Double> deviation;
 
 	/**
 	 * This constructs a new {@link TankDrivetrain}.
@@ -31,6 +33,24 @@ public class TankDrivetrain extends Subsystem {
 	public TankDrivetrain(Consumer<Double> controlLeft, Consumer<Double> controlRight) {
 		this.controlLeft = controlLeft;
 		this.controlRight = controlRight;
+		this.deviation = () -> 0.0;
+	}
+	
+	/**
+	 * This constructs a new {@link TankDrivetrain} with deviation.
+	 * 
+	 * @param controlLeft
+	 *            the component controlling the left side of the drivetrain
+	 * @param controlRight
+	 *            the component controlling the left side of the drivetrain
+	 * @param deviation the deviation of the drivetrain
+	 * @see Consumer
+	 * @see Supplier
+	 */
+	public TankDrivetrain(Consumer<Double> controlLeft, Consumer<Double> controlRight, Supplier<Double> deviation) {
+		this.controlLeft = controlLeft;
+		this.controlRight = controlRight;
+		this.deviation = deviation;
 	}
 
 	/**
@@ -44,8 +64,19 @@ public class TankDrivetrain extends Subsystem {
 	 *            forward.
 	 */
 	public void tankDrive(double speedLeft, double speedRight) {
-		setLeft(speedLeft);
-		setRight(speedRight);
+		if(deviation.get() == 0.0) {
+			setLeft(speedLeft);
+			setRight(speedRight);
+		}
+		else if(deviation.get() > 0.0) {
+			setLeft(speedLeft);
+			setRight(speedRight*deviation.get());
+		}
+		else {
+			setLeft(speedLeft*deviation.get());
+			setRight(speedRight);
+		}
+		
 	}
 
 	public void arcadeDrive(double moveValue, double rotateValue) {

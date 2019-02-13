@@ -1,6 +1,7 @@
 package com.spikes2212.genericsubsystems.drivetrains;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
  * This class represents a type of Drivetrain with an X (left/right) and Y
@@ -37,6 +38,23 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 	public HolonomicDrivetrain(Consumer<Double> controlLeft, Consumer<Double> controlRight, Consumer<Double> controlX,
 			Consumer<Double> controlY) {
 		super(controlLeft, controlRight);
+		this.controlX = controlX;
+		this.controlY = controlY;
+	}
+	
+	/**
+	 * This constructs a new {@link HolonomicDrivetrain} drivetrain
+	 * @param controlLeft the component controlling the left side of the drivetrain
+	 * @param controlRight the component controlling the right side of the drivetrain
+	 * @param controlX the component controlling the X axis of the drivetrain
+	 * @param controlY the component controlling the Y axis of the drivetrain
+	 * @param deviation the deviation of the drivetrain
+	 * @see Consumer
+	 * @see Supplier
+	 */
+	public HolonomicDrivetrain(Consumer<Double> controlLeft, Consumer<Double> controlRight, Consumer<Double> controlX,
+			Consumer<Double> controlY, Supplier<Double> deviation) {
+		super(controlLeft, controlRight, deviation);
 		this.controlX = controlX;
 		this.controlY = controlY;
 	}
