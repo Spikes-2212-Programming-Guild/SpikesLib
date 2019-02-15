@@ -16,9 +16,10 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class RiseBasicSubsystem extends MoveBasicSubsystem {
 	protected final double time;
-	protected final double acceleration;
-	private double currentSpeed = 0;
+	private double acceleration;
+	private double currentSpeed;
 	private double startTime;
+	private boolean finishWhenReachingSpeed;
 
 	/**
 	 * This constructs a new {@link RiseBasicSubsystem} command using the
@@ -33,13 +34,13 @@ public class RiseBasicSubsystem extends MoveBasicSubsystem {
 	 * @param time
 	 *            the time it takes for the subsystem to get to the speed.
 	 */
-	public RiseBasicSubsystem(BasicSubsystem basicSubsystem, Supplier<Double> wantedSpeed, double time) {
+	public RiseBasicSubsystem(BasicSubsystem basicSubsystem, Supplier<Double> wantedSpeed, double time, boolean finishWhenReachingSpeed) {
 		super(basicSubsystem, wantedSpeed);
 		if (time <= 1) {
 			time = 1;
 		}
 		this.time = time;
-		acceleration = wantedSpeed.get() / time;
+		this.finishWhenReachingSpeed = finishWhenReachingSpeed;
 	}
 
 	/**
@@ -55,8 +56,8 @@ public class RiseBasicSubsystem extends MoveBasicSubsystem {
 	 * @param time
 	 *            the time it takes for the subsystem to get to the speed.
 	 */
-	public RiseBasicSubsystem(BasicSubsystem basicSubsystem, double wantedSpeed, double time) {
-		this(basicSubsystem, () -> wantedSpeed, time);
+	public RiseBasicSubsystem(BasicSubsystem basicSubsystem, double wantedSpeed, double time, boolean finishWhenReachingSpeed) {
+		this(basicSubsystem, () -> wantedSpeed, time, finishWhenReachingSpeed);
 	}
 
 	/**
@@ -65,6 +66,8 @@ public class RiseBasicSubsystem extends MoveBasicSubsystem {
 	@Override
 	protected void initialize() {
 		startTime = Timer.getFPGATimestamp();
+		currentSpeed=0;
+		acceleration = speedSupplier.get() / time;
 	}
 
 	/**
@@ -76,6 +79,11 @@ public class RiseBasicSubsystem extends MoveBasicSubsystem {
 		if (Math.abs(currentSpeed) > Math.abs(speedSupplier.get()))
 			currentSpeed = speedSupplier.get();
 		basicSubsystem.move(currentSpeed);
+	}
+	
+	@Override
+	public boolean isFinished(){
+		return super.isFinished() || (finishWhenReachingSpeed&&currentSpeed==speedSupplier.get());
 	}
 
 }
