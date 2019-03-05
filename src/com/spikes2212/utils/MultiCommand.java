@@ -11,8 +11,8 @@ public class MultiCommand extends ConditionalCommandWrapper {
     	super(commands[0], (commands.length == 2) ? commands[1] : new MultiCommand(reduceByOne(indexSupplier), removeFirst(commands)), () -> indexSupplier.get() == 0);
     }
     
-    private static Command[] removeFirst(Command... ts) {
-    	List<Command> list = Arrays.asList(ts);
+    private static Command[] removeFirst(Command... commands) {
+    	List<Command> list = Arrays.asList(commands);
     	list.remove(0);
     	Command[] temp = null;
     	list.toArray(temp);
