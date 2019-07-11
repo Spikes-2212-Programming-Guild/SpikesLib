@@ -53,4 +53,4 @@ You can learn how to use this library by reading the examples and playing with t
 
 ## <a name = 'Contacts'> Contacts </a>
 Omri "Riki" Cohen - +972 54-626-4324 <br/>
-Uriah "Johnny" Rokach - +972 58-430-9901
+Matan Grynbaum Nachmias - +972 54-335-3148
