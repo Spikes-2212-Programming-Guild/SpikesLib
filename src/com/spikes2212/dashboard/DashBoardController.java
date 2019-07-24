@@ -94,7 +94,7 @@ public class DashBoardController {
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html">SmartDashboard</a>.
 	 *            Cannot be null.
 	 */
-    public void addBoolean(String name, Supplier<Boolean> booleanSup+plier) {
+    public void addBoolean(String name, Supplier<Boolean> booleanSupplier) {
         remove(name);
         booleanFields.put(name, booleanSupplier);
     }
