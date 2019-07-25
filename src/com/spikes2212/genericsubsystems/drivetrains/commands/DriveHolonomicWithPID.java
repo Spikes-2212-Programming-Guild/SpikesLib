@@ -246,7 +246,7 @@ public class DriveHolonomicWithPID extends Command {
 	 * @see <a href=
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
-	public void setTolerance(double tolerance) {
+	public void setTolerance(Supplier<Double> tolerance) {
 		XPIDSettings.setTolerance(tolerance);
 		YPIDSettings.setTolerance(tolerance);
 	}
@@ -266,7 +266,7 @@ public class DriveHolonomicWithPID extends Command {
 	 *
 	 * @see PIDSettings#getWaitTime()
 	 */
-	public void setWaitTime(double waitTime) {
+	public void setWaitTime(Supplier<Double> waitTime) {
 		YPIDSettings.setWaitTime(waitTime);
 		XPIDSettings.setWaitTime(waitTime);
 	}
