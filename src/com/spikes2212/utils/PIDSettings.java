@@ -3,6 +3,8 @@ package com.spikes2212.utils;
 
 import edu.wpi.first.wpilibj.PIDController;
 
+import java.util.function.Supplier;
+
 /**
  * This class contains a subsystem's PID setting which wpilib's <a href=
  * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
@@ -16,7 +18,7 @@ import edu.wpi.first.wpilibj.PIDController;
  */
 public class PIDSettings {
 
-	private double KP, KI, KD, tolerance, waitTime;
+	private Supplier<Double> KP, KI, KD, tolerance, waitTime;
 
 	/**
 	 * 
@@ -32,10 +34,10 @@ public class PIDSettings {
 	 *            the time this PID loop will wait while within tolerance of the
 	 *            setpoint before ending.
 	 * 
-	 * @see #setTolerance(double)
-	 * @see #setWaitTime(double)
+	 * @see #setTolerance(Supplier<Double>)
+	 * @see #setWaitTime(Supplier<Double>)
 	 */
-	public PIDSettings(double KP, double KI, double KD, double tolerance, double waitTime) {
+	public PIDSettings(Supplier<Double> KP, Supplier<Double> KI, Supplier<Double> KD, Supplier<Double> tolerance, Supplier<Double> waitTime) {
 		this.setKP(KP);
 		this.setKI(KI);
 		this.setKD(KD);
@@ -50,12 +52,12 @@ public class PIDSettings {
 	 * <br>
 	 * Tolerance defines when PID loop ends: This PID loop will end after the
 	 * difference between the setpoint and the current position is within the
-	 * tolerance for the amount of time specified by {@link #setWaitTime(double)}.
+	 * tolerance for the amount of time specified by {@link #setWaitTime(Supplier<Double>)}.
 	 *
 	 * @return The current tolerance.
 	 */
 	public double getTolerance() {
-		return tolerance;
+		return tolerance.get();
 	}
 
 	/**
@@ -65,12 +67,12 @@ public class PIDSettings {
 	 * <br>
 	 * Tolerance defines when PID loop ends: This PID loop will end after the
 	 * difference between the setpoint and the current position is within the
-	 * tolerance for the amount of time specified by {@link #setWaitTime(double)}.
+	 * tolerance for the amount of time specified by {@link #setWaitTime(Supplier<Double>)}.
 	 *
 	 * @param tolerance
 	 *            the new tolerance to set. 
 	 */
-	public void setTolerance(double tolerance) {
+	public void setTolerance(Supplier<Double> tolerance) {
 		this.tolerance = tolerance;
 	}
 
@@ -81,7 +83,7 @@ public class PIDSettings {
 	 * @return The current Proportional coefficient.
 	 */
 	public double getKP() {
-		return KP;
+		return KP.get();
 	}
 
 	/**
@@ -91,7 +93,7 @@ public class PIDSettings {
 	 * @param KP
 	 *            the new Proportional coefficient.
 	 */
-	public void setKP(double KP) {
+	public void setKP(Supplier<Double> KP) {
 		this.KP = KP;
 	}
 
@@ -102,7 +104,7 @@ public class PIDSettings {
 	 * @return The current Integral coefficient.
 	 */
 	public double getKI() {
-		return KI;
+		return KI.get();
 	}
 
 	/**
@@ -112,7 +114,7 @@ public class PIDSettings {
 	 * @param KI
 	 *            the new Integral coefficient.
 	 */
-	public void setKI(double KI) {
+	public void setKI(Supplier<Double> KI) {
 		this.KI = KI;
 	}
 
@@ -123,7 +125,7 @@ public class PIDSettings {
 	 * @return The current Differential coefficient.
 	 */
 	public double getKD() {
-		return KD;
+		return KD.get();
 	}
 
 	/**
@@ -133,7 +135,7 @@ public class PIDSettings {
 	 * @param KD
 	 *            the new Differential coefficient.
 	 */
-	public void setKD(double KD) {
+	public void setKD(Supplier<Double> KD) {
 		this.KD = KD;
 	}
 
@@ -148,7 +150,7 @@ public class PIDSettings {
 	 * @return The wait time, in seconds.
 	 */
 	public double getWaitTime() {
-		return waitTime;
+		return waitTime.get();
 	}
 
 	/**
@@ -162,7 +164,7 @@ public class PIDSettings {
 	 * @param waitTime
 	 *            the new wait time, in seconds
 	 */
-	public void setWaitTime(double waitTime) {
+	public void setWaitTime(Supplier<Double> waitTime) {
 		this.waitTime = waitTime;
 	}
 
