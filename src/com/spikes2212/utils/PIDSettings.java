@@ -64,7 +64,7 @@ public class PIDSettings {
         this.tolerance = tolerance;
     }
 
-    public void setTolerance(double tolerance) { this.tolerance = () -> tolerance; }
+    public void setTolerance(double tolerance) { setTolerance(() -> tolerance); }
 
     /**
      * Gets the Proportional coefficient of the PID loop using these
@@ -87,7 +87,7 @@ public class PIDSettings {
     }
 
     public void setKP(double KP) {
-        this.KP = () -> KP;
+        setKP( () -> KP);
     }
 
     /**
@@ -111,7 +111,7 @@ public class PIDSettings {
     }
 
     public void setKI(double KI) {
-        this.KI = () -> KI;
+        setKI( () -> KI);
     }
 
     /**
@@ -136,7 +136,7 @@ public class PIDSettings {
     }
 
     public void setKD(double KD) {
-        this.KD = () -> KD;
+        setKD(() -> KD);
     }
 
     /**
@@ -168,7 +168,7 @@ public class PIDSettings {
     }
 
     public void setWaitTime(double waitTime) {
-        this.waitTime = () -> waitTime;
+        setWaitTime(() -> waitTime);
     }
 
 }
