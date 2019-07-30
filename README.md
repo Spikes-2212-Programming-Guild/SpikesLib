@@ -10,7 +10,7 @@ This library was written by the FRC team The Spikes #2212. For more information 
 * ####  <a href='#Contacts'>Have questions? Here are people to ask</a>
 
 ## <a name = 'Purpose'> The Purpose Of The Library 
-There are many concepts in First Robotics Competition that repeat themeselves every year, with a small change in implemantation. The purpose of SpikesLib is to reduce time in writing code for your robot and reduce the chances of incountering bugs, by creating generic classes for common types of subsystems and commands.
+There are many concepts in First Robotics Competition that repeat themeselves every year, with a small change in implemantation. The purpose of SpikesLib is to reduce time in writing code for your robot and reduce the chances of encountering bugs, by creating generic classes for common types of subsystems and commands.
   
 ## <a name = 'Download&Setup'> Download and Setup SpikesLib </a>
 
@@ -25,7 +25,7 @@ maven {
 }
 ```
 then, add the following line to your dependencies section <br>
- `compile "com.spikes2212:sl:3.1.1"`
+ `compile "com.spikes2212:sl:3.1.2"`
  
 Note that you should run a build task once while connected to the internet before deploying your code to the RIO.
 
@@ -52,5 +52,5 @@ We created a repository with a pleathra of <a href='https://github.com/Spikes-22
 You can learn how to use this library by reading the examples and playing with them.
 
 ## <a name = 'Contacts'> Contacts </a>
-Omri "Riki" Cohen - +972 54-626-4324 <br/>
-Uriah "Jhonny" Rokach - +972 58-430-9901
+Simon Kharmatsky- +972 54-485-5808 <br/>
+Matan Grynbaum Nachmias - +972 54-335-3148

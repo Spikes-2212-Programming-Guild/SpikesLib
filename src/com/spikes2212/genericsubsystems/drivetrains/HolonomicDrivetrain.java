@@ -77,5 +77,10 @@ public class HolonomicDrivetrain extends TankDrivetrain {
 		setX(speedX);
 		setY(speedY);
 	}
-
+	
+	public void stop() {
+		super.stop();
+		setX(0);
+		setY(0);
+	}
 }

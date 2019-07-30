@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -25,13 +24,13 @@ public class DashBoardController {
     private Map<String, Supplier<String>> stringFields;
     
     /**
-	 * A {@link Map} to contain all {@link String} values to be displayed on the
+	 * A {@link Map} to contain all {@link Number} values to be displayed on the
 	 * {@code SmartDashBoard}. This map assigns a number to each Supplier as a key to identify it
 	 */
     private Map<String, Supplier<Number>> numberFields;
     
     /**
-	 * A {@link Map} to contain all {@link String} values to be displayed on the
+	 * A {@link Map} to contain all {@link Boolean} values to be displayed on the
 	 * {@code SmartDashBoard}. This map assigns a boolean to each Supplier as a key to identify it
 	 */
     private Map<String, Supplier<Boolean>> booleanFields;
@@ -70,7 +69,7 @@ public class DashBoardController {
 	 * Adds a Number {@link Supplier} to this {@link DashBoardController}.
 	 *
 	 * @param name
-	 *            The name of the field where the {@code stringSupplier} will be
+	 *            The name of the field where the {@code numberSupplier} will be
 	 *            displayed. Overrides values if the field name is already used.
 	 * @param numberSupplier
 	 *            The {@link Supplier} giving the values that are written to the
@@ -87,7 +86,7 @@ public class DashBoardController {
 	 * Adds a Boolean {@link Supplier} to this {@link DashBoardController}.
 	 *
 	 * @param name
-	 *            The name of the field where the {@code stringSupplier} will be
+	 *            The name of the field where the {@code booleanSupplier} will be
 	 *            displayed. Overrides values if the field name is already used.
 	 * @param booleanSupplier
 	 *            The {@link Supplier} giving the values that are written to the
