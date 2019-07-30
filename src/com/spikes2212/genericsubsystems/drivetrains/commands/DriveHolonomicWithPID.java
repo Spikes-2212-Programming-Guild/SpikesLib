@@ -44,14 +44,16 @@ public class DriveHolonomicWithPID extends Command {
 	/**
 	 * The <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 * the X axis of this drivetrain.
+	 * the X axis of this subsystem uses, given by
+	 * {@link BasicSubsystem#getPIDSource()}.
 	 */
 	protected final PIDSource XSource;
 
 	/**
 	 * The <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 * the Y axis of this drivetrain.
+	 * the Y axis of this subsystem uses, given by
+	 * {@link BasicSubsystem#getPIDSource()}.
 	 */
 	protected final PIDSource YSource;
 
@@ -244,7 +246,7 @@ public class DriveHolonomicWithPID extends Command {
 	 * @see <a href=
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
-	public void setTolerance(double tolerance) {
+	public void setTolerance(Supplier<Double> tolerance) {
 		XPIDSettings.setTolerance(tolerance);
 		YPIDSettings.setTolerance(tolerance);
 	}
@@ -264,7 +266,7 @@ public class DriveHolonomicWithPID extends Command {
 	 *
 	 * @see PIDSettings#getWaitTime()
 	 */
-	public void setWaitTime(double waitTime) {
+	public void setWaitTime(Supplier<Double> waitTime) {
 		YPIDSettings.setWaitTime(waitTime);
 		XPIDSettings.setWaitTime(waitTime);
 	}
@@ -315,6 +317,5 @@ public class DriveHolonomicWithPID extends Command {
 	// subsystems is scheduled to run
 	protected void interrupted() {
 		end();
-	}
-
+  }
 }

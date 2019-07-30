@@ -226,7 +226,7 @@ public class DriveTankWithPID extends Command {
 	 * @see <a href=
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
-	public void setTolerance(double tolerance) {
+	public void setTolerance(Supplier<Double> tolerance) {
 		PIDSettings.setTolerance(tolerance);
 	}
 
@@ -245,7 +245,7 @@ public class DriveTankWithPID extends Command {
 	 *
 	 * @see PIDSettings#getWaitTime()
 	 */
-	public void setWaitTime(double waitTime) {
+	public void setWaitTime(Supplier<Double> waitTime) {
 		PIDSettings.setWaitTime(waitTime);
 	}
 
