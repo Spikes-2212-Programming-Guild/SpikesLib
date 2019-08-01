@@ -2,8 +2,8 @@ package com.spikes2212.utils.targets;
 
 import java.util.function.Supplier;
 
-import com.spikes2212.genericsubsystems.basicSubsystem.GenericSubsystem;
-import com.spikes2212.genericsubsystems.basicSubsystem.commands.MoveGenericSubsystemToTarget;
+import com.spikes2212.command.genericsubsystem.GenericSubsystem;
+import com.spikes2212.command.genericsubsystem.commands.MoveGenericSubsystemToTarget;
 
 /**
  * This class is a Boolean {@link Supplier}. It is used in the constructor of
