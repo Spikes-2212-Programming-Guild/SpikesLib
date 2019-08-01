@@ -3,11 +3,11 @@ package com.spikes2212.genericsubsystems.basicSubsystem.utils.limitationFunction
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import com.spikes2212.genericsubsystems.basicSubsystem.BasicSubsystem;
+import com.spikes2212.genericsubsystems.basicSubsystem.GenericSubsystem;
 
 /**
  * This is a {@link Predicate<Double>}. An instance of this class can be used as
- * the canMove condition in the constructor of a {@link BasicSubsystem} that can
+ * the canMove condition in the constructor of a {@link GenericSubsystem} that can
  * move forward endlessly and backwards until reaching a limit.
  * 
  * @author Tuval
@@ -22,7 +22,7 @@ public class MinLimit implements Predicate<Double> {
 	 * Constructs a min limit Predicate using a boolean suppliers.
 	 * 
 	 * @param limit
-	 *            The limit, negative speed makes the {@link BasicSubsystem} move
+	 *            The limit, negative speed makes the {@link GenericSubsystem} move
 	 *            towards this limit.
 	 */
 	public MinLimit(Supplier<Boolean> limit) {
@@ -30,11 +30,11 @@ public class MinLimit implements Predicate<Double> {
 	}
 
 	/**
-	 * This method checks if the basicSubsystem can move.<br>
+	 * This method checks if the genericSubsystem can move.<br>
 	 * When a negative speed is given - it checks if the min limit is reached.
 	 * 
 	 * @param speed
-	 *            The speed the {@link BasicSubsystem} tries to move at.
+	 *            The speed the {@link GenericSubsystem} tries to move at.
 	 * @return True if the subsystem does not try to move out of the limit.
 	 * 
 	 */

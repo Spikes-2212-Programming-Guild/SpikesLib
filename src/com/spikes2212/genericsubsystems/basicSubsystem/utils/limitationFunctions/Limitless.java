@@ -2,12 +2,12 @@ package com.spikes2212.genericsubsystems.basicSubsystem.utils.limitationFunction
 
 import java.util.function.Predicate;
 
-import com.spikes2212.genericsubsystems.basicSubsystem.BasicSubsystem;
+import com.spikes2212.genericsubsystems.basicSubsystem.GenericSubsystem;
 
 /**
  * This is a {@link Predicate<Double>} that always returns true.An
  * instance of this class can be used as the canMove condition in the
- * constructor of a {@link BasicSubsystem} with no limits.
+ * constructor of a {@link GenericSubsystem} with no limits.
  * 
  * 
  * @author Omri "Riki" Cohen

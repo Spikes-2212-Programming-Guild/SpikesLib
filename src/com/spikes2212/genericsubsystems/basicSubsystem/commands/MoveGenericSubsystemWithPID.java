@@ -2,7 +2,7 @@ package com.spikes2212.genericsubsystems.basicSubsystem.commands;
 
 import java.util.function.Supplier;
 
-import com.spikes2212.genericsubsystems.basicSubsystem.BasicSubsystem;
+import com.spikes2212.genericsubsystems.basicSubsystem.GenericSubsystem;
 import com.spikes2212.utils.PIDSettings;
 
 import edu.wpi.first.wpilibj.PIDController;
@@ -11,29 +11,29 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * This command moves a {@link BasicSubsystem} using wpilib's <a href=
+ * This command moves a {@link GenericSubsystem} using wpilib's <a href=
  * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>.
  * It also waits a specified amount of time after the error is within the given
  * tolerance before stopping the PID loop to make sure the
- * {@link BasicSubsystem} doesn't go past the setpoint.
+ * {@link GenericSubsystem} doesn't go past the setpoint.
  *
  * <br>
  * <br>
- * This command will try to move the basicSubsystem until it reaches the latest
+ * This command will try to move the genericSubsystem until it reaches the latest
  * value supplied by setpoint. The setpoint should use values using the same
  * units as the <a href=
  * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource</a>.
  *
  * @author Omri "Riki" and Itamar Rivkind
- * @see BasicSubsystem
+ * @see GenericSubsystem
  * @see <a href=
  *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource</a>
  * @see <a href=
  *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
  */
-public class MoveBasicSubsystemWithPID extends Command {
+public class MoveGenericSubsystemWithPID extends Command {
 
-	protected final BasicSubsystem basicSubsystem;
+	protected final GenericSubsystem genericSubsystem;
 	protected final PIDSettings PIDSettings;
 	protected final Supplier<Double> setpoint;
 	protected final PIDSource source;
@@ -43,13 +43,13 @@ public class MoveBasicSubsystemWithPID extends Command {
 	protected boolean continuous;
 
 	/**
-	 * This constructs a new {@link MoveBasicSubsystemWithPID} using a <a href=
+	 * This constructs a new {@link MoveGenericSubsystemWithPID} using a <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>,
 	 * a setpoint, the PID coefficients this command's PID loop should have, and the
 	 * tolerance for error.
 	 *
-	 * @param basicSubsystem
-	 *            the {@link BasicSubsystem} this command operates on.
+	 * @param genericSubsystem
+	 *            the {@link GenericSubsystem} this command operates on.
 	 * @param source
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
@@ -58,7 +58,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 *            a supplier supplying the target point of this command.
 	 *
 	 *            <p>
-	 *            This command will try to move basicSubsystem until it reaches the
+	 *            This command will try to move genericSubsystem until it reaches the
 	 *            latest value supplied by setpoint. setpoint should supply values
 	 *            using the same units as source.
 	 *            </p>
@@ -79,10 +79,10 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 * @see <a href=
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
-	public MoveBasicSubsystemWithPID(BasicSubsystem basicSubsystem, PIDSource source, Supplier<Double> setpoint,
-			PIDSettings PIDSettings, double inputRange, boolean continuous) {
-		requires(basicSubsystem);
-		this.basicSubsystem = basicSubsystem;
+	public MoveGenericSubsystemWithPID(GenericSubsystem genericSubsystem, PIDSource source, Supplier<Double> setpoint,
+	                                   PIDSettings PIDSettings, double inputRange, boolean continuous) {
+		requires(genericSubsystem);
+		this.genericSubsystem = genericSubsystem;
 		this.source = source;
 		this.setpoint = setpoint;
 		this.PIDSettings = PIDSettings;
@@ -91,14 +91,14 @@ public class MoveBasicSubsystemWithPID extends Command {
 	}
 
 	/**
-	 * This constructs a new {@link MoveBasicSubsystemWithPID} using a <a href=
+	 * This constructs a new {@link MoveGenericSubsystemWithPID} using a <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 * given by {@link BasicSubsystem#getPIDSource()}, a setpoint, the PID
+	 * given by {@link GenericSubsystem#getPIDSource()}, a setpoint, the PID
 	 * coefficients this command's PID loop should have, and the tolerance for
 	 * error.
 	 *
-	 * @param basicSubsystem
-	 *            the {@link BasicSubsystem} this command requires and moves.
+	 * @param genericSubsystem
+	 *            the {@link GenericSubsystem} this command requires and moves.
 	 * @param source
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
@@ -107,7 +107,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 *            the target point of this command.
 	 *
 	 *            <p>
-	 *            This command will try to move basicSubsystem until it reaches the
+	 *            This command will try to move genericSubsystem until it reaches the
 	 *            setpoint. setpoint should be using the same units as source.
 	 *            </p>
 	 * @param PIDSettings
@@ -123,20 +123,20 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 * @see <a href=
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
-	public MoveBasicSubsystemWithPID(BasicSubsystem basicSubsystem, PIDSource source, double setpoint,
-			PIDSettings PIDSettings, double inputRange, boolean continuous) {
-		this(basicSubsystem, source, () -> setpoint, PIDSettings, inputRange, continuous);
+	public MoveGenericSubsystemWithPID(GenericSubsystem genericSubsystem, PIDSource source, double setpoint,
+	                                   PIDSettings PIDSettings, double inputRange, boolean continuous) {
+		this(genericSubsystem, source, () -> setpoint, PIDSettings, inputRange, continuous);
 	}
 
 	/**
-	 * This constructs a new {@link MoveBasicSubsystemWithPID} using a <a href=
+	 * This constructs a new {@link MoveGenericSubsystemWithPID} using a <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>,
 	 * a setpoint, the PID coefficients this command's PID loop should have, and the
 	 * tolerance for error. this constructor sets
-	 * {@link MoveBasicSubsystemWithPID#continuous} to false automatically
+	 * {@link MoveGenericSubsystemWithPID#continuous} to false automatically
 	 *
-	 * @param basicSubsystem
-	 *            the {@link BasicSubsystem} this command operates on.
+	 * @param genericSubsystem
+	 *            the {@link GenericSubsystem} this command operates on.
 	 * @param source
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
@@ -145,7 +145,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 *            a supplier supplying the target point of this command.
 	 *
 	 *            <p>
-	 *            This command will try to move basicSubsystem until it reaches the
+	 *            This command will try to move genericSubsystem until it reaches the
 	 *            latest value supplied by setpoint. setpoint should supply values
 	 *            using the same units as source.
 	 *            </p>
@@ -155,22 +155,22 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 * @see <a href=
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
-	public MoveBasicSubsystemWithPID(BasicSubsystem basicSubsystem, PIDSource source, Supplier<Double> setpoint,
-			PIDSettings PIDSettings) {
-		this(basicSubsystem, source, setpoint, PIDSettings, 0, false);
+	public MoveGenericSubsystemWithPID(GenericSubsystem genericSubsystem, PIDSource source, Supplier<Double> setpoint,
+	                                   PIDSettings PIDSettings) {
+		this(genericSubsystem, source, setpoint, PIDSettings, 0, false);
 	}
 
 	/**
-	 * This constructs a new {@link MoveBasicSubsystemWithPID} using a <a href=
+	 * This constructs a new {@link MoveGenericSubsystemWithPID} using a <a href=
 	 * "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
-	 * given by {@link BasicSubsystem#getPIDSource()}, a setpoint, the PID
+	 * given by {@link GenericSubsystem#getPIDSource()}, a setpoint, the PID
 	 * coefficients this command's PID loop should have, and the tolerance for
-	 * error. this constructor sets {@link MoveBasicSubsystemWithPID#continuous} to
+	 * error. this constructor sets {@link MoveGenericSubsystemWithPID#continuous} to
 	 * false automatically
 	 *
 	 *
-	 * @param basicSubsystem
-	 *            the {@link BasicSubsystem} this command requires and moves.
+	 * @param genericSubsystem
+	 *            the {@link GenericSubsystem} this command requires and moves.
 	 * @param source
 	 *            the <a href=
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDSource.html">PIDSource<a>
@@ -179,7 +179,7 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 *            the target point of this command.
 	 *
 	 *            <p>
-	 *            This command will try to move basicSubsystem until it reaches the
+	 *            This command will try to move genericSubsystem until it reaches the
 	 *            setpoint. setpoint should be using the same units as source.
 	 *            </p>
 	 * @param PIDSettings
@@ -188,15 +188,15 @@ public class MoveBasicSubsystemWithPID extends Command {
 	 * @see <a href=
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
-	public MoveBasicSubsystemWithPID(BasicSubsystem basicSubsystem, PIDSource source, double setpoint,
-			PIDSettings PIDSettings) {
-		this(basicSubsystem, source, setpoint, PIDSettings, 0, false);
+	public MoveGenericSubsystemWithPID(GenericSubsystem genericSubsystem, PIDSource source, double setpoint,
+	                                   PIDSettings PIDSettings) {
+		this(genericSubsystem, source, setpoint, PIDSettings, 0, false);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		movementControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), source,
-				basicSubsystem::move);
+				genericSubsystem::move);
 		movementControl.setAbsoluteTolerance(PIDSettings.getTolerance());
 		movementControl.setSetpoint(this.setpoint.get());
 		movementControl.setOutputRange(-1, 1);
@@ -218,13 +218,13 @@ public class MoveBasicSubsystemWithPID extends Command {
 			lastTimeNotOnTarget = Timer.getFPGATimestamp();
 		}
 		return Timer.getFPGATimestamp() - lastTimeNotOnTarget >= PIDSettings.getWaitTime()
-				|| !basicSubsystem.canMove.test(movementControl.get());
+				|| !genericSubsystem.canMove(movementControl.get());
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
 		movementControl.disable();
-		basicSubsystem.stop();
+		genericSubsystem.stop();
 	}
 
 	// Called when another command which requires one or more of the same
