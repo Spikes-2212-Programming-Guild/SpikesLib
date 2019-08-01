@@ -27,15 +27,15 @@ public class RiseGenericSubsystem extends MoveGenericSubsystem {
 	 * wanted speed the {@link GenericSubsystem} should move with after the given
 	 * time.
 	 * 
-	 * @param genericSubsystem
+	 * @param subsystem
 	 *            the {@link GenericSubsystem} this command should move.
 	 * @param wantedSpeed
 	 *            the speed the subsystem should move after the time.
 	 * @param time
 	 *            the time it takes for the subsystem to get to the speed.
 	 */
-	public RiseGenericSubsystem(GenericSubsystem genericSubsystem, Supplier<Double> wantedSpeed, double time, boolean finishWhenReachingSpeed) {
-		super(genericSubsystem, wantedSpeed);
+	public RiseGenericSubsystem(GenericSubsystem subsystem, Supplier<Double> wantedSpeed, double time, boolean finishWhenReachingSpeed) {
+		super(subsystem, wantedSpeed);
 		if (time <= 1) {
 			time = 1;
 		}
@@ -49,15 +49,15 @@ public class RiseGenericSubsystem extends MoveGenericSubsystem {
 	 * wanted speed the {@link GenericSubsystem} should move with after the given
 	 * time.
 	 * 
-	 * @param genericSubsystem
+	 * @param subsystem
 	 *            the {@link GenericSubsystem} this command should move.
 	 * @param wantedSpeed
 	 *            the speed the subsystem should move after the time.
 	 * @param time
 	 *            the time it takes for the subsystem to get to the speed.
 	 */
-	public RiseGenericSubsystem(GenericSubsystem genericSubsystem, double wantedSpeed, double time, boolean finishWhenReachingSpeed) {
-		this(genericSubsystem, () -> wantedSpeed, time, finishWhenReachingSpeed);
+	public RiseGenericSubsystem(GenericSubsystem subsystem, double wantedSpeed, double time, boolean finishWhenReachingSpeed) {
+		this(subsystem, () -> wantedSpeed, time, finishWhenReachingSpeed);
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class RiseGenericSubsystem extends MoveGenericSubsystem {
 		currentSpeed = (Timer.getFPGATimestamp() - startTime) * acceleration;
 		if (Math.abs(currentSpeed) > Math.abs(speedSupplier.get()))
 			currentSpeed = speedSupplier.get();
-		genericSubsystem.move(currentSpeed);
+		subsystem.move(currentSpeed);
 	}
 	
 	@Override

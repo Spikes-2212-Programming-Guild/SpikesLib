@@ -22,7 +22,7 @@ public class MoveGenericSubsystemToTarget extends MoveGenericSubsystem {
 	 * the {@link GenericSubsystem} should be moved with and a boolean supplier, which
 	 * returns true then reaching the wanted target.
 	 * 
-	 * @param genericSubsystem
+	 * @param subsystem
 	 *            the {@link GenericSubsystem} this command should move.
 	 * @param speedSupplier
 	 *            a Double {@link Supplier} supplying the speed subsystem should be
@@ -31,9 +31,9 @@ public class MoveGenericSubsystemToTarget extends MoveGenericSubsystem {
 	 *            a Boolean {@link Supplier} returning true when reaching the wanted
 	 *            target.
 	 */
-	public MoveGenericSubsystemToTarget(GenericSubsystem genericSubsystem, Supplier<Double> speedSupplier,
+	public MoveGenericSubsystemToTarget(GenericSubsystem subsystem, Supplier<Double> speedSupplier,
 	                                    Supplier<Boolean> onTarget) {
-		super(genericSubsystem, speedSupplier);
+		super(subsystem, speedSupplier);
 		this.onTarget = onTarget;
 	}
 
@@ -43,7 +43,7 @@ public class MoveGenericSubsystemToTarget extends MoveGenericSubsystem {
 	 * the {@link GenericSubsystem} should be moved with and a boolean supplier, which
 	 * returns true then reaching the wanted target.
 	 * 
-	 * @param genericSubsystem
+	 * @param subsystem
 	 *            the {@link GenericSubsystem} this command should move.
 	 * @param speed
 	 *            the speed subsystem should be moved with. Should only supply
@@ -52,8 +52,8 @@ public class MoveGenericSubsystemToTarget extends MoveGenericSubsystem {
 	 *            a Boolean {@link Supplier} returning true when reaching the wanted
 	 *            target.
 	 */
-	public MoveGenericSubsystemToTarget(GenericSubsystem genericSubsystem, double speed, Supplier<Boolean> onTarget) {
-		super(genericSubsystem, () -> speed);
+	public MoveGenericSubsystemToTarget(GenericSubsystem subsystem, double speed, Supplier<Boolean> onTarget) {
+		super(subsystem, () -> speed);
 		this.onTarget = onTarget;
 	}
 

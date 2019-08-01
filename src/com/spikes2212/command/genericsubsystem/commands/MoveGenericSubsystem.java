@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveGenericSubsystem extends Command {
 
-	protected final GenericSubsystem genericSubsystem;
+	protected final GenericSubsystem subsystem;
 	protected final Supplier<Double> speedSupplier;
 
 	/**
@@ -24,15 +24,15 @@ public class MoveGenericSubsystem extends Command {
 	 * {@link GenericSubsystem} this command operates on and a supplier supplying the
 	 * speed the {@link GenericSubsystem} should move with.
 	 *
-	 * @param genericSubsystem
+	 * @param subsystem
 	 *            the {@link GenericSubsystem} this command should move.
 	 * @param speedSupplier
 	 *            a Double {@link Supplier} supplying the speed this subsystem
 	 *            should be moved with. Must only supply values between -1 and 1.
 	 */
-	public MoveGenericSubsystem(GenericSubsystem genericSubsystem, Supplier<Double> speedSupplier) {
-		requires(genericSubsystem);
-		this.genericSubsystem = genericSubsystem;
+	public MoveGenericSubsystem(GenericSubsystem subsystem, Supplier<Double> speedSupplier) {
+		requires(subsystem);
+		this.subsystem = subsystem;
 		this.speedSupplier = speedSupplier;
 	}
 
@@ -41,14 +41,14 @@ public class MoveGenericSubsystem extends Command {
 	 * {@link GenericSubsystem} this command runs on and a constant speed the
 	 * {@link GenericSubsystem} should move with.
 	 *
-	 * @param genericSubsystem
+	 * @param subsystem
 	 *            the {@link GenericSubsystem} this command operates on.
 	 * @param speed
 	 *            the speed this subsystem should be moved with. Values must be
 	 *            between -1 and 1.
 	 */
-	public MoveGenericSubsystem(GenericSubsystem genericSubsystem, double speed) {
-		this(genericSubsystem, () -> speed);
+	public MoveGenericSubsystem(GenericSubsystem subsystem, double speed) {
+		this(subsystem, () -> speed);
 	}
 
 	// Called just before this Command runs the first time
@@ -57,7 +57,7 @@ public class MoveGenericSubsystem extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		genericSubsystem.move(speedSupplier.get());
+		subsystem.move(speedSupplier.get());
 	}
 
 	/**
@@ -71,12 +71,12 @@ public class MoveGenericSubsystem extends Command {
 	 * @see GenericSubsystem#canMove
 	 */
 	protected boolean isFinished() {
-		return !genericSubsystem.canMove(speedSupplier.get()) || isTimedOut();
+		return !subsystem.canMove(speedSupplier.get()) || isTimedOut();
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		genericSubsystem.stop();
+		subsystem.stop();
 	}
 
 	// Called when another command which requires one or more of the same

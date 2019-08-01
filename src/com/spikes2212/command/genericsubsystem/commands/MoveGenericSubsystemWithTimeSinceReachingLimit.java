@@ -34,7 +34,7 @@ public class MoveGenericSubsystemWithTimeSinceReachingLimit extends MoveGenericS
 	 * supplying the speed the {@link GenericSubsystem} should move with, and a wait
 	 * time.
 	 *
-	 * @param genericSubsystem
+	 * @param subsystem
 	 *            the {@link GenericSubsystem} this command should move.
 	 * @param speedSupplier
 	 *            a {@link Double} {@link Supplier} supplying the speed this
@@ -44,9 +44,9 @@ public class MoveGenericSubsystemWithTimeSinceReachingLimit extends MoveGenericS
 	 *            the time the {@link GenericSubsystem} should keep trying to move
 	 *            after reaching its end point.
 	 */
-	public MoveGenericSubsystemWithTimeSinceReachingLimit(GenericSubsystem genericSubsystem, Supplier<Double> speedSupplier,
+	public MoveGenericSubsystemWithTimeSinceReachingLimit(GenericSubsystem subsystem, Supplier<Double> speedSupplier,
 	                                                      double waitTime) {
-		super(genericSubsystem, speedSupplier);
+		super(subsystem, speedSupplier);
 		this.waitTime = waitTime;
 	}
 
@@ -55,7 +55,7 @@ public class MoveGenericSubsystemWithTimeSinceReachingLimit extends MoveGenericS
 	 * command using the {@link GenericSubsystem} this command runs on, a constant
 	 * speed the {@link GenericSubsystem} should move with, and a wait time.
 	 *
-	 * @param genericSubsystem
+	 * @param subsystem
 	 *            the {@link GenericSubsystem} this command should move.
 	 * @param speed
 	 *            a speed this subsystem should be moved with. Must only be a value
@@ -64,8 +64,8 @@ public class MoveGenericSubsystemWithTimeSinceReachingLimit extends MoveGenericS
 	 *            the time the {@link GenericSubsystem} should keep trying to move
 	 *            after reaching its end point.
 	 */
-	public MoveGenericSubsystemWithTimeSinceReachingLimit(GenericSubsystem genericSubsystem, double speed, double waitTime) {
-		super(genericSubsystem, speed);
+	public MoveGenericSubsystemWithTimeSinceReachingLimit(GenericSubsystem subsystem, double speed, double waitTime) {
+		super(subsystem, speed);
 		this.waitTime = waitTime;
 	}
 

@@ -51,7 +51,7 @@ public class TankDrivetrain extends Subsystem {
 	 *            forward.
 	 */
 	public void setLeft(double speedLeft) {
-		this.leftController.set(speedLeft);
+		leftController.set(speedLeft);
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class TankDrivetrain extends Subsystem {
 	 *            forward.
 	 */
 	public void setRight(double speedRight) {
-		this.rightController.set(speedRight);
+		rightController.set(speedRight);
 	}
 
 	/**
@@ -73,8 +73,8 @@ public class TankDrivetrain extends Subsystem {
 	 * using this method, override it.
 	 */
 	public void stop() {
-		setRight(0);
-		setLeft(0);
+		leftController.stopMotor();
+		rightController.stopMotor();
 	}
 
 	/**

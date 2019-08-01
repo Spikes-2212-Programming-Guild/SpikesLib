@@ -34,7 +34,7 @@ public class MoveGenericSubsystemWithPIDForSpeed extends MoveGenericSubsystemWit
 	 * a {@link Supplier} supplying the wanted speed, the PID coefficients this command's PID loop should have,
 	 * and the tolerance for error.
 	 *
-	 * @param genericSubsystem
+	 * @param subsystem
 	 *            the {@link GenericSubsystem} this command requires and moves.
 	 * @param source
 	 *            the <a href=
@@ -49,9 +49,9 @@ public class MoveGenericSubsystemWithPIDForSpeed extends MoveGenericSubsystemWit
 	 * @see <a href=
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
-	public MoveGenericSubsystemWithPIDForSpeed(GenericSubsystem genericSubsystem, PIDSource source,
+	public MoveGenericSubsystemWithPIDForSpeed(GenericSubsystem subsystem, PIDSource source,
 	                                           Supplier<Double> wantedSpeed, PIDSettings PIDSettings) {
-		super(genericSubsystem, source, wantedSpeed, PIDSettings);
+		super(subsystem, source, wantedSpeed, PIDSettings);
 		this.source.setPIDSourceType(PIDSourceType.kRate);
 	}
 
@@ -62,7 +62,7 @@ public class MoveGenericSubsystemWithPIDForSpeed extends MoveGenericSubsystemWit
 	 * the wanted speed, the PID coefficients this command's PID loop should have,
 	 * and the tolerance for error.
 	 *
-	 * @param genericSubsystem
+	 * @param subsystem
 	 *            the {@link GenericSubsystem} this command requires and moves.
 	 * @param source
 	 *            the <a href=
@@ -76,9 +76,9 @@ public class MoveGenericSubsystemWithPIDForSpeed extends MoveGenericSubsystemWit
 	 * @see <a href=
 	 *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/PIDController.html">PIDController</a>
 	 */
-	public MoveGenericSubsystemWithPIDForSpeed(GenericSubsystem genericSubsystem, PIDSource source, double wantedSpeed,
+	public MoveGenericSubsystemWithPIDForSpeed(GenericSubsystem subsystem, PIDSource source, double wantedSpeed,
 	                                           PIDSettings PIDSettings) {
-		this(genericSubsystem, source, () -> wantedSpeed, PIDSettings);
+		this(subsystem, source, () -> wantedSpeed, PIDSettings);
 	}
 
 	@Override
@@ -90,8 +90,8 @@ public class MoveGenericSubsystemWithPIDForSpeed extends MoveGenericSubsystemWit
 		 * to get to the wanted speed.
 		 */
 		movementControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), source,
-				(additionalSpeed) -> genericSubsystem
-						.move(genericSubsystem.getSpeed() + additionalSpeed));
+				(additionalSpeed) -> subsystem
+						.move(subsystem.getSpeed() + additionalSpeed));
 		movementControl.setAbsoluteTolerance(PIDSettings.getTolerance());
 		movementControl.setSetpoint(this.setpoint.get());
 		movementControl.setOutputRange(-1, 1);
