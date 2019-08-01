@@ -47,7 +47,7 @@ public abstract class GenericSubsystem extends Subsystem {
 	}
 	
 	/**
-	 * This functions applies a given speed to the subsystem.
+	 * This method applies a given speed to the subsystem.
 	 *
 	 * @param speed the speed
 	 */
