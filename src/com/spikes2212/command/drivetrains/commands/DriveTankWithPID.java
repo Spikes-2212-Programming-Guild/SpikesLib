@@ -1,8 +1,8 @@
-package com.spikes2212.genericsubsystems.drivetrains.commands;
+package com.spikes2212.command.drivetrains.commands;
 
 import java.util.function.Supplier;
 
-import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
+import com.spikes2212.command.drivetrains.TankDrivetrain;
 import com.spikes2212.utils.PIDSettings;
 
 import edu.wpi.first.wpilibj.PIDController;
