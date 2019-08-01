@@ -1,27 +1,24 @@
 package motor;
 
-import edu.wpi.first.wpilibj.PWMVictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.VictorSP;
+
+import java.util.List;
 
 public class Gearbox implements SpeedController {
 
     private WPI_TalonSRX master;
-    private final SpeedController[] VICTOR_SP;
+    private List<SpeedController> victorSPs;
 
-    public Gearbox(WPI_TalonSRX master, SpeedController... VICTOR_SP){
-        this.VICTOR_SP = VICTOR_SP;
+    public Gearbox(WPI_TalonSRX master) {
         this.master = master;
-    }
-
-    public Gearbox(WPI_TalonSRX master){
-        this.master = master;
-        VICTOR_SP = null;
     }
 
     @Override
     public void set(double speed) {
-    master.set(speed);
+        master.set(speed);
     }
 
     @Override
@@ -30,34 +27,46 @@ public class Gearbox implements SpeedController {
     }
 
     @Override
-    public void setInverted(boolean isInverted) {
-    master.setInverted(isInverted);
-    }
-
-    @Override
     public boolean getInverted() {
         return master.getInverted();
     }
 
     @Override
+    public void setInverted(boolean isInverted) {
+        master.setInverted(isInverted);
+    }
+
+    @Override
     public void disable() {
-    master.disable();
+        master.disable();
     }
 
     @Override
     public void stopMotor() {
-    master.stopMotor();
+        master.stopMotor();
     }
 
     @Override
     public void pidWrite(double output) {
-    master.pidWrite(output);
+        master.pidWrite(output);
     }
 
-    public void enslaveTalonSRX(WPI_TalonSRX slave){
-
+    public void enslaveTalonSRX(WPI_TalonSRX... slaves) {
+        for(WPI_TalonSRX slave : slaves) {
+            slave.follow(master);
+        }
     }
-    public void enslaveVictorSPX(WPI_VictorSPX slave){
 
+    public void enslaveVictorSPX(WPI_VictorSPX... slaves) {
+        for(WPI_VictorSPX slave : slaves) {
+            slave.follow(master);
+        }
     }
+
+    public void enslaveVictorSP(VictorSP... slaves) {
+        for(VictorSP slave : slaves) {
+            victorSPs.add(slave);
+        }
+    }
+
 }
