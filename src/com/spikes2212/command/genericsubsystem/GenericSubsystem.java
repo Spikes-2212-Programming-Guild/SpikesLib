@@ -1,5 +1,6 @@
 package com.spikes2212.command.genericsubsystem;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -74,5 +75,10 @@ public abstract class GenericSubsystem extends Subsystem {
 	 */
 	public double getSpeed() {
 		return currentSpeed;
+	}
+	
+	@Override
+	public void setDefaultCommand(Command command) {
+		super.setDefaultCommand(command);
 	}
 }
