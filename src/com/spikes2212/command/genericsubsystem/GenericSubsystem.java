@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Omri "Riki" Cohen
  */
 public abstract class GenericSubsystem extends Subsystem {
-
+	
 	private double currentSpeed = 0;
 	private double maxSpeed;
 	private double minSpeed;
@@ -40,7 +40,7 @@ public abstract class GenericSubsystem extends Subsystem {
 	 * @param speed
 	 *            the speed to move the subsystem with.
 	 */
-	public void move(double speed) {
+	public final void move(double speed) {
 		if(canMove(speed) && minSpeed <= speed && speed <= maxSpeed) {
 			apply(speed);
 			currentSpeed = speed;
