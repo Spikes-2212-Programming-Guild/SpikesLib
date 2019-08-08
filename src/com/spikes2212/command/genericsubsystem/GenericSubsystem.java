@@ -41,7 +41,9 @@ public abstract class GenericSubsystem extends Subsystem {
 	 *            the speed to move the subsystem with.
 	 */
 	public final void move(double speed) {
-		if(canMove(speed) && minSpeed <= speed && speed <= maxSpeed) {
+		if (speed < minSpeed) speed = minSpeed;
+		if (speed > maxSpeed) speed = maxSpeed;
+		if (canMove(speed)) {
 			apply(speed);
 			currentSpeed = speed;
 		}
