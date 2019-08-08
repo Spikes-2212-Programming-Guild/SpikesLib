@@ -1,5 +1,8 @@
 package com.spikes2212.command.genericsubsystem;
 
+import edu.wpi.first.wpilibj.command.Command;
+import javafx.scene.web.HTMLEditorSkin;
+
 import java.util.function.*;
 
 /**
@@ -11,6 +14,15 @@ import java.util.function.*;
 public class LambdaSubsystem extends GenericSubsystem {
     public final Predicate<Double> canMove;
     public final Consumer<Double> speedConsumer;
+    
+    /**
+     * Constructs a new instance of LambdaSubsystem with the given movement.
+     *
+     * @param speedConsumer a {@link Consumer} that takes speed and applies it to the subsystem
+     */
+    public LambdaSubsystem(Consumer<Double> speedConsumer) {
+        this(speed -> true, speedConsumer);
+    }
     
     /**
      * Constructs a new instance of LambdaSubsystem with the given limitations and movement.
@@ -66,6 +78,11 @@ public class LambdaSubsystem extends GenericSubsystem {
     @Override
     public void stop() {
         apply(0);
+    }
+    
+    @Override
+    public void setDefaultCommand(Command command) {
+        super.setDefaultCommand(command);
     }
     
     @Override
