@@ -31,9 +31,7 @@ public class LambdaSubsystem extends GenericSubsystem {
      * @param speedConsumer a {@link Consumer} that takes speed and applies it to the subsystem
      */
     public LambdaSubsystem(Predicate<Double> canMove, Consumer<Double> speedConsumer) {
-        super();
-        this.canMove = canMove;
-        this.speedConsumer = speedConsumer;
+        this(canMove, speedConsumer, -1, 1);
     }
     
     /**
