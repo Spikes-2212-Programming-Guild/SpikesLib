@@ -2,11 +2,11 @@ package com.spikes2212.utils;
 
 import java.util.function.Consumer;
 
-import com.spikes2212.genericsubsystems.basicSubsystem.BasicSubsystem;
+import com.spikes2212.command.genericsubsystem.GenericSubsystem;
 
 /**
  * This class is a {@link Consumer} of Double. This is used for the constructor
- * of {@link BasicSubsystem} for a motor that needs to be inverted. It gets a
+ * of {@link GenericSubsystem} for a motor that needs to be inverted. It gets a
  * {@link Consumer} in its constructor and becomes an inverted version of it.
  * 
  * @author Omri "Riki" Cohen
