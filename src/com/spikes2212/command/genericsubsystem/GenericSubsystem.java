@@ -31,8 +31,7 @@ public abstract class GenericSubsystem extends Subsystem {
 	 * @param maxSpeed the maximum speed
 	 */
 	public GenericSubsystem(double minSpeed, double maxSpeed) {
-		this.maxSpeed = () -> maxSpeed;
-		this.minSpeed = () -> minSpeed;
+		this(() -> minSpeed, () -> maxSpeed);
 	}
 	
 	/**
