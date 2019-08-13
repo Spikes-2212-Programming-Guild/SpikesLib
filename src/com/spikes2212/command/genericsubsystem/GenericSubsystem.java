@@ -3,6 +3,8 @@ package com.spikes2212.command.genericsubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+import java.util.function.Supplier;
+
 /**
  * This class represents a generic subsystem that moves within a limitation, or
  * without one.
@@ -12,8 +14,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public abstract class GenericSubsystem extends Subsystem {
 	
 	private double currentSpeed = 0;
-	private double maxSpeed;
-	private double minSpeed;
+	private Supplier<Double> maxSpeed;
+	private Supplier<Double> minSpeed;
 	
 	/**
 	 * Constructs a new instance of GenericSubsystem.
@@ -29,6 +31,17 @@ public abstract class GenericSubsystem extends Subsystem {
 	 * @param maxSpeed the maximum speed
 	 */
 	public GenericSubsystem(double minSpeed, double maxSpeed) {
+		this.maxSpeed = () -> maxSpeed;
+		this.minSpeed = () -> minSpeed;
+	}
+	
+	/**
+	 * Constructs a new instance of GenericSubsystem with the given minSpeed supplier and maxSpeed supplier.
+	 *
+	 * @param minSpeed the minimum speed
+	 * @param maxSpeed the maximum speed
+	 */
+	public GenericSubsystem(Supplier<Double> minSpeed, Supplier<Double> maxSpeed) {
 		this.maxSpeed = maxSpeed;
 		this.minSpeed = minSpeed;
 	}
@@ -41,8 +54,8 @@ public abstract class GenericSubsystem extends Subsystem {
 	 *            the speed to move the subsystem with.
 	 */
 	public final void move(double speed) {
-		if (speed < minSpeed) speed = minSpeed;
-		if (speed > maxSpeed) speed = maxSpeed;
+		if (speed < minSpeed.get()) speed = minSpeed.get();
+		if (speed > maxSpeed.get()) speed = maxSpeed.get();
 		if (canMove(speed)) {
 			apply(speed);
 			currentSpeed = speed;
@@ -77,10 +90,5 @@ public abstract class GenericSubsystem extends Subsystem {
 	 */
 	public double getSpeed() {
 		return currentSpeed;
-	}
-	
-	@Override
-	public void setDefaultCommand(Command command) {
-		super.setDefaultCommand(command);
 	}
 }

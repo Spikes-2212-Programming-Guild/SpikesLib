@@ -198,10 +198,10 @@ public class MoveGenericSubsystemWithPID extends Command {
 		movementControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(), source,
 				subsystem::move);
 		movementControl.setAbsoluteTolerance(PIDSettings.getTolerance());
-		movementControl.setSetpoint(this.setpoint.get());
+		movementControl.setSetpoint(setpoint.get());
 		movementControl.setOutputRange(-1, 1);
 		movementControl.setInputRange(-inputRange / 2, inputRange / 2);
-		movementControl.setContinuous(this.continuous);
+		movementControl.setContinuous(continuous);
 		movementControl.enable();
 	}
 
