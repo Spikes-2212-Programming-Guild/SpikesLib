@@ -1,6 +1,5 @@
 package com.spikes2212.command.genericsubsystem;
 
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import java.util.function.Supplier;
