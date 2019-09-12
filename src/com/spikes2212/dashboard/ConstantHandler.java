@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import com.spikes2212.utils.ChildNamespace;
 import edu.wpi.first.wpilibj.Preferences;
 
 /**
@@ -22,6 +23,8 @@ import edu.wpi.first.wpilibj.Preferences;
  *      "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html">SmartDashBoard</a>
  */
 public class ConstantHandler {
+
+	private static final ChildNamespace ROOT_NAMESPACE = null;
 
 	/**
 	 * A {@link HashMap} containing all constant {@link double} values.
