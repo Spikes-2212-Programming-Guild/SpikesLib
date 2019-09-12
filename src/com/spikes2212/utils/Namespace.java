@@ -12,5 +12,5 @@ public interface Namespace {
 
     void reset();
 
-    Namespace assignParent(String name);
+    Namespace addChild(String name);
 }
