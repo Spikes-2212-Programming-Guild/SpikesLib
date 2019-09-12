@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import com.spikes2212.utils.ChildNamespace;
+import com.spikes2212.utils.Namespace;
 import com.spikes2212.utils.RootNamespace;
 import edu.wpi.first.wpilibj.Preferences;
 
@@ -26,6 +27,10 @@ import edu.wpi.first.wpilibj.Preferences;
 public class ConstantHandler {
 
 	private static final RootNamespace ROOT_NAMESPACE = new RootNamespace();
+
+	public static Namespace addNamespace(String name){
+	    return new ChildNamespace(name,ROOT_NAMESPACE);
+    }
 
 	/**
 	 * A {@link HashMap} containing all constant {@link double} values.

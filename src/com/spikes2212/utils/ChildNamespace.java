@@ -38,12 +38,6 @@ public class ChildNamespace implements Namespace {
     }
 
     @Override
-    public void reset() {
-
-    }
-
-
-    @Override
     public ChildNamespace addChild(String name) {
 
         return new ChildNamespace(name, this);

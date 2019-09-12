@@ -10,7 +10,5 @@ public interface Namespace {
 
     Supplier<String> addConstantString(String name, String value);
 
-    void reset();
-
     Namespace addChild(String name);
 }

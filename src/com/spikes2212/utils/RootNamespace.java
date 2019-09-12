@@ -1,6 +1,5 @@
 package com.spikes2212.utils;
 
-import com.spikes2212.dashboard.ConstantHandler;
 import edu.wpi.first.wpilibj.Preferences;
 
 import java.util.function.Supplier;
@@ -22,11 +21,6 @@ public class RootNamespace implements Namespace {
     public Supplier<String> addConstantString(String name, String value) {
 
         return () -> Preferences.getInstance().getString(name, value);
-
-    }
-
-    @Override
-    public void reset() {
 
     }
 
