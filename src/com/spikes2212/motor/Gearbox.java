@@ -7,59 +7,60 @@ import edu.wpi.first.wpilibj.VictorSP;
 
 import java.util.List;
 
-public class Gearbox implements SpeedController {
+public class Gearbox extends WPI_TalonSRX{
 
-    private WPI_TalonSRX master;
     private List<SpeedController> victorSPs;
+    private int port;
 
-    public Gearbox(WPI_TalonSRX master) {
-        this.master = master;
+    public Gearbox(int port) {
+        super(port);
+        this.port = port;
     }
 
     @Override
     public void set(double speed) {
-        master.set(speed);
+        this.set(speed);
     }
 
     @Override
     public double get() {
-        return master.get();
+        return this.get();
     }
 
     @Override
     public boolean getInverted() {
-        return master.getInverted();
+        return this.getInverted();
     }
 
     @Override
     public void setInverted(boolean isInverted) {
-        master.setInverted(isInverted);
+        this.setInverted(isInverted);
     }
 
     @Override
     public void disable() {
-        master.disable();
+        this.disable();
     }
 
     @Override
     public void stopMotor() {
-        master.stopMotor();
+        this.stopMotor();
     }
 
     @Override
     public void pidWrite(double output) {
-        master.pidWrite(output);
+        this.pidWrite(output);
     }
 
     public void enslaveTalonSRX(WPI_TalonSRX... slaves) {
         for(WPI_TalonSRX slave : slaves) {
-            slave.follow(master);
+            slave.follow(this);
         }
     }
 
     public void enslaveVictorSPX(WPI_VictorSPX... slaves) {
         for(WPI_VictorSPX slave : slaves) {
-            slave.follow(master);
+            slave.follow(this);
         }
     }
 
