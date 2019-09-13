@@ -1,4 +1,4 @@
-package motor;
+package com.spikes2212.motor;
 
 public class GearboxSettings {
     int maxCurrent, peakCurrentDuration, continuousCurrentLimit;
