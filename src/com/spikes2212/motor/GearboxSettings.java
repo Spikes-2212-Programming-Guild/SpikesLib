@@ -1,8 +1,9 @@
 package com.spikes2212.motor;
 
 public class GearboxSettings {
-    int maxCurrent, peakCurrentDuration, continuousCurrentLimit;
-    boolean CurrentLimit = true;
+    protected int maxCurrent, peakCurrentDuration
+            , continuousCurrentLimit;
+    protected boolean currentLimit = true;
 
     public GearboxSettings(int maxCurrent, int peakCurrentDuration, int continuousCurrentLimit) {
         this.maxCurrent = maxCurrent;
