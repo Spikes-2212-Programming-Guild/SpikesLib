@@ -28,10 +28,6 @@ public class ConstantHandler {
 
 	private static final RootNamespace ROOT_NAMESPACE = new RootNamespace();
 
-	public static Namespace addNamespace(String name){
-	    return new ChildNamespace(name,ROOT_NAMESPACE);
-    }
-
 	/**
 	 * A {@link HashMap} containing all constant {@link double} values.
 	 */
@@ -141,6 +137,10 @@ public class ConstantHandler {
 		}
 		stringMap.put(name, value);
 		return () -> Preferences.getInstance().getString(name, value);
+	}
+
+	public static Namespace addNamespace(String name){
+		return new ChildNamespace(name,ROOT_NAMESPACE);
 	}
 
 	/**
