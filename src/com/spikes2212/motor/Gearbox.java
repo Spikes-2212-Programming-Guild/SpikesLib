@@ -1,5 +1,6 @@
 package com.spikes2212.motor;
 
+import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -7,59 +8,21 @@ import edu.wpi.first.wpilibj.VictorSP;
 
 import java.util.List;
 
-public class Gearbox extends WPI_TalonSRX{
+public class Gearbox extends WPI_TalonSRX {
 
     private List<SpeedController> victorSPs;
-    private int port;
 
-    public Gearbox(int port) {
+    public Gearbox(int port, BaseMotorController... slaves) {
         super(port);
-        this.port = port;
+        enslaveBaseMotorController(slaves);
     }
 
-    @Override
-    public void set(double speed) {
-        this.set(speed);
+    public Gearbox(int port){
+        super(port);
     }
 
-    @Override
-    public double get() {
-        return this.get();
-    }
-
-    @Override
-    public boolean getInverted() {
-        return this.getInverted();
-    }
-
-    @Override
-    public void setInverted(boolean isInverted) {
-        this.setInverted(isInverted);
-    }
-
-    @Override
-    public void disable() {
-        this.disable();
-    }
-
-    @Override
-    public void stopMotor() {
-        this.stopMotor();
-    }
-
-    @Override
-    public void pidWrite(double output) {
-        this.pidWrite(output);
-    }
-
-    public void enslaveTalonSRX(WPI_TalonSRX... slaves) {
-        for(WPI_TalonSRX slave : slaves) {
-            slave.follow(this);
-        }
-    }
-
-    public void enslaveVictorSPX(WPI_VictorSPX... slaves) {
-        for(WPI_VictorSPX slave : slaves) {
+    public void enslaveBaseMotorController(BaseMotorController... slaves) {
+        for(BaseMotorController slave : slaves) {
             slave.follow(this);
         }
     }
