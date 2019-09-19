@@ -2,12 +2,12 @@ package com.spikes2212.utils.targets;
 
 import java.util.function.Supplier;
 
-import com.spikes2212.genericsubsystems.basicSubsystem.BasicSubsystem;
-import com.spikes2212.genericsubsystems.basicSubsystem.commands.MoveBasicSubsystemToTarget;
+import com.spikes2212.command.genericsubsystem.GenericSubsystem;
+import com.spikes2212.command.genericsubsystem.commands.MoveGenericSubsystemToTarget;
 
 /**
  * This class is a Boolean {@link Supplier}. It is used in the constructor of
- * {@link MoveBasicSubsystemToTarget} to move a {@link BasicSubsystem} to a
+ * {@link MoveGenericSubsystemToTarget} to move a {@link GenericSubsystem} to a
  * numerical target, for example, an encoder's output.
  * 
  * @author Omri "Riki" Cohen
@@ -20,10 +20,10 @@ public class NumericalTarget implements Supplier<Boolean> {
 
 	/**
 	 * Constructs a new {@link NumericalTarget} using a {@link Supplier} of the
-	 * {@link BasicSubsystem}'s position, the target's position and the tolerance.
+	 * {@link GenericSubsystem}'s position, the target's position and the tolerance.
 	 * 
 	 * @param position
-	 *            a {@link Supplier} of the {@link BasicSubsystem}'s position.
+	 *            a {@link Supplier} of the {@link GenericSubsystem}'s position.
 	 * @param targetPosition
 	 *            the target's position.
 	 * @param tolerance
