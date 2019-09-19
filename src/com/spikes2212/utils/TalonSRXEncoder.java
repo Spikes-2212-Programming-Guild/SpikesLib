@@ -19,7 +19,7 @@ public class TalonSRXEncoder extends SendableBase implements PIDSource{
 	 */
 	private TalonSRX talon;
 	private PIDSourceType type;
-	private int countsPerRevolution;
+	private double distancePerPulse;
 	
 	/**
 	 * Constructs the PIDSource using the talon and the number of counts per
@@ -27,16 +27,16 @@ public class TalonSRXEncoder extends SendableBase implements PIDSource{
 	 *
 	 * @param talon
 	 *            The talon the encoder is connected to.
-	 * @param countsPerRevolution
+	 * @param distancePerPulse
 	 *            Counts per revolution of the motor. Can be used to change the
 	 *            scale of the value of the encoder.
 	 */
-	public TalonSRXEncoder(TalonSRX talon, int countsPerRevolution) {
+	public TalonSRXEncoder(TalonSRX talon, int distancePerPulse) {
 		talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
 		talon.setSensorPhase(true);
 		
 		this.talon = talon;
-		this.countsPerRevolution = countsPerRevolution;
+		this.distancePerPulse = distancePerPulse;
 	}
 	
 	/**
@@ -63,8 +63,8 @@ public class TalonSRXEncoder extends SendableBase implements PIDSource{
 	@Override
 	public double pidGet() {
 		if (type.equals(PIDSourceType.kRate))
-			return talon.getSelectedSensorVelocity() / countsPerRevolution;
-		return talon.getSelectedSensorPosition() / countsPerRevolution;
+			return talon.getSelectedSensorVelocity() * distancePerPulse;
+		return talon.getSelectedSensorPosition() * distancePerPulse;
 	}
 	
 	public void reset() {
@@ -76,6 +76,6 @@ public class TalonSRXEncoder extends SendableBase implements PIDSource{
 		builder.setSmartDashboardType("Encoder");
 		
 		builder.addDoubleProperty("Distance", this::pidGet, null);
-		builder.addDoubleProperty("Distance Per Tick", () -> countsPerRevolution, null);
+		builder.addDoubleProperty("Distance Per Tick", () -> distancePerPulse, null);
 	}
 }
