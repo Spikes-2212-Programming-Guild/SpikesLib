@@ -1,7 +1,7 @@
 package com.spikes2212.command.drivetrains;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Encoder;
 
 public class EncoderDrivetrain extends TankDrivetrain {
 
