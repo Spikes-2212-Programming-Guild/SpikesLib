@@ -1,15 +1,15 @@
 package com.spikes2212.utils;
 
-import com.spikes2212.dashboard.ConstantHandler;
-
 import java.util.function.Supplier;
 
 public class ChildNamespace implements Namespace {
     private String name;
     private Namespace parent;
+    private String separator;
 
-    public ChildNamespace(String name) {
+    public ChildNamespace(String name, String separator) {
         this.name = name;
+        this.separator = separator;
     }
 
     public ChildNamespace(String name, Namespace parent) {
@@ -17,24 +17,28 @@ public class ChildNamespace implements Namespace {
         this.parent = parent;
     }
 
+    public ChildNamespace(String name){
+        this(name, "/");
+    }
+
     @Override
     public Supplier<Double> addConstantDouble(String name, double value) {
 
-        return parent.addConstantDouble(this.name + " " + name, value);
+        return parent.addConstantDouble(this.name + this.separator + name, value);
     }
 
 
     @Override
     public Supplier<Integer> addConstantInt(String name, int value) {
 
-        return parent.addConstantInt(this.name + " " + name, value);
+        return parent.addConstantInt(this.name + this.separator + name, value);
     }
 
 
     @Override
     public Supplier<String> addConstantString(String name, String value) {
 
-        return parent.addConstantString(this.name + " " + name, value);
+        return parent.addConstantString(this.name + this.separator + name, value);
     }
 
     @Override
