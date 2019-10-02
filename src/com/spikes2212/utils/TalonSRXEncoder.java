@@ -31,7 +31,7 @@ public class TalonSRXEncoder extends SendableBase implements PIDSource{
 	 *            Counts per revolution of the motor. Can be used to change the
 	 *            scale of the value of the encoder.
 	 */
-	public TalonSRXEncoder(TalonSRX talon, int distancePerPulse) {
+	public TalonSRXEncoder(TalonSRX talon, double distancePerPulse) {
 		talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
 		talon.setSensorPhase(true);
 		
@@ -49,7 +49,15 @@ public class TalonSRXEncoder extends SendableBase implements PIDSource{
 	public TalonSRXEncoder(TalonSRX talon) {
 		this(talon, 1);
 	}
-	
+
+	public double getDistancePerPulse() {
+		return distancePerPulse;
+	}
+
+	public void setDistancePerPulse() {
+		this.distancePerPulse = distancePerPulse;
+	}
+
 	@Override
 	public void setPIDSourceType(PIDSourceType pidSource) {
 		type = pidSource;
