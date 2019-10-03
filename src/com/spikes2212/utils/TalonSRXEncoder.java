@@ -55,7 +55,7 @@ public class TalonSRXEncoder extends SendableBase implements PIDSource{
 		return distancePerPulse;
 	}
 
-	public void setDistancePerPulse() {
+	public void setDistancePerPulse(double distancePerPulse) {
 		this.distancePerPulse = distancePerPulse;
 	}
 
