@@ -36,6 +36,7 @@ public class TalonSRXEncoder extends SendableBase implements PIDSource{
 		talon.setSensorPhase(true);
 		
 		this.talon = talon;
+		this.type = PIDSourceType.kDisplacement;
 		this.distancePerPulse = distancePerPulse;
 	}
 	
