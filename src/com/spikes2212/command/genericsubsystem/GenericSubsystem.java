@@ -8,7 +8,7 @@ import java.util.function.Supplier;
  * This class represents a GenericSubsystem that moves within a limitation, or
  * without one.
  *
- * @author Omri "Riki" Cohen
+ * @author Tuval Rivkind Barlev
  */
 public abstract class GenericSubsystem extends Subsystem {
 	
