@@ -9,14 +9,14 @@ import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 
+/**
+ * This class makes an encoder that is connected to a {@link WPI_TalonSRX} to a
+ * PIDSource.
+ *
+ * @author Tuval
+ */
 public class TalonSRXEncoder extends SendableBase implements PIDSource{
-	
-	/**
-	 * This class makes an encoder that is connected to a {@link WPI_TalonSRX} to a
-	 * PIDSource.
-	 *
-	 * @author Tuval
-	 */
+
 	private TalonSRX talon;
 	private PIDSourceType type;
 	private double distancePerPulse;
