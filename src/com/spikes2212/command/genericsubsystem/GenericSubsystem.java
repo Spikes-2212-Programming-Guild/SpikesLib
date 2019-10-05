@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import java.util.function.Supplier;
 
 /**
- * This class represents a generic subsystem that moves within a limitation, or
+ * This class represents a GenericSubsystem that moves within a limitation, or
  * without one.
  *
  * @author Omri "Riki" Cohen
@@ -45,11 +45,11 @@ public abstract class GenericSubsystem extends Subsystem {
 	}
 	
 	/**
-	 * Moves this {@link GenericSubsystem} with the given speed, as long as it is
-	 * within the limits specified when this {@link GenericSubsystem} was constructed.
+	 * Moves this GenericSubsystem with the given speed, as long as it is
+	 * within the limits specified when this GenericSubsystem was constructed.
 	 *
 	 * @param speed
-	 *            the speed to move the subsystem with.
+	 *            the speed to move the GenericSubsystem with.
 	 */
 	public final void move(double speed) {
 		if (speed < minSpeed.get()) speed = minSpeed.get();
@@ -61,37 +61,37 @@ public abstract class GenericSubsystem extends Subsystem {
 	}
 	
 	/**
-	 * This method applies a given speed to the subsystem.
+	 * This method applies a given speed to the GenericSubsystem.
 	 *
 	 * @param speed the speed
 	 */
 	public abstract void apply(double speed);
 	
 	/**
-	 * This method returns whether the subsystem can move safely.
+	 * This method returns whether the GenericSubsystem can move safely.
 	 *
 	 * @param speed the speed
 	 *
-	 * @return whether the subsystem can move safely
+	 * @return whether the GenericSubsystem can move safely
 	 */
 	public abstract boolean canMove(double speed);
 	
 	/**
-	 * Stops this subsystem's movement.
+	 * Stops this GenericSubsystem's movement.
 	 */
 	public abstract void stop();
 
 	/**
-	 * Return the current speed of this {@link GenericSubsystem}.
+	 * Return the current speed of this GenericSubsystem.
 	 *
-	 * @return the current speed of this {@link GenericSubsystem}.
+	 * @return the current speed of this GenericSubsystem.
 	 */
 	public double getSpeed() {
 		return currentSpeed;
 	}
 
 	/**
-	 * This method adds testing commands for this {@link GenericSubsystem}.
+	 * This method adds testing commands for this GenericSubsystem.
 	 */
 	public abstract void initTestingDashboard();
 }
