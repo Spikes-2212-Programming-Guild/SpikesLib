@@ -55,7 +55,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.spikes2212"
             artifactId = "sl"
-            version = "3.1.3"
+            version = "4.0.2"
 
             from(components["java"])
         }
