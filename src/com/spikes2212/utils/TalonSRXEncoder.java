@@ -9,14 +9,14 @@ import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 
+/**
+ * This class makes an encoder that is connected to a {@link WPI_TalonSRX} to a
+ * PIDSource.
+ *
+ * @author Tuval
+ */
 public class TalonSRXEncoder extends SendableBase implements PIDSource{
-	
-	/**
-	 * This class makes an encoder that is connected to a {@link WPI_TalonSRX} to a
-	 * PIDSource.
-	 *
-	 * @author Tuval
-	 */
+
 	private TalonSRX talon;
 	private PIDSourceType type;
 	private double distancePerPulse;
@@ -36,6 +36,7 @@ public class TalonSRXEncoder extends SendableBase implements PIDSource{
 		talon.setSensorPhase(true);
 		
 		this.talon = talon;
+		this.type = PIDSourceType.kDisplacement;
 		this.distancePerPulse = distancePerPulse;
 	}
 	
@@ -54,7 +55,7 @@ public class TalonSRXEncoder extends SendableBase implements PIDSource{
 		return distancePerPulse;
 	}
 
-	public void setDistancePerPulse() {
+	public void setDistancePerPulse(double distancePerPulse) {
 		this.distancePerPulse = distancePerPulse;
 	}
 
