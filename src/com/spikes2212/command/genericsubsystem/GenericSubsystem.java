@@ -89,4 +89,9 @@ public abstract class GenericSubsystem extends Subsystem {
 	public double getSpeed() {
 		return currentSpeed;
 	}
+
+	/**
+	 * This method adds testing commands for this {@link GenericSubsystem}.
+	 */
+	public abstract void initTestingDashboard();
 }
