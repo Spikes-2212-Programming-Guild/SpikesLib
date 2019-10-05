@@ -7,20 +7,16 @@ public class ChildNamespace implements Namespace {
     private Namespace parent;
     private String separator;
 
-    public ChildNamespace(String name, String separator) {
+    public ChildNamespace(String name, Namespace parent, String separator) {
         this.name = name;
+        this.parent = parent;
         this.separator = separator;
     }
 
     public ChildNamespace(String name, Namespace parent) {
-        this.name = name;
-        this.parent = parent;
+        this(name, parent, "/");
     }
-
-    public ChildNamespace(String name){
-        this(name, "/");
-    }
-
+    
     @Override
     public Supplier<Double> addConstantDouble(String name, double value) {
 
