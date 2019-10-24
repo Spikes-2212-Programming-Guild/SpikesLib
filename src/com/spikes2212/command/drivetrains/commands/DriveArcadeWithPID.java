@@ -90,6 +90,8 @@ public class DriveArcadeWithPID extends Command {
 		this.isFinishedSupplier = isFinishedSupplier;
 		this.inputRange = inputRange;
 		this.continuous = continuous;
+		this.rotationController = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
+				PIDSource, (rotate) -> drivetrain.arcadeDrive(movementSupplier.get(), rotate));
 	}
 
 	/**
@@ -216,8 +218,7 @@ public class DriveArcadeWithPID extends Command {
 
 	@Override
 	protected void initialize() {
-		this.rotationController = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
-				PIDSource, (rotate) -> drivetrain.arcadeDrive(movementSupplier.get(), rotate));
+		rotationController.setPID(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD());
 		rotationController.setAbsoluteTolerance(PIDSettings.getTolerance());
 		rotationController.setSetpoint(setpointSupplier.get());
 		rotationController.setOutputRange(-1, 1);

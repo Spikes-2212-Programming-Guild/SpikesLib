@@ -76,7 +76,13 @@ public class LambdaSubsystem extends GenericSubsystem {
     public void stop() {
         apply(0);
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void initTestingDashboard() {}
+
     @Override
     public void setDefaultCommand(Command command) {
         super.setDefaultCommand(command);

@@ -91,6 +91,10 @@ public class DriveTankWithPID extends Command {
 		this.leftSetpoint = leftSetpoint;
 		this.rightSetpoint = rightSetpoint;
 		this.PIDSettings = PIDSettings;
+		leftMovmentControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
+				leftSource, tankDrivetrain::setLeft);
+		rightMovmentControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
+				rightSource, tankDrivetrain::setRight);
 	}
 
 	/**
@@ -251,15 +255,13 @@ public class DriveTankWithPID extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		leftMovmentControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
-				leftSource, tankDrivetrain::setLeft);
 		leftMovmentControl.setAbsoluteTolerance(PIDSettings.getTolerance());
 		leftMovmentControl.setSetpoint(this.leftSetpoint.get());
 		leftMovmentControl.setOutputRange(-1, 1);
-		rightMovmentControl = new PIDController(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD(),
-				rightSource, tankDrivetrain::setRight);
+		leftMovmentControl.setPID(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD());
 		rightMovmentControl.setAbsoluteTolerance(PIDSettings.getTolerance());
 		rightMovmentControl.setSetpoint(this.rightSetpoint.get());
+		rightMovmentControl.setPID(PIDSettings.getKP(), PIDSettings.getKI(), PIDSettings.getKD());
 		rightMovmentControl.setOutputRange(-1, 1);
 		leftMovmentControl.enable();
 		rightMovmentControl.enable();

@@ -9,14 +9,14 @@ import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 
+/**
+ * This class makes an encoder that is connected to a {@link WPI_TalonSRX} to a
+ * PIDSource.
+ *
+ * @author Tuval
+ */
 public class TalonSRXEncoder extends SendableBase implements PIDSource{
-	
-	/**
-	 * This class makes an encoder that is connected to a {@link WPI_TalonSRX} to a
-	 * PIDSource.
-	 *
-	 * @author Tuval
-	 */
+
 	private TalonSRX talon;
 	private PIDSourceType type;
 	private double distancePerPulse;
@@ -31,11 +31,12 @@ public class TalonSRXEncoder extends SendableBase implements PIDSource{
 	 *            Counts per revolution of the motor. Can be used to change the
 	 *            scale of the value of the encoder.
 	 */
-	public TalonSRXEncoder(TalonSRX talon, int distancePerPulse) {
+	public TalonSRXEncoder(TalonSRX talon, double distancePerPulse) {
 		talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
 		talon.setSensorPhase(true);
 		
 		this.talon = talon;
+		this.type = PIDSourceType.kDisplacement;
 		this.distancePerPulse = distancePerPulse;
 	}
 	
@@ -49,7 +50,15 @@ public class TalonSRXEncoder extends SendableBase implements PIDSource{
 	public TalonSRXEncoder(TalonSRX talon) {
 		this(talon, 1);
 	}
-	
+
+	public double getDistancePerPulse() {
+		return distancePerPulse;
+	}
+
+	public void setDistancePerPulse(double distancePerPulse) {
+		this.distancePerPulse = distancePerPulse;
+	}
+
 	@Override
 	public void setPIDSourceType(PIDSourceType pidSource) {
 		type = pidSource;
