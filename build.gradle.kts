@@ -5,7 +5,7 @@
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds/
  */
 
-group = "com.spikes2212"
+group = "com.github.Spikes-2212-Programming-Guild"
 
 
 plugins {
