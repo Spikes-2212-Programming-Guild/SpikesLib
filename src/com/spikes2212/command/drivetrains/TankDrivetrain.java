@@ -62,7 +62,7 @@ public class TankDrivetrain extends Subsystem {
 	 *            forward.
 	 */
 	public void setRight(double speedRight) {
-		rightController.set(speedRight);
+		rightController.set(-speedRight);
 	}
 
 	/**
