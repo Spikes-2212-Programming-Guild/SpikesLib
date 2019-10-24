@@ -3,6 +3,7 @@ package com.spikes2212.utils;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.wpi.cscore.VideoSource;
 import org.opencv.core.Mat;
 
 import edu.wpi.cscore.CvSink;
@@ -69,6 +70,10 @@ public class CamerasHandler {
     public void switchCamera(int port) {
         if (cameras.containsKey(port)) {
             this.sink = CameraServer.getInstance().getVideo(cameras.get(port));
+            for (int k : cameras.keySet()) {
+                if (k != port)
+                    cameras.get(k).setConnectionStrategy(VideoSource.ConnectionStrategy.kForceClose);
+            }
         }
     }
 
