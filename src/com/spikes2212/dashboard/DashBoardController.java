@@ -27,7 +27,7 @@ public class DashBoardController {
 	 * A {@link Map} to contain all {@link Number} values to be displayed on the
 	 * {@code SmartDashBoard}. This map assigns a number to each Supplier as a key to identify it
 	 */
-    private Map<String, Supplier<Number>> numberFields;
+    private Map<String, Supplier<? extends Number>> numberFields;
     
     /**
 	 * A {@link Map} to contain all {@link Boolean} values to be displayed on the
@@ -77,7 +77,7 @@ public class DashBoardController {
 	 *            "http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html">SmartDashboard</a>.
 	 *            Cannot be null.
 	 */
-    public void addNumber(String name, Supplier<Number> numberSupplier) {
+    public <T extends Number> void addNumber(String name, Supplier<T> numberSupplier) {
         remove(name);
         numberFields.put(name, numberSupplier);
     }
@@ -128,7 +128,7 @@ public class DashBoardController {
 	 * Updates the Number {@link Supplier}s within the {@link SmartDashboard}. 
 	 */
     private void updateNumbers() {
-        for (Map.Entry<String, Supplier<Number>> entry : numberFields.entrySet()) {
+        for (Map.Entry<String, Supplier<? extends Number>> entry : numberFields.entrySet()) {
             SmartDashboard.putNumber(entry.getKey(), entry.getValue().get().doubleValue());
         }
     }
