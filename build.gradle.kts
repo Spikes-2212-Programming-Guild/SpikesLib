@@ -31,13 +31,13 @@ val guiceVersion by extra("4.2.2")
 val ctreVersion by extra("5.14.1")
 
 dependencies {
-    api("edu.wpi.first.wpilibj:wpilibj-java:$wpilibVersion")
-    api("edu.wpi.first.cscore:cscore-java:$cscoreVersion")
-    api("edu.wpi.first.thirdparty.frc2019.opencv:opencv-java:$opencvVersion")
-    api("edu.wpi.first.cameraserver:cameraserver-java:$wpilibVersion")
-    api("com.google.inject:guice:$guiceVersion")
-    api("com.ctre.phoenix:wpiapi-java:$ctreVersion")
-    api("com.ctre.phoenix:api-java:$ctreVersion")
+    implementation("edu.wpi.first.wpilibj:wpilibj-java:$wpilibVersion")
+    implementation("edu.wpi.first.cscore:cscore-java:$cscoreVersion")
+    implementation("edu.wpi.first.thirdparty.frc2019.opencv:opencv-java:$opencvVersion")
+    implementation("edu.wpi.first.cameraserver:cameraserver-java:$wpilibVersion")
+    implementation("com.google.inject:guice:$guiceVersion")
+    implementation("com.ctre.phoenix:wpiapi-java:$ctreVersion")
+    implementation("com.ctre.phoenix:api-java:$ctreVersion")
 }
 
 
