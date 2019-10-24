@@ -24,7 +24,7 @@ repositories {
     }
 }
 
-val wpilibVersion by extra("2019.2.1")
+val wpilibVersion by extra("2019.4.1")
 val cscoreVersion by extra("1.3.0")
 val opencvVersion by extra("3.4.3")
 val guiceVersion by extra("4.2.2")
@@ -32,7 +32,7 @@ val ctreVersion by extra("5.14.1")
 
 dependencies {
     api("edu.wpi.first.wpilibj:wpilibj-java:$wpilibVersion")
-    api("edu.wpi.first.cscore:cscore-java:$cscoreVersion")
+    api("edu.wpi.first.cscore:cscore-java:$wpilibVersion")
     api("edu.wpi.first.thirdparty.frc2019.opencv:opencv-java:$opencvVersion")
     api("edu.wpi.first.cameraserver:cameraserver-java:$wpilibVersion")
     api("com.google.inject:guice:$guiceVersion")
