@@ -26,7 +26,7 @@ repositories {
 
 val wpilibVersion by extra("2019.4.1")
 val cscoreVersion by extra("1.3.0")
-val opencvVersion by extra("3.4.4")
+val opencvVersion by extra("3.4.4-5")
 val guiceVersion by extra("4.2.2")
 val ctreVersion by extra("5.14.1")
 
